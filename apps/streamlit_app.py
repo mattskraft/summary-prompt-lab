@@ -17,11 +17,24 @@ try:
     from kiso_input.config import (
         STRUCT_JSON_PATH,
         SN_JSON_PATH,
-        GEMINI_API_KEY,
     )
     # Import APP_PASSWORD using getattr for robustness
     import kiso_input.config as config_module
     APP_PASSWORD = getattr(config_module, "APP_PASSWORD", None)
+    
+    # Get GEMINI_API_KEY from Streamlit secrets first, then fallback to config
+    # Streamlit Cloud provides secrets via st.secrets, not environment variables
+    GEMINI_API_KEY = None
+    try:
+        # Try to get from Streamlit secrets (Streamlit Cloud)
+        if hasattr(st, "secrets") and st.secrets:
+            GEMINI_API_KEY = st.secrets.get("GEMINI_API_KEY") or None
+    except (AttributeError, KeyError, TypeError):
+        pass
+    
+    # Fallback to config module if not found in secrets
+    if not GEMINI_API_KEY:
+        GEMINI_API_KEY = getattr(config_module, "GEMINI_API_KEY", None)
     
     from kiso_input import (
         get_prompt_segments_from_exercise,
