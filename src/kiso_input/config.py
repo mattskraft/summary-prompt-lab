@@ -47,9 +47,37 @@ else:
     load_dotenv()
 
 # Paths from environment variables
-STRUCT_JSON_PATH: Optional[str] = os.getenv("KISO_STRUCT_JSON")
-SN_JSON_PATH: Optional[str] = os.getenv("KISO_SN_JSON")
+# Support both naming conventions for flexibility
+_struct_path_raw = os.getenv("KISO_STRUCT_JSON") or os.getenv("STRUCT_JSON_PATH")
+_sn_path_raw = os.getenv("KISO_SN_JSON") or os.getenv("SN_JSON_PATH")
 GEMINI_API_KEY: Optional[str] = os.getenv("GEMINI_API_KEY")
+
+# Resolve paths if they're set (convert relative to absolute)
+STRUCT_JSON_PATH: Optional[str] = None
+if _struct_path_raw:
+    struct_path = Path(_struct_path_raw)
+    if struct_path.is_absolute():
+        STRUCT_JSON_PATH = str(struct_path) if struct_path.exists() else None
+    else:
+        # Try relative to PROJECT_ROOT first, then CWD
+        for base in [PROJECT_ROOT, Path.cwd()]:
+            full_path = base / struct_path
+            if full_path.exists():
+                STRUCT_JSON_PATH = str(full_path.resolve())
+                break
+
+SN_JSON_PATH: Optional[str] = None
+if _sn_path_raw:
+    sn_path = Path(_sn_path_raw)
+    if sn_path.is_absolute():
+        SN_JSON_PATH = str(sn_path) if sn_path.exists() else None
+    else:
+        # Try relative to PROJECT_ROOT first, then CWD
+        for base in [PROJECT_ROOT, Path.cwd()]:
+            full_path = base / sn_path
+            if full_path.exists():
+                SN_JSON_PATH = str(full_path.resolve())
+                break
 
 # Default paths relative to project root
 DEFAULT_DATA_DIR = PROJECT_ROOT / "data" / "processed"

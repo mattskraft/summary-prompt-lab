@@ -70,10 +70,10 @@ The JSON data files are included in the repository for Streamlit Cloud deploymen
 
 2. **Configure secrets:**
    - In Streamlit Cloud settings, add secrets for:
-     - `GEMINI_API_KEY`: Your Gemini API key
-   - Optionally set:
-     - `KISO_STRUCT_JSON`: Path to structured JSON (defaults to `data/processed/kiso_app_merged_structured.json`)
-     - `KISO_SN_JSON`: Path to story nodes JSON (defaults to `data/processed/kiso_app_storynodes_struct.json`)
+     - `GEMINI_API_KEY`: Your Gemini API key (required)
+   - Optionally set (if you want to override defaults):
+     - `KISO_STRUCT_JSON` or `STRUCT_JSON_PATH`: Path to structured JSON (defaults to `data/processed/kiso_app_merged_structured.json`)
+     - `KISO_SN_JSON` or `SN_JSON_PATH`: Path to story nodes JSON (defaults to `data/processed/kiso_app_storynodes_struct.json`)
 
 3. **Deploy:**
    - Streamlit Cloud will automatically detect `requirements.txt` and install dependencies
