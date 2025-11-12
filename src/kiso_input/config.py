@@ -51,6 +51,7 @@ else:
 _struct_path_raw = os.getenv("KISO_STRUCT_JSON") or os.getenv("STRUCT_JSON_PATH")
 _sn_path_raw = os.getenv("KISO_SN_JSON") or os.getenv("SN_JSON_PATH")
 GEMINI_API_KEY: Optional[str] = os.getenv("GEMINI_API_KEY")
+APP_PASSWORD: Optional[str] = os.getenv("APP_PASSWORD")
 
 # Resolve paths if they're set (convert relative to absolute)
 STRUCT_JSON_PATH: Optional[str] = None

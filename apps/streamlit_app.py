@@ -18,6 +18,7 @@ try:
         STRUCT_JSON_PATH,
         SN_JSON_PATH,
         GEMINI_API_KEY,
+        APP_PASSWORD,
     )
     from kiso_input import (
         get_prompt_segments_from_exercise,
@@ -261,6 +262,32 @@ def render_segments_ui(segments: List[Dict[str, Any]], key_prefix: str = "") -> 
 # UI Layout
 # -----------------------------
 st.set_page_config(page_title="Summary Prompt Lab", layout="centered")
+
+# Password protection
+if APP_PASSWORD:
+    # Initialize session state for password
+    if "password_verified" not in st.session_state:
+        st.session_state.password_verified = False
+    
+    if not st.session_state.password_verified:
+        st.title("🔒 Summary Prompt Lab")
+        st.markdown("---")
+        
+        password_input = st.text_input(
+            "Enter password to access the app:",
+            type="password",
+            key="password_input"
+        )
+        
+        if st.button("Submit", key="password_submit"):
+            if password_input == APP_PASSWORD:
+                st.session_state.password_verified = True
+                st.rerun()
+            else:
+                st.error("❌ Incorrect password. Please try again.")
+        
+        st.stop()
+
 st.title("🧪 Summary Prompt Lab")
 
 # Load files first (before sidebar)
