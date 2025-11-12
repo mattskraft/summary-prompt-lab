@@ -18,8 +18,11 @@ try:
         STRUCT_JSON_PATH,
         SN_JSON_PATH,
         GEMINI_API_KEY,
-        APP_PASSWORD,
     )
+    # Import APP_PASSWORD using getattr for robustness
+    import kiso_input.config as config_module
+    APP_PASSWORD = getattr(config_module, "APP_PASSWORD", None)
+    
     from kiso_input import (
         get_prompt_segments_from_exercise,
         prompt_segments_to_text,
