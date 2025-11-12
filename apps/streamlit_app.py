@@ -268,6 +268,23 @@ files_ok = True
 ex_struct = None
 story_nodes = None
 try:
+    # Debug: Show path resolution in development
+    if os.getenv("STREAMLIT_DEBUG"):
+        with st.expander("🔍 Debug: Path Resolution"):
+            st.write(f"**PROJECT_ROOT (from config):** {PROJECT_ROOT}")
+            st.write(f"**Current working directory:** {os.getcwd()}")
+            st.write(f"**STRUCT_JSON_PATH:** {STRUCT_JSON_PATH}")
+            st.write(f"**SN_JSON_PATH:** {SN_JSON_PATH}")
+            if STRUCT_JSON_PATH:
+                st.write(f"**STRUCT_JSON_PATH exists:** {os.path.exists(STRUCT_JSON_PATH)}")
+            if SN_JSON_PATH:
+                st.write(f"**SN_JSON_PATH exists:** {os.path.exists(SN_JSON_PATH)}")
+            # Check default paths
+            default_struct = PROJECT_ROOT / "data" / "processed" / "kiso_app_merged_structured.json"
+            default_sn = PROJECT_ROOT / "data" / "processed" / "kiso_app_storynodes_struct.json"
+            st.write(f"**Default STRUCT path exists:** {default_struct.exists()} ({default_struct})")
+            st.write(f"**Default SN path exists:** {default_sn.exists()} ({default_sn})")
+    
     if not STRUCT_JSON_PATH or not os.path.exists(STRUCT_JSON_PATH):
         raise FileNotFoundError(f"JSON-Datei nicht gefunden: {STRUCT_JSON_PATH}")
     if not SN_JSON_PATH or not os.path.exists(SN_JSON_PATH):
@@ -278,15 +295,37 @@ try:
 except FileNotFoundError as e:
     files_ok = False
     st.error(str(e))
+    with st.expander("🔍 Debug Information"):
+        st.write(f"**PROJECT_ROOT:** {PROJECT_ROOT}")
+        st.write(f"**Current working directory:** {os.getcwd()}")
+        st.write(f"**STRUCT_JSON_PATH:** {STRUCT_JSON_PATH}")
+        st.write(f"**SN_JSON_PATH:** {SN_JSON_PATH}")
+        # Try to find files
+        possible_paths = [
+            PROJECT_ROOT / "data" / "processed" / "kiso_app_merged_structured.json",
+            Path("data/processed/kiso_app_merged_structured.json"),
+            Path("./data/processed/kiso_app_merged_structured.json"),
+        ]
+        st.write("**Checking possible paths:**")
+        for path in possible_paths:
+            exists = path.exists() if path else False
+            st.write(f"- {path}: {'✅' if exists else '❌'}")
     if not STRUCT_JSON_PATH or not SN_JSON_PATH:
         st.info("""
-        💡 Setze die Umgebungsvariablen:
+        💡 Setze die Umgebungsvariablen in Streamlit Cloud Secrets:
         - `KISO_STRUCT_JSON` für die structured JSON-Datei
         - `KISO_SN_JSON` für die story nodes JSON-Datei
+        
+        Oder verwende die Standardpfade:
+        - `data/processed/kiso_app_merged_structured.json`
+        - `data/processed/kiso_app_storynodes_struct.json`
         """)
 except Exception as e:
     files_ok = False
     st.error(f"Fehler beim Laden der Dateien: {e}")
+    import traceback
+    with st.expander("🔍 Error Details"):
+        st.code(traceback.format_exc())
 
 if not files_ok:
     st.stop()
