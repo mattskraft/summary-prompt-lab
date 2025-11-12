@@ -40,7 +40,8 @@ ENV/
 config/.env
 
 # Data files (keep structure, ignore large files)
-data/processed/*.json
+# JSON files are now committed for Streamlit Cloud deployment
+# data/processed/*.json
 !data/processed/.gitkeep
 
 # OS
