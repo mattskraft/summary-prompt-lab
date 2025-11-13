@@ -27,16 +27,22 @@ try:
     PASSWORD_FROM_SECRETS = False  # Track if password comes from Streamlit secrets
     try:
         # Try to get from Streamlit secrets (Streamlit Cloud)
-        if hasattr(st, "secrets") and st.secrets:
-            # Try different access patterns for Streamlit Cloud
-            if "APP_PASSWORD" in st.secrets:
-                APP_PASSWORD = st.secrets["APP_PASSWORD"]
-                PASSWORD_FROM_SECRETS = True
-            elif hasattr(st.secrets, "get"):
-                app_pwd = st.secrets.get("APP_PASSWORD")
-                if app_pwd:
-                    APP_PASSWORD = app_pwd
+        if hasattr(st, "secrets"):
+            try:
+                # Check if secrets is accessible (may raise StreamlitSecretNotFoundError)
+                _ = len(st.secrets)  # This will raise if no secrets file exists
+                # If we get here, secrets exist
+                if "APP_PASSWORD" in st.secrets:
+                    APP_PASSWORD = st.secrets["APP_PASSWORD"]
                     PASSWORD_FROM_SECRETS = True
+                elif hasattr(st.secrets, "get"):
+                    app_pwd = st.secrets.get("APP_PASSWORD")
+                    if app_pwd:
+                        APP_PASSWORD = app_pwd
+                        PASSWORD_FROM_SECRETS = True
+            except Exception:
+                # No secrets file found, silently fall through to config fallback
+                pass
     except (AttributeError, KeyError, TypeError) as e:
         # Silently fall through to config fallback
         pass
@@ -48,8 +54,15 @@ try:
     GEMINI_API_KEY = None
     try:
         # Try to get from Streamlit secrets (Streamlit Cloud)
-        if hasattr(st, "secrets") and st.secrets:
-            GEMINI_API_KEY = st.secrets.get("GEMINI_API_KEY") or None
+        if hasattr(st, "secrets"):
+            try:
+                # Check if secrets is accessible (may raise StreamlitSecretNotFoundError)
+                _ = len(st.secrets)  # This will raise if no secrets file exists
+                # If we get here, secrets exist
+                GEMINI_API_KEY = st.secrets.get("GEMINI_API_KEY") or None
+            except Exception:
+                # No secrets file found, silently fall through to config fallback
+                pass
     except (AttributeError, KeyError, TypeError):
         pass
     
@@ -69,6 +82,7 @@ try:
     from kiso_input.processing.local_models import (
         generate_summary_with_model,
         get_available_models,
+        is_local_models_available,
     )
 except ImportError as e:
     st.error(f"""
@@ -673,48 +687,79 @@ if sel_uebung:
                 st.success("✅ Sicherheitsprüfung abgeschlossen: Keine Freitextantworten vorhanden.")
             return True, assessments
     
-    # Get available models
-    available_models = get_available_models()
+    # Check if local models are available
+    local_models_available = is_local_models_available()
+    available_models = get_available_models() if local_models_available else []
     
     # Create buttons for each model
     st.markdown("---")
     st.subheader("Zusammenfassung generieren")
     
-    # Display model buttons in columns
-    num_cols = min(3, len(available_models))
-    cols = st.columns(num_cols)
-    
-    for idx, model_name in enumerate(available_models):
-        col = cols[idx % num_cols]
-        with col:
-            button_key = f"{session_key}_summarize_{model_name}"
-            if st.button(f"🧾 {model_name}", key=button_key, use_container_width=True):
-                safety_ok, assessments = perform_safety_check()
-                
-                if safety_ok:
-                    try:
-                        with st.spinner(f"Generiere Zusammenfassung mit {model_name}..."):
-                            summary_text = generate_summary_with_model(
-                                prompt=prompt_input,
-                                model_name=model_name,
-                                backend_type="local",
-                                max_tokens=200,
-                                temperature=0.7,
-                            )
-                            # Store recap in session state
-                            st.session_state[recaps_key][model_name] = summary_text
-                        st.success(f"✅ Zusammenfassung mit {model_name} generiert")
-                        st.rerun()
-                    except ImportError as e:
-                        st.error(f"❌ Fehler: {e}")
-                        st.info("💡 Installiere das Paket mit: `pip install llama-cpp-python`")
-                    except FileNotFoundError as e:
-                        st.error(f"❌ Modell-Datei nicht gefunden: {e}")
-                    except Exception as e:
-                        st.error(f"❌ Fehler bei der Zusammenfassungs-Generierung mit {model_name}: {e}")
-                        import traceback
-                        with st.expander("🔍 Fehlerdetails anzeigen"):
-                            st.code(traceback.format_exc(), language="python")
+    if not local_models_available:
+        # Check if llama_cpp is missing or models are missing
+        try:
+            import llama_cpp  # noqa: F401
+            llama_cpp_installed = True
+        except ImportError:
+            llama_cpp_installed = False
+        
+        if not llama_cpp_installed:
+            st.info("""
+            💡 **Lokale Modelle nicht verfügbar**
+            
+            Für die lokale Nutzung der Modelle benötigst du:
+            1. Installation von `llama-cpp-python`: `pip install llama-cpp-python`
+            2. Die Modelle müssen in `~/Kiso/data/models/` vorhanden sein
+            
+            **Installation:**
+            ```bash
+            pip install llama-cpp-python
+            # oder mit optional dependencies:
+            pip install -e ".[local]"
+            ```
+            
+            **Hinweis:** Auf Streamlit Cloud sind lokale Modelle nicht verfügbar. 
+            Für Cloud-Deployment kannst du später die API-Variante verwenden.
+            """)
+        else:
+            st.warning("⚠️ **Modelle nicht gefunden**\n\nDie Modelle wurden nicht in `~/Kiso/data/models/` gefunden.")
+    else:
+        # Display model buttons in columns
+        num_cols = min(3, len(available_models))
+        if available_models:
+            cols = st.columns(num_cols)
+            
+            for idx, model_name in enumerate(available_models):
+                col = cols[idx % num_cols]
+                with col:
+                    button_key = f"{session_key}_summarize_{model_name}"
+                    if st.button(f"🧾 {model_name}", key=button_key, use_container_width=True):
+                        safety_ok, assessments = perform_safety_check()
+                        
+                        if safety_ok:
+                            try:
+                                with st.spinner(f"Generiere Zusammenfassung mit {model_name}..."):
+                                    summary_text = generate_summary_with_model(
+                                        prompt=prompt_input,
+                                        model_name=model_name,
+                                        backend_type="local",
+                                        max_tokens=200,
+                                        temperature=0.7,
+                                    )
+                                    # Store recap in session state
+                                    st.session_state[recaps_key][model_name] = summary_text
+                                st.success(f"✅ Zusammenfassung mit {model_name} generiert")
+                                st.rerun()
+                            except ImportError as e:
+                                st.error(f"❌ Fehler: {e}")
+                                st.info("💡 Installiere das Paket mit: `pip install llama-cpp-python`")
+                            except FileNotFoundError as e:
+                                st.error(f"❌ Modell-Datei nicht gefunden: {e}")
+                            except Exception as e:
+                                st.error(f"❌ Fehler bei der Zusammenfassungs-Generierung mit {model_name}: {e}")
+                                import traceback
+                                with st.expander("🔍 Fehlerdetails anzeigen"):
+                                    st.code(traceback.format_exc(), language="python")
     
     # Display all generated recaps for comparison
     if st.session_state[recaps_key]:

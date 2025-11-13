@@ -8,7 +8,8 @@ from pathlib import Path
 from typing import Dict, Optional, Any
 
 # Model configuration mapping model names to file paths
-MODEL_DIR = Path(os.path.expanduser("~/Kiso/data/models"))
+# Can be overridden via MODEL_DIR environment variable (for Cloud Run)
+MODEL_DIR = Path(os.getenv("MODEL_DIR", os.path.expanduser("~/Kiso/data/models")))
 
 MODEL_MAP: Dict[str, Path] = {
     "Gemma-3-12B": MODEL_DIR / "gemma-3-12b-it-q4_0.gguf",
@@ -171,8 +172,23 @@ def generate_summary_with_model(
 
 
 def get_available_models() -> list[str]:
-    """Get list of available model names."""
-    return list(MODEL_MAP.keys())
+    """Get list of available model names that have existing model files."""
+    available = []
+    for model_name, model_path in MODEL_MAP.items():
+        if model_path.exists():
+            available.append(model_name)
+    return available
+
+
+def is_local_models_available() -> bool:
+    """Check if local models are available (models exist and llama_cpp is installed)."""
+    try:
+        import llama_cpp  # noqa: F401
+    except ImportError:
+        return False
+    
+    # Check if at least one model file exists
+    return any(model_path.exists() for model_path in MODEL_MAP.values())
 
 
 __all__ = [
@@ -182,6 +198,7 @@ __all__ = [
     "get_backend_for_model",
     "generate_summary_with_model",
     "get_available_models",
+    "is_local_models_available",
     "MODEL_MAP",
 ]
 

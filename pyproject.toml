@@ -21,6 +21,9 @@ dev = [
     "black>=23.0.0",
     "ruff>=0.1.0",
 ]
+local = [
+    "llama-cpp-python>=0.2.0",
+]
 
 [tool.setuptools]
 packages = ["kiso_input", "kiso_input.processing"]
