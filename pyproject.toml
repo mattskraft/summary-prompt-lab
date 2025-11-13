@@ -23,7 +23,7 @@ dev = [
 ]
 
 [tool.setuptools]
-packages = ["kiso_input"]
+packages = ["kiso_input", "kiso_input.processing"]
 
 [tool.setuptools.package-dir]
 "" = "src"
