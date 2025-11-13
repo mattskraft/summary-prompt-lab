@@ -94,6 +94,25 @@ def _deobfuscate_text(text: str) -> str:
     return deobfuscated
 
 
+def _create_flexible_pattern(phrase: str) -> str:
+    """Create a flexible regex pattern that allows optional words between 'mich' and 'um'."""
+    # For phrases like "ich bringe mich um", allow optional words between "mich" and "um"
+    phrase_lower = phrase.lower()
+    if " mich " in phrase_lower and " um" in phrase_lower:
+        # Split at "mich" to get parts before and after
+        parts = re.split(r"\s+mich\s+", phrase, flags=re.IGNORECASE, maxsplit=1)
+        if len(parts) == 2:
+            before_mich = re.escape(parts[0].strip())
+            after_mich = parts[1].strip()
+            # Check if "um" appears after "mich"
+            if after_mich.lower().startswith("um"):
+                # Allow 0-3 words between "mich" and "um"
+                # Pattern: before_mich + " mich " + (0-3 words) + " um"
+                pattern = rf"\b{before_mich}\s+mich\s+(\w+\s+){{0,3}}um\b"
+                return pattern
+    return re.escape(phrase)
+
+
 def _find_all_occurrences(sentence: str, phrases: List[str]) -> List[int]:
     """Find all occurrences of phrases in sentence, handling obfuscation."""
     indices: List[int] = []
@@ -106,6 +125,12 @@ def _find_all_occurrences(sentence: str, phrases: List[str]) -> List[int]:
         # Try exact match first (case-insensitive)
         for match in re.finditer(escaped_phrase, sentence, re.IGNORECASE):
             indices.append(match.start())
+        
+        # Try flexible pattern for "mich ... um" constructions
+        flexible_pattern = _create_flexible_pattern(phrase)
+        if flexible_pattern != escaped_phrase:
+            for match in re.finditer(flexible_pattern, sentence, re.IGNORECASE):
+                indices.append(match.start())
         
         # Also try deobfuscated version if different
         deobfuscated_phrase = _deobfuscate_text(phrase)
