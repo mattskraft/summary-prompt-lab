@@ -50,6 +50,8 @@ else:
 # Support both naming conventions for flexibility
 _struct_path_raw = os.getenv("KISO_STRUCT_JSON") or os.getenv("STRUCT_JSON_PATH")
 _sn_path_raw = os.getenv("KISO_SN_JSON") or os.getenv("SN_JSON_PATH")
+_lexicon_path_raw = os.getenv("KISO_SUICIDE_LEXICON") or os.getenv("SUICIDE_LEXICON_PATH")
+_prompts_path_raw = os.getenv("KISO_PROMPTS_CONFIG") or os.getenv("PROMPTS_CONFIG_PATH")
 GEMINI_API_KEY: Optional[str] = os.getenv("GEMINI_API_KEY")
 APP_PASSWORD: Optional[str] = os.getenv("APP_PASSWORD")
 
@@ -119,4 +121,36 @@ if not SN_JSON_PATH:
         shared_data = Path.home() / "Kiso" / "data" / "processed" / "kiso_app_storynodes_struct.json"
         if shared_data.exists():
             SN_JSON_PATH = str(shared_data)
+
+SUICIDE_LEXICON_PATH: Optional[str] = None
+DEFAULT_LEXICON_PATH = PROJECT_ROOT / "config" / "lexica" / "suicide_lexicon_de.yaml"
+if _lexicon_path_raw:
+    lexicon_path = Path(_lexicon_path_raw)
+    if lexicon_path.is_absolute():
+        SUICIDE_LEXICON_PATH = str(lexicon_path) if lexicon_path.exists() else None
+    else:
+        for base in [PROJECT_ROOT, Path.cwd()]:
+            full_path = base / lexicon_path
+            if full_path.exists():
+                SUICIDE_LEXICON_PATH = str(full_path.resolve())
+                break
+
+if not SUICIDE_LEXICON_PATH and DEFAULT_LEXICON_PATH.exists():
+    SUICIDE_LEXICON_PATH = str(DEFAULT_LEXICON_PATH.resolve())
+
+PROMPTS_CONFIG_PATH: Optional[str] = None
+DEFAULT_PROMPTS_CONFIG = PROJECT_ROOT / "config" / "prompts.yaml"
+if _prompts_path_raw:
+    prompts_path = Path(_prompts_path_raw)
+    if prompts_path.is_absolute():
+        PROMPTS_CONFIG_PATH = str(prompts_path) if prompts_path.exists() else None
+    else:
+        for base in [PROJECT_ROOT, Path.cwd()]:
+            full_path = base / prompts_path
+            if full_path.exists():
+                PROMPTS_CONFIG_PATH = str(full_path.resolve())
+                break
+
+if not PROMPTS_CONFIG_PATH and DEFAULT_PROMPTS_CONFIG.exists():
+    PROMPTS_CONFIG_PATH = str(DEFAULT_PROMPTS_CONFIG.resolve())
 

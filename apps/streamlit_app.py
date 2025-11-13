@@ -17,6 +17,7 @@ try:
     from kiso_input.config import (
         STRUCT_JSON_PATH,
         SN_JSON_PATH,
+        SUICIDE_LEXICON_PATH,
     )
     # Import APP_PASSWORD using getattr for robustness
     import kiso_input.config as config_module
@@ -37,11 +38,13 @@ try:
         GEMINI_API_KEY = getattr(config_module, "GEMINI_API_KEY", None)
     
     from kiso_input import (
-        get_prompt_segments_from_exercise,
-        prompt_segments_to_text,
-        generate_answers_with_gemini,
+        assess_free_text_answers,
         build_summary_prompt,
+        generate_answers_with_gemini,
         generate_summary_with_gemini,
+        get_prompt_segments_from_exercise,
+        load_self_harm_lexicon,
+        prompt_segments_to_text,
     )
 except ImportError as e:
     st.error(f"""
@@ -64,6 +67,11 @@ except ImportError as e:
 def load_json(path: str) -> Any:
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
+
+
+@st.cache_resource(show_spinner=False)
+def load_self_harm_lexicon_cached(path: str) -> Dict[str, Any]:
+    return load_self_harm_lexicon(path)
 
 
 def build_hierarchy(ex_struct: Any) -> Dict[str, Dict[str, List[str]]]:
@@ -563,6 +571,34 @@ if sel_uebung:
     )
     live_prompt_text = build_summary_prompt(segments_for_prompt)
     
+    st.markdown("---")
+    st.subheader("Selbstgefährdungs-Check")
+    analysis_state_key = f"{session_key}_self_harm_analysis"
+
+    if not SUICIDE_LEXICON_PATH:
+        st.info("Kein Lexikonpfad konfiguriert. Bitte setze `SUICIDE_LEXICON_PATH` oder `KISO_SUICIDE_LEXICON`.")
+    else:
+        if st.button("🔍 Freitextantworten prüfen", key=f"{session_key}_self_harm_btn"):
+            try:
+                lexicon = load_self_harm_lexicon_cached(SUICIDE_LEXICON_PATH)
+                assessments = assess_free_text_answers(segments_for_prompt, lexicon)
+                st.session_state[analysis_state_key] = assessments
+            except Exception as exc:
+                st.error(f"❌ Analyse fehlgeschlagen: {exc}")
+        current_assessments = st.session_state.get(analysis_state_key, None)
+        if current_assessments is not None:
+            if current_assessments:
+                for idx, entry in enumerate(current_assessments, start=1):
+                    analysis = entry["analysis"]
+                    with st.container():
+                        st.markdown(f"**Frage {idx}:** {entry['question']}")
+                        st.markdown(f"- Risikostufe: `{analysis['risk_level']}`")
+                        st.markdown(f"- Antwort: {entry['answer']}")
+                        with st.expander("Details anzeigen"):
+                            st.json(analysis)
+            else:
+                st.info("Keine Freitextantworten gefunden.")
+
     st.markdown("---")
     st.subheader("Zusammenfassungs-Prompt")
     # Preserve manual edits unless the underlying segments changed.

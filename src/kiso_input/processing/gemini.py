@@ -1,0 +1,329 @@
+"""Gemini API integrations for answer generation and summarisation."""
+
+from __future__ import annotations
+
+import json
+import random
+import re
+from typing import Any, Dict, List, Optional, Tuple, Union
+
+from .prompts import build_gemini_prompt_up_to_question, build_summary_prompt
+
+
+def generate_summary_with_gemini(
+    segments: List[Dict[str, Any]],
+    api_key: str,
+    model: str = "gemini-2.5-flash-lite",
+    debug: bool = False,
+) -> str:
+    """Generate a therapeutic summary using the Gemini API."""
+    try:
+        from google import genai
+    except ImportError as exc:  # pragma: no cover - dependency guard
+        raise ImportError(
+            "google-genai package not installed. Install it with: pip install google-genai"
+        ) from exc
+
+    prompt = build_summary_prompt(segments)
+
+    if debug:
+        print("=== SUMMARY PROMPT ===")
+        print(prompt)
+        print("=" * 50)
+
+    client = genai.Client(api_key=api_key)
+    response = client.models.generate_content(
+        model=model,
+        contents=prompt,
+        config={"temperature": 0.7, "top_p": 0.9, "max_output_tokens": 200},
+    )
+
+    if hasattr(response, "text") and response.text:
+        summary = response.text.strip()
+    else:
+        summary = response.candidates[0].content.parts[0].text.strip()
+
+    if debug:
+        print("=== SUMMARY RESPONSE ===")
+        print(summary)
+        print("=" * 50)
+
+    return summary
+
+
+def extract_json_array_from_gemini_output(output: str) -> List[Dict[str, Any]]:
+    """Extract a JSON array from raw Gemini output, tolerant of code fences."""
+    stripped = re.sub(r"^```(?:json)?\s*|\s*```$", "", output.strip(), flags=re.IGNORECASE)
+    try:
+        obj = json.loads(stripped)
+        if isinstance(obj, list):
+            return obj
+    except Exception:
+        pass
+
+    match = re.search(r"\[\s*(?:.|\n)*?\]", stripped, re.DOTALL)
+    if match:
+        fragment = match.group(0)
+        try:
+            parsed = json.loads(fragment)
+            if isinstance(parsed, list):
+                return parsed
+        except Exception:
+            pass
+
+    raise ValueError("LLM-Output enthält keine parsebare JSON-Liste.")
+
+
+def generate_answers_with_gemini(
+    segments: List[Dict[str, Any]],
+    api_key: str,
+    model: str = "gemini-2.5-flash-lite",
+    debug: bool = False,
+    return_debug_info: bool = False,
+) -> Union[List[Dict[str, Any]], Tuple[List[Dict[str, Any]], Dict[str, Any]]]:
+    """
+    Generate user answers using Gemini and merge them into the segment structure.
+
+    Returns the merged segments and optionally debug information.
+    """
+    try:
+        from google import genai
+    except ImportError as exc:  # pragma: no cover - dependency guard
+        raise ImportError(
+            "google-genai package not installed. Install it with: pip install google-genai"
+        ) from exc
+
+    rng = random.Random()
+    mc_answers: Dict[str, List[str]] = {}
+    slider_answers: Dict[str, int] = {}
+
+    for index, segment in enumerate(segments):
+        if "Answer" in segment and "Question" not in segment:
+            options = segment.get("AnswerOptions")
+            if isinstance(options, list) and options:
+                allow_multiple = bool(segment.get("AllowMultiple", True))
+                for back_index in range(index - 1, -1, -1):
+                    question_segment = segments[back_index]
+                    if "Question" in question_segment and "Answer" not in question_segment:
+                        question_text = question_segment.get("Question")
+                        if question_text:
+                            option_count = len(options)
+                            if allow_multiple:
+                                num_selections = rng.randint(1, option_count)
+                                selected = rng.sample(options, num_selections)
+                            else:
+                                selected = [rng.choice(options)]
+                            mc_answers[question_text] = selected
+                            if debug:
+                                mode = "Mehrfach" if allow_multiple else "Einfach"
+                                print(f"🎲 MC ({mode}) Question at index {back_index}: "
+                                      f"Selected {len(selected)}/{option_count} options")
+                                print(f"   Question: {question_text[:60]}...")
+                                print(f"   Selected: {selected}")
+                        break
+            else:
+                slider_config = None
+                if isinstance(options, dict):
+                    slider_config = options
+                elif isinstance(segment.get("Answer"), dict):
+                    slider_config = segment.get("Answer")
+
+                if isinstance(slider_config, dict):
+                    min_numeric = slider_config.get("min")
+                    max_numeric = slider_config.get("max")
+                    try:
+                        min_int = int(float(min_numeric)) if min_numeric is not None else None
+                        max_int = int(float(max_numeric)) if max_numeric is not None else None
+                        if min_int is not None and max_int is not None and min_int <= max_int:
+                            for back_index in range(index - 1, -1, -1):
+                                question_segment = segments[back_index]
+                                if "Question" in question_segment and "Answer" not in question_segment:
+                                    question_text = question_segment.get("Question")
+                                    if question_text:
+                                        selected_value = rng.randint(min_int, max_int)
+                                        slider_answers[question_text] = selected_value
+                                        if debug:
+                                            print(
+                                                f"🎲 Slider Question at index {back_index}: "
+                                                f"Selected value {selected_value} "
+                                                f"(from {min_int}-{max_int})"
+                                            )
+                                            print(f"   Question: {question_text[:60]}...")
+                                    break
+                    except (TypeError, ValueError):
+                        if debug:
+                            print(f"⚠️ Slider config invalid at index {index}: {slider_config}")
+
+    if debug:
+        print(f"\n📊 Total MC questions found: {len(mc_answers)}")
+        print(f"📊 Total Slider questions found: {len(slider_answers)}")
+
+    free_text_question_indices: List[Tuple[int, str]] = []
+    for index, segment in enumerate(segments):
+        if "Answer" in segment and "Question" not in segment:
+            answer_val = segment.get("Answer")
+            if isinstance(answer_val, str) and answer_val.strip().lower() in {
+                "free_text",
+                "freetext",
+                "free text",
+            }:
+                for back_index in range(index - 1, -1, -1):
+                    question_segment = segments[back_index]
+                    if "Question" in question_segment and "Answer" not in question_segment:
+                        question_text = question_segment.get("Question")
+                        if question_text:
+                            free_text_question_indices.append((back_index, question_text))
+                        break
+
+    free_text_answers: Dict[Tuple[int, str], str] = {}
+    free_text_answers_by_text: Dict[str, str] = {}
+    all_raw_outputs: List[str] = []
+
+    if free_text_question_indices:
+        client = genai.Client(api_key=api_key)
+
+        for idx, (question_idx, question_text) in enumerate(free_text_question_indices, start=1):
+            prompt = build_gemini_prompt_up_to_question(
+                segments,
+                question_idx,
+                mc_answers,
+                is_target_question=True,
+                free_text_answers=free_text_answers_by_text,
+            )
+
+            if debug:
+                print(f"\n{'=' * 80}")
+                print(f"GEMINI CALL {idx} - QUESTION INDEX {question_idx}")
+                print(f"Question Text: {question_text}")
+                print(f"{'=' * 80}")
+                print("\n--- PROMPT ---")
+                print(prompt)
+                print("\n--- CALLING GEMINI ---")
+
+            response = client.models.generate_content(
+                model=model,
+                contents=prompt,
+                config={"temperature": 0.9, "top_p": 0.8, "max_output_tokens": 200},
+            )
+
+            if hasattr(response, "text") and response.text:
+                raw_output = response.text.strip()
+            else:
+                raw_output = response.candidates[0].content.parts[0].text.strip()
+
+            all_raw_outputs.append(raw_output)
+
+            if debug:
+                print("\n--- GEMINI RESPONSE ---")
+                print(raw_output)
+                print(f"{'=' * 80}\n")
+
+            answer_text = re.sub(
+                r"^```(?:json|text)?\s*|\s*```$",
+                "",
+                raw_output,
+                flags=re.IGNORECASE,
+            ).strip()
+
+            free_text_answers[(question_idx, question_text)] = answer_text
+            free_text_answers_by_text[question_text] = answer_text
+
+            if debug:
+                preview = answer_text[:50] + ("..." if len(answer_text) > 50 else "")
+                print(f"✅ Stored answer for question index {question_idx}: {preview}")
+
+    debug_info: Optional[Dict[str, Any]] = None
+    if return_debug_info:
+        free_text_answers_debug = {
+            f"{idx}: {text}": ans for (idx, text), ans in free_text_answers.items()
+        }
+        debug_info = {
+            "raw_outputs": all_raw_outputs
+            if free_text_question_indices
+            else ["No free_text questions, skipped Gemini call"],
+            "free_text_answers": free_text_answers_debug,
+            "free_text_question_indices": [(idx, text) for idx, text in free_text_question_indices],
+            "mc_answers": mc_answers,
+            "slider_answers": slider_answers,
+            "free_text_questions_count": len(free_text_question_indices),
+        }
+
+    question_to_answer_idx: Dict[str, int] = {}
+    for idx, segment in enumerate(segments):
+        if "Answer" in segment and "Question" not in segment:
+            for back_index in range(idx - 1, -1, -1):
+                question_segment = segments[back_index]
+                if "Question" in question_segment and "Answer" not in question_segment:
+                    question_text = question_segment.get("Question")
+                    if question_text:
+                        question_to_answer_idx[question_text] = idx
+                    break
+
+    result_segments: List[Dict[str, Any]] = []
+
+    for idx, segment in enumerate(segments):
+        if "Text" in segment:
+            result_segments.append(segment.copy())
+        elif "Question" in segment:
+            question_text = segment["Question"]
+            question_idx = idx
+            new_question_seg = segment.copy()
+            result_segments.append(new_question_seg)
+
+            answer_idx = question_to_answer_idx.get(question_text)
+            if answer_idx is not None:
+                answer_segment = segments[answer_idx]
+                original_answer = answer_segment.get("Answer")
+                original_options = answer_segment.get("AnswerOptions")
+                allow_multiple = answer_segment.get("AllowMultiple")
+                new_answer_seg = answer_segment.copy()
+
+                if question_text in mc_answers:
+                    if isinstance(original_options, list):
+                        new_answer_seg["AnswerOptions"] = original_options
+                    new_answer_seg["Answer"] = mc_answers[question_text]
+                    if allow_multiple is not None:
+                        new_answer_seg["AllowMultiple"] = allow_multiple
+                    if debug:
+                        print(f"✅ Merged MC answer for question index {question_idx}")
+                elif question_text in slider_answers:
+                    if isinstance(original_options, dict):
+                        new_answer_seg["AnswerOptions"] = original_options.copy()
+                    elif isinstance(original_answer, dict):
+                        new_answer_seg["AnswerOptions"] = original_answer.copy()
+                    new_answer_seg["Answer"] = slider_answers[question_text]
+                    if debug:
+                        print(f"✅ Merged slider answer for question index {question_idx}")
+                elif (
+                    isinstance(original_answer, str)
+                    and original_answer.strip().lower() in {"free_text", "freetext", "free text"}
+                ):
+                    generated_answer = free_text_answers.get((question_idx, question_text))
+                    if generated_answer is not None:
+                        new_answer_seg["Answer"] = generated_answer
+                        if debug:
+                            preview = generated_answer[:50] + (
+                                "..." if len(generated_answer) > 50 else ""
+                            )
+                            print(f"✅ Matched answer for question index {question_idx}: {preview}")
+                elif isinstance(original_options, list) and len(original_options) > 0:
+                    if debug:
+                        print(f"⚠️ MC question at index {question_idx} not found in mc_answers")
+                result_segments.append(new_answer_seg)
+        elif "Answer" in segment and "Question" not in segment:
+            continue
+        else:
+            result_segments.append(segment.copy())
+
+    if return_debug_info:
+        return result_segments, debug_info  # type: ignore[return-value]
+    return result_segments
+
+
+__all__ = [
+    "generate_summary_with_gemini",
+    "extract_json_array_from_gemini_output",
+    "generate_answers_with_gemini",
+]
+
+
