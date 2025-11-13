@@ -1,0 +1,60 @@
+meta:
+  version: "1.0.0"
+  locale: "de-DE"
+  last_review: "2025-11-13"
+
+defaults:
+  window_chars: 80     # Kontextfenster für Ich-Bezug/Negation/Immediacy
+  weights:
+    exact: 1.0
+    fuzzy: 0.7
+    obfuscation: 0.5
+
+aux:
+  first_person: ["ich","mich","mir","mein","meine","selbst"]
+  negations: ["nicht","nie","keinesfalls","auf keinen fall","werde es nicht tun"]
+  imminent_time: ["heute","jetzt","gleich","heute nacht","sofort","bald"]
+  reported_markers: ["„","“","\"","laut","sagte","meinte","im kurs","artikel"]
+  means_lexicon: ["tabletten","pillen","seil","strick","messer","bahn","brücke","gift","gas","fensterbrett"]
+
+# drei einfache Kategorien
+categories:
+  - id: "suizid"         # alles suizidbezogene → hoch
+  - id: "svv"            # selbstverletzung, nicht-suizidal → mittel
+  - id: "kein_risiko"    # fallback → niedrig
+
+signals:
+  # SUIZID – Beispiele (du kannst diese Liste nach Bedarf erweitern)
+  - id: "sui_1"
+    category: "suizid"
+    phrase: "ich will mich umbringen"
+    variants: ["ich bring mich um","ich will sterben","leben beenden","mich töten"]
+    fuzzy: { enable: true }
+    obfuscation: { enable: true, allow_between: 3 }
+
+  - id: "sui_2"
+    category: "suizid"
+    phrase: "suizid"
+    variants: ["selbstmord","schluß machen mit meinem leben","end it"]
+    fuzzy: { enable: true }
+    obfuscation: { enable: true }
+
+  - id: "sui_plan"
+    category: "suizid"
+    phrase: "überdosis"
+    variants: ["alle tabletten nehmen","ganze pillen schlucken","vom dach springen","vor die bahn"]
+    fuzzy: { enable: true }
+    obfuscation: { enable: true }
+
+  # SVV – Beispiele
+  - id: "svv_1"
+    category: "svv"
+    phrase: "ich habe mich geritzt"
+    variants: ["ritzen","mich schneiden","selbst verletzen","cutten"]
+    fuzzy: { enable: true }
+    obfuscation: { enable: true }
+
+rules:
+  # Optional: Gegenzeichen, die SVV von Suizid abgrenzen (senken nicht unter mittel)
+  nssi_disambiguation:
+    patterns: ["ohne suizidabsicht","nicht sterben wollen","nur druck abbauen"]

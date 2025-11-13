@@ -123,7 +123,7 @@ if not SN_JSON_PATH:
             SN_JSON_PATH = str(shared_data)
 
 SUICIDE_LEXICON_PATH: Optional[str] = None
-DEFAULT_LEXICON_PATH = PROJECT_ROOT / "config" / "suicide_lexicon_de.yaml"
+DEFAULT_LEXICON_PATH = PROJECT_ROOT / "config" / "safety_3tier_de.yaml"
 if _lexicon_path_raw:
     lexicon_path = Path(_lexicon_path_raw)
     if lexicon_path.is_absolute():
@@ -139,9 +139,14 @@ if not SUICIDE_LEXICON_PATH:
     if DEFAULT_LEXICON_PATH.exists():
         SUICIDE_LEXICON_PATH = str(DEFAULT_LEXICON_PATH.resolve())
     else:
-        legacy_lexicon = PROJECT_ROOT / "config" / "lexica" / "suicide_lexicon_de.yaml"
-        if legacy_lexicon.exists():
-            SUICIDE_LEXICON_PATH = str(legacy_lexicon.resolve())
+        fallback_candidates = [
+            PROJECT_ROOT / "config" / "suicide_lexicon_de.yaml",
+            PROJECT_ROOT / "config" / "lexica" / "suicide_lexicon_de.yaml",
+        ]
+        for candidate in fallback_candidates:
+            if candidate.exists():
+                SUICIDE_LEXICON_PATH = str(candidate.resolve())
+                break
 
 PROMPTS_CONFIG_PATH: Optional[str] = None
 DEFAULT_PROMPTS_CONFIG = PROJECT_ROOT / "config" / "prompts.yaml"
