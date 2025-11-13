@@ -27,8 +27,13 @@ try:
     try:
         # Try to get from Streamlit secrets (Streamlit Cloud)
         if hasattr(st, "secrets") and st.secrets:
-            APP_PASSWORD = st.secrets.get("APP_PASSWORD") or None
-    except (AttributeError, KeyError, TypeError):
+            # Try different access patterns for Streamlit Cloud
+            if "APP_PASSWORD" in st.secrets:
+                APP_PASSWORD = st.secrets["APP_PASSWORD"]
+            elif hasattr(st.secrets, "get"):
+                APP_PASSWORD = st.secrets.get("APP_PASSWORD")
+    except (AttributeError, KeyError, TypeError) as e:
+        # Silently fall through to config fallback
         pass
     
     # Fallback to config module if not found in secrets
@@ -299,6 +304,14 @@ def render_segments_ui(segments: List[Dict[str, Any]], key_prefix: str = "") -> 
 st.set_page_config(page_title="Summary Prompt Lab", layout="centered")
 
 # Password protection
+# Debug: Check if secret is accessible (only in development)
+if hasattr(st, "secrets") and st.secrets:
+    available_secrets = list(st.secrets.keys()) if hasattr(st.secrets, "keys") else "unknown"
+    if "APP_PASSWORD" not in str(available_secrets):
+        # Only show in sidebar for debugging - remove in production
+        with st.sidebar:
+            st.caption(f"Debug: Available secrets: {available_secrets}")
+
 if APP_PASSWORD:
     # Initialize session state for password
     if "password_verified" not in st.session_state:
