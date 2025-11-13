@@ -24,6 +24,7 @@ try:
     # Get APP_PASSWORD from Streamlit secrets first, then fallback to config
     # Streamlit Cloud provides secrets via st.secrets, not environment variables
     APP_PASSWORD = None
+    PASSWORD_FROM_SECRETS = False  # Track if password comes from Streamlit secrets
     secrets_debug_info = None
     try:
         # Try to get from Streamlit secrets (Streamlit Cloud)
@@ -35,8 +36,12 @@ try:
             # Try different access patterns for Streamlit Cloud
             if "APP_PASSWORD" in st.secrets:
                 APP_PASSWORD = st.secrets["APP_PASSWORD"]
+                PASSWORD_FROM_SECRETS = True
             elif hasattr(st.secrets, "get"):
-                APP_PASSWORD = st.secrets.get("APP_PASSWORD")
+                app_pwd = st.secrets.get("APP_PASSWORD")
+                if app_pwd:
+                    APP_PASSWORD = app_pwd
+                    PASSWORD_FROM_SECRETS = True
     except (AttributeError, KeyError, TypeError) as e:
         # Silently fall through to config fallback
         pass
@@ -319,8 +324,11 @@ with st.sidebar:
     if secrets_debug_info is not None:
         st.caption(f"Debug – verfügbare Secrets: {secrets_debug_info}")
     st.caption(f"Debug – Passwort erkannt: {'ja' if APP_PASSWORD else 'nein'}")
+    st.caption(f"Debug – Passwort aus Secrets: {'ja' if PASSWORD_FROM_SECRETS else 'nein'}")
 
-if APP_PASSWORD:
+# Only require password if it's set AND not from Streamlit secrets
+# (If from secrets, Streamlit Cloud's auth is sufficient)
+if APP_PASSWORD and not PASSWORD_FROM_SECRETS:
     # Initialize session state for password
     if "password_verified" not in st.session_state:
         st.session_state.password_verified = False
