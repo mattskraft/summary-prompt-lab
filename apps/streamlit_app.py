@@ -25,14 +25,9 @@ try:
     # Streamlit Cloud provides secrets via st.secrets, not environment variables
     APP_PASSWORD = None
     PASSWORD_FROM_SECRETS = False  # Track if password comes from Streamlit secrets
-    secrets_debug_info = None
     try:
         # Try to get from Streamlit secrets (Streamlit Cloud)
         if hasattr(st, "secrets") and st.secrets:
-            if hasattr(st.secrets, "keys"):
-                secrets_debug_info = list(st.secrets.keys())
-            else:
-                secrets_debug_info = str(st.secrets)
             # Try different access patterns for Streamlit Cloud
             if "APP_PASSWORD" in st.secrets:
                 APP_PASSWORD = st.secrets["APP_PASSWORD"]
@@ -46,14 +41,8 @@ try:
         # Silently fall through to config fallback
         pass
     
-    # Fallback to config module if not found in secrets
-    if secrets_debug_info is None and hasattr(st, "secrets") and st.secrets:
-        secrets_debug_info = "unbekannt"
-
     if not APP_PASSWORD:
         APP_PASSWORD = getattr(config_module, "APP_PASSWORD", None)
-        if APP_PASSWORD and secrets_debug_info is not None:
-            secrets_debug_info = f"{secrets_debug_info} (fiel back to config)"
     
     # Get GEMINI_API_KEY from Streamlit secrets first, then fallback to config
     GEMINI_API_KEY = None
@@ -319,13 +308,6 @@ def render_segments_ui(segments: List[Dict[str, Any]], key_prefix: str = "") -> 
 st.set_page_config(page_title="Summary Prompt Lab", layout="centered")
 
 # Password protection
-# Debug output for secrets (remove when stable)
-with st.sidebar:
-    if secrets_debug_info is not None:
-        st.caption(f"Debug – verfügbare Secrets: {secrets_debug_info}")
-    st.caption(f"Debug – Passwort erkannt: {'ja' if APP_PASSWORD else 'nein'}")
-    st.caption(f"Debug – Passwort aus Secrets: {'ja' if PASSWORD_FROM_SECRETS else 'nein'}")
-
 # Only require password if it's set AND not from Streamlit secrets
 # (If from secrets, Streamlit Cloud's auth is sufficient)
 if APP_PASSWORD and not PASSWORD_FROM_SECRETS:
