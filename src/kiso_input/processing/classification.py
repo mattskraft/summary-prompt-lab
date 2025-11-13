@@ -190,7 +190,7 @@ def classify_self_harm(text: str, lexicon: Dict[str, Any]) -> Dict[str, Any]:
 
     safe_score = category_scores.get("erholung_oder_sicherheit", 0.0)
     if safe_score > 0:
-        for key in ["direkte_suizidgedanken", "indirekte_suizidgedanken", "svv_nicht_suizidal"]:
+        for key in ["suizid", "svv"]:
             if category_scores.get(key, 0) > 0:
                 category_scores[key] *= 0.85
         applied_rules.append("deescalate_by_safety_signals")
@@ -203,11 +203,9 @@ def classify_self_harm(text: str, lexicon: Dict[str, Any]) -> Dict[str, Any]:
 
     risk_level = "niedrig"
     high_rule = any("rule_set_risk_high" in fs["notes"] for fs in fired_signals)
-    if high_rule or category_scores.get("plan_oder_mittel", 0.0) >= 1.0:
+    if high_rule or category_scores.get("suizid", 0.0) > 0:
         risk_level = "hoch"
-    elif any(
-        key in dict(sorted_labels) for key in ["direkte_suizidgedanken", "indirekte_suizidgedanken", "svv_nicht_suizidal"]
-    ):
+    elif category_scores.get("svv", 0.0) > 0:
         risk_level = "mittel"
 
     return {
