@@ -100,15 +100,19 @@ def _find_all_occurrences(sentence: str, phrases: List[str]) -> List[int]:
     deobfuscated_sentence = _deobfuscate_text(sentence)
     
     for phrase in phrases:
-        # Try exact match first
-        for match in re.finditer(re.escape(phrase), sentence, re.IGNORECASE):
+        # Escape special regex characters but allow flexible matching
+        escaped_phrase = re.escape(phrase)
+        
+        # Try exact match first (case-insensitive)
+        for match in re.finditer(escaped_phrase, sentence, re.IGNORECASE):
             indices.append(match.start())
         
         # Also try deobfuscated version if different
         deobfuscated_phrase = _deobfuscate_text(phrase)
         if deobfuscated_phrase != phrase and len(deobfuscated_phrase) >= 3:  # Only for substantial phrases
             # Search in deobfuscated sentence
-            for match in re.finditer(re.escape(deobfuscated_phrase), deobfuscated_sentence, re.IGNORECASE):
+            escaped_deobfuscated = re.escape(deobfuscated_phrase)
+            for match in re.finditer(escaped_deobfuscated, deobfuscated_sentence, re.IGNORECASE):
                 indices.append(match.start())
     
     return sorted(set(indices))  # Remove duplicates and sort

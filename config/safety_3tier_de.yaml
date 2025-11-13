@@ -38,7 +38,7 @@ signals:
   - id: "sui_1"
     category: "suizid"
     phrase: "ich will mich umbringen"
-    variants: ["ich bring mich um","ich will sterben","mich töten","leben beenden","schluß machen mit meinem leben"]
+    variants: ["ich bring mich um","ich bringe mich um","bringe ich mich um","bring mich um","mich umbringen","mich umzubringen","ich will sterben","mich töten","leben beenden","schluß machen mit meinem leben"]
 
   - id: "sui_2"
     category: "suizid"
