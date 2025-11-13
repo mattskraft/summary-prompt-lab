@@ -2,7 +2,7 @@ import json
 import os
 import sys
 from pathlib import Path
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, Tuple
 
 import streamlit as st
 
@@ -65,6 +65,10 @@ try:
         get_prompt_segments_from_exercise,
         load_self_harm_lexicon,
         prompt_segments_to_text,
+    )
+    from kiso_input.processing.local_models import (
+        generate_summary_with_model,
+        get_available_models,
     )
 except ImportError as e:
     st.error(f"""
@@ -626,71 +630,100 @@ if sel_uebung:
             height=640,
             label_visibility="collapsed",
         )
-    if st.button("🧾 Fasse zusammen", key=f"{session_key}_summarize_btn"):
-        if not GEMINI_API_KEY:
-            st.error("❌ GEMINI_API_KEY nicht gesetzt. Bitte setze die Umgebungsvariable GEMINI_API_KEY.")
+    # Initialize session state for storing recaps from different models
+    recaps_key = f"{session_key}_recaps"
+    if recaps_key not in st.session_state:
+        st.session_state[recaps_key] = {}
+    
+    # Safety check function (shared across all models)
+    def perform_safety_check() -> Tuple[bool, list]:
+        """Perform safety check and return (is_safe, assessments)."""
+        if not SUICIDE_LEXICON_PATH:
+            st.error("❌ Sicherheitsprüfung nicht möglich: `SUICIDE_LEXICON_PATH` ist nicht gesetzt.")
+            return False, []
+        
+        try:
+            lexicon = load_self_harm_lexicon_cached(SUICIDE_LEXICON_PATH)
+            assessments = assess_free_text_answers(segments_for_prompt, lexicon)
+        except Exception as exc:
+            st.error(f"❌ Sicherheitsprüfung fehlgeschlagen: {exc}")
+            return False, []
+        
+        concerning_levels = {"mittel", "hoch"}
+        concerning = [
+            entry for entry in assessments
+            if entry.get("analysis", {}).get("risk_level") in concerning_levels
+        ]
+        
+        if concerning:
+            st.error("⚠️ Sicherheitsprüfung: Auffällige Antworten gefunden. Zusammenfassung gestoppt.")
+            for idx, entry in enumerate(concerning, start=1):
+                analysis = entry.get("analysis", {})
+                with st.container():
+                    st.markdown(f"**Nutzer-Eingabe {idx}:** {entry.get('answer', '—')}")
+                    st.markdown(f"Risikostufe: `{analysis.get('risk_level', 'unbekannt')}`")
+                    with st.expander("Details anzeigen"):
+                        st.json(analysis)
+            st.info("Bitte prüfe die Eingaben, bevor die Zusammenfassung erneut gestartet wird.")
+            return False, assessments
         else:
-            safety_ok = True
-            assessments = []
-            if not SUICIDE_LEXICON_PATH:
-                st.error("❌ Sicherheitsprüfung nicht möglich: `SUICIDE_LEXICON_PATH` ist nicht gesetzt.")
-                safety_ok = False
+            if assessments:
+                st.success("✅ Sicherheitsprüfung abgeschlossen: Keine Auffälligkeiten.")
             else:
-                try:
-                    lexicon = load_self_harm_lexicon_cached(SUICIDE_LEXICON_PATH)
-                    assessments = assess_free_text_answers(segments_for_prompt, lexicon)
-                except Exception as exc:
-                    st.error(f"❌ Sicherheitsprüfung fehlgeschlagen: {exc}")
-                    safety_ok = False
-                else:
-                    concerning_levels = {"mittel", "hoch"}
-                    concerning = [
-                        entry for entry in assessments
-                        if entry.get("analysis", {}).get("risk_level") in concerning_levels
-                    ]
-                    if concerning:
-                        safety_ok = False
-                        st.error("⚠️ Sicherheitsprüfung: Auffällige Antworten gefunden. Zusammenfassung gestoppt.")
-                        for idx, entry in enumerate(concerning, start=1):
-                            analysis = entry.get("analysis", {})
-                            with st.container():
-                                st.markdown(f"**Nutzer-Eingabe {idx}:** {entry.get('answer', '—')}")
-                                st.markdown(f"Risikostufe: `{analysis.get('risk_level', 'unbekannt')}`")
-                                with st.expander("Details anzeigen"):
-                                    st.json(analysis)
-                        st.info("Bitte prüfe die Eingaben, bevor die Zusammenfassung erneut gestartet wird.")
-                    else:
-                        if assessments:
-                            st.success("✅ Sicherheitsprüfung abgeschlossen: Keine Auffälligkeiten.")
-                        else:
-                            st.success("✅ Sicherheitsprüfung abgeschlossen: Keine Freitextantworten vorhanden.")
-
-            if safety_ok:
-                try:
-                    # Call Gemini directly with the exact prompt shown in the text field
-                    from google import genai
-                    with st.spinner("Generiere Zusammenfassung mit Gemini..."):
-                        client = genai.Client(api_key=GEMINI_API_KEY)
-                        resp = client.models.generate_content(
-                            model="gemini-2.5-flash-lite",
-                            contents=prompt_input,
-                            config={"temperature": 0.7, "top_p": 0.9, "max_output_tokens": 200},
-                        )
-                        if hasattr(resp, "text") and resp.text:
-                            summary_text = resp.text.strip()
-                        else:
-                            summary_text = resp.candidates[0].content.parts[0].text.strip()
-                    st.success("✅ Zusammenfassung generiert")
-                    st.markdown("### Zusammenfassung")
-                    st.markdown(summary_text)
-                except ImportError as e:
-                    st.error(f"❌ Fehler: {e}")
-                    st.info("💡 Installiere das Paket mit: `pip install google-genai`")
-                except Exception as e:
-                    st.error(f"❌ Fehler bei der Zusammenfassungs-Generierung: {e}")
-                    import traceback
-                    with st.expander("🔍 Fehlerdetails anzeigen"):
-                        st.code(traceback.format_exc(), language="python")
+                st.success("✅ Sicherheitsprüfung abgeschlossen: Keine Freitextantworten vorhanden.")
+            return True, assessments
+    
+    # Get available models
+    available_models = get_available_models()
+    
+    # Create buttons for each model
+    st.markdown("---")
+    st.subheader("Zusammenfassung generieren")
+    
+    # Display model buttons in columns
+    num_cols = min(3, len(available_models))
+    cols = st.columns(num_cols)
+    
+    for idx, model_name in enumerate(available_models):
+        col = cols[idx % num_cols]
+        with col:
+            button_key = f"{session_key}_summarize_{model_name}"
+            if st.button(f"🧾 {model_name}", key=button_key, use_container_width=True):
+                safety_ok, assessments = perform_safety_check()
+                
+                if safety_ok:
+                    try:
+                        with st.spinner(f"Generiere Zusammenfassung mit {model_name}..."):
+                            summary_text = generate_summary_with_model(
+                                prompt=prompt_input,
+                                model_name=model_name,
+                                backend_type="local",
+                                max_tokens=200,
+                                temperature=0.7,
+                            )
+                            # Store recap in session state
+                            st.session_state[recaps_key][model_name] = summary_text
+                        st.success(f"✅ Zusammenfassung mit {model_name} generiert")
+                        st.rerun()
+                    except ImportError as e:
+                        st.error(f"❌ Fehler: {e}")
+                        st.info("💡 Installiere das Paket mit: `pip install llama-cpp-python`")
+                    except FileNotFoundError as e:
+                        st.error(f"❌ Modell-Datei nicht gefunden: {e}")
+                    except Exception as e:
+                        st.error(f"❌ Fehler bei der Zusammenfassungs-Generierung mit {model_name}: {e}")
+                        import traceback
+                        with st.expander("🔍 Fehlerdetails anzeigen"):
+                            st.code(traceback.format_exc(), language="python")
+    
+    # Display all generated recaps for comparison
+    if st.session_state[recaps_key]:
+        st.markdown("---")
+        st.subheader("Zusammenfassungen (Vergleich)")
+        
+        for model_name, recap_text in st.session_state[recaps_key].items():
+            with st.expander(f"📝 {model_name}", expanded=True):
+                st.markdown(recap_text)
     
     st.markdown("---")
     with st.expander("Debug / Rohdaten"):
