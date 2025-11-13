@@ -591,9 +591,8 @@ if sel_uebung:
                 for idx, entry in enumerate(current_assessments, start=1):
                     analysis = entry["analysis"]
                     with st.container():
-                        st.markdown(f"**Frage {idx}:** {entry['question']}")
-                        st.markdown(f"- Risikostufe: `{analysis['risk_level']}`")
-                        st.markdown(f"- Antwort: {entry['answer']}")
+                        st.markdown(f"**Nutzer-Eingabe {idx}:** {entry['answer']}")
+                        st.markdown(f"Risikostufe: `{analysis['risk_level']}`")
                         with st.expander("Details anzeigen"):
                             st.json(analysis)
             else:
