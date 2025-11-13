@@ -24,9 +24,14 @@ try:
     # Get APP_PASSWORD from Streamlit secrets first, then fallback to config
     # Streamlit Cloud provides secrets via st.secrets, not environment variables
     APP_PASSWORD = None
+    secrets_debug_info = None
     try:
         # Try to get from Streamlit secrets (Streamlit Cloud)
         if hasattr(st, "secrets") and st.secrets:
+            if hasattr(st.secrets, "keys"):
+                secrets_debug_info = list(st.secrets.keys())
+            else:
+                secrets_debug_info = str(st.secrets)
             # Try different access patterns for Streamlit Cloud
             if "APP_PASSWORD" in st.secrets:
                 APP_PASSWORD = st.secrets["APP_PASSWORD"]
@@ -37,8 +42,13 @@ try:
         pass
     
     # Fallback to config module if not found in secrets
+    if secrets_debug_info is None and hasattr(st, "secrets") and st.secrets:
+        secrets_debug_info = "unbekannt"
+
     if not APP_PASSWORD:
         APP_PASSWORD = getattr(config_module, "APP_PASSWORD", None)
+        if APP_PASSWORD and secrets_debug_info is not None:
+            secrets_debug_info = f"{secrets_debug_info} (fiel back to config)"
     
     # Get GEMINI_API_KEY from Streamlit secrets first, then fallback to config
     GEMINI_API_KEY = None
@@ -304,13 +314,11 @@ def render_segments_ui(segments: List[Dict[str, Any]], key_prefix: str = "") -> 
 st.set_page_config(page_title="Summary Prompt Lab", layout="centered")
 
 # Password protection
-# Debug: Check if secret is accessible (only in development)
-if hasattr(st, "secrets") and st.secrets:
-    available_secrets = list(st.secrets.keys()) if hasattr(st.secrets, "keys") else "unknown"
-    if "APP_PASSWORD" not in str(available_secrets):
-        # Only show in sidebar for debugging - remove in production
-        with st.sidebar:
-            st.caption(f"Debug: Available secrets: {available_secrets}")
+# Debug output for secrets (remove when stable)
+with st.sidebar:
+    if secrets_debug_info is not None:
+        st.caption(f"Debug – verfügbare Secrets: {secrets_debug_info}")
+    st.caption(f"Debug – Passwort erkannt: {'ja' if APP_PASSWORD else 'nein'}")
 
 if APP_PASSWORD:
     # Initialize session state for password
