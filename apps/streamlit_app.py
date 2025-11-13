@@ -583,33 +583,6 @@ if sel_uebung:
     live_prompt_text = build_summary_prompt(segments_for_prompt)
     
     st.markdown("---")
-    st.subheader("Selbstgefährdungs-Check")
-    analysis_state_key = f"{session_key}_self_harm_analysis"
-
-    if not SUICIDE_LEXICON_PATH:
-        st.info("Kein Lexikonpfad konfiguriert. Bitte setze `SUICIDE_LEXICON_PATH` oder `KISO_SUICIDE_LEXICON`.")
-    else:
-        if st.button("🔍 Freitextantworten prüfen", key=f"{session_key}_self_harm_btn"):
-            try:
-                lexicon = load_self_harm_lexicon_cached(SUICIDE_LEXICON_PATH)
-                assessments = assess_free_text_answers(segments_for_prompt, lexicon)
-                st.session_state[analysis_state_key] = assessments
-            except Exception as exc:
-                st.error(f"❌ Analyse fehlgeschlagen: {exc}")
-        current_assessments = st.session_state.get(analysis_state_key, None)
-        if current_assessments is not None:
-            if current_assessments:
-                for idx, entry in enumerate(current_assessments, start=1):
-                    analysis = entry["analysis"]
-                    with st.container():
-                        st.markdown(f"**Nutzer-Eingabe {idx}:** {entry['answer']}")
-                        st.markdown(f"Risikostufe: `{analysis['risk_level']}`")
-                        with st.expander("Details anzeigen"):
-                            st.json(analysis)
-            else:
-                st.info("Keine Freitextantworten gefunden.")
-
-    st.markdown("---")
     st.subheader("Zusammenfassungs-Prompt")
     # Preserve manual edits unless the underlying segments changed.
     prompt_state_key = f"{session_key}_summary_prompt"
@@ -646,31 +619,67 @@ if sel_uebung:
         if not GEMINI_API_KEY:
             st.error("❌ GEMINI_API_KEY nicht gesetzt. Bitte setze die Umgebungsvariable GEMINI_API_KEY.")
         else:
-            try:
-                # Call Gemini directly with the exact prompt shown in the text field
-                from google import genai
-                with st.spinner("Generiere Zusammenfassung mit Gemini..."):
-                    client = genai.Client(api_key=GEMINI_API_KEY)
-                    resp = client.models.generate_content(
-                        model="gemini-2.5-flash-lite",
-                        contents=prompt_input,
-                        config={"temperature": 0.7, "top_p": 0.9, "max_output_tokens": 200},
-                    )
-                    if hasattr(resp, "text") and resp.text:
-                        summary_text = resp.text.strip()
+            safety_ok = True
+            assessments = []
+            if not SUICIDE_LEXICON_PATH:
+                st.error("❌ Sicherheitsprüfung nicht möglich: `SUICIDE_LEXICON_PATH` ist nicht gesetzt.")
+                safety_ok = False
+            else:
+                try:
+                    lexicon = load_self_harm_lexicon_cached(SUICIDE_LEXICON_PATH)
+                    assessments = assess_free_text_answers(segments_for_prompt, lexicon)
+                except Exception as exc:
+                    st.error(f"❌ Sicherheitsprüfung fehlgeschlagen: {exc}")
+                    safety_ok = False
+                else:
+                    concerning_levels = {"mittel", "hoch"}
+                    concerning = [
+                        entry for entry in assessments
+                        if entry.get("analysis", {}).get("risk_level") in concerning_levels
+                    ]
+                    if concerning:
+                        safety_ok = False
+                        st.error("⚠️ Sicherheitsprüfung: Auffällige Antworten gefunden. Zusammenfassung gestoppt.")
+                        for idx, entry in enumerate(concerning, start=1):
+                            analysis = entry.get("analysis", {})
+                            with st.container():
+                                st.markdown(f"**Nutzer-Eingabe {idx}:** {entry.get('answer', '—')}")
+                                st.markdown(f"Risikostufe: `{analysis.get('risk_level', 'unbekannt')}`")
+                                with st.expander("Details anzeigen"):
+                                    st.json(analysis)
+                        st.info("Bitte prüfe die Eingaben, bevor die Zusammenfassung erneut gestartet wird.")
                     else:
-                        summary_text = resp.candidates[0].content.parts[0].text.strip()
-                st.success("✅ Zusammenfassung generiert")
-                st.markdown("### Zusammenfassung")
-                st.markdown(summary_text)
-            except ImportError as e:
-                st.error(f"❌ Fehler: {e}")
-                st.info("💡 Installiere das Paket mit: `pip install google-genai`")
-            except Exception as e:
-                st.error(f"❌ Fehler bei der Zusammenfassungs-Generierung: {e}")
-                import traceback
-                with st.expander("🔍 Fehlerdetails anzeigen"):
-                    st.code(traceback.format_exc(), language="python")
+                        if assessments:
+                            st.success("✅ Sicherheitsprüfung abgeschlossen: Keine Auffälligkeiten.")
+                        else:
+                            st.success("✅ Sicherheitsprüfung abgeschlossen: Keine Freitextantworten vorhanden.")
+
+            if safety_ok:
+                try:
+                    # Call Gemini directly with the exact prompt shown in the text field
+                    from google import genai
+                    with st.spinner("Generiere Zusammenfassung mit Gemini..."):
+                        client = genai.Client(api_key=GEMINI_API_KEY)
+                        resp = client.models.generate_content(
+                            model="gemini-2.5-flash-lite",
+                            contents=prompt_input,
+                            config={"temperature": 0.7, "top_p": 0.9, "max_output_tokens": 200},
+                        )
+                        if hasattr(resp, "text") and resp.text:
+                            summary_text = resp.text.strip()
+                        else:
+                            summary_text = resp.candidates[0].content.parts[0].text.strip()
+                    st.success("✅ Zusammenfassung generiert")
+                    st.markdown("### Zusammenfassung")
+                    st.markdown(summary_text)
+                except ImportError as e:
+                    st.error(f"❌ Fehler: {e}")
+                    st.info("💡 Installiere das Paket mit: `pip install google-genai`")
+                except Exception as e:
+                    st.error(f"❌ Fehler bei der Zusammenfassungs-Generierung: {e}")
+                    import traceback
+                    with st.expander("🔍 Fehlerdetails anzeigen"):
+                        st.code(traceback.format_exc(), language="python")
     
     st.markdown("---")
     with st.expander("Debug / Rohdaten"):
