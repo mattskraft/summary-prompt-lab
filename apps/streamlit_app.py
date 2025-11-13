@@ -19,12 +19,23 @@ try:
         SN_JSON_PATH,
         SUICIDE_LEXICON_PATH,
     )
-    # Import APP_PASSWORD using getattr for robustness
     import kiso_input.config as config_module
-    APP_PASSWORD = getattr(config_module, "APP_PASSWORD", None)
+    
+    # Get APP_PASSWORD from Streamlit secrets first, then fallback to config
+    # Streamlit Cloud provides secrets via st.secrets, not environment variables
+    APP_PASSWORD = None
+    try:
+        # Try to get from Streamlit secrets (Streamlit Cloud)
+        if hasattr(st, "secrets") and st.secrets:
+            APP_PASSWORD = st.secrets.get("APP_PASSWORD") or None
+    except (AttributeError, KeyError, TypeError):
+        pass
+    
+    # Fallback to config module if not found in secrets
+    if not APP_PASSWORD:
+        APP_PASSWORD = getattr(config_module, "APP_PASSWORD", None)
     
     # Get GEMINI_API_KEY from Streamlit secrets first, then fallback to config
-    # Streamlit Cloud provides secrets via st.secrets, not environment variables
     GEMINI_API_KEY = None
     try:
         # Try to get from Streamlit secrets (Streamlit Cloud)
