@@ -48,7 +48,7 @@ signals:
   - id: "sui_3"
     category: "suizid"
     phrase: "überdosis"
-    variants: ["alle tabletten nehmen","ganze pillen schlucken","alles auf einmal nehmen","alles schlucken"]
+    variants: ["alle tabletten nehmen","ganze pillen schlucken","alles auf einmal nehmen","alles schlucken","alle tabletten","tabletten bereitgelegt","tabletten bereit","pillen bereit"]
 
   - id: "sui_4"
     category: "suizid"
@@ -58,7 +58,7 @@ signals:
   - id: "sui_5"
     category: "suizid"
     phrase: "lebensmüde"
-    variants: ["ich will aufgeben","will einfach weg","ich will verschwinden","lieber tot","nicht mehr existieren"]
+    variants: ["ich will aufgeben","will einfach weg","ich will verschwinden","einfach zu verschwinden","einfach verschwinden","lieber tot","nicht mehr existieren"]
 
   - id: "sui_6"
     category: "suizid"
@@ -69,17 +69,17 @@ signals:
   - id: "svv_1"
     category: "svv"
     phrase: "ich habe mich geritzt"
-    variants: ["ritzen","mich schneiden","selbst verletzen","cutten","cutting","ritze","mich verbrannt","verletze mich"]
+    variants: ["ritzen","mich schneiden","geschnitten","mich geschnitten","selbst verletzen","cutten","cutting","ritze","mich verbrannt","verletze mich"]
 
   - id: "svv_2"
     category: "svv"
     phrase: "drang zu schneiden"
-    variants: ["lust mich zu ritzen","ich will mich ritzen","ich will mich schneiden","drang mich zu verletzen"]
+    variants: ["lust mich zu ritzen","ich will mich ritzen","ich will mich schneiden","drang mich zu verletzen","drang da","mich zu verletzen"]
 
   - id: "svv_3"
     category: "svv"
     phrase: "druck ablassen"
-    variants: ["druck loswerden","spannung abbauen durch schneiden","ritzen um druck zu lösen"]
+    variants: ["druck loswerden","spannung abbauen durch schneiden","ritzen um druck zu lösen","nur druck","hab druck","habe druck"]
 
   - id: "svv_4"
     category: "svv"

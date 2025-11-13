@@ -80,12 +80,38 @@ def _has_reported_speech(sentence: str, markers: List[str]) -> bool:
     return False
 
 
+def _deobfuscate_text(text: str) -> str:
+    """Remove spaces and punctuation between letters to handle obfuscation like 'u.m.b.r.i.n.g.e.n'."""
+    # Replace sequences of letter + (space/punctuation) + letter with just letters
+    # This handles patterns like "u.m.b.r.i.n.g.e.n" or "u m b r i n g e n"
+    # Keep doing it until no more changes (handles multiple separators)
+    prev = text
+    while True:
+        deobfuscated = re.sub(r"([a-zäöüß])\s*[^\w\s]*\s*([a-zäöüß])", r"\1\2", prev, flags=re.IGNORECASE)
+        if deobfuscated == prev:
+            break
+        prev = deobfuscated
+    return deobfuscated
+
+
 def _find_all_occurrences(sentence: str, phrases: List[str]) -> List[int]:
+    """Find all occurrences of phrases in sentence, handling obfuscation."""
     indices: List[int] = []
+    deobfuscated_sentence = _deobfuscate_text(sentence)
+    
     for phrase in phrases:
-        for match in re.finditer(re.escape(phrase), sentence):
+        # Try exact match first
+        for match in re.finditer(re.escape(phrase), sentence, re.IGNORECASE):
             indices.append(match.start())
-    return indices
+        
+        # Also try deobfuscated version if different
+        deobfuscated_phrase = _deobfuscate_text(phrase)
+        if deobfuscated_phrase != phrase and len(deobfuscated_phrase) >= 3:  # Only for substantial phrases
+            # Search in deobfuscated sentence
+            for match in re.finditer(re.escape(deobfuscated_phrase), deobfuscated_sentence, re.IGNORECASE):
+                indices.append(match.start())
+    
+    return sorted(set(indices))  # Remove duplicates and sort
 
 
 def classify_self_harm(text: str, lexicon: Dict[str, Any]) -> Dict[str, Any]:
