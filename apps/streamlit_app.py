@@ -433,7 +433,7 @@ with st.sidebar:
                     st.session_state[thema_key] = zufalls_thema
                     st.session_state[path_key] = zufalls_path
                     st.session_state[uebung_key] = zufalls_uebung
-                    st.experimental_rerun()
+                    st.rerun()
     
     if themen and st.session_state.get(thema_key) not in themen:
         st.session_state[thema_key] = themen[0]
