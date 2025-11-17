@@ -22,10 +22,16 @@ try:
     )
     import kiso_input.config as config_module
     
-    # Get APP_PASSWORD from Streamlit secrets first, then fallback to config
+    # Get APP_PASSWORD from Streamlit secrets first, then fallback to config/.env
     # Streamlit Cloud provides secrets via st.secrets, not environment variables
+    # When running locally, password is loaded from config/.env via config module
     APP_PASSWORD = None
     PASSWORD_FROM_SECRETS = False  # Track if password comes from Streamlit secrets
+    
+    # First try to get from config module (loads from config/.env when running locally)
+    APP_PASSWORD = getattr(config_module, "APP_PASSWORD", None)
+    
+    # Then try Streamlit secrets (for Streamlit Cloud - overrides local .env)
     try:
         # Try to get from Streamlit secrets (Streamlit Cloud)
         if hasattr(st, "secrets"):
@@ -42,14 +48,11 @@ try:
                         APP_PASSWORD = app_pwd
                         PASSWORD_FROM_SECRETS = True
             except Exception:
-                # No secrets file found, silently fall through to config fallback
+                # No secrets file found, use config/.env value (already loaded above)
                 pass
     except (AttributeError, KeyError, TypeError) as e:
-        # Silently fall through to config fallback
+        # Use config/.env value (already loaded above)
         pass
-    
-    if not APP_PASSWORD:
-        APP_PASSWORD = getattr(config_module, "APP_PASSWORD", None)
     
     # Get GEMINI_API_KEY from Streamlit secrets first, then fallback to config
     GEMINI_API_KEY = None
@@ -327,31 +330,12 @@ def render_segments_ui(segments: List[Dict[str, Any]], key_prefix: str = "") -> 
 st.set_page_config(page_title="Summary Prompt Lab", layout="centered")
 
 # Password protection
-# Only require password if it's set AND not from Streamlit secrets
-# (If from secrets, Streamlit Cloud's auth is sufficient)
+# When running locally with password in config/.env, auto-verify (no prompt)
+# On Streamlit Cloud, secrets are used and no password prompt is needed
 if APP_PASSWORD and not PASSWORD_FROM_SECRETS:
-    # Initialize session state for password
+    # Running locally with password from config/.env - auto-verify
     if "password_verified" not in st.session_state:
-        st.session_state.password_verified = False
-    
-    if not st.session_state.password_verified:
-        st.title("🔒 Summary Prompt Lab")
-        st.markdown("---")
-        
-        password_input = st.text_input(
-            "Enter password to access the app:",
-            type="password",
-            key="password_input"
-        )
-        
-        if st.button("Submit", key="password_submit"):
-            if password_input == APP_PASSWORD:
-                st.session_state.password_verified = True
-                st.rerun()
-            else:
-                st.error("❌ Incorrect password. Please try again.")
-        
-        st.stop()
+        st.session_state.password_verified = True  # Auto-verify when password is in .env
 
 st.title("🧪 Summary Prompt Lab")
 
