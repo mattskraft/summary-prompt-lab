@@ -6,7 +6,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from ..config import PROMPTS_CONFIG_PATH
+from ..config import PROMPTS_CONFIG_PATH, PROJECT_ROOT
 
 
 def _load_yaml() -> Any:
@@ -98,12 +98,21 @@ def build_gemini_prompt_up_to_question(
     return header + "\n" + "\n".join(lines)
 
 
+@lru_cache(maxsize=1)
+def _load_recap_system_prompt() -> str:
+    """Load the recap system prompt from the text file."""
+    recap_prompt_path = PROJECT_ROOT / "config" / "recap_system_prompt.txt"
+    if not recap_prompt_path.exists():
+        raise FileNotFoundError(
+            f"Recap system prompt file not found: {recap_prompt_path}"
+        )
+    return recap_prompt_path.read_text(encoding="utf-8").strip()
+
+
 def build_summary_prompt(segments: List[Dict[str, Any]]) -> str:
     """Create a summary prompt from processed segments."""
-    templates = _get_prompt_templates()
-    system_prompt = templates.get("summary_system_prompt")
-    if system_prompt is None:
-        raise KeyError("Schlüssel 'summary_system_prompt' fehlt in der Prompt-Konfiguration.")
+    # Use the new recap_system_prompt.txt file instead of YAML
+    system_prompt = _load_recap_system_prompt()
 
     content_lines: List[str] = []
 
