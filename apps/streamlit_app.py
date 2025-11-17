@@ -687,13 +687,46 @@ if sel_uebung:
                 st.success("✅ Sicherheitsprüfung abgeschlossen: Keine Freitextantworten vorhanden.")
             return True, assessments
     
+    # Gemini recap button (cloud)
+    st.markdown("---")
+    st.subheader("Zusammenfassung generieren")
+
+    col_gemini = st.container()
+    with col_gemini:
+        if st.button("🧾 Gemini (Cloud)", key=f"{session_key}_summarize_gemini", use_container_width=True):
+            if not GEMINI_API_KEY:
+                st.error("❌ GEMINI_API_KEY nicht gesetzt. Bitte setze die Umgebungsvariable GEMINI_API_KEY.")
+            else:
+                safety_ok, _ = perform_safety_check()
+                if safety_ok:
+                    try:
+                        from google import genai
+                        with st.spinner("Generiere Zusammenfassung mit Gemini..."):
+                            client = genai.Client(api_key=GEMINI_API_KEY)
+                            resp = client.models.generate_content(
+                                model="gemini-2.5-flash-lite",
+                                contents=prompt_input,
+                                config={"temperature": 0.7, "top_p": 0.9, "max_output_tokens": 200},
+                            )
+                            if hasattr(resp, "text") and resp.text:
+                                summary_text = resp.text.strip()
+                            else:
+                                summary_text = resp.candidates[0].content.parts[0].text.strip()
+                            st.session_state[recaps_key]["Gemini"] = summary_text
+                        st.success("✅ Zusammenfassung mit Gemini generiert")
+                        st.rerun()
+                    except ImportError as e:
+                        st.error(f"❌ Fehler: {e}")
+                        st.info("💡 Installiere das Paket mit: `pip install google-genai`")
+                    except Exception as e:
+                        st.error(f"❌ Fehler bei der Zusammenfassungs-Generierung mit Gemini: {e}")
+                        import traceback
+                        with st.expander("🔍 Fehlerdetails anzeigen"):
+                            st.code(traceback.format_exc(), language="python")
+
     # Check if local models are available
     local_models_available = is_local_models_available()
     available_models = get_available_models() if local_models_available else []
-    
-    # Create buttons for each model
-    st.markdown("---")
-    st.subheader("Zusammenfassung generieren")
     
     if not local_models_available:
         # Check if llama_cpp is missing or models are missing
