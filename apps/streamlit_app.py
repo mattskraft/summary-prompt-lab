@@ -1,5 +1,6 @@
 import json
 import os
+import random
 import sys
 from pathlib import Path
 from typing import Dict, List, Any, Optional, Tuple
@@ -428,15 +429,55 @@ if not hier:
 with st.sidebar:
     st.header("Navigation")
     
-    # Three dropdowns: Thema → Path → Übung
+    thema_key = "nav_selected_thema"
+    path_key = "nav_selected_path"
+    uebung_key = "nav_selected_uebung"
+    
     themen = sorted(hier.keys())
-    sel_thema = st.selectbox("Thema", options=themen) if themen else None
-
+    if themen and st.session_state.get(thema_key) not in themen:
+        st.session_state[thema_key] = themen[0]
+    sel_thema = (
+        st.selectbox("Thema", options=themen, key=thema_key)
+        if themen
+        else None
+    )
+    
     paths = sorted(hier.get(sel_thema, {}).keys()) if sel_thema else []
-    sel_path = st.selectbox("Pfad", options=paths) if paths else None
-
+    if paths and st.session_state.get(path_key) not in paths:
+        st.session_state[path_key] = paths[0]
+    elif not paths:
+        st.session_state.pop(path_key, None)
+    sel_path = (
+        st.selectbox("Pfad", options=paths, key=path_key)
+        if paths
+        else None
+    )
+    
     uebungen = sorted(hier.get(sel_thema, {}).get(sel_path, [])) if sel_path else []
-    sel_uebung = st.selectbox("Übung", options=uebungen) if uebungen else None
+    if uebungen and st.session_state.get(uebung_key) not in uebungen:
+        st.session_state[uebung_key] = uebungen[0]
+    elif not uebungen:
+        st.session_state.pop(uebung_key, None)
+    sel_uebung = (
+        st.selectbox("Übung", options=uebungen, key=uebung_key)
+        if uebungen
+        else None
+    )
+    
+    if st.button("🎲 Zufällige Übung", use_container_width=True, disabled=not hier):
+        available_themen = themen
+        if available_themen:
+            zufalls_thema = random.choice(available_themen)
+            available_paths = sorted(hier.get(zufalls_thema, {}).keys())
+            if available_paths:
+                zufalls_path = random.choice(available_paths)
+                available_uebungen = sorted(hier.get(zufalls_thema, {}).get(zufalls_path, []))
+                if available_uebungen:
+                    zufalls_uebung = random.choice(available_uebungen)
+                    st.session_state[thema_key] = zufalls_thema
+                    st.session_state[path_key] = zufalls_path
+                    st.session_state[uebung_key] = zufalls_uebung
+                    st.experimental_rerun()
     
     st.markdown("---")
     st.header("Konfiguration")
