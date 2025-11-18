@@ -109,10 +109,33 @@ def _load_recap_system_prompt() -> str:
     return recap_prompt_path.read_text(encoding="utf-8").strip()
 
 
-def build_summary_prompt(segments: List[Dict[str, Any]]) -> str:
-    """Create a summary prompt from processed segments."""
-    # Use the new recap_system_prompt.txt file instead of YAML
-    system_prompt = _load_recap_system_prompt()
+def _load_exercise_system_prompt(exercise_name: Optional[str] = None) -> str:
+    """Load the system prompt for a specific exercise from JSON file, or fallback to default."""
+    if exercise_name:
+        exercise_prompts_path = PROJECT_ROOT / "config" / "exercise_system_prompts.json"
+        if exercise_prompts_path.exists():
+            try:
+                import json
+                with exercise_prompts_path.open("r", encoding="utf-8") as f:
+                    exercise_prompts = json.load(f)
+                if isinstance(exercise_prompts, dict) and exercise_name in exercise_prompts:
+                    return exercise_prompts[exercise_name].strip()
+            except Exception:
+                # Fall through to default if JSON loading fails
+                pass
+    # Fallback to default system prompt
+    return _load_recap_system_prompt()
+
+
+def build_summary_prompt(segments: List[Dict[str, Any]], exercise_name: Optional[str] = None) -> str:
+    """Create a summary prompt from processed segments.
+    
+    Args:
+        segments: List of segment dictionaries
+        exercise_name: Optional exercise name to load exercise-specific system prompt
+    """
+    # Load exercise-specific system prompt if available, otherwise use default
+    system_prompt = _load_exercise_system_prompt(exercise_name)
 
     content_lines: List[str] = []
 

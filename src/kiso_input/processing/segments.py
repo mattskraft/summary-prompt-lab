@@ -158,9 +158,17 @@ def get_prompt_segments_from_exercise(
         sn_data = json.load(story_nodes_file)
 
     def find_exercise(data: Any, name: str) -> Any:
+        """Depth-first search that prefers concrete exercise blocks over containers."""
         if isinstance(data, dict):
             if name in data:
-                return data[name]
+                candidate = data[name]
+                normalized_entries = normalize_entries(candidate)
+                if normalized_entries:
+                    return candidate
+                # Candidate might be another container with same key—keep searching deeper.
+                nested_result = find_exercise(candidate, name)
+                if nested_result is not None:
+                    return nested_result
             for value in data.values():
                 result = find_exercise(value, name)
                 if result is not None:

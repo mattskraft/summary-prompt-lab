@@ -111,6 +111,85 @@ def load_json(path: str) -> Any:
         return json.load(f)
 
 
+def get_all_exercise_names(hierarchy: Dict[str, Dict[str, List[str]]]) -> List[str]:
+    """Extract all exercise names from the hierarchy."""
+    exercise_names: List[str] = []
+    for thema_dict in hierarchy.values():
+        for path_list in thema_dict.values():
+            exercise_names.extend(path_list)
+    return sorted(set(exercise_names))
+
+
+def ensure_exercise_prompts_json(exercise_names: List[str]) -> Path:
+    """Ensure the exercise_system_prompts.json file exists with all exercises.
+    Returns the path to the JSON file."""
+    json_path = PROJECT_ROOT / "config" / "exercise_system_prompts.json"
+    default_prompt_path = PROJECT_ROOT / "config" / "recap_system_prompt.txt"
+    
+    # Load default prompt text
+    default_prompt_text = ""
+    if default_prompt_path.exists():
+        default_prompt_text = default_prompt_path.read_text(encoding="utf-8").strip()
+    
+    # Load existing JSON if it exists
+    existing_data: Dict[str, str] = {}
+    if json_path.exists():
+        try:
+            with json_path.open("r", encoding="utf-8") as f:
+                existing_data = json.load(f)
+        except Exception:
+            existing_data = {}
+    
+    # Update with any missing exercises
+    updated = False
+    for exercise_name in exercise_names:
+        if exercise_name not in existing_data:
+            existing_data[exercise_name] = default_prompt_text
+            updated = True
+    
+    # Write back if updated
+    if updated:
+        with json_path.open("w", encoding="utf-8") as f:
+            json.dump(existing_data, f, ensure_ascii=False, indent=2)
+    
+    return json_path
+
+
+def load_exercise_prompts_json() -> Dict[str, str]:
+    """Load the exercise system prompts JSON file."""
+    json_path = PROJECT_ROOT / "config" / "exercise_system_prompts.json"
+    if json_path.exists():
+        try:
+            with json_path.open("r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            return {}
+    return {}
+
+
+def save_exercise_prompt(exercise_name: str, prompt_text: str) -> bool:
+    """Save the system prompt for a specific exercise to the JSON file."""
+    json_path = PROJECT_ROOT / "config" / "exercise_system_prompts.json"
+    try:
+        # Load existing data
+        existing_data: Dict[str, str] = {}
+        if json_path.exists():
+            with json_path.open("r", encoding="utf-8") as f:
+                existing_data = json.load(f)
+        
+        # Update the entry
+        existing_data[exercise_name] = prompt_text.strip()
+        
+        # Write back
+        with json_path.open("w", encoding="utf-8") as f:
+            json.dump(existing_data, f, ensure_ascii=False, indent=2)
+        
+        return True
+    except Exception as e:
+        st.error(f"Fehler beim Speichern: {e}")
+        return False
+
+
 @st.cache_resource(show_spinner=False)
 def load_self_harm_lexicon_cached(path: str) -> Dict[str, Any]:
     return load_self_harm_lexicon(path)
@@ -225,6 +304,7 @@ def render_segments_ui(segments: List[Dict[str, Any]], key_prefix: str = "") -> 
                             key=key,
                             label_visibility="collapsed",
                             placeholder="Option auswählen",
+                            index=None,
                         )
                     user_val = [selected_value] if selected_value else []
 
@@ -409,6 +489,11 @@ if not files_ok:
 hier = build_hierarchy(ex_struct)
 if not hier:
     st.warning("Konnte keine Themen/Wege/Übungen aus der Struktur extrahieren.")
+
+# Ensure exercise prompts JSON file exists
+all_exercise_names = get_all_exercise_names(hier) if hier else []
+if all_exercise_names:
+    ensure_exercise_prompts_json(all_exercise_names)
 
 with st.sidebar:
     st.header("Navigation")
@@ -636,11 +721,118 @@ if sel_uebung:
         segments_to_display if has_generated else segments,
         filled_segments
     )
-    live_prompt_text = build_summary_prompt(segments_for_prompt)
+    live_prompt_text = build_summary_prompt(segments_for_prompt, exercise_name=sel_uebung)
+    
+    # Helper function to extract system prompt from complete prompt
+    def extract_system_prompt_from_complete(complete_prompt: str) -> str:
+        """Extract the system prompt section from the complete prompt."""
+        if "SYSTEM:\n\n" in complete_prompt:
+            parts = complete_prompt.split("SYSTEM:\n\n", 1)
+            if len(parts) > 1:
+                system_part = parts[1].split("\n\n" + ("-" * 80) + "\nINHALT:\n\n", 1)[0]
+                return system_part.strip()
+        return ""
+    
+    # Helper function to rebuild complete prompt with new system prompt
+    def rebuild_complete_prompt(system_prompt_text: str, segments_for_rebuild: List[Dict[str, Any]]) -> str:
+        """Rebuild the complete prompt with a new system prompt."""
+        content_lines: List[str] = []
+        for segment in segments_for_rebuild:
+            if "Text" in segment:
+                clean_text = " ".join(segment["Text"].split())
+                content_lines.append(f"TEXT: {clean_text}")
+            elif "Question" in segment:
+                question_text = segment["Question"]
+                content_lines.append(f"FRAGE: {question_text}")
+            elif "Answer" in segment:
+                answer_val = segment.get("Answer")
+                answer_text: Optional[str] = None
+                if isinstance(answer_val, list):
+                    answer_text = ", ".join(str(item) for item in answer_val)
+                elif isinstance(answer_val, (int, float)):
+                    answer_text = str(int(answer_val))
+                elif isinstance(answer_val, str):
+                    answer_text = answer_val.strip()
+                elif isinstance(answer_val, dict):
+                    if "min" in answer_val and "max" in answer_val:
+                        min_val = answer_val.get("min")
+                        max_val = answer_val.get("max")
+                        if min_val == max_val:
+                            answer_text = str(int(min_val))
+                        else:
+                            answer_text = f"{int(min_val)} - {int(max_val)}"
+                    else:
+                        sub_parts = []
+                        for key, value in answer_val.items():
+                            sub_parts.append(f"{key}: {value}")
+                        answer_text = "; ".join(sub_parts)
+                if answer_text:
+                    content_lines.append(f"ANTWORT: {answer_text}")
+        return (
+            ("-" * 80)
+            + "\nSYSTEM:\n\n"
+            + system_prompt_text
+            + "\n\n"
+            + ("-" * 80)
+            + "\nINHALT:\n\n"
+            + "\n\n".join(content_lines)
+        )
     
     st.markdown("---")
     st.subheader("Zusammenfassungs-Prompt")
-    # Preserve manual edits unless the underlying segments changed.
+    
+    # Load current system prompt for this exercise
+    exercise_prompts = load_exercise_prompts_json()
+    system_prompt_state_key = f"{session_key}_system_prompt"
+    system_prompt_baseline_key = f"{session_key}_system_prompt_baseline"
+    
+    # Initialize system prompt from JSON or extract from live prompt
+    if system_prompt_state_key not in st.session_state:
+        if sel_uebung and sel_uebung in exercise_prompts:
+            initial_system_prompt = exercise_prompts[sel_uebung]
+        else:
+            initial_system_prompt = extract_system_prompt_from_complete(live_prompt_text)
+        st.session_state[system_prompt_state_key] = initial_system_prompt
+        st.session_state[system_prompt_baseline_key] = initial_system_prompt
+    elif sel_uebung and sel_uebung in exercise_prompts:
+        # If exercise changed, update system prompt from JSON
+        if st.session_state.get(system_prompt_baseline_key) != exercise_prompts[sel_uebung]:
+            st.session_state[system_prompt_state_key] = exercise_prompts[sel_uebung]
+            st.session_state[system_prompt_baseline_key] = exercise_prompts[sel_uebung]
+    
+    # Display system prompt field
+    st.markdown("**System-Prompt:**")
+    system_prompt_input = st.text_area(
+        "System-Prompt",
+        value=st.session_state[system_prompt_state_key],
+        key=system_prompt_state_key,
+        height=640,
+        label_visibility="collapsed",
+    )
+    
+    # Save button for system prompt
+    save_button_key = f"{session_key}_save_system_prompt"
+    save_clicked = st.button("💾 Änderung speichern", key=save_button_key, use_container_width=True)
+    if save_clicked:
+        if sel_uebung:
+            if save_exercise_prompt(sel_uebung, system_prompt_input):
+                st.success(f"✅ System-Prompt für '{sel_uebung}' wurde gespeichert.")
+                # Update baseline to reflect saved state
+                st.session_state[system_prompt_baseline_key] = system_prompt_input
+            else:
+                st.error("❌ Fehler beim Speichern des System-Prompts.")
+        else:
+            st.warning("⚠️ Keine Übung ausgewählt.")
+    
+    # Rebuild complete prompt if system prompt changed
+    current_system_prompt = system_prompt_input  # Use the current input value
+    extracted_system = extract_system_prompt_from_complete(live_prompt_text)
+    system_prompt_changed = current_system_prompt != extracted_system
+    if system_prompt_changed:
+        # System prompt was changed, rebuild complete prompt
+        live_prompt_text = rebuild_complete_prompt(current_system_prompt, segments_for_prompt)
+    
+    # Preserve manual edits unless the underlying segments changed or system prompt changed.
     prompt_state_key = f"{session_key}_summary_prompt"
     prompt_baseline_key = f"{session_key}_summary_prompt_baseline"
     # Initialize on first render
@@ -651,10 +843,13 @@ if sel_uebung:
         st.session_state[prompt_baseline_key] = live_prompt_text
         initial_value = live_prompt_text
     else:
-        # If the auto-generated prompt changed (due to changed answers), refresh field and baseline
-        if st.session_state.get(prompt_baseline_key) != live_prompt_text:
+        # If the auto-generated prompt changed (due to changed answers or system prompt), refresh field and baseline
+        if st.session_state.get(prompt_baseline_key) != live_prompt_text or system_prompt_changed:
             st.session_state[prompt_state_key] = live_prompt_text
             st.session_state[prompt_baseline_key] = live_prompt_text
+    
+    # Display complete prompt field
+    st.markdown("**Vollständiger Prompt:**")
     # Create text area without conflicting state/value usage
     if initial_value is None:
         prompt_input = st.text_area(
