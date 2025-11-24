@@ -1,4 +1,4 @@
-"""Gemini API integrations for answer generation and summarisation."""
+"""Cloud API integrations for answer generation and summarisation (Gemini and Mistral)."""
 
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ def generate_summary_with_gemini(
     model: str = "gemini-2.5-flash-lite",
     debug: bool = False,
 ) -> str:
-    """Generate a therapeutic summary using the Gemini API."""
+    """Generate a therapeutic summary using the Gemini API from segments."""
     try:
         from google import genai
     except ImportError as exc:  # pragma: no cover - dependency guard
@@ -48,6 +48,91 @@ def generate_summary_with_gemini(
         print(summary)
         print("=" * 50)
 
+    return summary
+
+
+def generate_summary_with_gemini_from_prompt(
+    prompt: str,
+    api_key: str,
+    model: str = "gemini-2.5-flash-lite",
+    max_tokens: int = 200,
+    temperature: float = 0.7,
+) -> str:
+    """Generate a summary using the Gemini API from a prompt string.
+    
+    Args:
+        prompt: The complete prompt string to send to Gemini
+        api_key: Gemini API key
+        model: Model name to use (default: gemini-2.5-flash-lite)
+        max_tokens: Maximum tokens to generate (default: 200)
+        temperature: Sampling temperature (default: 0.7)
+        
+    Returns:
+        Generated summary text
+    """
+    try:
+        from google import genai
+    except ImportError as exc:
+        raise ImportError(
+            "google-genai package not installed. Install it with: pip install google-genai"
+        ) from exc
+
+    client = genai.Client(api_key=api_key)
+    response = client.models.generate_content(
+        model=model,
+        contents=prompt,
+        config={"temperature": temperature, "top_p": 0.9, "max_output_tokens": max_tokens},
+    )
+
+    if hasattr(response, "text") and response.text:
+        summary = response.text.strip()
+    else:
+        summary = response.candidates[0].content.parts[0].text.strip()
+
+    return summary
+
+
+def generate_summary_with_mistral(
+    prompt: str,
+    api_key: str,
+    model: str = "mistral-medium-latest",
+    max_tokens: int = 200,
+    temperature: float = 0.7,
+) -> str:
+    """Generate a summary using the Mistral API from a prompt string.
+    
+    Args:
+        prompt: The complete prompt string to send to Mistral
+        api_key: Mistral API key
+        model: Model name to use (default: mistral-medium-latest)
+        max_tokens: Maximum tokens to generate (default: 200)
+        temperature: Sampling temperature (default: 0.7)
+        
+    Returns:
+        Generated summary text
+    """
+    try:
+        from mistralai import Mistral
+    except ImportError as exc:
+        raise ImportError(
+            "mistralai package not installed. Install it with: pip install mistralai"
+        ) from exc
+
+    with Mistral(api_key=api_key) as mistral:
+        res = mistral.chat.complete(
+            model=model,
+            messages=[
+                {
+                    "content": prompt,
+                    "role": "user",
+                },
+            ],
+            stream=False,
+            max_tokens=max_tokens,
+            temperature=temperature,
+        )
+        summary = res.choices[0].message.content.strip()
+    
     return summary
 
 
@@ -322,8 +407,9 @@ def generate_answers_with_gemini(
 
 __all__ = [
     "generate_summary_with_gemini",
+    "generate_summary_with_gemini_from_prompt",
+    "generate_summary_with_mistral",
     "extract_json_array_from_gemini_output",
     "generate_answers_with_gemini",
 ]
-
 

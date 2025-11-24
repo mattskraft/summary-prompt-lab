@@ -74,6 +74,26 @@ try:
     if not GEMINI_API_KEY:
         GEMINI_API_KEY = getattr(config_module, "GEMINI_API_KEY", None)
     
+    # Get MISTRAL_API_KEY from Streamlit secrets first, then fallback to config
+    MISTRAL_API_KEY = None
+    try:
+        # Try to get from Streamlit secrets (Streamlit Cloud)
+        if hasattr(st, "secrets"):
+            try:
+                # Check if secrets is accessible (may raise StreamlitSecretNotFoundError)
+                _ = len(st.secrets)  # This will raise if no secrets file exists
+                # If we get here, secrets exist
+                MISTRAL_API_KEY = st.secrets.get("MISTRAL_API_KEY") or None
+            except Exception:
+                # No secrets file found, silently fall through to config fallback
+                pass
+    except (AttributeError, KeyError, TypeError):
+        pass
+    
+    # Fallback to config module if not found in secrets
+    if not MISTRAL_API_KEY:
+        MISTRAL_API_KEY = getattr(config_module, "MISTRAL_API_KEY", None)
+    
     from kiso_input import (
         assess_free_text_answers,
         build_summary_prompt,
@@ -82,6 +102,10 @@ try:
         get_prompt_segments_from_exercise,
         load_self_harm_lexicon,
         prompt_segments_to_text,
+    )
+    from kiso_input.processing.cloud_apis import (
+        generate_summary_with_gemini_from_prompt,
+        generate_summary_with_mistral,
     )
     from kiso_input.processing.local_models import (
         generate_summary_with_model,
@@ -556,6 +580,8 @@ with st.sidebar:
     
     if not GEMINI_API_KEY:
         st.warning("⚠️ GEMINI_API_KEY nicht gesetzt. Antwort-Generierung wird nicht funktionieren.")
+    if not MISTRAL_API_KEY:
+        st.warning("⚠️ MISTRAL_API_KEY nicht gesetzt. Mistral API wird nicht funktionieren.")
 
 if sel_uebung:
     # Store these in session state so sidebar buttons can access them
@@ -909,31 +935,30 @@ if sel_uebung:
                 st.success("✅ Sicherheitsprüfung abgeschlossen: Keine Freitextantworten vorhanden.")
             return True, assessments
     
-    # Gemini recap button (cloud)
+    # Summary generation section
     st.markdown("---")
     st.subheader("Zusammenfassung generieren")
-
-    col_gemini = st.container()
-    with col_gemini:
-        if st.button("🧾 Gemini (Cloud)", key=f"{session_key}_summarize_gemini", use_container_width=True):
+    
+    # Proprietary APIs section
+    st.markdown("#### Proprietäre APIs")
+    proprietary_cols = st.columns(2)
+    
+    with proprietary_cols[0]:
+        if st.button("🧾 Gemini", key=f"{session_key}_summarize_gemini", use_container_width=True):
             if not GEMINI_API_KEY:
                 st.error("❌ GEMINI_API_KEY nicht gesetzt. Bitte setze die Umgebungsvariable GEMINI_API_KEY.")
             else:
                 safety_ok, _ = perform_safety_check()
                 if safety_ok:
                     try:
-                        from google import genai
                         with st.spinner("Generiere Zusammenfassung mit Gemini..."):
-                            client = genai.Client(api_key=GEMINI_API_KEY)
-                            resp = client.models.generate_content(
+                            summary_text = generate_summary_with_gemini_from_prompt(
+                                prompt=prompt_input,
+                                api_key=GEMINI_API_KEY,
                                 model="gemini-2.5-flash-lite",
-                                contents=prompt_input,
-                                config={"temperature": 0.7, "top_p": 0.9, "max_output_tokens": 200},
+                                max_tokens=200,
+                                temperature=0.7,
                             )
-                            if hasattr(resp, "text") and resp.text:
-                                summary_text = resp.text.strip()
-                            else:
-                                summary_text = resp.candidates[0].content.parts[0].text.strip()
                             st.session_state[recaps_key]["Gemini"] = summary_text
                         st.success("✅ Zusammenfassung mit Gemini generiert")
                         st.rerun()
@@ -945,8 +970,37 @@ if sel_uebung:
                         import traceback
                         with st.expander("🔍 Fehlerdetails anzeigen"):
                             st.code(traceback.format_exc(), language="python")
-
-    # Use Modal API endpoints for all models
+    
+    with proprietary_cols[1]:
+        if st.button("🧾 Mistral", key=f"{session_key}_summarize_mistral", use_container_width=True):
+            if not MISTRAL_API_KEY:
+                st.error("❌ MISTRAL_API_KEY nicht gesetzt. Bitte setze die Umgebungsvariable MISTRAL_API_KEY.")
+            else:
+                safety_ok, _ = perform_safety_check()
+                if safety_ok:
+                    try:
+                        with st.spinner("Generiere Zusammenfassung mit Mistral..."):
+                            summary_text = generate_summary_with_mistral(
+                                prompt=prompt_input,
+                                api_key=MISTRAL_API_KEY,
+                                model="mistral-medium-latest",
+                                max_tokens=200,
+                                temperature=0.7,
+                            )
+                            st.session_state[recaps_key]["Mistral"] = summary_text
+                        st.success("✅ Zusammenfassung mit Mistral generiert")
+                        st.rerun()
+                    except ImportError as e:
+                        st.error(f"❌ Fehler: {e}")
+                        st.info("💡 Installiere das Paket mit: `pip install mistralai`")
+                    except Exception as e:
+                        st.error(f"❌ Fehler bei der Zusammenfassungs-Generierung mit Mistral: {e}")
+                        import traceback
+                        with st.expander("🔍 Fehlerdetails anzeigen"):
+                            st.code(traceback.format_exc(), language="python")
+    
+    # Self-hosted Modal models section
+    st.markdown("#### Self-hosted (Modal)")
     # All six models are available via Modal endpoints
     available_models = ["Gemma-3-12B", "Llama-3.1-8B", "Mistral-7B", "Qwen3-8B", "Teuken-7B", "Mistral-NeMo-12B"]
     

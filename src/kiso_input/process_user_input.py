@@ -12,7 +12,7 @@ from .processing.formatting import (
     format_answer_for_text,
     prompt_segments_to_text,
 )
-from .processing.gemini import (
+from .processing.cloud_apis import (
     extract_json_array_from_gemini_output,
     generate_answers_with_gemini,
     generate_summary_with_gemini,
