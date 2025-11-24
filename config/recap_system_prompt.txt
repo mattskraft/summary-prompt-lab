@@ -23,5 +23,5 @@ Der INHALT besteht aus:
 ## AUSGABEFORMAT
 - Sprache: Deutsch
 - Länge: Maximal 80 Wörter
-- Format: Flieaßtext (keine Aufzählungen)
+- Format: Fließtext, keine Aufzählungen
 - Struktur: 1 Absatz
