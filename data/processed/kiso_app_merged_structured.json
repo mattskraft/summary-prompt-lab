@@ -116,22 +116,9 @@
           "Text": "Schreibe dir deine geplante Aktivität gerne in deinen Kalender oder hänge eine Notiz an einen gut sichtbaren Ort zu Hause, zum Beispiel deinen Badspiegel. So kannst du dich daran erinnern. Probiere aus, die Aktivität diese Woche umzusetzen, bevor du mit der nächsten Übung weitermachst."
         }
       ],
-      "Aktivitäten planen": [
+      "Anrufen": [
         {
-          "Question": "In der Übung **Angenehme Aktivitäten 2** hast du eine Aktivität für den nächsten Tag geplant. Konntest du die Aktivität umsetzen?"
-        },
-        {
-          "Branch": [
-            {
-              "Ja, das hat geklappt": "Stimmung - Aktivität 2 - Ja"
-            },
-            {
-              "Nein, leider nicht": "Stimmung - Aktivität 2 - Nein"
-            }
-          ]
-        },
-        {
-          "Text": "Viele Aktivitäten sind komplex und brauchen ein wenig Planung. Wenn du zum Beispiel Schwimmen gehen möchtest, solltest du ein Schwimmbad in deiner Nähe finden, in Erfahrung bringen, wie du dort hin kommen kannst und dich über die Öffnungszeiten informieren. Du musst deine Badesachen packen, hinfahren, Eintritt bezahlen und so weiter."
+          "Text": "Viele Aktivitäten sind komplex und brauchen ein wenig Planung. In Stimmungskrisen können auch einfache Aktivitäten, wie ein Anruf bei einem Freund oder einer Freundin, schwer und groß wirken. Sie in einzelne Schritte aufzuteilen und zu planen, kann dabei helfen, dass sie nicht mehr ganz so groß und schwer erscheinen."
         },
         {
           "Text": "Stell dir vor, du möchtest gerne einmal wieder mit einem Freund oder einer Freundin telefonieren. Versuche einmal, diese Aktivität in kleine Schritte aufzuteilen, wie bei einem Kochrezept. Was brauchst du für die Aktivität? Und was machst du in welcher Reihenfolge?"
@@ -154,24 +141,15 @@
         },
         {
           "Question": "Wann möchtest du die Person anrufen? Geht das spontan oder solltest du ihr vorher schreiben?",
-          "AnswerOptions": "free_text"
+          "AnswerOptions": [
+            "Ich schreibe und frage wenn er/sie Zeit hat",
+            "Ich kann spontan heute anrufen",
+            "Ich kann spontan diese Woche anrufen"
+          ],
+          "AllowMultiple": false
         },
         {
-          "Text": "Versuche einmal, eine eigene Aktivität, die du gerne machen möchtest, in kleine Schritte aufzuteilen, wie bei einem Kochrezept. Plane deine Aktivität möglichst genau und stelle dir vor, wie sie ablaufen wird."
-        },
-        {
-          "Question": "Was brauchst du für die Aktivität?",
-          "AnswerOptions": "free_text"
-        },
-        {
-          "Question": "Und was machst du in welcher Reihenfolge?",
-          "AnswerOptions": "free_text"
-        },
-        {
-          "Text": "Vermeide es, zu viele Aktivitäten auf einmal zu planen. Steiger dich langsam, um Erfolge zu haben und dich langfristig zu motivieren."
-        },
-        {
-          "Text": "Es kann auch hilfreich sein, jemandem von deinen Plänen zu erzählen und diese Person anzurufen oder ihr zu schreiben, wenn du deine Aktivität geschafft hast."
+          "Text": "Der erste Schritt ist getan. Du hast dir gut überlegt, wie das Telefonat ablaufen kann, was du fragen und von dir teilen möchtest. **Das ist stark!** Versuche, den Anruf heute oder diese Woche umzusetzen, wann es gut für dich passt."
         }
       ],
       "Meine Woche planen": [
@@ -283,6 +261,30 @@
         },
         {
           "Text": "Rückzug und das Vermeiden von Aktivitäten, die uns früher eigentlich Spaß gemacht haben (z.B. Freunde treffen), tun uns langfristig nicht gut. Das kann zu einem Teufelskreis führen:"
+        },
+        {
+          "Text": "Wenn man sich traurig fühlt, hat man oft keine Lust, Dinge zu tun oder mit anderen Menschen zu sprechen. Man bleibt lieber allein und zieht sich zurück."
+        },
+        {
+          "Text": "Wenn man sich zurückzieht, macht man weniger Aktivitäten, die einem normalerweise Freude bereiten. Das können einfache Dinge sein wie Spaziergänge, Hobbys oder Treffen mit Freunden. Weniger Aktivitäten bedeuten weniger schöne Erlebnisse."
+        },
+        {
+          "Text": "Durch den Rückzug kommen negative Gedanken hoch, zum Beispiel \"Ich bin nutzlos\" oder \"Niemand mag mich\". Diese Gedanken verstärken die Traurigkeit und den Rückzug noch mehr."
+        },
+        {
+          "Text": "Der Teufelskreis entsteht, weil sich die Traurigkeit und die negativen Gedanken gegenseitig verstärken. Je mehr man sich zurückzieht, desto schlechter fühlt man sich und desto schwerer wird es, wieder aktiv zu werden."
+        },
+        {
+          "Text": "Aktivitäten bringen schöne Erlebnisse und lenken negative Gedanken ab"
+        },
+        {
+          "Text": "Aktivitäten bieten eine Ablenkung von belastenden Gedanken und Gefühlen"
+        },
+        {
+          "Text": "Durch erfolgreiche Aktivitäten steigt das Selbstwertgefühl, man bekommt ein besseres Gefühl für sich selbst"
+        },
+        {
+          "Text": "Aktivitäten können dazu führen, dass man Menschen trifft, die unterstützen und verstehen"
         }
       ],
       "Angenehme Aktivitäten 4": [
@@ -463,14 +465,125 @@
           "AllowMultiple": false
         },
         {
-          "Text": "Zwischen 14 und 15 Uhr die Wäsche zu sortieren könnte ein gutes Ziel für Miguel sein.  Es ist konkret, für eine bestimmte Uhrzeit geplant und erreichbar. Etwas Sinnvolles zu tun oder die Wohnung aufzuräumen sind sehr vage Ziele, bei denen unklar bleibt, wann Miguel sie erreicht hätte."
+          "Text": "Zwischen 14 und 15 Uhr die Wäsche zu sortieren könnte ein gutes Ziel für Miguel sein. Es ist konkret, für eine bestimmte Uhrzeit geplant und erreichbar. Etwas Sinnvolles zu tun oder die Wohnung aufzuräumen sind sehr vage Ziele, bei denen unklar bleibt, wann Miguel sie erreicht hätte."
+        }
+      ],
+      "Aktivitäten planen": [
+        {
+          "Question": "In der Übung **Angenehme Aktivitäten 2** hast du eine Aktivität für den nächsten Tag geplant. Konntest du die Aktivität umsetzen?"
+        },
+        {
+          "Branch": [
+            {
+              "Ja, das hat geklappt": "Stimmung - Aktivität 2 - Ja"
+            },
+            {
+              "Nein, leider nicht": "Stimmung - Aktivität 2 - Nein"
+            }
+          ]
+        },
+        {
+          "Text": "Viele Aktivitäten sind komplex und brauchen ein wenig Planung. Wenn du zum Beispiel Schwimmen gehen möchtest, solltest du ein Schwimmbad in deiner Nähe finden, in Erfahrung bringen, wie du dort hin kommen kannst und dich über die Öffnungszeiten informieren. Du musst deine Badesachen packen, hinfahren, Eintritt bezahlen und so weiter."
+        },
+        {
+          "Text": "Versuche einmal, eine Aktivität, die du gerne machen möchtest, in kleine Schritte aufzuteilen, wie bei einem Kochrezept. Plane deine Aktivität möglichst genau und stelle dir vor, wie sie ablaufen wird."
+        },
+        {
+          "Question": "Was brauchst du für die Aktivität?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Question": "Und was machst du in welcher Reihenfolge?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Vermeide es, zu viele Aktivitäten auf einmal zu planen. Steiger dich langsam, um Erfolge zu haben und dich langfristig zu motivieren."
+        },
+        {
+          "Text": "Es kann auch hilfreich sein, jemandem von deinen Plänen zu erzählen und diese Person anzurufen oder ihr zu schreiben, wenn du deine Aktivität geschafft hast."
         }
       ]
     },
     "Gedanken ändern": {
+      "Kopfkino": [
+        {
+          "Question": "Lisa bewirbt sich auf ein Praktikum. Zwei Wochen nach dem Bewerbungsgespräch hat sie immer noch keine Rückmeldung erhalten. **Was könnte Lisa denken?** _Wähle eine der Optionen aus und schaue, was passiert._"
+        },
+        {
+          "Branch": [
+            {
+              "Ich habe mich wahrscheinlich blamiert. Die haben gemerkt, dass ich komisch bin. Ich bin einfach nicht geeignet für solche Sachen.": "Stimmung - Kopfkino - A Negativ"
+            },
+            {
+              "Vielleicht brauchen sie einfach länger mit der Entscheidung. Das sagt noch nichts über meine Fähigkeiten aus.": "Stimmung - Kopfkino - B Positiv"
+            }
+          ]
+        },
+        {
+          "Text": "Bewertungen beeinflussen wie wir denken, fühlen und handeln. Oft laufen diese Bewertungen ganz automatisch in unserem Kopf ab wie ein Film. Wir erleben etwas und schon beginnt unser Kopfkino. Dabei merken wir oft gar nicht, dass wir durch eine bestimmte Brille auf das schauen, was passiert. Diese Brille ist gefärbt durch unsere Erfahrungen, unsere Stimmung und unsere inneren Überzeugungen. Je nachdem, welche Brille wir tragen, erscheint uns die Welt freundlich oder bedrohlich, hoffnungsvoll oder entmutigend."
+        },
+        {
+          "Text": "Lisa geht es nicht gut. Sie fühlt sich traurig und leer. Lisas Mitbewohner klopft an ihre Zimmertür und fragt, ob sie Lust hat, gemeinsam einen Film zu schauen. _Schaue dir auf der nächsten Seite an, wie Lisas Brille ihre Gedanken, Gefühle und ihr Verhalten beeinflusst._"
+        },
+        {
+          "Text": "**Denk doch einfach positiv!** Wenn es nur so einfach wäre. Die Brille, mit der wir auf die Welt schauen, können wir nicht einfach so abnehmen. Gedanken lassen sich nicht einfach so abstellen. Vor allem in einer akuten Psychose oder in einer Stimmungskrise."
+        },
+        {
+          "Text": "**Glaub nicht alles was du denkst!** Auch das ist leichter gesagt als getan. Trotzdem sind wir unseren Gedanken nicht hilflos ausgeliefert. Wir können lernen, bewusst wahrzunehmen, mit welcher Brille wir auf die Welt schauen. Wir können die Brille dann nicht sofort wechseln. Aber wir können sie erkennen und so ein wenig Abstand von belastenden Gedanken gewinnen."
+        },
+        {
+          "Question": "Welcher Satz könnte dir dabei helfen, Abstand zu Gedanken zu gewinnen?",
+          "AnswerOptions": [
+            "Ich darf meine Gedanken hinterfragen",
+            "Nur weil ich etwas denke, heißt das nicht, dass es so ist",
+            "Wenn mir der Film in meinem Kopfkino nicht gefällt, dann darf ich auch mal den Saal verlassen",
+            "Ich sehe die Welt gerade durch eine dunkle Brille, aber das heißt nicht, dass alles dunkel ist"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Question": "Welche Frage fühlt sich für dich gut an, um Abstand zu Gedanken zu gewinnen?",
+          "AnswerOptions": [
+            "Mit welcher Brille schaue ich gerade auf die Welt?",
+            "Hat dieser Gedanke einen Platz in meinem Kopfkino verdient oder nicht?",
+            "Ist das nur ein Film in meinem Kopf oder die Realität?"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Question": "Fällt dir noch ein anderer Satz ein, um Abstand zu belastenden Gedanken zu gewinnen?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Gibt es jemanden, mit dem du diesen Satz teilen möchtest? Manchmal hilft es, ihn laut auszusprechen und mit einer Vertrauensperson zu teilen. Er oder sie kann dich an den Satz erinnern, wenn du es selbst gerade nicht kannst."
+        }
+      ],
+      "Mein Experiment": [
+        {
+          "Text": "In der Wissenschaft nutzt man Experimente, um Annahmen zu prüfen. Das gleiche können wir auch mit unseren Gedanken machen: Wir können prüfen, ob sie zutreffen. Dafür müssen wir unsere Annahmen so formulieren, dass wir sie auch wirklich überprüfen können. Sieh dir das Beispiel auf der nächsten Seite an und probiere es selbst aus!"
+        },
+        {
+          "Text": "Beispiel **Gedanke:** \"Alle Menschen meiden mich.\" **Testbare Annahme:** \"Wenn ich jemanden grüße, werde ich ignoriert.\" **Experiment:** Heute zwei Personen kurz grüßen und beobachten, ob sie zurück grüßen"
+        },
+        {
+          "Question": "Gibt es einen Gedanken, den du gerne mit einem Experiment prüfen möchtest?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Question": "Wie könnte eine testbare Annahme für diesen Gedanken aussehen?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Question": "Wie sieht dein Experiment dazu aus?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Wenn dir diese Übung schwer fällt, besprich sie gerne mit einer Freundin oder einem Freund oder einer Vertrauensperson. Frage sie oder ihn, ob sie dich bei deinem Experiment unterstützen oder dich daran erinnern könnte."
+        }
+      ],
       "Alles oder Nichts": [
         {
-          "Text": "\"Alles läuft schief.\" \"Ich kann gar nichts.\" \"Immer passiert mir sowas.\" \"Er ist ein schlechter Mensch.\" \"Keiner will etwas mit mir zu tun haben.\" \n**Was haben alle diese Aussagen gemeinsam?**"
+          "Text": "\"Alles läuft schief.\" \"Ich kann gar nichts.\" \"Immer passiert mir sowas.\" \"Er ist ein schlechter Mensch.\" \"Keiner will etwas mit mir zu tun haben.\" **Was haben alle diese Aussagen gemeinsam?**"
         },
         {
           "Text": "Vielleicht kennst du solche Gedanken wie _Alles läuft schief_ oder _Ich kann gar nichts_. Sie haben eines gemeinsam: Diese Gedanken sind sehr schwarz-weiß, also entweder ganz gut oder ganz schlecht, alles oder nichts, ohne Zwischenstufen. Diese Art zu denken nennt man auch **Verallgemeinerung**."
@@ -482,9 +595,9 @@
           "Question": "Dir fällt während einer Diskussion mit einem Freund ein bestimmtes Wort nicht ein. Was wären hilfreiche Gedanken?",
           "AnswerOptions": [
             "Nie kann ich mich ausdrücken! Ich bin echt total dumm.",
-            "Das kann im Eifer des Gefechts schon mal passieren. Das passiert auch anderen mal.",
+            "Das kann schon mal passieren. Das passiert auch anderen mal.",
             "Ich kriege meine Gedanken nie richtig auf die Reihe.",
-            "Ich kann mir kurz Zeit nehmen, um nach dem Wort zu suchen oder es umschreiben. Hauptsache wir bleiben im Gespräch."
+            "Ich kann mir kurz Zeit nehmen, um nach dem Wort zu suchen oder es umschreiben."
           ],
           "AllowMultiple": true
         },
@@ -493,7 +606,7 @@
           "AnswerOptions": [
             "Immer passiert mir sowas! Ich bin ein total schlechtes Familienmitglied.",
             "Das ist ärgerlich, aber man kann auch mal was vergessen. Bisher habe ich immer an ihren Geburtstag gedacht.",
-            "Ich habe dieses Jahr den Geburtstag vergessen und das tut mir leid. Das ist unangenehm, ich kann ihr aber auch verspätet gratulieren.",
+            "Das ist unangenehm und tut mir Leid. Ich kann ihr aber auch verspätet gratulieren.",
             "Vielleicht war ich in letzter Zeit überfordert. Das heißt nicht, dass mir meine Schwester nicht wichtig ist. Nächstes Jahr mache ich mir eine Erinnerung."
           ],
           "AllowMultiple": true
@@ -512,27 +625,7 @@
           "Text": "**Jeder macht Fehler.** Wenn du dich einmal verhaspelst, heißt das noch nicht, dass du dich nicht ausdrücken kannst. Wenn du Fehler machst oder einmal zu spät kommst, bist du nicht direkt unzuverlässig."
         },
         {
-          "Text": "Wenn du bemerkst, dass du verallgemeinerst, frage dich: - Stimmt das wirklich, was ich da gerade denke, oder bewerte ich mich sehr hart?\n- Gab es Situationen, in denen ich es doch geschafft habe?\n- Was würde ich einem guten Freund sagen, dem das Gleiche oder etwas Ähnliches passiert ist?"
-        }
-      ],
-      "Mein Experiment": [
-        {
-          "Text": "In der Wissenschaft nutzt man Experimente, um Annahmen zu prüfen. Das gleiche können wir auch mit unseren Gedanken machen: Wir können prüfen, ob sie zutreffen. Dafür müssen wir unsere Annahmen so formulieren, dass wir sie auch wirklich überprüfen können. Sieh dir das Beispiel auf der nächsten Seite an und probiere es selbst aus!"
-        },
-        {
-          "Text": "<u>Beispiel</u> **Gedanke:**\n\"Alle Menschen meiden mich.\" **Testbare Annahme:**\n\"Wenn ich jemanden grüße, werde ich ignoriert.\" **Experiment:**\nHeute zwei Personen kurz grüßen und beobachten, ob sie zurück grüßen"
-        },
-        {
-          "Question": "Gibt es einen Gedanken, den du gerne mit einem Experiment prüfen möchtest?",
-          "AnswerOptions": "free_text"
-        },
-        {
-          "Question": "Wie könnte eine testbare Annahme für diesen Gedanken aussehen?",
-          "AnswerOptions": "free_text"
-        },
-        {
-          "Question": "Wie sieht dein Experiment dazu aus?",
-          "AnswerOptions": "free_text"
+          "Text": "Wenn du bemerkst, dass du verallgemeinerst, frage dich: - Stimmt das wirklich, was ich da gerade denke, oder bewerte ich mich sehr hart? - Gab es Situationen, in denen ich es doch geschafft habe? - Was würde ich einem guten Freund sagen, dem das Gleiche oder etwas Ähnliches passiert ist?"
         }
       ],
       "Experimente": [
@@ -606,7 +699,7 @@
           "Text": "Das Problem an Sollte-Aussagen ist, dass sie uns ganz schön unter Druck setzen können. Der Gedanke, dass man z.B. immer gepflegt und immer gut aussehen muss, ist im Alltag oft gar nicht so einfach umsetzbar und kann zu viel Stress führen. Daher kann es für unsere Stimmung und unser Wohlbefinden gut sein, nachsichtiger zu sein."
         },
         {
-          "Text": "Nachsichtig sein bedeutet, dass man von sich nicht die absolute Bestleistung fordert, sondern liebevoll und verständnisvoll mit sich selbst umgeht. <u>Zum Beispiel:</u> Es ist vollkommen ok, dass ich mich heute nicht perfekt zurecht gemacht habe, ich muss nicht immer gut aussehen."
+          "Text": "Nachsichtig sein bedeutet, dass man von sich nicht die absolute Bestleistung fordert, sondern liebevoll und verständnisvoll mit sich selbst umgeht. Zum Beispiel: Es ist vollkommen ok, dass ich mich heute nicht perfekt zurecht gemacht habe, ich muss nicht immer gut aussehen."
         },
         {
           "Text": "**\"Man sollte seine Wohnung immer ordentlich und sauber halten\"**"
@@ -636,56 +729,6 @@
           "Question": "Was könnte ein nachsichtiger Umgang sein?",
           "AnswerOptions": "free_text"
         }
-      ],
-      "Kopfkino": [
-        {
-          "Question": "Lisa bewirbt sich auf ein Praktikum. Zwei Wochen nach dem Bewerbungsgespräch hat sie immer noch keine Rückmeldung erhalten. **Was könnte Lisa denken?**\n_Wähle eine der Optionen aus und schaue, was passiert._"
-        },
-        {
-          "Branch": [
-            {
-              "Ich habe mich wahrscheinlich blamiert. Die haben gemerkt, dass ich komisch bin. Ich bin einfach nicht geeignet für solche Sachen.": "Stimmung - Kopfkino - A Negativ"
-            },
-            {
-              "Vielleicht brauchen sie einfach länger mit der Entscheidung. Das sagt noch nichts über meine Fähigkeiten aus.": "Stimmung - Kopfkino - B Positiv"
-            }
-          ]
-        },
-        {
-          "Text": "Bewertungen beeinflussen wie wir denken, fühlen und handeln. Oft laufen diese Bewertungen ganz automatisch in unserem Kopf ab wie ein Film. Wir erleben etwas und schon beginnt unser Kopfkino. Dabei merken wir oft gar nicht, dass wir durch eine bestimmte Brille auf das schauen, was passiert. Diese Brille ist gefärbt durch unsere Erfahrungen, unsere Stimmung und unsere inneren Überzeugungen. Je nachdem, welche Brille wir tragen, erscheint uns die Welt freundlich oder bedrohlich, hoffnungsvoll oder entmutigend."
-        },
-        {
-          "Text": "Lisa geht es nicht gut. Sie fühlt sich traurig und leer. Lisas Mitbewohner klopft an ihre Zimmertür und fragt, ob sie Lust hat, gemeinsam einen Film zu schauen."
-        },
-        {
-          "Text": "**Denk doch einfach positiv!** Wenn es nur so einfach wäre. Die Brille, mit der wir auf die Welt schauen, können wir nicht einfach so abnehmen. Gedanken lassen sich nicht einfach so abstellen. Vor allem in einer akuten Psychose oder in einer Stimmungskrise."
-        },
-        {
-          "Text": "**Glaub nicht alles was du denkst!** Auch das ist leichter gesagt als getan. Trotzdem sind wir unseren Gedanken nicht hilflos ausgeliefert. Wir können lernen, bewusst wahrzunehmen, mit welcher Brille wir auf die Welt schauen. Wir können die Brille dann nicht sofort wechseln. Aber wir können sie erkennen und so ein wenig Abstand von belastenden Gedanken gewinnen."
-        },
-        {
-          "Question": "Welcher Satz könnte dir dabei helfen, Abstand zu Gedanken zu gewinnen?",
-          "AnswerOptions": [
-            "Ich darf meine Gedanken hinterfragen",
-            "Nur weil ich etwas denke, heißt das nicht, dass es so ist",
-            "Wenn mir der Film in meinem Kopfkino nicht gefällt, dann darf ich auch mal den Saal verlassen",
-            "Ich sehe die Welt gerade durch eine dunkle Brille, aber das heißt nicht, dass alles dunkel ist"
-          ],
-          "AllowMultiple": true
-        },
-        {
-          "Question": "Welche Frage fühlt sich für dich gut an, um Abstand zu Gedanken zu gewinnen?",
-          "AnswerOptions": [
-            "Mit welcher Brille schaue ich gerade auf die Welt?",
-            "Hat dieser Gedanke einen Platz in meinem Kopfkino verdient oder nicht?",
-            "Ist das nur ein Film in meinem Kopf oder die Realität?"
-          ],
-          "AllowMultiple": true
-        },
-        {
-          "Question": "Fällt dir noch ein anderer Satz ein, um Abstand zu belastenden Gedanken zu gewinnen?",
-          "AnswerOptions": "free_text"
-        }
       ]
     },
     "Stimmungskrisen": {
@@ -698,13 +741,13 @@
           "AnswerOptions": "free_text"
         },
         {
-          "Text": "Unsere **Gedanken**, unsere **Stimmung** und unser **Verhalten**, also was wir tun, sind eng miteinander verbunden. Sie beeinflussen sich gegenseitig. Wenn wir unsere Stimmung beeinflussen möchten, gibt es zwei Wege: - Wir können unser **Verhalten** ändern\n- Wir können unsere **Gedanken** hinterfragen"
+          "Text": "Unsere **Gedanken**, unsere **Stimmung** und unser **Verhalten**, also was wir tun, sind eng miteinander verbunden. Sie beeinflussen sich gegenseitig. Wenn wir unsere Stimmung beeinflussen möchten, gibt es zwei Wege: - Wir können unser **Verhalten** ändern - Wir können unsere **Gedanken** hinterfragen"
         },
         {
           "Text": "Diese Frage haben wir dem Betroffenen Elias gestellt. Für ihn zählt dazu zum Beispiel, auf eine regelmäßige Einnahme der Medikamente und guten Schlaf zu achten."
         },
         {
-          "Text": "Die Lebensbrille oder Gedanken zu hinterfragen und das Verhalten zu ändern, kann man sich wie einen Besuch im Fitnessstudio vorstellen:  Am Anfang ist es sehr mühsam, so richtig Spaß macht es nicht. Doch mit jedem Training wachsen die Muskeln. Es braucht Zeit, bevor man Erfolge bemerkt. Doch es lohnt sich. Genauso ist es auch mit unseren Gedanken und unserem Verhalten. Am Anfang ist es mühsam. Doch regelmäßiges Training zahlt sich aus. Versuche es mit den nächsten Übungen. Nur Mut!"
+          "Text": "Die Lebensbrille oder Gedanken zu hinterfragen und das Verhalten zu ändern, kann man sich wie einen Besuch im Fitnessstudio vorstellen: Am Anfang ist es sehr mühsam, so richtig Spaß macht es nicht. Doch mit jedem Training wachsen die Muskeln. Es braucht Zeit, bevor man Erfolge bemerkt. Doch es lohnt sich. Genauso ist es auch mit unseren Gedanken und unserem Verhalten. Am Anfang ist es mühsam. Doch regelmäßiges Training zahlt sich aus. Versuche es mit den nächsten Übungen. Nur Mut!"
         }
       ],
       "Morgenroutine": [
@@ -773,7 +816,7 @@
       ],
       "Genießen lernen": [
         {
-          "Text": "In Stimmungskrisen übersehen wir oft die Dinge, die im Alltag gut tun. Das können besondere Erlebnisse sein, wie z.B. ein Konzert oder Abend mit Freunden. Aber vor allem die kleineren Dinge, die wir täglich mit unseren Sinnen wahrnehmen. <u>Zum Beispiel:</u> - das Gefühl, den Wind an einem warmen Sommerabend auf der Haut zu spüren\n- der Duft von frisch gekochtem Kaffee/Tee\n- das Geräusch von Regen am Fenster"
+          "Text": "In Stimmungskrisen übersehen wir oft die Dinge, die im Alltag gut tun. Das können besondere Erlebnisse sein, wie z.B. ein Konzert oder Abend mit Freunden. Aber vor allem die kleineren Dinge, die wir täglich mit unseren Sinnen wahrnehmen. Zum Beispiel: - das Gefühl, den Wind an einem warmen Sommerabend auf der Haut zu spüren - der Duft von frisch gekochtem Kaffee/Tee - das Geräusch von Regen am Fenster"
         },
         {
           "Question": "Welche kleinen Dinge im Alltag genießt du gerne? Was empfindest du als angenehm?",
@@ -799,7 +842,7 @@
       ],
       "Ruhig atmen": [
         {
-          "Text": "In Stimmungskrisen kann es passieren, dass wir von unseren Gefühlen überwältigt werden.\nDann hilft es, sich bewusst auf die Atmung zu konzentrieren."
+          "Text": "In Stimmungskrisen kann es passieren, dass wir von unseren Gefühlen überwältigt werden. Dann hilft es, sich bewusst auf die Atmung zu konzentrieren."
         }
       ],
       "Wie entstehen Stimmungskrisen?": [
@@ -816,6 +859,18 @@
         },
         {
           "Text": "Stimmungskrisen können sich auf viele verschiedene Arten zeigen. Manchmal sind es traurige Gefühle, manchmal Müdigkeit oder Ängste."
+        },
+        {
+          "Text": "Anna fühlt sich in einer Stimmungskrise sehr traurig, innerlich niedergeschlagen, als ob eine große dunkle Wolke über ihr schwebt. In solchen Momenten verliert sie oft das Interesse an Dingen, die ihr normalerweise Spaß machen."
+        },
+        {
+          "Text": "Max fühlt sich in einer Stimmungskrise oft sehr müde und energielos. Das bedeutet, dass er weniger Energie hat, um Dinge zu tun, die er normalerweise tun würde. Manchmal fällt es ihm schwerer, sich zu konzentrieren oder gute Leistungen zu erbringen. Das kann auch im Alltag sehr belastend sein, weil kleine Aufgaben dann zu einer großen Hürde werden."
+        },
+        {
+          "Text": "Lena fühlt sich in einer Stimmungskrise, als ob sie nicht viel wert ist. Sie denkt dann, dass sie nichts Besonderes ist oder dass niemand sie mag. Das sind wirklich traurige Gedanken, die in ihrem Kopf herumschwirren - und in dieser Zeit fühlt es sich so an, als könnte sie niemand vom Gegenteil überzeugen."
+        },
+        {
+          "Text": "Wenn Lukas eine Stimmungskrise hat, dann fühlt er eine starke Angst. Diese Angst kann auf verschiedene Arten auftreten. Lukas fühlt sie im Körper, zum Beispiel als Herzrasen oder Bauchschmerzen. Andere Menschen fühlen sich aber auch einfach innerlich ängstlich und besorgt. Es gibt auch Menschen, die darüber nachdenken, ob das Leben überhaupt Sinn macht - insbesondere in diesem Fall ist es wichtig, darüber sofort mit anderen Menschen zu sprechen. Sollte es dir gerade so gehen, wende dich an eine Vertrauensperson oder die Telefonseelsorge unter 0800-111 0 111"
         },
         {
           "Question": "Wie geht es dir, wenn du eine Stimmungskrise hast?",
@@ -860,13 +915,13 @@
       ],
       "Glücksglas": [
         {
-          "Text": "Wenn wir in Krisen stecken, verlieren wir oft den Blick für das Schöne und Gute im Leben. Wir schauen dann vor allem auf all die Dinge, die unser Leben schwer machen.  Doch selbst in schweren Phasen gibt es immer wieder Schönes im Alltag zu entdecken."
+          "Text": "Wenn wir in Krisen stecken, verlieren wir oft den Blick für das Schöne und Gute im Leben. Wir schauen dann vor allem auf all die Dinge, die unser Leben schwer machen. Doch selbst in schweren Phasen gibt es immer wieder Schönes im Alltag zu entdecken."
         },
         {
           "Text": "Ein **Glücksglas** kann dir dabei helfen, deinen Blick für das Positive im Leben zu stärken und glückliche Momente festzuhalten. Alles, was du dafür brauchst, sind ein großes, am besten verschließbares Glas (z.B. ein Marmeladenglas), kleine Zettel und einen Stift."
         },
         {
-          "Text": "**Wie funktioniert's?** - **Schreibe jeden Abend einen schönen oder angenehmen Moment des Tages auf einen Zettel.** Wenn dir kein bestimmtes Erlebnis einfällt, kannst du dich fragen: Was habe ich heute Schönes gesehen, gehört, gespürt, gerochen oder geschmeckt? Das können auch kleine Dinge sein, wie z.B. die Nachricht einer Freundin, Regenprasseln am Fenster oder ein paar Minuten Lesen\n- **Falte den Zettel** und **lege ihn in dein Glücksglas**\n- Wenn du ein bisschen Glück tanken möchtest, kannst du dir Zettel aus dem Glücksglas nehmen und sie lesen"
+          "Text": "**Wie funktioniert's?** - **Schreibe jeden Abend einen schönen oder angenehmen Moment des Tages auf einen Zettel.** Wenn dir kein bestimmtes Erlebnis einfällt, kannst du dich fragen: Was habe ich heute Schönes gesehen, gehört, gespürt, gerochen oder geschmeckt? Das können auch kleine Dinge sein, wie z.B. die Nachricht einer Freundin, Regenprasseln am Fenster oder ein paar Minuten Lesen - **Falte den Zettel** und **lege ihn in dein Glücksglas** - Wenn du ein bisschen Glück tanken möchtest, kannst du dir Zettel aus dem Glücksglas nehmen und sie lesen"
         }
       ],
       "Rückblick: Stimmung": [
@@ -945,7 +1000,7 @@
           "Text": "Oft eignet sich dafür ein Spaziergang in der Natur. Wenn es dir gerade schwer fällt, nach draußen zu gehen oder du weit fahren müsstest, um ins Grüne zu kommen, reicht aber schon ein Fensterplatz aus."
         },
         {
-          "Text": "Setze oder stelle dich an ein Fenster und blicke nach draußen. - Was kannst du dort sehen?\n- Welche Farben, Formen, Bewegungen kannst du entdecken?\n- Gibt es etwas Grünes, einen Baum, einen Strauch, eine Pflanze, die du von deinem Platz aus sehen kannst? Beobachte ganz bewusst für ein paar Minuten, was du von deinem Fenster aus sehen kannst."
+          "Text": "Setze oder stelle dich an ein Fenster und blicke nach draußen. - Was kannst du dort sehen? - Welche Farben, Formen, Bewegungen kannst du entdecken? - Gibt es etwas Grünes, einen Baum, einen Strauch, eine Pflanze, die du von deinem Platz aus sehen kannst? Beobachte ganz bewusst für ein paar Minuten, was du von deinem Fenster aus sehen kannst."
         }
       ],
       "Spaziergang": [
@@ -953,7 +1008,19 @@
           "Text": "Vielleicht ist ein Spaziergang in der Natur für dich gerade noch nicht machbar. Das ist in Ordnung. In diesem Fall überspringe diese Übung oder speichere sie dir für einen späteren Zeitpunkt."
         },
         {
-          "Text": "Nimm dir einmal Zeit und gehe in die Natur. Das kann der Park um die Ecke sein oder ein Waldstück etwas weiter weg. Wonach auch immer du dich fühlst. Nimm bei diesem Spaziergang deine Umgebung ganz bewusst wahr. Was siehst, hörst und fühlst du?  Auf der nächsten Seite findest du einige Ideen, um die Natur um dich herum ganz bewusst wahrzunehmen."
+          "Text": "Nimm dir einmal Zeit und gehe in die Natur. Das kann der Park um die Ecke sein oder ein Waldstück etwas weiter weg. Wonach auch immer du dich fühlst. Nimm bei diesem Spaziergang deine Umgebung ganz bewusst wahr. Was siehst, hörst und fühlst du? Auf der nächsten Seite findest du einige Ideen, um die Natur um dich herum ganz bewusst wahrzunehmen."
+        },
+        {
+          "Text": "Beobachte bewusst einen Baum, eine Blume oder einen Vogel. Studiere die Details und Farben."
+        },
+        {
+          "Text": "Nimm dir Zeit, um verschiedene Blätter zu sammeln und ihre Texturen zu spüren."
+        },
+        {
+          "Text": "Packe dir eine Decke ein, lege dich auf eine Wiese und schaue in den Himmel. Beobachte die Wolken und ihre Veränderungen."
+        },
+        {
+          "Text": "Gehe barfuß auf verschiedenen Oberflächen wie Gras, Sand oder Kies. Spüre die unterschiedlichen Texturen unter deinen Füßen."
         },
         {
           "Question": "Fällt dir noch etwas ein, um die Natur bei einem Spaziergang ganz bewusst wahrzunehmen?",
@@ -995,7 +1062,7 @@
       ],
       "4-7-8-Atmung": [
         {
-          "Text": "Bei vielen Menschen wird die Atmung unter Stress flach. Wenn wir Angst haben oder angespannt sind, atmen wir nur noch bis in die Brust, anstatt bis in den Bauch und verkürzen unsere Ausatmung. Wenn wir bewusst darauf achten, länger auszuatmen, können wir unseren Körper beruhigen und uns entspannen. So können wir besser mit unangenehmen Gefühlen umgehen. **Dabei hilft die 4-7-8-Atmung:** - Atme 4 Sekunden lang durch die Nase ein\n- Halte 7 Sekunden den Atmen an\n- Atme 8 Sekunden lang gleichmäßig durch den Mund wieder aus"
+          "Text": "Bei vielen Menschen wird die Atmung unter Stress flach. Wenn wir Angst haben oder angespannt sind, atmen wir nur noch bis in die Brust, anstatt bis in den Bauch und verkürzen unsere Ausatmung. Wenn wir bewusst darauf achten, länger auszuatmen, können wir unseren Körper beruhigen und uns entspannen. So können wir besser mit unangenehmen Gefühlen umgehen. **Dabei hilft die 4-7-8-Atmung:** - Atme 4 Sekunden lang durch die Nase ein - Halte 7 Sekunden den Atmen an - Atme 8 Sekunden lang gleichmäßig durch den Mund wieder aus"
         }
       ],
       "Die Macht der Stimmung": [
@@ -1094,6 +1161,60 @@
         },
         {
           "Text": "**Dieser Satz ist wahr.** Gefühle zeigen sich oft auch im Körper. Bei Angst zum Beispiel schlägt das Herz schneller oder die Muskeln spannen sich an."
+        },
+        {
+          "Text": "Ein Gefühl von Glück und Zufriedenheit, oft durch angenehme Erfahrungen verursacht."
+        },
+        {
+          "Text": "Ein tiefes Gefühl der Zuneigung und Verbundenheit zu anderen Menschen."
+        },
+        {
+          "Text": "Das Gefühl der Wertschätzung für das Gute in unserem Leben und für das, was andere für uns tun."
+        },
+        {
+          "Text": "Das Gefühl, dass etwas Gutes passieren wird oder dass sich Dinge verbessern werden."
+        },
+        {
+          "Text": "Ein Gefühl der Befriedigung über unsere eigenen Leistungen oder die Leistungen von Menschen, die uns nahestehen."
+        },
+        {
+          "Text": "Ein Gefühl von Ruhe und innerer Ausgeglichenheit."
+        },
+        {
+          "Text": "Neugier und Aufmerksamkeit für etwas Neues oder Faszinierendes."
+        },
+        {
+          "Text": "Das Gefühl, stark und entschlossen zu sein, besonders in schwierigen Situationen."
+        },
+        {
+          "Text": "Das Gefühl, motiviert und begeistert zu sein, etwas zu tun oder zu erreichen."
+        },
+        {
+          "Text": "Ein unangenehmes Gefühl der Sorge oder Furcht vor etwas, das passieren könnte."
+        },
+        {
+          "Text": "Ein starkes Gefühl der Unzufriedenheit oder Wut auf eine Person, Situation oder sich selbst."
+        },
+        {
+          "Text": "Ein Gefühl von Verlust, Enttäuschung oder Niedergeschlagenheit."
+        },
+        {
+          "Text": "Das Gefühl, dass man etwas Falsches getan hat und dafür verantwortlich ist."
+        },
+        {
+          "Text": "Ein Gefühl der Peinlichkeit oder des Unwertseins, oft in Bezug auf das eigene Verhalten."
+        },
+        {
+          "Text": "Ein intensives Gefühl der Abneigung gegenüber etwas, sei es ein Geruch, Geschmack oder eine Idee."
+        },
+        {
+          "Text": "Das Gefühl, von anderen isoliert und allein gelassen zu sein."
+        },
+        {
+          "Text": "Das Gefühl der Verärgerung oder Enttäuschung, wenn man etwas nicht erreichen kann, was man möchte."
+        },
+        {
+          "Text": "Das Gefühl der Unsicherheit oder der Peinlichkeit, oft in sozialen Situationen."
         }
       ],
       "Stimmung und Medikamente": [
@@ -1218,6 +1339,21 @@
         },
         {
           "Text": "Wenn du Angebote für den Austausch mit anderen Betroffenen in deiner Umgebung suchst, können dir folgende Stichpunkte weiterhelfen:"
+        },
+        {
+          "Text": "An Trialoggruppen sind drei Gruppen beteiligt: Betroffene, Angehörige und Fachkräfte. Sie ermöglichen Begegnung und Ausausch auf Augenhöhe. In Hamburg gibt es zum Beispiel den Verein , der von Psychiatrie-Erfahrenen, Angehörigen und Therapeuten gegründet wurde. Der Verein organisiert unter anderem ein Psychoseseminar, an dem Betroffene teilnehmen können. In Berlin bietet die ein Psychoseseminar an."
+        },
+        {
+          "Text": "In Selbsthilfegruppen können Betroffene sich austauschen und gegenseitig unterstützen. Dabei gibt es Selbsthilfegruppen für Menschen mit psychischen Störungen allgemein oder Angebote speziell für Menschen mit Schizophrenie. In Augsburg gibt es zum Beispiel , eine Selbsthilfegruppe für Menschen mit Psychiatrie-Erfahrung. Das „Café Sonderbar“, ein Projekt der , richtet sich speziell an Menschen mit Psychoseerfahrungen und ihre Angehörigen. Bei der kannst du online nach einer passenden Selbsthilfeadresse in der Nähe suchen. Deine Krankenkasse kann ebenfalls auf Selbsthilfegruppen in der Nähe hinweisen – auch per Telefon oder E-Mail. Vielleicht hat auch deine Hausärztin oder dein Psychiater Adressen und Tipps."
+        },
+        {
+          "Text": "Das bietet Beratung und Austausch für Menschen, die Stimmen hören. Über das Netzwerk findest du oder ."
+        },
+        {
+          "Text": "Sozialpsychiatrische Dienste bieten Beratung, Unterstützung im Alltag und Hilfe in Krisensituationen an. Beim Sozialpsychiatrischen Dienst arbeiten Ärzt:innen zum Beispiel mit Sozialarbeiter:innen, Psycholog:innen oder Ergotherapeut:innen und Logopäd:innen zusammen. Der Sozialpsychiatrische Dienst berät dich vor oder nach einer stationären Behandlung zu weiterer Unterstützung. Die Beratung ist kostenlos und auch anonym möglich."
+        },
+        {
+          "Text": "Für manche Städte gibt es auch Webseiten, die Unterstützungs- und Beratungsangebote zusammenfassen, wie zum Beispiel die"
         }
       ],
       "Gute Gespräche führen": [
@@ -1297,7 +1433,7 @@
       ],
       "Freundlichkeit": [
         {
-          "Text": "Kontakte beginnen oft mit kleinen Schritten. Schon ein Lächeln, \"Hallo\" oder \"Danke\" kann ein Anfang sein. - Wähle eine kleine freundliche Geste: z. B. jemanden anlächeln, grüßen oder Danke sagen\n- Probiere sie heute bewusst aus\n- Schau, wie die andere Person reagiert\n- Schreibe dir danach kurz auf, wie es war Jeder kleine Schritt zählt."
+          "Text": "Kontakte beginnen oft mit kleinen Schritten. Schon ein Lächeln, \"Hallo\" oder \"Danke\" kann ein Anfang sein. - Wähle eine kleine freundliche Geste: z. B. jemanden anlächeln, grüßen oder Danke sagen - Probiere sie heute bewusst aus - Schau, wie die andere Person reagiert - Schreibe dir danach kurz auf, wie es war Jeder kleine Schritt zählt."
         },
         {
           "Question": "Wenn du möchtest, kannst du hier deine Erfahrungen notieren:",
@@ -1329,7 +1465,7 @@
       ],
       "Tiefe Fragen stellen": [
         {
-          "Text": "Viele Gespräche beginnen mit Smalltalk, also mit einfachen Fragen wie: \"Wie ist das Wetter?\" oder \"Wie war dein Wochenende?\".  Smalltalk kann helfen, ein Gespräch zu starten. Aber um sich wirklich mit anderen verbunden zu fühlen, helfen andere, tiefere Fragen. Sie schaffen Vertrauen, bringen neue Gedanken und helfen uns, andere Menschen besser zu verstehen."
+          "Text": "Viele Gespräche beginnen mit Smalltalk, also mit einfachen Fragen wie: \"Wie ist das Wetter?\" oder \"Wie war dein Wochenende?\". Smalltalk kann helfen, ein Gespräch zu starten. Aber um sich wirklich mit anderen verbunden zu fühlen, helfen andere, tiefere Fragen. Sie schaffen Vertrauen, bringen neue Gedanken und helfen uns, andere Menschen besser zu verstehen."
         },
         {
           "Text": "Stelle dir vor, eine Freundin erzählt dir: \"Ich fahre nächste Woche nach Italien in den Urlaub.\""
@@ -1367,7 +1503,7 @@
     "Über Psychose sprechen": {
       "Einen Anfang finden": [
         {
-          "Text": "Nicht jeder möchte oder kann offen über Psychosen sprechen. Vielleicht möchtest du  trotzdem überlegen, wie du ein Gespräch über deine Erfahrungen beginnen kannst. Falls du das schon getan hast: umso besser. Überlege zuerst für dich: **Wem möchtest du dich gerne anvertrauen?**"
+          "Text": "Nicht jeder möchte oder kann offen über Psychosen sprechen. Vielleicht möchtest du trotzdem überlegen, wie du ein Gespräch über deine Erfahrungen beginnen kannst. Falls du das schon getan hast: umso besser. Überlege zuerst für dich: **Wem möchtest du dich gerne anvertrauen?**"
         },
         {
           "Question": "Welcher Satz fühlt sich für dich stimmig an, um das Gespräch zu beginnen?",
@@ -1412,6 +1548,15 @@
           "Text": "Diese Fragen können dir bei deiner Entscheidung helfen, ob du deine Diagnose am Arbeitsplatz ansprichst oder nicht."
         },
         {
+          "Text": "Stehst du deinem Vorgesetzten nahe, könnte es sinnvoll sein, deine Situation ehrlich zu besprechen. Vor allem dann, wenn du deine Arbeitszeit z.B. wegen Konzentrationsschwierigkeiten reduzieren möchtest. Viele Vorgesetzte freuen sich über Offenheit, da sie gerne unterstützen. Es kann jedoch auch sein, dass Vorgesetzte wenig Verständnis dafür haben."
+        },
+        {
+          "Text": "Wenn ja, kann Offenheit Vorteile bringen. Solche Anpassungen können sein: feste Pausen, flexible Arbeitszeiten oder der Zugang zu betrieblichen Angeboten."
+        },
+        {
+          "Text": "Es lohnt sich, die Situation bei deiner Ärztin bzw. deinem Arzt oder in einer Psychotherapie anzusprechen. Dies ist ein idealer, geschützter Ort, um sich gemeinsam die richtigen Worte zu überlegen. Wird von Schizophrenie gesprochen? Psychose? Krise oder Zusammenbruch? Du kannst dir auch Hilfe bei Beratungsstellen oder Integrationsdiensten holen."
+        },
+        {
           "Text": "**Ob du deine Diagnose am Arbeitsplatz mitteilst, entscheidest nur du.** Wenn Kollegen zum Beispiel nach einer längeren Krankschreibung nachfragen, was bei dir los ist, du dich aber (noch) nicht bereit fühlst, kannst du höflich Grenzen setzen. Zum Beispiel: \"Ich verstehe, dass du nachfragst und dir wünschst, dass ich mich öffne. Aber lass mich das bitte in meinem Tempo machen.\""
         }
       ],
@@ -1431,17 +1576,17 @@
           "Text": "Diese Frage haben wir dem Betroffenen Elias gestellt. Er erzählt davon, dass er sich mehr Selbstbewusstsein gewünscht hätte. Außerdem hätte es ihm gut getan zu hören: Schizophrenie ist eine Krankheit."
         },
         {
-          "Text": "Manchmal sind Gedanken sehr streng oder negativ. Und sie zu ändern, ist nicht so einfach möglich. **Stärkende Sätze** können trotzdem dabei helfen, dich freundlicher zu sehen. Sie können dein Selbstbewusstsein langsam wachsen lassen. <u>Beispiele:</u> - \"Ich darf Fehler machen.\"\n- \"Meine Meinung zählt.\"\n- \"Ich habe Gutes verdient.\"\n- \"Ich bin wertvoll, auch wenn ich gerade nicht arbeite.\"\n- \"Ich darf sagen, was ich brauche.\""
+          "Text": "Manchmal sind Gedanken sehr streng oder negativ. Und sie zu ändern, ist nicht so einfach möglich. **Stärkende Sätze** können trotzdem dabei helfen, dich freundlicher zu sehen. Sie können dein Selbstbewusstsein langsam wachsen lassen. Beispiele: - \"Ich darf Fehler machen.\" - \"Meine Meinung zählt.\" - \"Ich habe Gutes verdient.\" - \"Ich bin wertvoll, auch wenn ich gerade nicht arbeite.\" - \"Ich darf sagen, was ich brauche.\""
         },
         {
-          "Text": "- Suche dir einen Satz, der dich beruhigt oder dir Mut macht\n- Der Satz sollte mit \"Ich…\" starten\n- Der Satz sollte sich auf Dinge beziehen, auf die du Einfluss hast\n- Der Satz sollte so formuliert sein, als wäre er jetzt schon wahr\n- Du solltest dich wohl mit dem Satz fühlen"
+          "Text": "- Suche dir einen Satz, der dich beruhigt oder dir Mut macht - Der Satz sollte mit \"Ich…\" starten - Der Satz sollte sich auf Dinge beziehen, auf die du Einfluss hast - Der Satz sollte so formuliert sein, als wäre er jetzt schon wahr - Du solltest dich wohl mit dem Satz fühlen"
         },
         {
           "Question": "Mein stärkender Satz:",
           "AnswerOptions": "free_text"
         },
         {
-          "Text": "Der Satz darf sich zuerst ungewohnt anfühlen. Vielleicht glaubst du ihn noch nicht.  Stärkende Sätze wirken langsam, wenn du sie regelmäßig wiederholst. Sage dir den Satz immer wieder am Tag, leise oder in Gedanken. Du kannst ihn dir auch auf einen Zettel schreiben und an deinen Badspiegel oder die Kühlschranktür hängen. So erreichen dich die stärkenden Worte mehrmals am Tag."
+          "Text": "Der Satz darf sich zuerst ungewohnt anfühlen. Vielleicht glaubst du ihn noch nicht. Stärkende Sätze wirken langsam, wenn du sie regelmäßig wiederholst. Sage dir den Satz immer wieder am Tag, leise oder in Gedanken. Du kannst ihn dir auch auf einen Zettel schreiben und an deinen Badspiegel oder die Kühlschranktür hängen. So erreichen dich die stärkenden Worte mehrmals am Tag. Teile ihn auch gerne mit einer Vertrauensperson, die dich an diesen Satz erinnert."
         }
       ],
       "Vorurteile und Missverständnisse": [
@@ -1450,6 +1595,18 @@
         },
         {
           "Text": "Viele Menschen denken nach der Diagnose Schizophrenie, dass sie nie wieder ein \"normales\" Leben führen können. Der Arzt Marco erzählt, dass diese Angst nicht berechtigt ist - und ein aktives Leben auch mit Psychosen möglich ist."
+        },
+        {
+          "Text": "Wenn Menschen mit Psychose andere Menschen attackieren, dann berichten Zeitungen häufig darüber. Menschen mit Psychose sind aber häufiger Opfer als Täter von Gewalt."
+        },
+        {
+          "Text": "Das Wort Schizophrenie kommt aus dem Altgriechischen und wird manchmal zu wörtlich mit „gespaltener Geist“ übersetzt. Dabei soll es vielmehr zum Ausdruck bringen, dass bei einer Schizophrenie Gedanken, Gefühle und Verhalten nicht mehr gut zusammenpassen und das innere Erleben manchmal auseinander fällt. In einigen Ländern wie Japan und Südkorea wurde die Schizophrenie sogar umbenannt, um solche Missverständnisse zu vermeiden."
+        },
+        {
+          "Text": "Nur bei etwa einem Drittel der Betroffenen nimmt die Erkrankung einen chronischen Verlauf. Viele Betroffene haben daher mit einer Behandlung eine gute Chance auf ein erfülltes Leben oder zumindest eine Besserung ihrer Symptome."
+        },
+        {
+          "Text": "Auch wenn es in unserer Gesellschaft manchmal anders scheint: Nicht seine Leistung macht einen Menschen wertvoll, sondern jeder Mensch ist wertvoll an sich. Viele Betroffene leisten sehr viel, manchmal sichtbar und manchmal im Stillen, indem sie zum Beispiel ihren Alltag trotz Angst oder Stimmen bewältigen. Außerdem gibt es auch Personen, wie den Musiker Brian Wilson, die trotz und mit ihrer psychischen Störung ein erfolgreiches Leben führen. Auch Menschen mit Psychosen können wertvolle Dinge tun und schaffen."
         },
         {
           "Text": "Im Zusammenhang mit Schizophrenie fällt oft das Wort **Stigmatisierung**. Stigmatisierung bedeutet, dass einer Gruppe von Menschen schlechte Eigenschaften zugeschrieben werden, ohne dass diese kritisch geprüft und hinterfragt werden. Wenn Menschen wegen einer psychischen Erkrankung ausgegrenzt, als schwach oder verrückt abgewertet oder schlecht behandelt werden, dann ist das Stigmatisierung."
@@ -1511,179 +1668,13 @@
         }
       ]
     },
-    "Gefühle zeigen": {
-      "Gefühle entdecken": [
-        {
-          "Text": "Gefühle gehören zum Leben dazu. Angenehme Gefühle, wie Freude oder Erleichterung und auch unangenehme Gefühle, wie Hilflosigkeit oder Wut."
-        },
-        {
-          "Question": "Welche angenehmen Gefühle kommen dir aus der letzten Woche bekannt vor?",
-          "AnswerOptions": [
-            "Freude",
-            "Zufriedenheit",
-            "Stolz",
-            "Hoffnung",
-            "Neugier",
-            "Selbstsicherheit",
-            "Dankbarkeit",
-            "Erleichterung",
-            "Gelassenheit",
-            "Vertrauen",
-            "Zuneigung",
-            "Verbundenheit"
-          ],
-          "AllowMultiple": true
-        },
-        {
-          "Question": "Welche unangenehmen Gefühle kommen dir aus der letzten Woche bekannt vor?",
-          "AnswerOptions": [
-            "Traurigkeit",
-            "Angst",
-            "Ärger",
-            "Ekel",
-            "Schuld",
-            "Scham",
-            "Hilflosigkeit",
-            "Einsamkeit",
-            "Enttäuschung",
-            "Überforderung",
-            "Unsicherheit",
-            "Frustration"
-          ],
-          "AllowMultiple": true
-        },
-        {
-          "Text": "Gefühle spürt man oft im Körper. Wo und wie, hängt von der Art des Gefühls ab. Das ist bei jedem Menschen anders. Zum Beispiel: - Kribbeln im Bauch bei Verliebtheit\n- Druck im Magen bei Ärger\n- Herzklopfen bei Angst"
-        },
-        {
-          "Question": "Wo spürst du Gefühle am häufigsten oder stärksten im Körper?",
-          "AnswerOptions": "free_text"
-        },
-        {
-          "Text": "Gefühle sind wie Wegweiser. Sie zeigen uns, in welche Richtung wir gehen sollten und was wir brauchen. - Freude zeigt, dass dir etwas guttut und du dabei bleiben solltest.\n- Angst warnt dich vor Gefahr.\n- Trauer zeigt, dass etwas Wichtiges fehlt und hilft beim Abschied.\n- Wut zeigt, dass eine Grenze verletzt wurde.\n- Schuldgefühle können dich dazu bewegen, dich zu entschuldigen, wenn du etwas falsch gemacht hast"
-        },
-        {
-          "Text": "Man kann üben, Gefühle Schritt für Schritt besser zu spüren. Versuche, heute einmal in dich und deinen Körper hinein zu spüren. Wenn du ein Gefühl bemerkst, gib ihm einen Namen. Nutze einfache Worte, wie traurig, froh, wütend oder ruhig."
-        }
-      ],
-      "Angenehme Gefühle zeigen": [
-        {
-          "Text": "Es ist wichtig, schöne Dinge im Alltag zu teilen.\nDas verbessert das Miteinander. <u>Beispiel:</u> Lilly: \"Schön, dass du gekocht hast.\" Thomas: \"Danke, dass du das sagst.\" Lilly: \"Es macht mich froh, weil wir zusammen essen können.\" Thomas: \"Das tut gut zu hören.\""
-        },
-        {
-          "Question": "Hast du dich in den letzten Tagen über etwas gefreut oder warst dankbar für etwas, das jemand getan hat?",
-          "AnswerOptions": "free_text"
-        },
-        {
-          "Text": "Sag der Person, worüber du dich gefreut hast! <u>Beachte dabei:</u> - Schau die Person an\n- Sage genau, was dir gefallen hat\n- Sage, wie du dich dabei gefühlt hast"
-        }
-      ],
-      "Wie Gefühle entstehen": [
-        {
-          "Text": "Gefühle entstehen nicht ohne einen Anlass bzw. einen Auslöser. Gefühle können durch bestimmte **Situationen** oder **Gedanken**, **Erinnerungen** oder auch **andere Gefühle** ausgelöst werden."
-        },
-        {
-          "Text": "Stell dir vor du bekommst Besuch von einem guten Freund."
-        },
-        {
-          "Question": "Welches Gefühl löst das in dir aus?",
-          "AnswerOptions": [
-            "Freude",
-            "Angst",
-            "Verbundenheit",
-            "Unzufriedenheit",
-            "Fassungslosigkeit"
-          ],
-          "AllowMultiple": true
-        },
-        {
-          "Text": "Stell dir vor deine Führerscheinprüfung steht an. Du hast dich darauf vorbereitet, aber denkst: \"Ich schaffe das nicht.\""
-        },
-        {
-          "Question": "Welches Gefühl löst das in dir aus?",
-          "AnswerOptions": "free_text"
-        },
-        {
-          "Text": "Gefühle können durch bestimmte **Situationen** oder **Gedanken**, **Erinnerungen** oder auch **andere Gefühle** ausgelöst werden. - **Situation:** Du bekommst Besuch → Freude, Verbundenheit\n- **Gedanke:** \"Ich schaffe das nicht\" → Angst, Überforderung\n- **Erinnerung:** Du denkst an eine schöne Zeit → Freude, Sehnsucht\n- **Anderes Gefühl:** Wut kann später Traurigkeit auslösen oder du kannst dich darüber ärgern, dass du zu viel Angst hattest, etwas zu sagen oder zu tun"
-        },
-        {
-          "Text": "Diese Übung kann dir dabei helfen, deine Gefühle und woher sie kommen, besser zu verstehen. - Denke an ein Gefühl, das du heute hattest.\n- Frag dich: Was war kurz davor? War es eine Situation, ein Gedanke, eine Erinnerung oder ein anderes Gefühl?\n- Benenne den Auslöser in einem kurzen Satz.\n- Notiere beides: das Gefühl und den Auslöser."
-        },
-        {
-          "Question": "Mein Gefühl:",
-          "AnswerOptions": "free_text"
-        },
-        {
-          "Question": "Der Auslöser:",
-          "AnswerOptions": "free_text"
-        }
-      ],
-      "Warum ist Gefühle zeigen wichtig?": [
-        {
-          "Question": "Warum ist es aus deiner Sicht wichtig, Gefühle zu zeigen?",
-          "AnswerOptions": "free_text"
-        },
-        {
-          "Text": "Wir drücken Gefühle durch Gesicht, Stimme und Gesten aus. Gefühle zeigen nicht nur uns selbst etwas, sondern auch anderen Menschen."
-        },
-        {
-          "Question": "Was könnte die Person im Bild ausdrücken?",
-          "AnswerOptions": [
-            "mir fehlt etwas",
-            "es ist alles okay",
-            "ich brauche Trost",
-            "ich bin aufgebracht",
-            "ich bin müde"
-          ],
-          "AllowMultiple": true
-        },
-        {
-          "Text": "Ein trauriger Blick oder Weinen zeigt: Mir fehlt etwas, ich brauche Trost. Es ist daher gut möglich, dass die Person traurig ist oder ihr etwas fehlt. Ihre Körperhaltung gibt Hinweise. Ganz sicher kann man es aber nicht wissen. Nur Worte klären wirklich, was jemand fühlt."
-        },
-        {
-          "Text": "Wer Gefühle versteckt, macht es anderen schwer, die eigenen Bedürfnisse zu verstehen. Wichtig ist: Du darfst Gefühle zeigen und aussprechen, egal ob sie angenehm oder unangenehm sind."
-        }
-      ],
-      "Unangenehme Gefühle zeigen": [
-        {
-          "Text": "Wir alle haben hin und wieder unangenehme Gefühle, wie Enttäuschung, Wut, Gereiztheit oder Unsicherheit. Oft steckt ein Wunsch hinter diesen Gefühlen: Du willst, dass jemand sein Verhalten ändert."
-        },
-        {
-          "Text": "Thomas ist sauer, weil das gemeinsame Aufräumen am Abend nicht klappt. Irgendwann platzt es aus ihm heraus: \"Euch allen ist es einfach egal, wie es hier aussieht!\""
-        },
-        {
-          "Question": "Was hätte Thomas anders machen können?",
-          "AnswerOptions": [
-            "Später aufstehen",
-            "Wütend werden und auch die anderen Mitbewohner zur Rede stellen",
-            "Den Mitbewohner bitten, mit ihm aufzuräumen",
-            "Gar nichts mehr sagen und weiter alles alleine machen",
-            "Das Thema in einem ruhigem Moment ansprechen, bevor Ärger sich staut"
-          ],
-          "AllowMultiple": true
-        },
-        {
-          "Text": "**\"Euch allen ist es einfach egal, wie es hier aussieht!\"**"
-        },
-        {
-          "Question": "Was könnte Thomas in einem ruhigen Moment stattdessen sagen?",
-          "AnswerOptions": "free_text"
-        },
-        {
-          "Text": "Thomas könnte zum Beispiel sagen: \"In den letzten Tagen stand immer das schmutzige Geschirr vom letzten Abend in der Küche. Ich habe es dann abgespült und aufgeräumt. Das frustriert mich. Mir ist es wichtig, in der Küche Ordnung zu halten. Können wir in Zukunft zusammen abends aufräumen?\""
-        },
-        {
-          "Text": "Wenn dir etwas unangenehm ist: Sprich früh und klar darüber. <u>Beachte dabei:</u> - Gesprächspartner anschauen, bestimmt und klar sprechen\n- Beschreibe genau, was dich gestört hat\n- Sage, was du dabei gefühlt hast\n- Mache einen Vorschlag, wie man das in Zukunft vermeiden könnte"
-        }
-      ]
-    },
     "Beziehungen pflegen": {
       "Postkartenübung": [
         {
           "Text": "Beziehungen sind wertvoll. Sie zu pflegen lohnt sich und ist oft auch schon mit wenig Aufwand und kleinen Gesten möglich. Eine Geste, die fast schon in das letzte Jahrhundert gehört - und dafür umso mehr überraschen kann - ist, Postkarten zu verschicken."
         },
         {
-          "Text": "Lege dir eine kleine Sammlung an Postkarten zu. Besorge Briefmarken und Stifte. Überlege: - Wem möchtest du gerne ein Postkarte schicken?\n- Welche Postkarte könnte zu dieser Person passen, worüber würde sie sich freuen, was würde sie zum Schmunzeln bringen? Schreibe die Postkarte, verschicke sie per Post oder wirf sie der Person direkt in den Briefkasten."
+          "Text": "Lege dir eine kleine Sammlung an Postkarten zu. Besorge Briefmarken und Stifte. Überlege: - Wem möchtest du gerne ein Postkarte schicken? - Welche Postkarte könnte zu dieser Person passen, worüber würde sie sich freuen, was würde sie zum Schmunzeln bringen? Schreibe die Postkarte, verschicke sie per Post oder wirf sie der Person direkt in den Briefkasten."
         }
       ],
       "Wünsche äußern": [
@@ -1731,7 +1722,7 @@
           "AllowMultiple": true
         },
         {
-          "Text": "Es ist hilfreich, bei einem Wunsch oder einer Bitte mit den eigenen Gefühlen zu beginnen und dann den Wunsch genau zu beschreiben. <u>Zum Beispiel:</u> **Ich würde mich freuen, wenn** du in Zukunft darauf achtest, pünktlich zu unserem Treffen zu kommen. **Es wäre mir eine große Hilfe, wenn** du nach dem Frühstück dein benutztes Geschirr in die Spülmaschine räumst."
+          "Text": "Es ist hilfreich, bei einem Wunsch oder einer Bitte mit den eigenen Gefühlen zu beginnen und dann den Wunsch genau zu beschreiben. Zum Beispiel: **Ich würde mich freuen, wenn** du in Zukunft darauf achtest, pünktlich zu unserem Treffen zu kommen. **Es wäre mir eine große Hilfe, wenn** du nach dem Frühstück dein benutztes Geschirr in die Spülmaschine räumst."
         },
         {
           "Text": "Manchmal glauben wir, dass unsere Familie doch eigentlich wissen müsste, was wir uns wünschen, worüber wir uns ärgern oder was uns stört. Das ist aber oft nicht der Fall. Daher ist es wichtig, Wünsche und Bitten zu äußern. Wichtig ist aber auch, die Grenzen von Familie, Partner oder Freunden zu respektieren."
@@ -1781,27 +1772,6 @@
           "Text": "Diese Frage haben wir Elias gestellt. Er erzählt davon, was ihm für seinen Selbstwert und beim Thema Beziehungen hilft."
         }
       ],
-      "Kontakte pflegen": [
-        {
-          "Text": "Beziehungen zu pflegen bedeutet, Zeit und Energie zu investieren, um diese Beziehungen zu stärken und zu erhalten. Dazu zählen gemeinsame Unternehmungen genauso wie kleine Nachrichten oder Aufmerksamkeiten, die zeigen: Ich denke an dich, du bist mir wichtig und ich bin für dich da."
-        },
-        {
-          "Question": "**Gibt es jemanden, zu dem du länger keinen Kontakt mehr hattest, obwohl dir die Person eigentlich wichtig ist?**"
-        },
-        {
-          "Branch": [
-            {
-              "Ja, da fällt mir jemand ein": "Beziehungen - Kontakte pflegen - A: Ja"
-            },
-            {
-              "Nein, zu den Menschen, die mir wichtig sind, habe ich regelmäßig Kontakt": "Beziehungen - Kontakte pflegen - B: Nein"
-            }
-          ]
-        },
-        {
-          "Text": "Beziehungen sind unterschiedlich. Manche Freundschaften bestehen über Jahre, auch wenn man sich selten sieht und nur ab und zu telefoniert. Andere Beziehungen brauchen mehr Kontakt, damit sie funktionieren. Sich gegenseitig zuhören, Mut machen, füreinander da sein und kleine Aufmerksamkeiten, wie eine liebe Nachricht oder ein kleines Geschenk zum Geburtstag sind Dinge, die allen Beziehungen gut tun."
-        }
-      ],
       "Aktiv zuhören": [
         {
           "Text": "Stell dir vor, du erzählst einer Freundin von deinem letzten Kinobesuch. Für dich war das aufregend, du warst schon lange nicht mehr dort und bist stolz, es ins Kino geschafft zu haben. Deine Freundin aber schaut kaum zu dir und sagt kaum etwas zu dem, was du erzählst."
@@ -1818,7 +1788,7 @@
           "AnswerOptions": "free_text"
         },
         {
-          "Text": "Wenn deine Freundin dich anschaut, nickt, nachfragt oder wiedergibt, was sie gehört hat, hört sie dir aktiv zu. **Aktives Zuhören** bedeutet, jemandem aufmerksam zuzuhören und zu zeigen, dass man versteht.  So entsteht Vertrauen, weil sich die andere Person verstanden und ernst genommen fühlt.  Aktives Zuhören hilft, eine Beziehung zu pflegen, weil man zeigt: Du bist mir wichtig."
+          "Text": "Wenn deine Freundin dich anschaut, nickt, nachfragt oder wiedergibt, was sie gehört hat, hört sie dir aktiv zu. **Aktives Zuhören** bedeutet, jemandem aufmerksam zuzuhören und zu zeigen, dass man versteht. So entsteht Vertrauen, weil sich die andere Person verstanden und ernst genommen fühlt. Aktives Zuhören hilft, eine Beziehung zu pflegen, weil man zeigt: Du bist mir wichtig."
         },
         {
           "Question": "Was gehört zum Aktiven Zuhören dazu?",
@@ -1833,7 +1803,7 @@
           "AllowMultiple": true
         },
         {
-          "Text": "Zum aktiven Zuhören gehört: - Schaue die Person freundlich an\n- Höre aufmerksam zu, ohne zu unterbrechen\n- Wiederhole in einfachen Worten, was du verstanden hast\n- Frage nach, wenn dir etwas unklar ist\n- Zeige mit Mimik oder Nicken, dass du dabei bist"
+          "Text": "Zum aktiven Zuhören gehört: - Schaue die Person freundlich an - Höre aufmerksam zu, ohne zu unterbrechen - Wiederhole in einfachen Worten, was du verstanden hast - Frage nach, wenn dir etwas unklar ist - Zeige mit Mimik oder Nicken, dass du dabei bist"
         },
         {
           "Text": "Aktiv zuzuhören ist nicht immer leicht. Vielleicht hörst du Stimmen, während du eigentlich einem Freund zuhören möchtest oder siehst Dinge, die andere Menschen nicht sehen."
@@ -1854,6 +1824,27 @@
         {
           "Question": "Was hat dir in der Vergangenheit dabei geholfen, trotz Halluzinationen oder anderer Symptome aktiv zuzuhören?",
           "AnswerOptions": "free_text"
+        }
+      ],
+      "Kontakte pflegen": [
+        {
+          "Text": "Beziehungen zu pflegen bedeutet, Zeit und Energie zu investieren, um diese Beziehungen zu stärken und zu erhalten. Dazu zählen gemeinsame Unternehmungen genauso wie kleine Nachrichten oder Aufmerksamkeiten, die zeigen: Ich denke an dich, du bist mir wichtig und ich bin für dich da."
+        },
+        {
+          "Question": "**Gibt es jemanden, zu dem du länger keinen Kontakt mehr hattest, obwohl dir die Person eigentlich wichtig ist?**"
+        },
+        {
+          "Branch": [
+            {
+              "Ja, da fällt mir jemand ein": "Beziehungen - Kontakte pflegen - A: Ja"
+            },
+            {
+              "Nein, zu den Menschen, die mir wichtig sind, habe ich regelmäßig Kontakt": "Beziehungen - Kontakte pflegen - B: Nein"
+            }
+          ]
+        },
+        {
+          "Text": "Beziehungen sind unterschiedlich. Manche Freundschaften bestehen über Jahre, auch wenn man sich selten sieht und nur ab und zu telefoniert. Andere Beziehungen brauchen mehr Kontakt, damit sie funktionieren. Sich gegenseitig zuhören, Mut machen, füreinander da sein und kleine Aufmerksamkeiten, wie eine liebe Nachricht oder ein kleines Geschenk zum Geburtstag sind Dinge, die allen Beziehungen gut tun."
         }
       ]
     },
@@ -1896,7 +1887,7 @@
           "AllowMultiple": false
         },
         {
-          "Text": "**Dieser Satz ist falsch.** Beziehungen haben Einfluss auf das Selbstwertgefühl.  Menschen sind soziale Wesen. Wir brauchen Austausch und das Gefühl, etwas beizutragen. Gute Beziehungen geben Halt und stärken das Selbstvertrauen."
+          "Text": "**Dieser Satz ist falsch.** Beziehungen haben Einfluss auf das Selbstwertgefühl. Menschen sind soziale Wesen. Wir brauchen Austausch und das Gefühl, etwas beizutragen. Gute Beziehungen geben Halt und stärken das Selbstvertrauen."
         },
         {
           "Question": "Warum sind soziale Beziehungen für dich wichtig? Was geben dir deine Beziehungen?",
@@ -1927,13 +1918,13 @@
           "Text": "Ein soziales Netzwerk besteht aus den Menschen, mit denen du in Verbindung stehst – Familie, Freunde, Kollegen oder andere wichtige Menschen in deinem Leben. In dieser Übung laden wir dich dazu ein, dein ganz persönliches soziales Netzwerk zu gestalten."
         },
         {
-          "Text": "Sich das eigene soziale Netzwerk bewusst zu machen und es aufzuschreiben oder zu zeichnen, kann dabei helfen... - Beziehungen klarer zu sehen\n- unterstützende Personen zu erkennen\n- eine neue Sicht auf das eigene Umfeld zu gewinnen"
+          "Text": "Sich das eigene soziale Netzwerk bewusst zu machen und es aufzuschreiben oder zu zeichnen, kann dabei helfen... - Beziehungen klarer zu sehen - unterstützende Personen zu erkennen - eine neue Sicht auf das eigene Umfeld zu gewinnen"
         },
         {
           "Text": "In diesem Video siehst du ein Beispiel dafür, wie du dein eigenes soziales Netzwerk zeichnen kannst. Natürlich kannst du dein Netzwerk ganz individuell und persönlich gestalten, so wie es für dich am besten ist. Du musst dich nicht an den Aufbau in diesem Video halten. Auf der nächsten Seite kannst du die einzelnen Schritte zum Erstellen deines sozialen Netzwerkes noch einmal in Ruhe nachlesen."
         },
         {
-          "Text": "**So funktioniert's:** 1. Nimm dir ein Blatt Papier und Stifte oder etwas Digitales zum Malen oder Zeichnen\n2. Setze dich selbst in das Zentrum deines sozialen Netzwerkes\n3. Teile dein Netzwerk in die Bereiche deines Lebens, in denen du soziale Kontakte hast (z.B. Familie, Freunde, Liebe, Arbeit oder Ausbildung, Nachbarn, Verein, Selbsthilfegruppe...) \n4. Trage Personen in die jeweiligen Bereiche ein. Platziere Personen, die dir näher stehen, mittiger und Personen, die dir nicht so nahe stehen, weiter am Rand  Viel Spaß beim Zeichnen deines sozialen Netzwerkes!"
+          "Text": "**So funktioniert's:** 1. Nimm dir ein Blatt Papier und Stifte oder etwas Digitales zum Malen oder Zeichnen 2. Setze dich selbst in das Zentrum deines sozialen Netzwerkes 3. Teile dein Netzwerk in die Bereiche deines Lebens, in denen du soziale Kontakte hast (z.B. Familie, Freunde, Liebe, Arbeit oder Ausbildung, Nachbarn, Verein, Selbsthilfegruppe...) 4. Trage Personen in die jeweiligen Bereiche ein. Platziere Personen, die dir näher stehen, mittiger und Personen, die dir nicht so nahe stehen, weiter am Rand Viel Spaß beim Zeichnen deines sozialen Netzwerkes!"
         },
         {
           "Text": "Die Anzahl der sozialen Kontakte, die ein Mensch braucht, ist unterschiedlich. Einige Menschen fühlen sich mit einer kleinen, engen Gruppe von Freunden und Familie am wohlsten, während andere gerne viele Bekanntschaften haben. Es ist wichtig, Menschen im Leben zu haben, mit denen man sich verbunden fühlt und die einem guttun. Lass dich nicht unter Druck setzen, viele Kontakte zu haben, wenn du dich damit nicht wohl fühlst. Es ist dann besser, wenige, aber dafür wertvolle Beziehungen zu pflegen, als oberflächliche Bekanntschaften zu haben, die nicht glücklich machen."
@@ -2276,7 +2267,7 @@
       ],
       "Arbeitsbeziehungen": [
         {
-          "Text": "Der Begriff **Arbeitsbeziehungen** bezieht sich hier nicht nur auf Personen, die man durch eine klassische Erwerbsarbeit kennenlernt. Dazu zählen auch: - Personen, die man aus der Schule, Ausbildung oder dem Studium kennt\n- Personen, die man aus einer Umschulung oder Weiterbildung kennt\n- Personen, die man durch ein Ehrenamt kennt"
+          "Text": "Der Begriff **Arbeitsbeziehungen** bezieht sich hier nicht nur auf Personen, die man durch eine klassische Erwerbsarbeit kennenlernt. Dazu zählen auch: - Personen, die man aus der Schule, Ausbildung oder dem Studium kennt - Personen, die man aus einer Umschulung oder Weiterbildung kennt - Personen, die man durch ein Ehrenamt kennt"
         },
         {
           "Text": "Arbeitsbeziehungen spielen eine wichtige Rolle in unserem Leben, da wir oft einen großen Teil unserer Zeit am Arbeitsplatz verbringen. Gute Beziehungen zu Kollegen und Vorgesetzten können unser Arbeitsleben bereichern und unser Wohlbefinden am Arbeitsplatz verbessern."
@@ -2318,6 +2309,178 @@
         {
           "Question": "Was brauchst du noch, um dich an einem Arbeitsplatz wohl und sicher zu fühlen?",
           "AnswerOptions": "free_text"
+        }
+      ]
+    },
+    "Gefühle zeigen": {
+      "Angenehme Gefühle zeigen": [
+        {
+          "Text": "Es ist wichtig, schöne Dinge im Alltag zu teilen. Das verbessert das Miteinander. Beispiel: Lilly: \"Schön, dass du gekocht hast.\" Thomas: \"Danke, dass du das sagst.\" Lilly: \"Es macht mich froh, weil wir zusammen essen können.\" Thomas: \"Das tut gut zu hören.\""
+        },
+        {
+          "Question": "Hast du dich in den letzten Tagen über etwas gefreut oder warst dankbar für etwas, das jemand getan hat?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Sag der Person, worüber du dich gefreut hast! Beachte dabei: - Schau die Person an - Sage genau, was dir gefallen hat - Sage, wie du dich dabei gefühlt hast"
+        }
+      ],
+      "Warum ist Gefühle zeigen wichtig?": [
+        {
+          "Question": "Warum ist es aus deiner Sicht wichtig, Gefühle zu zeigen?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Wir drücken Gefühle durch Gesicht, Stimme und Gesten aus. Gefühle zeigen nicht nur uns selbst etwas, sondern auch anderen Menschen."
+        },
+        {
+          "Question": "Was könnte die Person im Bild ausdrücken?",
+          "AnswerOptions": [
+            "mir fehlt etwas",
+            "es ist alles okay",
+            "ich brauche Trost",
+            "ich bin aufgebracht",
+            "ich bin müde"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Text": "Ein trauriger Blick oder Weinen zeigt: Mir fehlt etwas, ich brauche Trost. Es ist daher gut möglich, dass die Person traurig ist oder ihr etwas fehlt. Ihre Körperhaltung gibt Hinweise. Ganz sicher kann man es aber nicht wissen. Nur Worte klären wirklich, was jemand fühlt."
+        },
+        {
+          "Text": "Wer Gefühle versteckt, macht es anderen schwer, die eigenen Bedürfnisse zu verstehen. Wichtig ist: Du darfst Gefühle zeigen und aussprechen, egal ob sie angenehm oder unangenehm sind."
+        }
+      ],
+      "Unangenehme Gefühle zeigen": [
+        {
+          "Text": "Wir alle haben hin und wieder unangenehme Gefühle, wie Enttäuschung, Wut, Gereiztheit oder Unsicherheit. Oft steckt ein Wunsch hinter diesen Gefühlen: Du willst, dass jemand sein Verhalten ändert."
+        },
+        {
+          "Text": "Thomas ist sauer, weil das gemeinsame Aufräumen am Abend nicht klappt. Irgendwann platzt es aus ihm heraus: \"Euch allen ist es einfach egal, wie es hier aussieht!\""
+        },
+        {
+          "Question": "Was hätte Thomas anders machen können?",
+          "AnswerOptions": [
+            "Später aufstehen",
+            "Wütend werden und auch die anderen Mitbewohner zur Rede stellen",
+            "Den Mitbewohner bitten, mit ihm aufzuräumen",
+            "Gar nichts mehr sagen und weiter alles alleine machen",
+            "Das Thema in einem ruhigem Moment ansprechen, bevor Ärger sich staut"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Text": "**\"Euch allen ist es einfach egal, wie es hier aussieht!\"**"
+        },
+        {
+          "Question": "Was könnte Thomas in einem ruhigen Moment stattdessen sagen?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "- Nenne das Verhalten, nicht die Person - Sage, wie du dich dabei fühlst - Bitte klar um eine Veränderung"
+        },
+        {
+          "Text": "Thomas könnte zum Beispiel sagen: \"In den letzten Tagen stand immer das schmutzige Geschirr vom letzten Abend in der Küche. Ich habe es dann abgespült und aufgeräumt. Das frustriert mich. Mir ist es wichtig, in der Küche Ordnung zu halten. Können wir in Zukunft zusammen abends aufräumen?\""
+        },
+        {
+          "Text": "Wenn dir etwas unangenehm ist: Sprich früh und klar darüber. Beachte dabei: - Gesprächspartner anschauen, bestimmt und klar sprechen - Beschreibe genau, was dich gestört hat - Sage, was du dabei gefühlt hast - Mache einen Vorschlag, wie man das in Zukunft vermeiden könnte"
+        }
+      ],
+      "Wie Gefühle entstehen": [
+        {
+          "Text": "Gefühle entstehen nicht ohne einen Anlass bzw. einen Auslöser. Gefühle können durch bestimmte **Situationen** oder **Gedanken**, **Erinnerungen** oder auch **andere Gefühle** ausgelöst werden."
+        },
+        {
+          "Text": "Stell dir vor du bekommst Besuch von einem guten Freund."
+        },
+        {
+          "Question": "Welches Gefühl löst das in dir aus?",
+          "AnswerOptions": [
+            "Freude",
+            "Angst",
+            "Verbundenheit",
+            "Unzufriedenheit",
+            "Fassungslosigkeit"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Text": "Stell dir vor deine Führerscheinprüfung steht an. Du hast dich darauf vorbereitet, aber denkst: \"Ich schaffe das nicht.\""
+        },
+        {
+          "Question": "Welches Gefühl löst das in dir aus?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Gefühle können durch bestimmte **Situationen** oder **Gedanken**, **Erinnerungen** oder auch **andere Gefühle** ausgelöst werden. - **Situation:** Du bekommst Besuch → Freude, Verbundenheit - **Gedanke:** \"Ich schaffe das nicht\" → Angst, Überforderung - **Erinnerung:** Du denkst an eine schöne Zeit → Freude, Sehnsucht - **Anderes Gefühl:** Wut kann später Traurigkeit auslösen oder du kannst dich darüber ärgern, dass du zu viel Angst hattest, etwas zu sagen oder zu tun"
+        },
+        {
+          "Text": "Diese Übung kann dir dabei helfen, deine Gefühle und woher sie kommen, besser zu verstehen. - Denke an ein Gefühl, das du heute hattest. - Frag dich: Was war kurz davor? War es eine Situation, ein Gedanke, eine Erinnerung oder ein anderes Gefühl? - Benenne den Auslöser in einem kurzen Satz. - Notiere beides: das Gefühl und den Auslöser."
+        },
+        {
+          "Question": "Mein Gefühl:",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Question": "Der Auslöser:",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Denke daran, dass es helfen kann, deine Gefühle und ihre Auslöser mit einer Vertrauensperson zu besprechen - deinem Partner oder deiner Partnerin, deiner Familie oder guten Freunden. So lernst du dich und deine Gefühle nach und nach besser kennen."
+        }
+      ],
+      "Gefühle entdecken": [
+        {
+          "Text": "Gefühle gehören zum Leben dazu. Angenehme Gefühle, wie Freude oder Erleichterung und auch unangenehme Gefühle, wie Hilflosigkeit oder Wut."
+        },
+        {
+          "Question": "Welche angenehmen Gefühle kommen dir aus der letzten Woche bekannt vor?",
+          "AnswerOptions": [
+            "Freude",
+            "Zufriedenheit",
+            "Stolz",
+            "Hoffnung",
+            "Neugier",
+            "Selbstsicherheit",
+            "Dankbarkeit",
+            "Erleichterung",
+            "Gelassenheit",
+            "Vertrauen",
+            "Zuneigung",
+            "Verbundenheit"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Question": "Welche unangenehmen Gefühle kommen dir aus der letzten Woche bekannt vor?",
+          "AnswerOptions": [
+            "Traurigkeit",
+            "Angst",
+            "Ärger",
+            "Ekel",
+            "Schuld",
+            "Scham",
+            "Hilflosigkeit",
+            "Einsamkeit",
+            "Enttäuschung",
+            "Überforderung",
+            "Unsicherheit",
+            "Frustration"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Text": "Gefühle spürt man oft im Körper. Wo und wie, hängt von der Art des Gefühls ab. Das ist bei jedem Menschen anders. Zum Beispiel: - Kribbeln im Bauch bei Verliebtheit - Druck im Magen bei Ärger - Herzklopfen bei Angst"
+        },
+        {
+          "Question": "Wo spürst du Gefühle am häufigsten oder stärksten im Körper?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Gefühle sind wie Wegweiser. Sie zeigen uns, in welche Richtung wir gehen sollten und was wir brauchen. - Freude zeigt, dass dir etwas guttut und du dabei bleiben solltest. - Angst warnt dich vor Gefahr. - Trauer zeigt, dass etwas Wichtiges fehlt und hilft beim Abschied. - Wut zeigt, dass eine Grenze verletzt wurde. - Schuldgefühle können dich dazu bewegen, dich zu entschuldigen, wenn du etwas falsch gemacht hast"
+        },
+        {
+          "Text": "Man kann üben, Gefühle Schritt für Schritt besser zu spüren. Versuche, heute einmal in dich und deinen Körper hinein zu spüren. Wenn du ein Gefühl bemerkst, gib ihm einen Namen. Nutze einfache Worte, wie traurig, froh, wütend oder ruhig. Teile deine Beobachtungen mit einer Vertrauensperson."
         }
       ]
     },
@@ -2366,12 +2529,12 @@
           ]
         },
         {
-          "Text": "**Kritik** kann helfen, Missverständnisse zu klären, Beziehungen zu verbessern und Veränderungen anzustoßen – *wenn* sie respektvoll und klar formuliert ist. Ein **Angriff** dagegen macht oft verletzend Vorwürfe, wertet die andere Person ab oder greift sie persönlich an. Das führt meist zu Abwehr, Streit oder Rückzug – und nicht zu einer echten Lösung. Kurz gesagt: - *Kritik* spricht ein Verhalten an.\n- *Ein Angriff* greift die Person an."
+          "Text": "**Kritik** kann helfen, Missverständnisse zu klären, Beziehungen zu verbessern und Veränderungen anzustoßen – *wenn* sie respektvoll und klar formuliert ist. Ein **Angriff** dagegen macht oft verletzend Vorwürfe, wertet die andere Person ab oder greift sie persönlich an. Das führt meist zu Abwehr, Streit oder Rückzug – und nicht zu einer echten Lösung. Kurz gesagt: - *Kritik* spricht ein Verhalten an. - *Ein Angriff* greift die Person an."
         }
       ],
       "Nein-Sagen": [
         {
-          "Text": "Manchmal sagen wir \"Nein\" aus Gründen, die uns eigentlich nicht guttun – zum Beispiel aus Unsicherheit, Angst oder Bequemlichkeit.  Ein \"Nein\" kann aber auch helfen, dich zu schützen, ehrlich zu bleiben und deine Grenzen zu wahren."
+          "Text": "Manchmal sagen wir \"Nein\" aus Gründen, die uns eigentlich nicht guttun – zum Beispiel aus Unsicherheit, Angst oder Bequemlichkeit. Ein \"Nein\" kann aber auch helfen, dich zu schützen, ehrlich zu bleiben und deine Grenzen zu wahren."
         },
         {
           "Question": "Überlege dir, welche dieser Gründe gute Gründe sind, um \"Nein\" zu sagen.",
@@ -2410,7 +2573,7 @@
           "AllowMultiple": false
         },
         {
-          "Text": "**Wenn du dich schlecht fühlst, wenn du \"Nein\" zu etwas sagst, können folgende Gedanken helfen:** - Dein Wohlergehen und deine Gesundheit sind wichtig und du solltest sie nicht leichtfertig für andere Dinge opfern\n- Es ist dein gutes Recht, ein Anliegen abzulehnen\n- Nein zu sagen bedeutet nicht automatisch, dass die andere Person sauer ist. Häufig stößt man auf mehr Verständnis als erwartet\n- Die andere Person hat auch etwas davon, dass es dir langfristig gut geht"
+          "Text": "**Wenn du dich schlecht fühlst, wenn du \"Nein\" zu etwas sagst, können folgende Gedanken helfen:** - Dein Wohlergehen und deine Gesundheit sind wichtig und du solltest sie nicht leichtfertig für andere Dinge opfern - Es ist dein gutes Recht, ein Anliegen abzulehnen - Nein zu sagen bedeutet nicht automatisch, dass die andere Person sauer ist. Häufig stößt man auf mehr Verständnis als erwartet - Die andere Person hat auch etwas davon, dass es dir langfristig gut geht"
         },
         {
           "Question": "Fallen dir noch weitere Gedanken ein, die dir beim Nein-Sagen helfen?",
@@ -2430,6 +2593,15 @@
         },
         {
           "Text": "Tipps für das Absagen eines Anliegens:"
+        },
+        {
+          "Text": "Folgende Gedanken können hilfreich sein: - Es ist mein gutes Recht abzusagen, wenn es mir nicht gut geht - Wie würde ich reagieren, wenn jemand ein Treffen mit mir absagt? - Was würde ich tun, wenn eine Freundin ein Treffen absagt, weil es ihr nicht gut geht? - Was genau möchte ich sagen? - Es ist okay, falls die andere Person enttäuscht ist. Ich kann das aushalten"
+        },
+        {
+          "Text": "- Sprich in der \"Ich\"-Form - Sag klar und deutlich Nein - Erkläre, warum du absagen musst - Sag (nur einmal), dass es dir leid tut - Bleib ruhig und gelassen - Wenn der andere nachhakt, sag erneut Nein (erkläre es dann aber nicht noch einmal)"
+        },
+        {
+          "Text": "- Belohne und lobe dich! - Sei nicht zu streng zu dir selbst - selbst dann, wenn du den Eindruck hast, dass du einen Fehler gemacht hast oder die andere Person enttäuscht war"
         }
       ],
       "Kritik äußern": [
@@ -2466,6 +2638,18 @@
         },
         {
           "Text": "Falls du dich manchmal unsicher dabei fühlst, Kritik zu äußern, findest du hier Tipps. Sie können dir dabei helfen, deinem Gegenüber klar und respektvoll mitzuteilen, dass dich etwas stört."
+        },
+        {
+          "Text": "Sprich über deine eigenen Gefühle und stelle nicht die Fehler des anderen in den Vordergrund Beispiel: \"Ich war enttäuscht, weil du nicht gekommen bist\""
+        },
+        {
+          "Text": "Kritik wirkt ganz anders, wenn du sie im richtigen Moment äußerst - z.B. nicht in einer stressigen Situation oder vor anderen Menschen"
+        },
+        {
+          "Text": "Sag der Person nicht nur, was sie falsch gemacht hat, sondern auch, wie man die Situation in Zukunft verbessern könnte Beispiel: \"Es wäre gut, wenn du mir nächstes Mal Bescheid sagst, wenn du dich verspätest, damit ich mich darauf einstellen kann\""
+        },
+        {
+          "Text": "Versuche, Worte wie \"immer\" oder \"nie\" zu vermeiden. Sprich stattdessen lieber konkrete Situationen an, die dich verärgert haben. So kann das Gegenüber sein Verhalten besser verstehen und hat einen Ansatzpunkt, um in Zukunft etwas zu verändern Beispiel: \"Im letzten Teammeeting hast du mich mehrmals unterbrochen, wodurch ich nicht zu Wort gekommen bin\""
         },
         {
           "Question": "Überlege dir, auf welche Punkte du in Zukunft besonders achten möchtest, wenn du Kritik äußerst.",
@@ -2516,7 +2700,7 @@
           "AllowMultiple": false
         },
         {
-          "Text": "Stelle dir nun in einige Situationen vor und entscheide, was du tun würdest.  Im echten Leben gibt es natürlich mehr Möglichkeiten als hier. Nimm einfach die Antwort, die am besten zu dir passt."
+          "Text": "Stelle dir nun in einige Situationen vor und entscheide, was du tun würdest. Im echten Leben gibt es natürlich mehr Möglichkeiten als hier. Nimm einfach die Antwort, die am besten zu dir passt."
         },
         {
           "Text": "Du hast dir ein neues Kleidungsstück gekauft. Zuhause bemerkst du, dass es ein Loch im Stoff hat. Am nächsten Tag gehst du zurück ins Geschäft und möchtest es umtauschen. Die Verkäuferin sagt: _\"Das Loch war bestimmt schon vorher da. Da können wir leider nichts machen.\"_"
@@ -2614,7 +2798,7 @@
           "AllowMultiple": true
         },
         {
-          "Text": "Wenn man auf sein Recht besteht, ist es wichtig... - klar und deutlich zu sprechen\n- Blickkontakt zu halten\n- eine entspannte Körperhaltung einzunehmen\n- in der \"Ich-Form\" zu sprechen, um die eigene Situation zu verdeutlichen\n- Verständnis für die Position des Anderen zu zeigen\n- sich nicht zu häufig zu entschuldigen\n- konkret zu bleiben und Verallgemeinerungen zu vermeiden"
+          "Text": "Wenn man auf sein Recht besteht, ist es wichtig... - klar und deutlich zu sprechen - Blickkontakt zu halten - eine entspannte Körperhaltung einzunehmen - in der \"Ich-Form\" zu sprechen, um die eigene Situation zu verdeutlichen - Verständnis für die Position des Anderen zu zeigen - sich nicht zu häufig zu entschuldigen - konkret zu bleiben und Verallgemeinerungen zu vermeiden"
         }
       ],
       "(K)eine einfache Sache": [
@@ -2677,7 +2861,7 @@
           "AllowMultiple": false
         },
         {
-          "Text": "Du hast dir angeschaut, welche Situationen dir leichtfallen und welche dir schwerfallen.  Die Auswertung auf der nächsten Seite zeigt dir, wie schwer oder leicht dir Grenzen setzen insgesamt fällt. Das zu erkennen, ist ein wichtiger erster Schritt. In den nächsten Übungen geht es darum, wie du Grenzen klar, aber respektvoll mitteilst. Es geht darum, **Nein zu sagen**, **Kritik zu äußern** und **dein Recht einzufordern**. Damit stehst du für dich selbst ein, schützt dich vor Überforderung und stärkst dein Selbstwertgefühl."
+          "Text": "Du hast dir angeschaut, welche Situationen dir leichtfallen und welche dir schwerfallen. Die Auswertung auf der nächsten Seite zeigt dir, wie schwer oder leicht dir Grenzen setzen insgesamt fällt. Das zu erkennen, ist ein wichtiger erster Schritt. In den nächsten Übungen geht es darum, wie du Grenzen klar, aber respektvoll mitteilst. Es geht darum, **Nein zu sagen**, **Kritik zu äußern** und **dein Recht einzufordern**. Damit stehst du für dich selbst ein, schützt dich vor Überforderung und stärkst dein Selbstwertgefühl."
         }
       ]
     }
@@ -2691,6 +2875,15 @@
         {
           "Question": "Wie könnte Simon seinen Gedanken überprüfen?",
           "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Simon könnte sich **andere Meinungen einholen**, Freunde, Familie, andere, auch Experten (z.B. Arzt, Psychologe) um Rat fragen. Halten seine Liebsten und Vertrauenspersonen seine Befürchtungen auch für wahrscheinlich?"
+        },
+        {
+          "Text": "Simon könnte sich **auf seine eigenen Erfahrungen berufen**: Kommt es bei Simon unter Stress schnell dazu, dass manchmal ungewöhnliche Ideen entstehen? Neigt Simon zu unbegründeter Euphorie oder Größenideen?"
+        },
+        {
+          "Text": "Simon könnte sich **auf Logik berufen**: Ist der neue Dalai Lama eventuell schon gefunden oder anderweitig vorbestimmt?"
         },
         {
           "Question": "Was könnte die Folge davon sein, dass Simon seinen Gedanken hinterfragt und seine Meinung ändert?",
@@ -2710,7 +2903,7 @@
           "Text": "Diese Übung hilft dir dabei, deinen Atem zu verlangsamen und gleichmäßig zu atmen."
         },
         {
-          "Text": "**So funktioniert's** * Atme vier Sekunden lang ein\n* Halte den Atem für vier Sekunden an\n* Atme vier Sekunden lang aus\n* Halte den Atem für vier Sekunden an Du kannst mit deinen Augen oder gedanklich beim Atmen an den vier Seiten des Quadrats entlang fahren."
+          "Text": "**So funktioniert's** * Atme vier Sekunden lang ein * Halte den Atem für vier Sekunden an * Atme vier Sekunden lang aus * Halte den Atem für vier Sekunden an Du kannst mit deinen Augen oder gedanklich beim Atmen an den vier Seiten des Quadrats entlang fahren."
         }
       ],
       "Beharrlichkeit": [
@@ -2723,6 +2916,18 @@
         },
         {
           "Text": "Es gibt einige Vorurteile, die sich beharrlich bei vielen Menschen halten, auch wenn sie längst widerlegt sind."
+        },
+        {
+          "Text": "Viele Menschen sind davon überzeugt, dass Frauen die schlechteren Autofahrer sind, obwohl Statistiken belegen, dass Frauen weniger bzw. zumindest nicht mehr Unfälle als Männer verursachen."
+        },
+        {
+          "Text": "Manche Menschen denken, dass Brillen tragen bedeutet, dass jemand klüger ist als andere. Das ist eine falsche Annahme, denn Brillen helfen Menschen nur, besser zu sehen, und haben nichts mit ihrer Intelligenz zu tun."
+        },
+        {
+          "Text": "Viele Menschen mit einer psychischen Erkrankung können sehr gut leben, sich erholen oder lernen, mit ihren Symptomen umzugehen."
+        },
+        {
+          "Text": "Lernen verändert sich mit dem Alter, aber Menschen bleiben ihr Leben lang lernfähig. In Wirklichkeit können die meisten Menschen, unabhängig von ihrem Alter oder ihren bisherigen Erfahrungen, neue Fähigkeiten erlernen und sich verbessern, wenn sie Zeit und Mühe investieren."
         },
         {
           "Question": "Fallen dir noch Beispiele für beharrliche Vorurteile oder schwer korrigierbare Ansichten ein?",
@@ -2836,7 +3041,19 @@
           "Text": "**Verdacht: Ich werde durch den Geheimdienst beschattet.**"
         },
         {
+          "Text": "Schwarze Autos stehen vor dem Haus. In Filmen fährt der Geheimdienst immer schwarze Wagen."
+        },
+        {
+          "Text": "Auch in den Nachbarstraßen stehen viele schwarze Wagen, da dies einfach eine beliebte Farbe für Autos ist."
+        },
+        {
           "Text": "**Verdacht: Das Haus könnte verwanzt werden.**"
+        },
+        {
+          "Text": "Mehrere Nachbarn sind zur gleichen Zeit im Urlaub. Bauarbeiter reißen den Gehweg direkt vor dem Haus auf."
+        },
+        {
+          "Text": "Es sind gerade Sommerferien und viele Menschen fahren in den Urlaub. Seit Wochen werden in der Straße nach und nach Gehwege aufgerissen, um die Fahrradstreifen zu erneuern."
         },
         {
           "Question": "Man liegt förmlich auf der Lauer, ist in Alarmstimmung und sieht, was man sehen will. Geht es dir manchmal auch so?",
@@ -2875,7 +3092,7 @@
           "Text": "Bei der Seufzeratmung atmest du zweimal tief durch die Nase ein und langsam durch den Mund wieder aus."
         },
         {
-          "Text": "**So funktioniert’s** \n1. Atme durch die Nase tief in den Bauch ein\n2. Atme noch einmal kurz ein, um die Lungen vollständig mit Luft zu füllen\n3. Atme ganz langsam durch den Mund wieder aus Wiederhole die Übung für etwa 3 bis 5 Minuten."
+          "Text": "**So funktioniert’s** 1. Atme durch die Nase tief in den Bauch ein 2. Atme noch einmal kurz ein, um die Lungen vollständig mit Luft zu füllen 3. Atme ganz langsam durch den Mund wieder aus Wiederhole die Übung für etwa 3 bis 5 Minuten."
         },
         {
           "Text": "Wusstest du, dass Kinder die Seufzeratmung ganz unbewusst machen, also doppelt Einatmen und dann Ausatmen? Sie tun das, wenn sie schluchzen. So kann sich ihr Körper beruhigen."
@@ -2883,7 +3100,7 @@
       ],
       "Atem und Entspannung": [
         {
-          "Text": "Atemübungen können schnell und einfach zu Entspannung führen. Sie helfen dabei, unser Nervensystem zu beruhigen und haben einen Einfluss auf unsere Herzfrequenz und den Blutdruck.  Das Praktische an Atemübungen ist: Deinen Atem hast du immer dabei. Atemübungen kannst du daher überall machen. In der Bahn, beim Einkaufen oder abends beim Einschlafen, bei Angst, Stress oder unangenehmen Gedanken."
+          "Text": "Atemübungen können schnell und einfach zu Entspannung führen. Sie helfen dabei, unser Nervensystem zu beruhigen und haben einen Einfluss auf unsere Herzfrequenz und den Blutdruck. Das Praktische an Atemübungen ist: Deinen Atem hast du immer dabei. Atemübungen kannst du daher überall machen. In der Bahn, beim Einkaufen oder abends beim Einschlafen, bei Angst, Stress oder unangenehmen Gedanken."
         },
         {
           "Text": "Atemübungen und ihre Wirkung sind wissenschaftlich erforscht. Wir wissen zum Beispiel, dass das Herz schneller schlägt, wenn wir mehr ein- als ausatmen. Umgekehrt können wir unsere Herzfrequenz verlangsamen und unseren Körper beruhigen, indem wir länger aus- als einatmen."
@@ -2971,7 +3188,25 @@
           "Text": "Veränderungen im Denken und in der Wahrnehmung der Welt sind ein Merkmal von Schizophrenie. Meistens ändert sich das Denken nicht plötzlich, sondern nach und nach."
         },
         {
+          "Text": "Man hat Gedanken, die einem selbst oder anderen komisch vorkommen. Diese Gedanken sind anders als das, was andere oft denken. Zum Beispiel: Man glaubt, dass bestimmte Zahlen eine besondere Bedeutung für das eigene Leben haben. Oder man denkt, andere können die eigenen Gedanken hören - ist sich aber noch unsicher, ob das wirklich stimmt."
+        },
+        {
+          "Text": "Das sind Gedanken oder Meinungen, von denen man überzeugt ist, auch wenn andere sie nicht teilen. Diese Überzeugungen fühlen sich für die betroffene Person richtig an. Zum Beispiel, eine besondere Aufgabe auf dieser Welt zu haben."
+        },
+        {
+          "Text": "Wahngedanken sind sehr feste Überzeugungen, die sich für die betroffene Person sehr echt anfühlen, auch wenn andere Menschen sie nicht teilen. Sie werden zu einer eigenen Wirklichkeit, in der die Sicht anderer Menschen keinen Platz mehr hat. Zum Beispiel: Ich werde verfolgt. Solche Wahngedanken sind ein häufiges Symptom bei einer Schizophrenie."
+        },
+        {
           "Text": "Viele Dinge können unsere Gedanken und Überzeugungen beeinflussen. Dazu zählen:"
+        },
+        {
+          "Text": "Unsere eigenen Erfahrungen im Leben beeinflussen, wie wir die Welt um uns herum wahrnehmen. Unsere persönliche Geschichte, Familie, Kultur und Erziehung prägen unser Denken. Manchmal können diese Einflüsse dazu führen, dass wir bestimmte Ideen oder Überzeugungen entwickeln, die für andere möglicherweise nicht verständlich sind. Wenn wir bestimmte Ereignisse erlebt haben, die mit bestimmten Ideen oder Überzeugungen verbunden sind, kann dies unser Denken beeinflussen."
+        },
+        {
+          "Text": "Insbesondere stressige Ereignisse in unserem Leben, Nachrichten oder Gespräche mit anderen Menschen können dazu führen, dass wir bestimmte Ideen stärker wahrnehmen und uns darauf konzentrieren."
+        },
+        {
+          "Text": "Im Gehirn gibt es Botenstoffe, die Signale weitergeben. Einer davon heißt Dopamin. Wenn zu viel Dopamin wirkt, zum Beispiel während einer Psychose, können Gedanken automatisch und sehr eindringlich erscheinen. Dann fällt es schwer, sie zu steuern oder zur Seite zu schieben. Auch wenn dir bewusst ist, dass es nur Gedanken sind, fühlen sie sich sehr echt an. Wenn du das Gefühl hast, dass ungewöhnliche Gedanken sehr stark werden, sprich mit deinem Arzt bzw. deiner Ärztin darüber. Er oder sie kann dir dabei helfen, mit Medikamenten das Dopamin im Gleichgewicht zu halten und ungewöhnliche Gedanken wieder leiser werden zu lassen."
         }
       ],
       "Brilleneinstellungen": [
@@ -2988,7 +3223,7 @@
           "Text": "Sowohl unsere **persönlichen Erfahrungen**, die unsere Lebensbrille oder Sicht auf die Welt prägen, als auch **aktuelle Umstände**, wie zum Beispiel Stress, können besondere Überzeugungen entstehen lassen."
         },
         {
-          "Text": "Jeder Mensch sieht die Welt durch seine eigene Lebensbrille, die durch seine einzigartigen Erfahrungen geprägt ist. Menschen, die öfter unangenehme oder ungewöhnliche Gedanken erleben, tragen oft ähnliche Brillen. Es hilft daher, die eigene Brille und ihre Seheinstellungen genauer anzuschauen.\nSo verstehst du besser, wie du auf die Welt schaust und warum du manchmal Dinge auf eine bestimmte Weise siehst."
+          "Text": "Jeder Mensch sieht die Welt durch seine eigene Lebensbrille, die durch seine einzigartigen Erfahrungen geprägt ist. Menschen, die öfter unangenehme oder ungewöhnliche Gedanken erleben, tragen oft ähnliche Brillen. Es hilft daher, die eigene Brille und ihre Seheinstellungen genauer anzuschauen. So verstehst du besser, wie du auf die Welt schaust und warum du manchmal Dinge auf eine bestimmte Weise siehst."
         },
         {
           "Text": "In den nächsten Übungen geht es darum, welche \"Brilleneinstellungen\" dazu beitragen, dass man unter Stress besondere Überzeugungen entwickelt und die Welt manchmal negativer (oder auch positiver) wahrnimmt als andere Menschen. Das ist wie eine Reise, bei der wir unsere Brille besser verstehen und ständig anpassen, um die beste Sicht auf das Leben zu haben."
@@ -3075,7 +3310,7 @@
           "AnswerOptions": "free_text"
         },
         {
-          "Text": "Wenn Herr Müller denkt, dass der Arbeitsvertrag alleine deswegen nicht verlängert wird, weil er nicht hart genug gearbeitet hat, macht er eine **Selbst-Zuschreibung**. - **Vorteil**: Es gilt als edel und vorbildlich, Verantwortung zu übernehmen.\n- **Nachteil**: Die Schuld nur bei sich zu suchen, mindert das Selbstwertgefühl."
+          "Text": "Wenn Herr Müller denkt, dass der Arbeitsvertrag alleine deswegen nicht verlängert wird, weil er nicht hart genug gearbeitet hat, macht er eine **Selbst-Zuschreibung**. - **Vorteil**: Es gilt als edel und vorbildlich, Verantwortung zu übernehmen. - **Nachteil**: Die Schuld nur bei sich zu suchen, mindert das Selbstwertgefühl."
         },
         {
           "Text": "Herr Müller könnte stattdessen eine **Zuschreibung auf andere Personen** machen und denken: _Der Chef konnte mich noch nie leiden. Ich werde gemobbt._ Welche Vor- oder Nachteile könnte diese Zuschreibung auf andere Personen haben?"
@@ -3089,7 +3324,7 @@
           "AnswerOptions": "free_text"
         },
         {
-          "Text": "Wenn Herr Müller denkt, dass der Arbeitsvertrag alleine deswegen nicht verlängert wird, weil sein Chef ihn noch nie mochte und er gemobbt wird, macht er eine **Zuschreibung auf andere Personen**. - **Vorteil**: Das Selbstwertgefühl ist nicht bedroht, wenn man die Schuld allein bei anderen sucht.\n- **Nachteil**: Es wird ungern gesehen, Verantwortung auf andere abzuwälzen."
+          "Text": "Wenn Herr Müller denkt, dass der Arbeitsvertrag alleine deswegen nicht verlängert wird, weil sein Chef ihn noch nie mochte und er gemobbt wird, macht er eine **Zuschreibung auf andere Personen**. - **Vorteil**: Das Selbstwertgefühl ist nicht bedroht, wenn man die Schuld allein bei anderen sucht. - **Nachteil**: Es wird ungern gesehen, Verantwortung auf andere abzuwälzen."
         },
         {
           "Text": "Herr Müller könnte der Kündigung auch ausgewogene Gründe zuschreiben. Also einer Mischung aus anderen Personen, Umständen und sich selbst."
@@ -3099,7 +3334,7 @@
           "AnswerOptions": "free_text"
         },
         {
-          "Text": "Ausgewogene Zuschreibung: Das ist eine Mischung aus anderen Personen, Umständen und sich selbst. Dadurch entwickeln wir mehrere mögliche Erklärungen. Zum Beispiel für Herrn Müllers Kündigung:\n_In der Firma werden gerade viele Stellen abgebaut. Ich habe außerdem selbst schon gemerkt, dass diese Stelle nicht meinen Fähigkeiten und Interessen entspricht und die Zusammenarbeit mit meinen Kollegen nicht immer optimal war._"
+          "Text": "Ausgewogene Zuschreibung: Das ist eine Mischung aus anderen Personen, Umständen und sich selbst. Dadurch entwickeln wir mehrere mögliche Erklärungen. Zum Beispiel für Herrn Müllers Kündigung: _In der Firma werden gerade viele Stellen abgebaut. Ich habe außerdem selbst schon gemerkt, dass diese Stelle nicht meinen Fähigkeiten und Interessen entspricht und die Zusammenarbeit mit meinen Kollegen nicht immer optimal war._"
         }
       ],
       "Ausgewogene Zuschreibungen": [
@@ -3154,58 +3389,6 @@
         },
         {
           "Text": "Ausgewogene Zuschreibungen helfen oft dabei, klarer zu sehen. Wenn man mehrere Erklärungen für eine Situation in Betracht zieht, muss man sich nicht auf eine einzige festlegen. Das kann helfen, weniger zu grübeln. Man erkennt: _Ich bin nicht für alles allein verantwortlich. Aber ich kann manches mit beeinflussen._ Das kann das eigene Selbstwertgefühl stärken und mehr Ruhe in die eigenen Gedanken bringen."
-        }
-      ],
-      "Realität testen": [
-        {
-          "Text": "Manchmal neigen wir unter Stress dazu, zu schnell von etwas überzeugt zu sein. Das kann z.B. dazu führen, dass wir uns ängstlich fühlen, obwohl es eigentlich gar keinen wirklichen Grund dafür gibt. Lass uns gemeinsam einen Gedanken überprüfen, der dir Angst macht."
-        },
-        {
-          "Text": "Denke daran, was dich öfter beschäftigt, was du vielleicht mit deinem Arzt oder in einer Therapie besprochen hast. Es gibt kein richtig oder falsch."
-        },
-        {
-          "Question": "Mein Gedanke, der mir Angst macht:",
-          "AnswerOptions": "free_text"
-        },
-        {
-          "Text": "<u>Beispiele:</u> -  _Die Menschen in der Bahn lachen mich aus._\n-  _Man beobachtet mich überall._\n-  _Ich bin schuld, wenn Schlimmes passiert._"
-        },
-        {
-          "Text": "**Frage dich, auf einer Skala von 0 bis 100:**"
-        },
-        {
-          "Question": "Wie stark glaube ich an den Gedanken?",
-          "Answer": {
-            "min": 0,
-            "max": 100,
-            "minText": "0",
-            "maxText": "100"
-          }
-        },
-        {
-          "Question": "Wie stark ist meine Angst?",
-          "Answer": {
-            "min": 0,
-            "max": 100,
-            "minText": "0",
-            "maxText": "100"
-          }
-        },
-        {
-          "Text": "Eine andere Erklärung könnte z.B. sein: _Die Menschen in der Bahn lachen, weil einer von Ihnen einen Witz erzählt hat, das hat gar nichts mit mir zu tun._"
-        },
-        {
-          "Question": "Eine andere Erklärung könnte sein:",
-          "AnswerOptions": "free_text"
-        },
-        {
-          "Question": "Wie stark glaube ich daran (auf einer Skala von 0–100)?",
-          "Answer": {
-            "min": 0,
-            "max": 100,
-            "minText": "0",
-            "maxText": "100"
-          }
         }
       ],
       "Situationen erklären: Ein Tag mit Kim": [
@@ -3328,7 +3511,7 @@
           "AnswerOptions": "free_text"
         },
         {
-          "Text": "Beziehe die eigene Person, andere Personen und die Umstände gleichermaßen mit ein. <u>Beispiel:</u> Ihr ist etwas dazwischen gekommen. Ich war ziemlich schroff, sodass sie eventuell noch beleidigt ist."
+          "Text": "Beziehe die eigene Person, andere Personen und die Umstände gleichermaßen mit ein. Beispiel: Ihr ist etwas dazwischen gekommen. Ich war ziemlich schroff, sodass sie eventuell noch beleidigt ist."
         },
         {
           "Question": "Ich selbst:",
@@ -3355,7 +3538,7 @@
           "AnswerOptions": "free_text"
         },
         {
-          "Text": "Beziehe die eigene Person, andere Personen und die Umstände gleichermaßen mit ein. <u>Beispiel:</u> Ich habe die Idee gehabt, spazieren zu gehen, und mein Freund hat gleich \"ja\" gesagt; wir haben uns wirklich angeregt unterhalten, daran hätte auch schlechteres Wetter nichts geändert. Aber es hat dazu beigetragen."
+          "Text": "Beziehe die eigene Person, andere Personen und die Umstände gleichermaßen mit ein. Beispiel: Ich habe die Idee gehabt, spazieren zu gehen, und mein Freund hat gleich \"ja\" gesagt; wir haben uns wirklich angeregt unterhalten, daran hätte auch schlechteres Wetter nichts geändert. Aber es hat dazu beigetragen."
         },
         {
           "Question": "Ich selbst:",
@@ -3378,22 +3561,19 @@
           "Text": "Wenn du z.B. darüber nachdenkst, **warum** eine Person lacht, machst du eine Zuschreibung. Das bedeutet, dass du versuchst, herauszufinden, **warum** etwas passiert."
         },
         {
-          "Text": "Menschen haben ganz unterschiedliche Zuschreibungsstile - welcher ist deiner?  Schaue dir dafür ein paar Situationen auf den nächsten Seiten an und überlege, welche Ursachen sie haben könnten."
+          "Text": "Manche Menschen tendieren dazu, den Grund für eine entstandene Situation bei sich selbst zu suchen. Zum Beispiel: Es ist meine Schuld, dass meine Freundin die Verabredung abgesagt hat, sie mag mich einfach nicht."
         },
         {
-          "Text": "Du fällst durch eine praktische Führerscheinprüfung. **Weshalb hast du die Prüfung nicht bestanden?** - Ich war zu nervös oder hatte wenig Fahrpraxis (Selbst)\n- Der Prüfer war so streng (Andere)\n- Die Wetterbedingung waren schlecht, die Strecke schwer und es war viel Verkehr (Situation)"
+          "Text": "Andere Menschen hingegen tendieren dazu, den Grund für eine entstandene Situation eher bei andere Menschen zu suchen. Zum Beispiel: Es ist die Schuld meiner Freundin, dass sie die Verabredung abgesagt hat, sie will mir damit schaden."
         },
         {
-          "Question": "Was trifft am ehesten auf dich zu?",
-          "AnswerOptions": [
-            "Selbst",
-            "Andere",
-            "Situation"
-          ],
-          "AllowMultiple": false
+          "Text": "Wiederum andere Menschen tendieren dazu, den Grund für eine entstandene Situation eher der Situation selbst zuzuschreiben. Zum Beispiel: Es ist weder meine Schuld oder die meiner Freundin, dass die Verabredung abgesagt werden musste. Meine Freundin muss leider im Moment sehr viel arbeiten."
         },
         {
-          "Text": "Andere fangen an zu lachen, während du redest. **Was könnte der Grund dafür sein, dass sie lachen?** - Es liegt an mir! Ich habe etwas Komisches, Falsches gemacht (Selbst)\n- Es liegt an den anderen Personen! Die machen sich über mich lustig (Andere)\n- Es ist Zufall, dass die Personen gerade in dem Moment anfangen zu lachen (Situation)"
+          "Text": "Menschen haben ganz unterschiedliche Zuschreibungsstile - welcher ist deiner? Schaue dir dafür ein paar Situationen auf den nächsten Seiten an und überlege, welche Ursachen sie haben könnten."
+        },
+        {
+          "Text": "Du fällst durch eine praktische Führerscheinprüfung. **Weshalb hast du die Prüfung nicht bestanden?** - Ich war zu nervös oder hatte wenig Fahrpraxis (Selbst) - Der Prüfer war so streng (Andere) - Die Wetterbedingung waren schlecht, die Strecke schwer und es war viel Verkehr (Situation)"
         },
         {
           "Question": "Was trifft am ehesten auf dich zu?",
@@ -3405,7 +3585,7 @@
           "AllowMultiple": false
         },
         {
-          "Text": "Du sitzt in der Bahn und der Mann gegenüber schaut dich immer wieder an. **Was könnte der Grund dafür sein?** - Der Mann schaut mich an, weil er mich bestehlen will. Er will mir schaden (Selbst)\n- Vielleicht schaut er immer wieder zu mir herüber, weil er sich nicht traut zu fragen, wie die nächste Haltestelle heißt. Ich denke, er ist unsicher (Andere)\n- Vielleicht schaut er zu mir, weil ich direkt gegenüber von ihm sitze und es sonst nichts zu sehen gibt. Er schaut einfach gedankenverloren in meine Richtung, ohne etwas Bestimmtes dabei zu denken (Situation)"
+          "Text": "Andere fangen an zu lachen, während du redest. **Was könnte der Grund dafür sein, dass sie lachen?** - Es liegt an mir! Ich habe etwas Komisches, Falsches gemacht (Selbst) - Es liegt an den anderen Personen! Die machen sich über mich lustig (Andere) - Es ist Zufall, dass die Personen gerade in dem Moment anfangen zu lachen (Situation)"
         },
         {
           "Question": "Was trifft am ehesten auf dich zu?",
@@ -3417,7 +3597,19 @@
           "AllowMultiple": false
         },
         {
-          "Text": "Eine Freundin hat dir ein Geschenk gekauft. **Was hat deine Freundin dazu bewogen, dir etwas zu schenken?** - Sie hat mir ein Geschenk gemacht, weil ich ein guter Mensch bin und sie mich mag (Selbst)\n- Sie wollte mir eine Freude bereiten. Sie ist eine nette Person und kümmert sich um mich (Andere)\n- Vielleicht hat sie mir das Geschenk gemacht, weil bald mein Geburtstag ist und das einfach so üblich ist (Situation)"
+          "Text": "Du sitzt in der Bahn und der Mann gegenüber schaut dich immer wieder an. **Was könnte der Grund dafür sein?** - Der Mann schaut mich an, weil er mich bestehlen will. Er will mir schaden (Selbst) - Vielleicht schaut er immer wieder zu mir herüber, weil er sich nicht traut zu fragen, wie die nächste Haltestelle heißt. Ich denke, er ist unsicher (Andere) - Vielleicht schaut er zu mir, weil ich direkt gegenüber von ihm sitze und es sonst nichts zu sehen gibt. Er schaut einfach gedankenverloren in meine Richtung, ohne etwas Bestimmtes dabei zu denken (Situation)"
+        },
+        {
+          "Question": "Was trifft am ehesten auf dich zu?",
+          "AnswerOptions": [
+            "Selbst",
+            "Andere",
+            "Situation"
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "Text": "Eine Freundin hat dir ein Geschenk gekauft. **Was hat deine Freundin dazu bewogen, dir etwas zu schenken?** - Sie hat mir ein Geschenk gemacht, weil ich ein guter Mensch bin und sie mich mag (Selbst) - Sie wollte mir eine Freude bereiten. Sie ist eine nette Person und kümmert sich um mich (Andere) - Vielleicht hat sie mir das Geschenk gemacht, weil bald mein Geburtstag ist und das einfach so üblich ist (Situation)"
         },
         {
           "Question": "Was trifft am ehesten auf dich zu?",
@@ -3430,6 +3622,61 @@
         },
         {
           "Text": "Siehst du Ursachen von Ereignissen eher bei dir selbst, bei anderen Menschen oder der Situation? Oder vielleicht beziehst du alle möglichen Erklärungen mit ein? Die Auflösung auf der nächsten Seite gibt dir einen Hinweis darauf."
+        }
+      ],
+      "Realität testen": [
+        {
+          "Text": "Manchmal neigen wir unter Stress dazu, zu schnell von etwas überzeugt zu sein. Das kann z.B. dazu führen, dass wir uns ängstlich fühlen, obwohl es eigentlich gar keinen wirklichen Grund dafür gibt. Lass uns gemeinsam einen Gedanken überprüfen, der dir Angst macht."
+        },
+        {
+          "Text": "Denke daran, was dich öfter beschäftigt, was du vielleicht mit deinem Arzt oder in einer Therapie besprochen hast. Es gibt kein richtig oder falsch."
+        },
+        {
+          "Question": "Mein Gedanke, der mir Angst macht:",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Beispiele: - _Die Menschen in der Bahn lachen mich aus._ - _Man beobachtet mich überall._ - _Ich bin schuld, wenn Schlimmes passiert._"
+        },
+        {
+          "Text": "**Frage dich, auf einer Skala von 0 bis 100:**"
+        },
+        {
+          "Question": "Wie stark glaube ich an den Gedanken?",
+          "Answer": {
+            "min": 0,
+            "max": 100,
+            "minText": "0",
+            "maxText": "100"
+          }
+        },
+        {
+          "Question": "Wie stark ist meine Angst?",
+          "Answer": {
+            "min": 0,
+            "max": 100,
+            "minText": "0",
+            "maxText": "100"
+          }
+        },
+        {
+          "Text": "Eine andere Erklärung könnte z.B. sein: _Die Menschen in der Bahn lachen, weil einer von Ihnen einen Witz erzählt hat, das hat gar nichts mit mir zu tun._"
+        },
+        {
+          "Question": "Eine andere Erklärung könnte sein:",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Question": "Wie stark glaube ich daran (auf einer Skala von 0–100)?",
+          "Answer": {
+            "min": 0,
+            "max": 100,
+            "minText": "0",
+            "maxText": "100"
+          }
+        },
+        {
+          "Text": "Wenn ein Gedanke auftaucht, der dir Angst macht, wiederhole diese Übung. Überprüfe deine Gedanken gerne auch mit einer Vertrauensperson zusammen. So könnt ihr gemeinsam überlegen, welche anderen Erklärungen es geben könnte, die sich weniger bedrohlich anfühlen. Wenn du möchtest, speichere diese Übung unter deinen Favoriten, um sie leicht wiederzufinden."
         }
       ]
     },
@@ -3466,7 +3713,7 @@
           "Text": "Diese Frage haben wir dem Arzt Marco gestellt. Im Video erzählt er von seiner Rolle als Arzt und welchen wichtigen Beitrag Betroffene zu ihrer eigenen Genesung leisten."
         },
         {
-          "Text": "Selbstwirksamkeit bedeutet, sich selbst wirksam zu erleben. Man fühlt sich nicht hilflos ausgeliefert, sondern glaubt daran, Dinge aus eigener Kraft schaffen oder ändern zu können. Selbstwirksamkeit kann bedeuten, dass man daran glaubt, die Führerscheinprüfung zu schaffen, wenn man genug lernt und übt.  Selbstwirksamkeit kann auch bedeuten, dass man erlebt, selbst Einfluss auf die eigene Gesundheit zu haben, indem man zum Beispiel ausreichend schläft und versucht, sich im Alltag zu bewegen."
+          "Text": "Selbstwirksamkeit bedeutet, sich selbst wirksam zu erleben. Man fühlt sich nicht hilflos ausgeliefert, sondern glaubt daran, Dinge aus eigener Kraft schaffen oder ändern zu können. Selbstwirksamkeit kann bedeuten, dass man daran glaubt, die Führerscheinprüfung zu schaffen, wenn man genug lernt und übt. Selbstwirksamkeit kann auch bedeuten, dass man erlebt, selbst Einfluss auf die eigene Gesundheit zu haben, indem man zum Beispiel ausreichend schläft und versucht, sich im Alltag zu bewegen."
         },
         {
           "Question": "Was bedeutet Selbstwirksamkeit für dich?",
@@ -3482,7 +3729,7 @@
           "AnswerOptions": "free_text"
         },
         {
-          "Text": "<u>Beispiele:</u> - Ich darf niemandem vertrauen\n- Ich mache immer alles falsch\n- Jemand will mir schaden\n- Jemand beobachtet mich\n- Niemand versteht mich\n- Es wird nie besser\n- Ich bin wertlos"
+          "Text": "Beispiele: - Ich darf niemandem vertrauen - Ich mache immer alles falsch - Jemand will mir schaden - Jemand beobachtet mich - Niemand versteht mich - Es wird nie besser - Ich bin wertlos"
         },
         {
           "Question": "Ist der Gedanke richtig?",
@@ -3529,7 +3776,7 @@
           "AnswerOptions": "free_text"
         },
         {
-          "Text": "**Wenn ungewöhnliche Gedanken auftauchen, frage dich:** - Ist der Gedanke richtig?\n- Ist der Gedanke hilfreich?\n- Gibt es andere mögliche Erklärungen, die sich weniger bedrohlich anfühlen?\n- Gibt es Informationen, die gegen den Gedanken sprechen?\n- Schließe ich voreilig? Ist das eine einseitige Erklärung? Halte ich zu beharrlich an einem Gedanken fest?\n- Was würde eine Vertrauensperson zu meinem Gedanken sagen?"
+          "Text": "**Wenn ungewöhnliche Gedanken auftauchen, frage dich:** - Ist der Gedanke richtig? - Ist der Gedanke hilfreich? - Gibt es andere mögliche Erklärungen, die sich weniger bedrohlich anfühlen? - Gibt es Informationen, die gegen den Gedanken sprechen? - Schließe ich voreilig? Ist das eine einseitige Erklärung? Halte ich zu beharrlich an einem Gedanken fest? - Was würde eine Vertrauensperson zu meinem Gedanken sagen?"
         }
       ],
       "Rückblick: Wahngedanken": [
@@ -3549,7 +3796,7 @@
           "AllowMultiple": false
         },
         {
-          "Text": "Die Neigung, mehr auf Dinge zu achten, die unsere Meinung bestätigen, nennt man **Bestätigungstendenz**.  <u>Beispiel:</u> Wenn du glaubst, beobachtet zu werden, fällt dir jedes zufällige Schauen sofort auf. Du siehst dann schnell nur noch Beweise, dass du tatsächlich beobachtet wirst. Zeichen, dass andere nicht auf dich achten, gehen unter. Versuche, auch wenn du Angst hast und es dir schwer fällt, offen für verschiedene Hinweise zu bleiben. Halte einen Moment inne und überlege, ob es auch Gegenbeweise gibt."
+          "Text": "Die Neigung, mehr auf Dinge zu achten, die unsere Meinung bestätigen, nennt man **Bestätigungstendenz**. Beispiel: Wenn du glaubst, beobachtet zu werden, fällt dir jedes zufällige Schauen sofort auf. Du siehst dann schnell nur noch Beweise, dass du tatsächlich beobachtet wirst. Zeichen, dass andere nicht auf dich achten, gehen unter. Versuche, auch wenn du Angst hast und es dir schwer fällt, offen für verschiedene Hinweise zu bleiben. Halte einen Moment inne und überlege, ob es auch Gegenbeweise gibt."
         },
         {
           "Question": "Wenn man sich mit den Seheinstellungen der eigenen Lebensbrille beschäftigt, kann man leichter Abstand von ungewöhnlichen oder belastenden Gedanken gewinnen.",
@@ -3576,6 +3823,15 @@
         },
         {
           "Text": "Hier siehst du die Lebensbrilleneinstellungen, die du in den letzten Übungen kennengelernt hast. Kannst du dich noch erinnern, was sie bedeuten?"
+        },
+        {
+          "Text": "Das ist deine Art, Erklärungen zu finden, für Dinge die passieren. Man kann Dinge sich selbst, anderen Personen oder den Umständen zuschreiben. Achte darauf, immer alle drei möglichen Ursachen einzubeziehen. Die Mischung macht’s!"
+        },
+        {
+          "Text": "Schlussfolgern heißt Urteilen, Schlüsse ziehen oder Entscheidungen treffen. Wenn man voreilig schlussfolgert, trifft man schnell Entscheidungen, ohne alle wichtigen Informationen zu kennen. Bevor du dich für oder gegen etwas entscheidest, Urteile fällst oder Schlüsse ziehst, sammle genug Hinweise."
+        },
+        {
+          "Text": "Das ist deine Fähigkeit, Meinungen zu ändern. Bleibe offen für neue Informationen und neugierig auf andere Sichtweisen."
         },
         {
           "Question": "Auf welche Lebensbrilleneinstellung(en) möchtest du im Alltag besonders achten?",
@@ -3652,7 +3908,7 @@
           "Text": "Voreiliges Schlussfolgern bedeutet, dass man eine schnelle Entscheidung trifft, ohne alle wichtigen Informationen zu kennen. **Vorteile:** Zeitersparnis, gibt Sicherheit, man wirkt auf andere vielleicht entschlossen und kompetent **Nachteile:** Risiko eine schwerwiegende Fehlentscheidung zu treffen und z.B. andere zu beschuldigen, die unschuldig sind"
         },
         {
-          "Text": "Voreiliges Schlussfolgern kann uns zwar Zeit sparen, aber auch dazu führen kann, dass wir zu schnell falsche Entscheidungen treffen. Für unser Urteil sollten wir einen Mittelweg anstreben zwischen einer zu schnellen Entscheidung und  einem übertrieben genauen Vorgehen."
+          "Text": "Voreiliges Schlussfolgern kann uns zwar Zeit sparen, aber auch dazu führen kann, dass wir zu schnell falsche Entscheidungen treffen. Für unser Urteil sollten wir einen Mittelweg anstreben zwischen einer zu schnellen Entscheidung und einem übertrieben genauen Vorgehen."
         },
         {
           "Text": "Bei Dingen, die weniger bedeutsam sind - wie z.B. welchen Joghurt wir im Supermarkt kaufen oder welche Sorte Eis wir heute essen möchten - können wir uns schnell entscheiden. Allerdings sollte man bei bedeutsamen Entscheidungen stets bedenken, dass man auch falsch liegen könnte."
@@ -3660,7 +3916,7 @@
       ],
       "Wie sicher bist du dir?": [
         {
-          "Text": "Gleich wirst du eine Serie von Bildern sehen. Beim ersten Bild wird nur ein Detail zu sehen sein. Auf dem zweiten Bild siehst du weitere Details, bis schließlich das ganze Bild zu sehen ist. **Was könnte dargestellt sein?\nUnd wie sicher bist du dir?**"
+          "Text": "Gleich wirst du eine Serie von Bildern sehen. Beim ersten Bild wird nur ein Detail zu sehen sein. Auf dem zweiten Bild siehst du weitere Details, bis schließlich das ganze Bild zu sehen ist. **Was könnte dargestellt sein? Und wie sicher bist du dir?**"
         },
         {
           "Question": "Was könnte dargestellt sein?",
@@ -3708,106 +3964,21 @@
           "Text": "Hier siehst du eine Reihe von Situationen. Was könnten Erklärungen dafür sein? Und welche Erklärungen könnte es noch geben? Überlege selbst, bevor du mögliche Erklärungen durchliest."
         },
         {
+          "Text": "Vielleicht ist die Person betrunken. Vielleicht kann sie aber auch nach einem Schlaganfall nicht mehr richtig sprechen."
+        },
+        {
+          "Text": "Vielleicht hast du Sorge, dass er mit dem, was du präsentierst, nicht einverstanden oder kritisch ist. Vielleicht ist er aber auch nur schüchtern, überlegt noch oder hat Kopfschmerzen."
+        },
+        {
+          "Text": "Vielleicht hast du Sorge, dass jemand euer Gespräch abhört. Vielleicht handelt es sich aber auch um Störgeräusche in der Leitung oder ein Geräusch im Hintergrund."
+        },
+        {
           "Text": "Studien zeigen, dass viele Menschen mit Psychose dazu neigen, vorschnelle Entscheidungen zu treffen oder voreilige Schlussfolgerungen zu ziehen. Schnelle Entscheidungen führen nicht immer zu Fehlentscheidungen. Aber Irren ist menschlich. Und manchmal erkennt man aber nur die \"halbe Wahrheit\". Versuche vor Entscheidungen, möglichst viele Informationen zu berücksichtigen und tausche dich mit Vertrauenspersonen aus."
         }
       ],
       "Benennen": [
         {
-          "Text": "Manchmal hilft es, sich auf andere Dinge zu konzentrieren, wenn belastende oder ungewöhnliche Gedanken auftauchen. - Zähle, wie viele Pflanzen du in der Wohnung hast\n- Zähle, wie viele Bücher du in der Wohnung hast\n- Zähle, wie viele Lichtschalter du in der Wohnung hast\n- Zähle, wie viele Autos an dir vorbei fahren"
-        }
-      ]
-    }
-  },
-  "Willkommen": {
-    "Ankommen": {
-      "Lebensbausteine": [
-        {
-          "Text": "Ein gutes Leben mit Psychosen bedeutet mehr, als nur mit einer Diagnose zurechtzukommen. Gesundheit ist mehr als Symptomfreiheit. Sie zeigt sich auch darin, wie wir für uns sorgen, was uns wichtig ist und wie wir mit Herausforderungen umgehen. Ein gutes Leben mit Psychosen besteht aus vielen kleinen Bausteinen. In vielen Bereichen des Lebens kann man, auch mit kleinen Schritten, etwas für sich tun."
-        },
-        {
-          "Text": "Guter Schlaf gibt Kraft und hilft dem Gehirn, sich zu erholen. Feste Schlafzeiten und abends zur Ruhe kommen sind kleine Schritte mit großer Wirkung."
-        },
-        {
-          "Text": "Jeder Mensch ist wertvoll – auch mit psychischen Belastungen. Es hilft, sich an eigene Stärken zu erinnern und kleine Erfolge bewusst wahrzunehmen."
-        },
-        {
-          "Text": "Halluzinationen, wie das Hören von Stimmen, können beängstigend sein. Aber man kann lernen, besser mit ihnen umzugehen. Es hilft, sich bewusst zu machen: _Ich habe Stimmen, aber sie bestimmen nicht über mich_."
-        },
-        {
-          "Text": "Manche Gedanken fühlen sich sehr real an, auch wenn andere sie nicht teilen. Es kann helfen, sie zu hinterfragen und neue Sichtweisen zu entdecken."
-        },
-        {
-          "Text": "Offene Gespräche und kleine Begegnungen tun gut. Auch wenn es schwerfällt: Beziehungen zu pflegen ist gut für die Gesundheit."
-        },
-        {
-          "Text": "Manche Tage sind schwer. Sich bewegen, etwas Schönes planen oder mit jemandem reden – das sind erste Schritte aus Stimmungskrisen."
-        },
-        {
-          "Text": "Alle diese Themen findest du hier in der Kiso App. Du entscheidest, welches Thema dich am meisten interessiert und worüber du mehr erfahren möchtest. In den Themen findest du Übungen für den Alltag, die du über das Herz oben rechts in deinen Favoriten speichern kannst. So kannst du immer wieder auf deine Lieblingsübungen zurückgreifen. Womit möchtest du beginnen?"
-        }
-      ],
-      "Gutes Leben": [
-        {
-          "Text": "Elyn Saks ist Professorin für Recht an der University of Southern California. Sie lebt mit Schizophrenie und hat ein Buch über ihr Leben geschrieben: *Die Mitte hält nicht mehr*. Elyn setzt sich stark gegen Vorurteile gegenüber psychischen Erkrankungen ein. Ihr Leben zeigt: Auch mit Psychosen kann man studieren, arbeiten und glücklich sein. Viele bekannte Menschen der Weltgeschichte hatten psychische Störungen - und haben trotzdem Großes erreicht."
-        },
-        {
-          "Text": "Lerne Marco kennen. Marco ist Arzt und behandelt Menschen mit Psychosen."
-        },
-        {
-          "Text": "Viele Menschen denken nach der Diagnose Schizophrenie, dass sie nie wieder ein \"normales\" Leben führen können. Marco hat viele Patientinnen und Patienten erlebt, die durch eine gute Behandlung, Therapie und eigene Strategien gelernt haben, mit ihrer Erkrankung umzugehen."
-        },
-        {
-          "Text": "Viele Menschen mit psychischen Erkrankungen führen ein erfülltes, sicheres und aktives Leben. Es gibt Therapien und Medikamente, die helfen. Aber auch außerhalb der Behandlung kann man selbst etwas tun. Schon kleine Schritte im Alltag können helfen:\n- jeden Tag zur gleichen Zeit aufstehen\n- sich etwas Leckeres kochen\n- eigene Strategien bei Stimmen oder anderen Halluzinationen entwickeln Was aber bedeutet eigentlich *ein gutes Leben*?"
-        },
-        {
-          "Question": "Was bedeutet ein gutes Leben für dich?",
-          "AnswerOptions": [
-            "Gesundheit",
-            "Liebe",
-            "Freundschaft",
-            "Familie",
-            "Sinn",
-            "Zufriedenheit",
-            "Wachstum",
-            "Freude",
-            "Selbstfürsorge",
-            "Struktur",
-            "Anerkennung"
-          ],
-          "AllowMultiple": true
-        },
-        {
-          "Question": "Was gehört für dich noch zu einem guten Leben dazu?",
-          "AnswerOptions": "free_text"
-        },
-        {
-          "Text": "Manche Menschen schaffen es, nach einer Psychose in ihren alten Beruf zurückzukehren. Für andere ist das nicht möglich, weil der Beruf zum Beispiel zu viel Stress bedeutet oder bestimmte Anforderungen schwer umzusetzen sind. Das ist kein Scheitern, sondern eine Folge der Erkrankung."
-        },
-        {
-          "Text": "Es ist wichtig zu wissen: Nicht jeder Mensch mit einer Psychose kann oder muss \"große\" Erfolge erreichen. Es gibt kein bestimmtes Ziel, das alle erreichen müssen. Für manche bedeutet ein erfülltes Leben, wieder alleine einkaufen zu können, für andere, Zeit mit der Familie zu verbringen oder eine neue Aufgabe zu finden, die Sinn gibt. Jeder Weg ist individuell."
-        }
-      ],
-      "Leben mit Psychosen": [
-        {
-          "Text": "Lerne Joke kennen. Joke lebt seit 2012 mit Schizophrenie und macht Aufklärungsarbeit. Du erfährst, wie sie ihr Leben trotz und mit der Diagnose Schizophrenie aktiv gestaltet."
-        },
-        {
-          "Text": "Joke erzählt davon, wie sie gelernt hat, mit ihrer Diagnose Schizophrenie zu leben, ohne dass sie ihr Leben bestimmt. Ihr hilft es, sich die Schizophrenie bildlich, als Person *Mister Schi*, vorzustellen. *Mister Schi* ist Teil ihres Lebens. Sie entscheidet aber selbst, wann sie ihn in ihr Leben lässt, damit sie am Leben teilnehmen kann."
-        },
-        {
-          "Question": "Wenn du deiner Diagnose ein Bild geben müsstest, welches wäre das? Hast du eine Idee?",
-          "AnswerOptions": "free_text"
-        },
-        {
-          "Text": "_Deine Eingaben bleiben sicher in der Kiso App gespeichert und nur du kannst sie sehen. Deine Antworten bei Übungen kannst du dir immer wieder ansehen, durchlesen und verändern._"
-        }
-      ],
-      "Atemballon": [
-        {
-          "Text": "In Momenten von Stress, Anspannung oder Unruhe vergessen wir oft das Naheliegendste: unseren Atem. Wenn wir lernen, unseren Atem bewusst wahrzunehmen, kann er zu einer Quelle der Ruhe werden. Jetzt laden wir dich zu einer kleinen Atemübung ein, die dir hilft, bewusster zu atmen. Dabei atmest du tief in deine eigene Mitte, um Stress und Anspannung loszulassen."
-        },
-        {
-          "Text": "Stell dir vor, dein Atem ist wie ein Ballon in deinem Bauch. Atme tief ein und spür, wie sich dein Bauchraum mit Luft füllt, genauso wie ein Ballon, der sich langsam aufbläht. Halte den Atem kurz an und spür, wie sich die Luft in deinem Inneren ausdehnt. Dann lass die Luft langsam wieder heraus, während sich der Ballon zusammenzieht. Du kannst die Übung so oft wiederholen wie du möchtest. Danach kannst du mit der nächsten Übung **Gutes Leben** auf der Startseite weitermachen."
+          "Text": "Manchmal hilft es, sich auf andere Dinge zu konzentrieren, wenn belastende oder ungewöhnliche Gedanken auftauchen. - Zähle, wie viele Pflanzen du in der Wohnung hast - Zähle, wie viele Bücher du in der Wohnung hast - Zähle, wie viele Lichtschalter du in der Wohnung hast - Zähle, wie viele Autos an dir vorbei fahren"
         }
       ]
     }
@@ -3816,12 +3987,12 @@
     "Umgang mit Bildern": {
       "Strategien prüfen": [
         {
-          "Text": "Beobachte im Alltag, was dir bei Halluzinationen hilft. <u>Halte dafür fest:</u> - Wann hattest du eine Halluzination? Was ist vorher passiert? War es sehr laut? Warst du angespannt? Gab es einen Konflikt?\n- Was hast du gesehen?\n- Wie hast du reagiert?\n- War deine Reaktion hilfreich?"
+          "Text": "Beobachte im Alltag, was dir bei Halluzinationen hilft. Halte dafür fest: - Wann hattest du eine Halluzination? Was ist vorher passiert? War es sehr laut? Warst du angespannt? Gab es einen Konflikt? - Was hast du gesehen? - Wie hast du reagiert? - War deine Reaktion hilfreich?"
         }
       ],
       "Prüfen was man sieht": [
         {
-          "Text": "Wenn du dir nicht ganz sicher bist, ob du eine Halluzination siehst, kannst du deine Wahrnehmung prüfen. Manchmal helfen kleine Tests, Bilder besser einzuordnen. - Blinzle oder schaue kurz weg. Ist das Bild noch da?\n- Drehe langsam deinen Kopf. Verändert es sich?\n- Wenn du dich sicher damit fühlst, taste mit Hand. Spürst du etwas? Halluzinationen lassen sich oft nicht durch Ändern der Blickrichtung oder Blinzeln beeinflussen. Manchmal kann man Halluzinationen spüren. Oft lassen sie sich aber nicht ertasten."
+          "Text": "Wenn du dir nicht ganz sicher bist, ob du eine Halluzination siehst, kannst du deine Wahrnehmung prüfen. Manchmal helfen kleine Tests, Bilder besser einzuordnen. - Blinzle oder schaue kurz weg. Ist das Bild noch da? - Drehe langsam deinen Kopf. Verändert es sich? - Wenn du dich sicher damit fühlst, taste mit Hand. Spürst du etwas? Halluzinationen lassen sich oft nicht durch Ändern der Blickrichtung oder Blinzeln beeinflussen. Manchmal kann man Halluzinationen spüren. Oft lassen sie sich aber nicht ertasten."
         },
         {
           "Text": "Du kannst auch ein Foto mit deinem Handy machen. Vergleiche dann das, was du siehst, mit dem Foto. Wenn du nicht alleine bist, frage eine Vertrauensperson: \"Ich bin mir nicht sicher, ob meine Wahrnehmung stimmt. Siehst du das auch?\" Alle Tipps findest du nochmal in der Checkliste auf der nächsten Seite."
@@ -3889,13 +4060,13 @@
       ],
       "Achtsames Beobachten": [
         {
-          "Text": "Lass uns ein Experiment machen: _Denke jetzt bitte <u>nicht</u> an einen rosa Elefanten._ Wahrscheinlich siehst du ihn sofort vor dir. Wenn du versuchst, etwas bewusst nicht zu sehen, wird es meistens stärker."
+          "Text": "Lass uns ein Experiment machen: _Denke jetzt bitte nicht an einen rosa Elefanten._ Wahrscheinlich siehst du ihn sofort vor dir. Wenn du versuchst, etwas bewusst nicht zu sehen, wird es meistens stärker."
         },
         {
           "Text": "So ähnlich ist es mit Halluzinationen: Je mehr man sie wegdrückt, desto stärker können sie werden. Statt visuelle Halluzinationen zu bekämpfen, kannst du sie auch achtsam beobachten. Das heißt, du versuchst das was du siehst, einfach wahrzunehmen, ohne es zu bewerten. Das nimmt den Bildern oder Formen oft den Schrecken."
         },
         {
-          "Text": "Versuche deinen Halluzinationen wie ein neugieriger Forscher zu begegnen. - Atme tief ein und langsam wieder aus\n- Betrachte deine Halluzination, ohne sie zu bewerten\n- Beschreibe innerlich die Größe, Farbe und Form: Ist die Halluzination farblos oder farbig? Welche Form hat sie? Bleibt sie stehen oder bewegt sie sich? Langsam oder schnell?\n- Nimm einfach nur wahr, was da ist\n- Wenn du Angst spürst, konzentriere dich auf deinen Atem"
+          "Text": "Versuche deinen Halluzinationen wie ein neugieriger Forscher zu begegnen. - Atme tief ein und langsam wieder aus - Betrachte deine Halluzination, ohne sie zu bewerten - Beschreibe innerlich die Größe, Farbe und Form: Ist die Halluzination farblos oder farbig? Welche Form hat sie? Bleibt sie stehen oder bewegt sie sich? Langsam oder schnell? - Nimm einfach nur wahr, was da ist - Wenn du Angst spürst, konzentriere dich auf deinen Atem"
         }
       ],
       "Tipps bei visuellen Halluzinationen": [
@@ -3916,14 +4087,14 @@
           "Text": "Gleich wirst du eine besondere Achtsamkeitsübung kennenlernen. Darin geht es um den Umgang mit Stimmen – aber auf eine ungewohnte, vielleicht sogar überraschende Weise."
         },
         {
-          "Text": "Bevor du aber mit der Übung beginnst, nimm dir einen Moment, um in deinen Körper hineinzuspüren. - Wie fühlst du dich gerade körperlich?\n- Gibt es Anspannung, Unruhe oder bestimmte Empfindungen? Nimm einfach wahr, was da ist – ohne es zu bewerten."
+          "Text": "Bevor du aber mit der Übung beginnst, nimm dir einen Moment, um in deinen Körper hineinzuspüren. - Wie fühlst du dich gerade körperlich? - Gibt es Anspannung, Unruhe oder bestimmte Empfindungen? Nimm einfach wahr, was da ist – ohne es zu bewerten."
         },
         {
           "Question": "So geht es mir gerade:",
           "AnswerOptions": "free_text"
         },
         {
-          "Text": "Nimm dir einen Moment Zeit, um in deinen Körper hineinzuspüren. - Spürst du irgendwo Anspannung oder Unruhe?\n- Fühlt sich dein Körper eher entspannt oder eher angespannt an?\n- Hat sich während der Übung etwas verändert? Es geht nicht darum, etwas zu bewerten – nur darum, wahrzunehmen, was gerade da ist."
+          "Text": "Nimm dir einen Moment Zeit, um in deinen Körper hineinzuspüren. - Spürst du irgendwo Anspannung oder Unruhe? - Fühlt sich dein Körper eher entspannt oder eher angespannt an? - Hat sich während der Übung etwas verändert? Es geht nicht darum, etwas zu bewerten – nur darum, wahrzunehmen, was gerade da ist."
         },
         {
           "Question": "So geht es mir jetzt:",
@@ -3977,43 +4148,6 @@
         {
           "Question": "Und wann warst du heute achtsam, also hast Dinge bewusst wahrgenommen, ohne sie zu bewerten?",
           "AnswerOptions": "free_text"
-        }
-      ],
-      "Rosinenübung": [
-        {
-          "Text": "Lass uns Achtsamkeit üben. Du brauchst dafür eine Rosine. Wenn du keine Rosinen zu Hause hast, kannst du auch eine Nuss oder ein Stück Obst verwenden. Es geht darum, etwas Bekanntes mit allen Sinnen neu zu erfahren."
-        },
-        {
-          "Text": "Atme ein paar mal ruhig ein und aus. Nimm die Rosine in die Hand und schau sie genau an. Wie ist die Form? Die Farbe? Wenn du sie hoch hältst und bewegst, was kannst du beobachten?"
-        },
-        {
-          "Text": "Achte jetzt auf deine Finger. Fühle die Form der Rosine, ihre Oberfläche, ihr Gewicht in deiner Hand oder zwischen den Fingerkuppen"
-        },
-        {
-          "Text": "Rieche jetzt an der Rosine. Nimm den Duft bewusst wahr. Wie würdest du ihn jemandem beschreiben?"
-        },
-        {
-          "Text": "Lege die Rosine in den Mund, ohne sofort zu kauen. Wo in deinem Mund nimmst du den Geschmack wahr? Kaue erst dann langsam, spüre den Geschmack, bevor du sie hinunterschluckst."
-        },
-        {
-          "Question": "Was konntest du beobachten?",
-          "AnswerOptions": "free_text"
-        },
-        {
-          "Question": "**Wie ging es dir mit der Übung?**"
-        },
-        {
-          "Branch": [
-            {
-              "Ich bin immer wieder von meinen Gedanken abgelenkt worden": "Halluzinationen - Rosinen - A"
-            },
-            {
-              "Ich konnte Details besser wahrnehmen": "Halluzinationen - Rosinen - B"
-            },
-            {
-              "Die Übung war anstrengend": "Halluzinationen - Rosinen - C"
-            }
-          ]
         }
       ],
       "Was ist Achtsamkeit?": [
@@ -4072,12 +4206,49 @@
           "Question": "Fällt dir noch ein inneres Bild ein, um Abstand zu den Stimmen zu schaffen?",
           "AnswerOptions": "free_text"
         }
+      ],
+      "Rosinenübung": [
+        {
+          "Text": "Lass uns Achtsamkeit üben. Du brauchst dafür eine Rosine. Wenn du keine Rosinen zu Hause hast, kannst du auch eine Nuss oder ein Stück Obst verwenden. Es geht darum, etwas Bekanntes mit allen Sinnen neu zu erfahren."
+        },
+        {
+          "Text": "Atme ein paar mal ruhig ein und aus. **Nimm die Rosine in die Hand und schau sie genau an.** Wie ist die Form? Die Farbe? Wenn du sie hoch hältst und bewegst, was kannst du beobachten?"
+        },
+        {
+          "Text": "**Achte jetzt auf deine Finger.** Fühle die Form der Rosine, ihre Oberfläche, ihr Gewicht in deiner Hand oder zwischen den Fingerkuppen."
+        },
+        {
+          "Text": "**Rieche jetzt an der Rosine.** Nimm den Duft bewusst wahr. Wie würdest du ihn jemandem beschreiben?"
+        },
+        {
+          "Text": "**Lege die Rosine in den Mund, ohne sofort zu kauen.** Wo in deinem Mund nimmst du den Geschmack wahr? Kaue erst dann langsam, spüre den Geschmack, bevor du sie hinunterschluckst."
+        },
+        {
+          "Question": "Was konntest du beobachten?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Question": "**Wie ging es dir mit der Übung?**"
+        },
+        {
+          "Branch": [
+            {
+              "Ich bin immer wieder von meinen Gedanken abgelenkt worden": "Halluzinationen - Rosinen - A"
+            },
+            {
+              "Ich konnte Details besser wahrnehmen": "Halluzinationen - Rosinen - B"
+            },
+            {
+              "Die Übung war anstrengend": "Halluzinationen - Rosinen - C"
+            }
+          ]
+        }
       ]
     },
     "Was sind Halluzinationen?": {
       "Ablenken mit Geräuschen": [
         {
-          "Text": "Wenn du Stimmen hörst oder andere Geräusche wahrnimmst, die dich belasten, kann es helfen, dich bewusst mit anderen Klängen abzulenken. Zum Beispiel mit\n- Musik,\n- Naturgeräuschen,\n- einem Hörbuch\n- oder deiner eigenen Stimme. So kannst du deine Aufmerksamkeit auf etwas anderes richten und dir eine kleine Pause verschaffen."
+          "Text": "Wenn du Stimmen hörst oder andere Geräusche wahrnimmst, die dich belasten, kann es helfen, dich bewusst mit anderen Klängen abzulenken. Zum Beispiel mit - Musik, - Naturgeräuschen, - einem Hörbuch - oder deiner eigenen Stimme. So kannst du deine Aufmerksamkeit auf etwas anderes richten und dir eine kleine Pause verschaffen."
         },
         {
           "Text": "Versuche, von 100 runter zu zählen, bis du bei Null angekommen bist. Auf diese Weise lässt sich der Einfluss der Stimmen kurz unterbrechen und deine Aufmerksamkeit umlenken."
@@ -4153,7 +4324,7 @@
           "AllowMultiple": false
         },
         {
-          "Text": "**Dieser Satz stimmt nicht.** Halluzinationen können alle Sinne betreffen – z. B. Hören, Riechen, Schmecken oder Tasten. Die häufigsten Halluzinationen bei Schizophrenie sind akustische Halluzinationen, also zum Beispiel das Hören von Stimmen."
+          "Text": "**Dieser Satz stimmt nicht.** Halluzinationen können alle Sinne betreffen – z. B. Hören, Riechen, Schmecken oder Tasten. Die häufigsten Halluzinationen bei Schizophrenie sind akustische Halluzinationen, also zum Beispiel das Hören von Stimmen."
         },
         {
           "Question": "Wer im Dunkeln denkt, eine Gestalt zu sehen, die sich bei näherem Hinsehen als Kleiderhaufen entpuppt, erlebt eine Halluzination.",
@@ -4164,7 +4335,7 @@
           "AllowMultiple": false
         },
         {
-          "Text": "**Dieser Satz stimmt nicht.** Das ist eine **Fehlwahrnehmung** – es gibt einen realen Reiz (der Kleiderhaufen), der vom Gehirn zunächst falsch interpretiert wird."
+          "Text": "**Dieser Satz stimmt nicht.** Das ist eine **Fehlwahrnehmung** – es gibt einen realen Reiz (der Kleiderhaufen), der vom Gehirn zunächst falsch interpretiert wird."
         }
       ],
       "Wie fühlen sich Halluzinationen an?": [
@@ -4269,7 +4440,7 @@
           "AllowMultiple": false
         },
         {
-          "Text": "Halluzinationen sind ein Phänomen, das viele Menschen erleben können, unabhängig davon, ob sie eine psychische Erkrankung haben.  Sie können durch verschiedene Faktoren wie Stress, Schlafmangel oder psychische Belastungen ausgelöst werden."
+          "Text": "Halluzinationen sind ein Phänomen, das viele Menschen erleben können, unabhängig davon, ob sie eine psychische Erkrankung haben. Sie können durch verschiedene Faktoren wie Stress, Schlafmangel oder psychische Belastungen ausgelöst werden."
         },
         {
           "Text": "Der Umgang mit Halluzinationen erfordert Verständnis und oft auch Unterstützung. Aber viele Menschen lernen, damit umzugehen und ihre Erfahrungen zu verstehen. Es ist wichtig zu wissen, dass Halluzinationen nicht das Leben bestimmen müssen und dass es Wege gibt, mit ihnen zu leben und sie zu integrieren."
@@ -4328,7 +4499,7 @@
       ],
       "Körperliche Ablenkung": [
         {
-          "Text": "Körperliche Aktivitäten oder Übungen können dabei helfen, sich von lästigen Stimmen abzulenken. Hier ein paar Beispiele für Körperübungen: - Aufstehen\n- Linke Hand auf rechte Schulter legen\n- Rechte auf die linke Schulter legen\n- Ein Bein anheben\n- Bein kreisen lassen"
+          "Text": "Körperliche Aktivitäten oder Übungen können dabei helfen, sich von lästigen Stimmen abzulenken. Hier ein paar Beispiele für Körperübungen: - Aufstehen - Linke Hand auf rechte Schulter legen - Rechte auf die linke Schulter legen - Ein Bein anheben - Bein kreisen lassen"
         },
         {
           "Question": "Welche Körperübung möchtest du nutzen, um dich in den nächsten Tagen abzulenken, wenn Stimmen auftauchen?",
@@ -4343,7 +4514,7 @@
           "Text": "**Wie funktioniert's?** Wenn eine Stimme auftaucht, entgegne ihr freundlich, dass du gerade keine Zeit hast, etwas anderes machen wolltest, dass du dir aber am Abend 15 Minuten Zeit für sie nimmst und ganz aufmerksam zuhörst. Diese Zeit solltest du dir dann wirklich nehmen, auch wenn dann vielleicht gar keine Stimmen kommen."
         },
         {
-          "Text": "Sollten in deiner \"Stimmenzeit\" Stimmen auftreten, ist ein freundlicher und trotzdem selbstbewusster Umgang mit den Stimmen oft langfristig am hilfreichsten. - Höre zuerst zu: Was sagt die Stimme? \n- Entgegne der Stimme, dass du gehört hast, was sie zu dir gesagt hat: _\"Ich habe gehört, dass…\"_\n- Wenn es für dich passt, dann stimme der Stimme teilweise zu: _\"Ich denke manchmal auch, dass…\"_ oder _\"Ich fühle mich manchmal tatsächlich so, als ob…\"_\n- Finde Aspekte, bei denen du nicht zustimmst: _\"Ich sehe das trotzdem etwas anders als du, nämlich wegen diesem Detail:….\"_\n- Nenne Gründe, warum du das anders siehst. Bleib dabei freundlich, antworte kurz und wiederhole alle deine Antworten mehrmals: _\"Ich sehe das anders, weil 1. …, 2. …, 3. …\"_\n- Am Ende der eingeplanten Zeit, sage zur Stimme: _\"Ich habe nun alles gesagt und verabschiede mich jetzt\"_ Mache dann etwas, was du dir vorher überlegt hast, z.B. einen Freund anrufen, einen Film schauen, Sport machen."
+          "Text": "Sollten in deiner \"Stimmenzeit\" Stimmen auftreten, ist ein freundlicher und trotzdem selbstbewusster Umgang mit den Stimmen oft langfristig am hilfreichsten. - Höre zuerst zu: Was sagt die Stimme? - Entgegne der Stimme, dass du gehört hast, was sie zu dir gesagt hat: _\"Ich habe gehört, dass…\"_ - Wenn es für dich passt, dann stimme der Stimme teilweise zu: _\"Ich denke manchmal auch, dass…\"_ oder _\"Ich fühle mich manchmal tatsächlich so, als ob…\"_ - Finde Aspekte, bei denen du nicht zustimmst: _\"Ich sehe das trotzdem etwas anders als du, nämlich wegen diesem Detail:….\"_ - Nenne Gründe, warum du das anders siehst. Bleib dabei freundlich, antworte kurz und wiederhole alle deine Antworten mehrmals: _\"Ich sehe das anders, weil 1. …, 2. …, 3. …\"_ - Am Ende der eingeplanten Zeit, sage zur Stimme: _\"Ich habe nun alles gesagt und verabschiede mich jetzt\"_ Mache dann etwas, was du dir vorher überlegt hast, z.B. einen Freund anrufen, einen Film schauen, Sport machen."
         }
       ],
       "Bodyscan: Körperwahrnehmung": [
@@ -4356,7 +4527,7 @@
           "Text": "Wenn eine oder mehrere Stimmen zu laut und beängstigend werden, kann es helfen, sie in die Schranken zu weisen."
         },
         {
-          "Text": "**Wie funktioniert's?** - Fällt dir ein Satz ein, den du zu deinen Stimmen sagen kannst?\n- Nur du selbst entscheidest, was du tun möchtest! Nicht die Stimmen!\n- Wenn du nicht einverstanden bist mit dem, was die Stimmen zu dir sagen, ist es dein gutes Recht, nicht danach zu handeln.\n- Würdest du alles tun, was jemand anderes zu dir sagt? Vermutlich nicht. Warum also sollte dies in Bezug auf die Stimmen anders sein?"
+          "Text": "**Wie funktioniert's?** - Fällt dir ein Satz ein, den du zu deinen Stimmen sagen kannst? - Nur du selbst entscheidest, was du tun möchtest! Nicht die Stimmen! - Wenn du nicht einverstanden bist mit dem, was die Stimmen zu dir sagen, ist es dein gutes Recht, nicht danach zu handeln. - Würdest du alles tun, was jemand anderes zu dir sagt? Vermutlich nicht. Warum also sollte dies in Bezug auf die Stimmen anders sein?"
         },
         {
           "Question": "Fällt dir ein Satz ein, mit dem du deine Stimme(n) in die Schranken weisen könntest?",
@@ -4411,7 +4582,7 @@
           "Text": "Die gelbe Karte ist eine gute Übung, um dich von belastenden Stimmen zu distanzieren. Ziel ist es, die scheinbar übermächtigen Stimmen mit kühlem Kopf zu hinterfragen."
         },
         {
-          "Text": "**Wie funktioniert's?** Kaufe oder bastle dir eine kleine gelbe Papierkarte. Auf diese Karte notierst du folgende Fragen: 1. Woher weiß ich, dass die Stimme recht hat? Gibt es dafür Beweise? Kenne ich die Wahrheit?\n2. Würden Menschen, denen ich vertraue, die Situation vielleicht anders bewerten? Bilde ich mir vielleicht zu schnell eine Meinung? Beurteile ich fair und sachlich?\n3. Reagiere ich verhältnismäßig? Verbaue ich mir durch Überreaktion etwas? Erst denken – dann handeln!"
+          "Text": "**Wie funktioniert's?** Kaufe oder bastle dir eine kleine gelbe Papierkarte. Auf diese Karte notierst du folgende Fragen: 1. Woher weiß ich, dass die Stimme recht hat? Gibt es dafür Beweise? Kenne ich die Wahrheit? 2. Würden Menschen, denen ich vertraue, die Situation vielleicht anders bewerten? Bilde ich mir vielleicht zu schnell eine Meinung? Beurteile ich fair und sachlich? 3. Reagiere ich verhältnismäßig? Verbaue ich mir durch Überreaktion etwas? Erst denken – dann handeln!"
         },
         {
           "Text": "Bevor du mit der App weitermachst, nimm dir ein gelbes Blatt Papier und bastle dir deine gelbe Karte. Wenn du kein gelbes Papier zu Hause hast, dann überlege einmal, wann du heute oder in den nächsten Tagen Zeit hast, gelbes Papier oder eine gelbe Karte zu kaufen und zu basteln. Die Karte kannst du dir in deine Brieftasche stecken und jederzeit drauf schauen, wenn du ein bisschen Unterstützung brauchst. Beantworte dann einfach für dich die Fragen auf der gelben Karte. Viel Erfolg!"
@@ -4486,10 +4657,10 @@
           "AllowMultiple": true
         },
         {
-          "Text": "Formulierungen, an denen man ungünstige und <u>nicht</u> hilfreiche automatische Gedanken erkennt sind Verallgemeinerungen wie _alle_, _nichts_ oder _nie_ oder Worte wie _sollte_, _muss_ oder _müsste_. Hilfreichere Gedanken starten eher z.B. mit _ich möchte_ oder _ich hätte lieber_."
+          "Text": "Formulierungen, an denen man ungünstige und nicht hilfreiche automatische Gedanken erkennt sind Verallgemeinerungen wie _alle_, _nichts_ oder _nie_ oder Worte wie _sollte_, _muss_ oder _müsste_. Hilfreichere Gedanken starten eher z.B. mit _ich möchte_ oder _ich hätte lieber_."
         },
         {
-          "Text": "Wenn du einen negativen automatischen Gedanken erkennst, kannst du dich fragen: - Ist der Gedanke richtig?\n- Ist der Gedanke hilfreich?\n- Gibt es andere mögliche Erklärungen, die weniger bedrohlich sind?"
+          "Text": "Wenn du einen negativen automatischen Gedanken erkennst, kannst du dich fragen: - Ist der Gedanke richtig? - Ist der Gedanke hilfreich? - Gibt es andere mögliche Erklärungen, die weniger bedrohlich sind?"
         }
       ],
       "Hilfreiche Gedanken entwickeln": [
@@ -4553,6 +4724,9 @@
         {
           "Question": "Welchen hilfreichen Gedanken möchtest du dir dafür festhalten?",
           "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Gibt es jemanden, mit dem du diesen hilfreichen Gedanken teilen möchtest? Manchmal hilft es, ihn laut auszusprechen."
         }
       ]
     }
@@ -4576,7 +4750,7 @@
           "Text": "Im Durchschnitt benötigt ein gesunder Erwachsener etwa **15 Minuten** um einzuschlafen. Eine deutlich kürzere Einschlafzeit kann auf Schlafmangel oder starke Erschöpfung hindeuten. Wenn man regelmäßig deutlich länger zum Einschlafen braucht, kann das ein Hinweis auf eine Einschlafstörung sein."
         },
         {
-          "Text": "**Einschlafhilfen** können das Einschlafen verbessern. Dazu zählen beispielsweise: - ein fester Schlafrhythmus\n- kein Koffein mehr ab dem Nachmittag\n- Entspannungstechniken (z.B. Atemübungen)\n- eine dunkle, ruhige und kühle Schlafumgebung"
+          "Text": "**Einschlafhilfen** können das Einschlafen verbessern. Dazu zählen beispielsweise: - ein fester Schlafrhythmus - kein Koffein mehr ab dem Nachmittag - Entspannungstechniken (z.B. Atemübungen) - eine dunkle, ruhige und kühle Schlafumgebung"
         },
         {
           "Text": "Außerdem kann es entspannend wirken, zum Einschlafen etwas anzuhören. Ruhige und unaufgeregte Audios können Gedankenkreisen mindern, die Entspannung fördern und schaffen anders als Bildschirmmedien (wie z.B. ein Fernseher oder Smartphone) einen sanften Übergang in den Schlaf. Wir laden Dich ein, in den nächsten Übungen vier verschiedene Audios zum Einschlafen auszuprobieren."
@@ -4584,22 +4758,22 @@
       ],
       "Einschlafen mit Naturgeräuschen": [
         {
-          "Text": "Naturgeräusche können uns helfen, zu entspannen und schneller in den Schlaf zu finden. Versuche es doch einmal mit Wellenrauschen oder Waldgeräuschen. Hier hören:  - Spotify: [Naturgeräusche](https://open.spotify.com/track/2cs8roLnUWTHwFhnxdcbkX?si=a8b9186a0ee94eb4)\n- YouTube: [Naturgeräusche](https://www.youtube.com/watch?v=PzSe8fAveFk&list=PLXTt7hgknDzNnV7XK0p9DvnNxb-9NBYb_&index=1) \n_Tipp: Wenn du Spotify oder YouTube verwendest, kannst du einen Sleeptimer bzw. Ruhemodus-Timer einstellen. Damit hört Spotify bzw. YouTube zum Beispiel nach 10 oder 15 Minuten automatisch auf Musik oder andere Audios abzuspielen._"
+          "Text": "Naturgeräusche können uns helfen, zu entspannen und schneller in den Schlaf zu finden. Versuche es doch einmal mit Wellenrauschen oder Waldgeräuschen. Hier hören: - Spotify: - YouTube: _Tipp: Wenn du Spotify oder YouTube verwendest, kannst du einen Sleeptimer bzw. Ruhemodus-Timer einstellen. Damit hört Spotify bzw. YouTube zum Beispiel nach 10 oder 15 Minuten automatisch auf Musik oder andere Audios abzuspielen._"
         }
       ],
       "Einschlafen mit Musik": [
         {
-          "Text": "Hörst du gerne Musik? Einige ruhige, oft klassische Musikstücke können dir beim Einschlafen helfen. Der Komponist Max Richter hat 2015 ein über 8-stündiges Album veröffentlicht, das sich mit Schlaf beschäftigt. Theoretisch könntest du damit einschlafen und am nächsten Morgen wieder aufwachen. Hier hören:  - Spotify: [Sleep von Max Richter](https://open.spotify.com/album/0JLN7JryQ2T7lBEYIrSQF1?si=_jhkYDNlQ56SwSHKm-ghUw)\n- YouTube: [Sleep von Max Richter](https://www.youtube.com/watch?v=gYQfsGYI1Y4&list=PLJXRgnc7mCv-I6RYFnPTnr6o7syzlscaa&index=1) Wenn du auf die Links klickst, gelangst du zu Spotify oder YouTube."
+          "Text": "Hörst du gerne Musik? Einige ruhige, oft klassische Musikstücke können dir beim Einschlafen helfen. Der Komponist Max Richter hat 2015 ein über 8-stündiges Album veröffentlicht, das sich mit Schlaf beschäftigt. Theoretisch könntest du damit einschlafen und am nächsten Morgen wieder aufwachen. Hier hören: - Spotify: - YouTube: Wenn du auf die Links klickst, gelangst du zu Spotify oder YouTube."
         }
       ],
       "Einschlafen mit Wikipedia": [
         {
-          "Text": "Für alle, die es noch eine Nummer langweiliger mögen: Zum Wegdösen kannst du dir auch gaaaanz langsam Wikipedia-Einträge vorlesen lassen, wie zum Beispiel über den Marianengraben, Raclette oder wandernde Felsen. Wenn du auf die Links unten klickst, gelangst du zu Spotify oder YouTube. Hier hören:  - Spotify: [Einschlafen mit Wikipedia](https://open.spotify.com/show/1y08HOfXxqOG5xjxiZX6Hu?si=02f256f4daef47e4)\n- YouTube: [Einschlafen mit Wikipedia](https://www.youtube.com/watch?v=5lR77DPThhc&list=PLzGKL9cSFNkZ2VLFJ96_X9tE5d_7sogXY&index=3)"
+          "Text": "Für alle, die es noch eine Nummer langweiliger mögen: Zum Wegdösen kannst du dir auch gaaaanz langsam Wikipedia-Einträge vorlesen lassen, wie zum Beispiel über den Marianengraben, Raclette oder wandernde Felsen. Wenn du auf die Links unten klickst, gelangst du zu Spotify oder YouTube. Hier hören: - Spotify: - YouTube:"
         }
       ],
       "Die Märchentante": [
         {
-          "Text": "Mach es Dir in Deinem Bett gemütlich und lasse Dich von der Märchentante ins Reich der Träume begleiten. Hier hören:  - Spotify: [Die Märchentante](https://open.spotify.com/show/36a2VZc2afkrJHDWQJUdBM?si=8ff6f063be4c4e42)\n- YouTube: [Die Märchentante](https://www.youtube.com/watch?v=ZfvLC7K7tNo&list=PLu_Gxax56HY_HB36G8xjoq5ZOUwzDUpAL) \n_Tipp: Wenn du Spotify oder YouTube verwendest, kannst du einen Sleeptimer bzw. Ruhemodus-Timer einstellen. Damit hört Spotify bzw. YouTube zum Beispiel nach 10 oder 15 Minuten automatisch auf Musik oder andere Audios abzuspielen._"
+          "Text": "Mach es Dir in Deinem Bett gemütlich und lasse Dich von der Märchentante ins Reich der Träume begleiten. Hier hören: - Spotify: - YouTube: _Tipp: Wenn du Spotify oder YouTube verwendest, kannst du einen Sleeptimer bzw. Ruhemodus-Timer einstellen. Damit hört Spotify bzw. YouTube zum Beispiel nach 10 oder 15 Minuten automatisch auf Musik oder andere Audios abzuspielen._"
         }
       ]
     },
@@ -4805,7 +4979,7 @@
       ],
       "Katzenbuckel": [
         {
-          "Text": "Diese Übung hilft beim Einschlafen, indem sie die Wirbelsäule dehnt und die Muskeln im Rücken und in den Schultern entspannt. So kannst du besser zur Ruhe kommen und dich auf den Schlaf vorbereiten. 1. Gehe auf alle viere, sodass deine Hände und Knie auf dem Boden sind.\n2. Halte deine Halswirbelsäule und dein Steißbein in einer geraden Linie.\n3. Wölbe deinen Rücken und deine Schultern, sodass ein Katzenbuckel entsteht.\n4. Atme ein und kehre langsam in die Ausgangsposition zurück. Wiederhole die Übung sieben bis acht mal."
+          "Text": "Diese Übung hilft beim Einschlafen, indem sie die Wirbelsäule dehnt und die Muskeln im Rücken und in den Schultern entspannt. So kannst du besser zur Ruhe kommen und dich auf den Schlaf vorbereiten. 1. Gehe auf alle viere, sodass deine Hände und Knie auf dem Boden sind. 2. Halte deine Halswirbelsäule und dein Steißbein in einer geraden Linie. 3. Wölbe deinen Rücken und deine Schultern, sodass ein Katzenbuckel entsteht. 4. Atme ein und kehre langsam in die Ausgangsposition zurück. Wiederhole die Übung sieben bis acht mal."
         }
       ],
       "Einschlafritual": [
@@ -4822,7 +4996,7 @@
           "Text": "Ein Schlaftee kann beruhigende Kräuter enthalten, die deinen Kopf entspannen und zur Vorbereitung auf den Schlaf beitragen. Zum Beispiel kann Baldrian-Tee unseren Schlaf fördern."
         },
         {
-          "Text": "**Überlege dir ein Einschlafritual, das du jeden Abend durchführen kannst.** Es sollte nicht zu kompliziert sein und möglichst viele Dinge beinhalten, von denen du weißt, dass sie dir gut tun und dich entspannen. <u>Zum Beispiel:</u> - Milch mit Honig trinken\n- Kerze anzünden\n- ein Bad nehmen\n- entspannende Musik hören\n- den Körper mit einer kleinen Übung dehnen\n- Tagebuch schreiben"
+          "Text": "**Überlege dir ein Einschlafritual, das du jeden Abend durchführen kannst.** Es sollte nicht zu kompliziert sein und möglichst viele Dinge beinhalten, von denen du weißt, dass sie dir gut tun und dich entspannen. Zum Beispiel: - Milch mit Honig trinken - Kerze anzünden - ein Bad nehmen - entspannende Musik hören - den Körper mit einer kleinen Übung dehnen - Tagebuch schreiben"
         },
         {
           "Question": "Wie könnte dein Einschlafritual aussehen?",
@@ -4836,35 +5010,10 @@
           "Text": "Ein Gedankenstuhl hilft dir dabei, das Grübeln an einen Ort außerhalb deines Betts zu verlagern, damit das Bett ein Ort der Ruhe wird."
         },
         {
-          "Text": "Wenn du nachts nicht aufhören kannst, über Probleme nachzudenken, oder wenn dir gute Ideen kommen und du Angst hast, sie bis zum nächsten Morgen zu vergessen: - Steh auf\n- Geh in ein anderes Zimmer, z.B. das Wohnzimmer\n- Setze dich dort auf einen bestimmten Stuhl oder Sessel Versuche, das Schlafzimmer zu vermeiden. Das hilft dir, das Schlafzimmer als Ort des Schlafes und nicht des Grübelns zu sehen. Schriftliche Notizen können auch helfen, die Gedanken zu klären. Du schaffst das!"
+          "Text": "Wenn du nachts nicht aufhören kannst, über Probleme nachzudenken, oder wenn dir gute Ideen kommen und du Angst hast, sie bis zum nächsten Morgen zu vergessen: - Steh auf - Geh in ein anderes Zimmer, z.B. das Wohnzimmer - Setze dich dort auf einen bestimmten Stuhl oder Sessel Versuche, das Schlafzimmer zu vermeiden. Das hilft dir, das Schlafzimmer als Ort des Schlafes und nicht des Grübelns zu sehen. Schriftliche Notizen können auch helfen, die Gedanken zu klären. Du schaffst das!"
         },
         {
           "Question": "Überlege einmal für dich: Welcher Stuhl in deiner Wohnung könnte zum Gedankenstuhl werden? Über was möchtest du dort nachdenken?",
-          "AnswerOptions": "free_text"
-        }
-      ],
-      "Gedankenstopp": [
-        {
-          "Text": "Ziel dieser Übung ist es, deine Grübelgedanken zu unterbrechen."
-        },
-        {
-          "Question": "Wenn du bemerkst, dass du nachts wieder wach liegst und grübelst, frage dich: **Ist es ein Problem, das JETZT gelöst werden muss?**"
-        },
-        {
-          "Branch": [
-            {
-              "Ja": "Schlaf - Gedankenstopp - Ja"
-            },
-            {
-              "Nein": "Schlaf - Gedankenstopp - Nein"
-            }
-          ]
-        },
-        {
-          "Text": "Überlege anschließend, welcher hilfreiche Gedanke dir beim Einschlafen helfen kann. Du kannst auch ein unaufgeregtes Hörbuch oder etwas anderes Ruhiges anhören, um leichter einzuschlafen."
-        },
-        {
-          "Question": "Wenn du möchtest, kannst du einen hilfreichen Gedanken hier eintragen:",
           "AnswerOptions": "free_text"
         }
       ],
@@ -4890,34 +5039,47 @@
           "Text": "Grübeln ist eigentlich ein Versuch, Probleme zu lösen. Allerdings denken wir beim Grübeln meistens nicht über ein bestimmtes Problem nach, sondern springen von einem Thema zum nächsten Thema, bis wir uns in sorgenvollen Gedanken verlieren. Die nächsten Übungen können dir dabei helfen, weniger zu grübeln."
         }
       ],
+      "Gedankenstopp": [
+        {
+          "Text": "Ziel dieser Übung ist es, deine Grübelgedanken zu unterbrechen."
+        },
+        {
+          "Question": "Wenn du bemerkst, dass du nachts wieder wach liegst und grübelst, frage dich: **Ist es ein Problem, das JETZT gelöst werden muss?**"
+        },
+        {
+          "Branch": [
+            {
+              "Ja": "Schlaf - Gedankenstopp - Ja"
+            },
+            {
+              "Nein": "Schlaf - Gedankenstopp - Nein"
+            }
+          ]
+        },
+        {
+          "Text": "Überlege anschließend, welcher hilfreiche Gedanke dir beim Einschlafen helfen kann. Du kannst auch ein unaufgeregtes Hörbuch oder etwas anderes Ruhiges anhören, um leichter einzuschlafen."
+        },
+        {
+          "Question": "Wenn du möchtest, kannst du einen hilfreichen Gedanken hier eintragen:",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Denke daran: **Übung macht den Meister!** Je öfter du den Gedankenstopp im Alltag übst, umso leichter wird es dir in Zukunft fallen, deine Grübelgedanken zu unterbrechen."
+        }
+      ],
       "Abstand zum Grübeln": [
         {
           "Text": "Lass uns ein Experiment machen: Denke in der nächsten Minute auf keinen Fall an die Zahl 8! Du darfst nicht daran denken! Die Zeit läuft!"
         },
         {
-          "Text": "- Betrachte dein inneres Geschehen, ohne einzugreifen oder dich dafür abzuwerten\n- Beobachte die Gedanken, wie sie wie Wolken am Himmel vorbeiziehen"
+          "Text": "- Betrachte dein inneres Geschehen, ohne einzugreifen oder dich dafür abzuwerten - Beobachte die Gedanken, wie sie wie Wolken am Himmel vorbeiziehen"
+        },
+        {
+          "Text": "Grübelgedanken kommen und gehen, wie Wolken am Himmel. Je öfter du übst, sie ziehen zu lassen, desto leichter wird es. Mach kleine Pausen im Alltag, wenn du merkst, dass du grübelst: im Bus, beim Essen, beim Zähneputzen oder Spazierengehen. So stärkst du deine Fähigkeit, Abstand zum Grübeln zu gewinnen."
         }
       ]
     },
     "Gedanklich entspannen": {
-      "Hilfreiche Schlafgedanken": [
-        {
-          "Text": "Wenn wir nicht schlafen können, fangen wir häufig an, uns zu sorgen. Wenn wir uns Sorgen, entstehen unangenehme Gefühle. Dagegen helfen positive und hilfreiche Schlafgedanken."
-        },
-        {
-          "Question": "Welche hilfreichen Gedanken möchtest du für dich mitnehmen?",
-          "AnswerOptions": [
-            "Nicht jeder Mensch braucht gleich viel Schlaf.",
-            "Ich hatte schon öfter schlechte Nächte und habe trotzdem den Tag gut geschafft.",
-            "Ich werde gleich zur Ruhe finden und einschlafen. Der Schlaf kommt schon noch."
-          ],
-          "AllowMultiple": true
-        },
-        {
-          "Question": "Fällt dir noch ein Gedanke ein, der dir beim Einschlafen helfen kann?",
-          "AnswerOptions": "free_text"
-        }
-      ],
       "Gedanken aufschreiben": [
         {
           "Text": "Eine gute Strategie, um vor dem Schlafen gedanklich zu entspannen, ist es, **Tagebuch** zu schreiben. Wenn du deine Gedanken in ein Tagebuch schreibst, kann dir das helfen, belastende Gedanken loszulassen und innerlich ruhiger zu werden. So kannst du besser einschlafen. Bevor du mir der nächsten Übung weitermachst, lege dir einmal Stift und Papier oder ein Notizbuch zurecht, um deine Gedanken vor dem Schlafengehen aufzuschreiben. Probiere es aus!"
@@ -4981,6 +5143,27 @@
         },
         {
           "Text": "Wenn wir uns über unser Wachliegen und nicht Abschalten können ärgern oder sorgen, dann kann es passieren, dass wir noch ängstlicher und angespannter werden. Durch die Anspannung liegen wir dann noch länger wach und können nicht einschlafen. Eine hilfreiche Strategie bei unangenehmen Gedanken und Gefühlen kann dann sein, durch ein Ruhebild positive Gedanken und angenehme Gefühle zu erzeugen. Probiere das mit der nächsten Übung gleich einmal aus."
+        }
+      ],
+      "Hilfreiche Schlafgedanken": [
+        {
+          "Text": "Wenn wir nicht schlafen können, fangen wir häufig an, uns zu sorgen. Wenn wir uns Sorgen, entstehen unangenehme Gefühle. Dagegen helfen positive und hilfreiche Schlafgedanken."
+        },
+        {
+          "Question": "Welche hilfreichen Gedanken möchtest du für dich mitnehmen?",
+          "AnswerOptions": [
+            "Nicht jeder Mensch braucht gleich viel Schlaf.",
+            "Ich hatte schon öfter schlechte Nächte und habe trotzdem den Tag gut geschafft.",
+            "Ich werde gleich zur Ruhe finden und einschlafen. Der Schlaf kommt schon noch."
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Question": "Fällt dir noch ein Gedanke ein, der dir beim Einschlafen helfen kann?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Gibt es jemanden, mit dem du diese hilfreichen Gedanken teilen möchtest? Manchmal hilft es, hilfreiche Gedanken mit Freunden, der Partnerin oder dem Partner oder der Familie zu besprechen. Sie können dich an diese Gedanken erinnern, wenn du sie selbst nicht mehr im Blick hast."
         }
       ]
     },
@@ -5058,49 +5241,6 @@
           "AllowMultiple": true
         }
       ],
-      "Was sind Schlafstörungen?": [
-        {
-          "Text": "Zu den Schlafstörungen zählen Probleme beim Einschlafen, Probleme beim Durchschlafen und zu frühes Aufwachen. In diesem Video lernst du mögliche Ursachen von Schlafstörungen kennen."
-        },
-        {
-          "Question": "Welche ungünstigen Schlafgewohnheiten kannst du bei dir beobachten?",
-          "AnswerOptions": [
-            "Lange im Bett liegen ohne zu schlafen",
-            "Fernsehen im Bett",
-            "Essen im Bett",
-            "Arbeiten im Bett",
-            "Handy oder Laptop im Bett",
-            "Unregelmäßige Schlafzeiten",
-            "Mittagsschlaf",
-            "Nichts davon"
-          ],
-          "AllowMultiple": true
-        },
-        {
-          "Question": "Welche dieser Schlafprobleme kannst du bei dir selbst beobachten?",
-          "AnswerOptions": [
-            "Ich schlafe zu wenig",
-            "Ich kann abends schwer einschlafen",
-            "Ich wache nachts oft auf",
-            "Ich wache zu früh auf und kann nicht mehr einschlafen",
-            "Nichts davon"
-          ],
-          "AllowMultiple": true
-        },
-        {
-          "Question": "Hast du belastende Gedanken, die dich vom Schlafen abhalten?",
-          "AnswerOptions": [
-            "Ja",
-            "Manchmal",
-            "Nein"
-          ],
-          "AllowMultiple": false
-        },
-        {
-          "Question": "Wenn du möchtest, kannst du dir einen dieser Gedanken aufschreiben:",
-          "AnswerOptions": "free_text"
-        }
-      ],
       "Wie viel Schlaf brauchen wir?": [
         {
           "Text": "Menschen unterscheiden sich darin, wie lange sie schlafen und wann sie am besten einschlafen und aufwachen. Im Video lernst du verschiedene Schlaftypen kennen."
@@ -5147,6 +5287,49 @@
         {
           "Text": "Erwachsene brauchen im Durchschnitt 7-9 Stunden Schlaf pro Nacht. Wenn du dir nicht ganz sicher bist, wie viel Schlaf du brauchst, versuche in den nächsten Tagen darauf zu achten, nach wie viel Stunden Schlaf du dich erholt fühlst. Versuche eine gute Einschlaf- und Aufwachzeit für dich zu finden und dich daran zu halten, auch am Wochenende."
         }
+      ],
+      "Was sind Schlafstörungen?": [
+        {
+          "Text": "Zu den Schlafstörungen zählen Probleme beim Einschlafen, Probleme beim Durchschlafen und zu frühes Aufwachen. In diesem Video lernst du mögliche Ursachen von Schlafstörungen kennen."
+        },
+        {
+          "Question": "Welche ungünstigen Schlafgewohnheiten kannst du bei dir beobachten?",
+          "AnswerOptions": [
+            "Lange im Bett liegen ohne zu schlafen",
+            "Fernsehen im Bett",
+            "Essen im Bett",
+            "Arbeiten im Bett",
+            "Handy oder Laptop im Bett",
+            "Unregelmäßige Schlafzeiten",
+            "Mittagsschlaf",
+            "Nichts davon"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Question": "Welche dieser Schlafprobleme kannst du bei dir selbst beobachten?",
+          "AnswerOptions": [
+            "Ich schlafe zu wenig",
+            "Ich kann abends schwer einschlafen",
+            "Ich wache nachts oft auf",
+            "Ich wache zu früh auf und kann nicht mehr einschlafen",
+            "Nichts davon"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Question": "Hast du belastende Gedanken, die dich vom Schlafen abhalten?",
+          "AnswerOptions": [
+            "Ja",
+            "Manchmal",
+            "Nein"
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "Question": "Wenn du möchtest, kannst du dir einen dieser Gedanken aufschreiben:",
+          "AnswerOptions": "free_text"
+        }
       ]
     }
   },
@@ -5166,7 +5349,7 @@
           "AllowMultiple": true
         },
         {
-          "Text": "Ein gesunder Selbstwert zeigt sich darin, dass wir uns selbst annehmen können – mit unseren Stärken und Schwächen. Zum Beispiel, wenn wir uns sagen: \"Ich bin okay, auch wenn ich heute unproduktiv war\" oder \"Ich darf auch mal unsicher sein\". **Selbstakzeptanz** und **Zufriedenheit** sind daher innere Merkmale von gesundem Selbstwert.  Minderwertigkeitsgefühle entstehen oft durch zu viel Selbstkritik, wenn wir sehr streng mit uns sind und zum Beispiel glauben, immer funktionieren zu müssen."
+          "Text": "Ein gesunder Selbstwert zeigt sich darin, dass wir uns selbst annehmen können – mit unseren Stärken und Schwächen. Zum Beispiel, wenn wir uns sagen: \"Ich bin okay, auch wenn ich heute unproduktiv war\" oder \"Ich darf auch mal unsicher sein\". **Selbstakzeptanz** und **Zufriedenheit** sind daher innere Merkmale von gesundem Selbstwert. Minderwertigkeitsgefühle entstehen oft durch zu viel Selbstkritik, wenn wir sehr streng mit uns sind und zum Beispiel glauben, immer funktionieren zu müssen."
         },
         {
           "Question": "Was könnten weitere innere Merkmale von Selbstwert sein?",
@@ -5227,7 +5410,7 @@
       ],
       "Äußere Merkmale von Selbstwert": [
         {
-          "Text": "Unser Selbstwertgefühl, also das, was wir über uns selbst denken und fühlen, beeinflusst viele Bereiche unseres Lebens: - wie wir uns in Beziehungen verhalten,\n- welche Entscheidungen wir treffen\n- und wie andere uns sehen."
+          "Text": "Unser Selbstwertgefühl, also das, was wir über uns selbst denken und fühlen, beeinflusst viele Bereiche unseres Lebens: - wie wir uns in Beziehungen verhalten, - welche Entscheidungen wir treffen - und wie andere uns sehen."
         },
         {
           "Text": "Oft merken wir gar nicht, dass das **innere Bild**, das wir von uns haben – was wir über unsere Stärken, unseren Wert und unser Leben glauben – unser **äußeres Verhalten** beeinflusst. Unsere Körperhaltung, Mimik, Gestik und Stimme zeigen diese inneren Überzeugungen."
@@ -5304,9 +5487,9 @@
           "Text": "Obwohl wir das oft denken, ist unser Wert unabhängig von der Einschätzung anderer Menschen. Und auch unabhängig davon, ob wir einen guten oder schlechten Tag haben. Dein Wert bleibt immer derselbe - so wie bei dem 5-Euro-Schein in diesem Video."
         }
       ],
-      "Kleine Schritte im Alltag": [
+      "Bewegung": [
         {
-          "Text": "Manchmal fühlen wir uns unsicher oder nicht gut genug. Es gibt aber kleine Dinge, die du im Alltag tun kannst, damit du dich wieder wohler mit dir selbst fühlst. Die beiden folgenden Ideen helfen dir dabei, dein Selbstwertgefühl zu stärken und gut für dich zu sorgen."
+          "Text": "Manchmal fühlen wir uns unsicher oder nicht gut genug. Es gibt aber kleine Dinge, die du im Alltag tun kannst, damit du dich wieder wohler mit dir selbst fühlst. Die folgende Idee hilft dir dabei, dein Selbstwertgefühl zu stärken und gut für dich zu sorgen."
         },
         {
           "Text": "Bewegung und Sport tun nicht nur dem Körper gut. Sie helfen uns auch dabei, uns besser zu fühlen und mehr an uns zu glauben. Das liegt daran, dass beim Sport sogenannte Endorphine im Körper freigesetzt werden. Endorphine sind Stoffe, die dein Körper selbst herstellt. Sie wirken wie kleine Glückshelfer: Sie machen dich fröhlicher und helfen, Stress besser auszuhalten."
@@ -5317,6 +5500,11 @@
         {
           "Question": "Das nehme ich mir diese Woche vor, um aktiv zu werden:",
           "AnswerOptions": "free_text"
+        }
+      ],
+      "Me-Time": [
+        {
+          "Text": "Manchmal fühlen wir uns unsicher oder nicht gut genug. Es gibt aber kleine Dinge, die du im Alltag tun kannst, damit du dich wieder wohler mit dir selbst fühlst. Die folgende Idee hilft dir dabei, dein Selbstwertgefühl zu stärken und gut für dich zu sorgen."
         },
         {
           "Text": "Nimm dir Zeit für Selbstpflegeaktivitäten, die dir Freude bereiten und dir ein Gefühl der Wertschätzung für dich selbst vermitteln, wie zum Beispiel ein warmes Bad, ein Spaziergang in der Natur oder ein Buch lesen, das du magst. Was könnte dir noch gut tun?"
@@ -5333,7 +5521,7 @@
     "Kritiker & Begleiter": {
       "Der innere Kritiker": [
         {
-          "Text": "Die meisten Menschen haben einen **inneren Kritiker**. Diese innere Stimme sagt uns häufig Dinge, die wir früher von anderen gehört haben - z.B. von fiesen Mitschülern, strengen Lehrern oder sogar unseren Eltern. Der innere Kritiker ist keine reale Person oder ein äußerer Feind. Er spiegelt abwertende Botschaften, Kritik oder überhöhte Ansprüche wider, die wir verinnerlicht haben. Zum Beispiel: \"Du kannst nichts”,  \"Du bist nichts wert” oder \"Das reicht noch nicht, du musst dich mehr anstrengen!\""
+          "Text": "Die meisten Menschen haben einen **inneren Kritiker**. Diese innere Stimme sagt uns häufig Dinge, die wir früher von anderen gehört haben - z.B. von fiesen Mitschülern, strengen Lehrern oder sogar unseren Eltern. Der innere Kritiker ist keine reale Person oder ein äußerer Feind. Er spiegelt abwertende Botschaften, Kritik oder überhöhte Ansprüche wider, die wir verinnerlicht haben. Zum Beispiel: \"Du kannst nichts”, \"Du bist nichts wert” oder \"Das reicht noch nicht, du musst dich mehr anstrengen!\""
         },
         {
           "Text": "_\"Das schaffst du sowieso nicht! Andere können das besser!\"_, könnte der innere Kritiker der Frau im Bild rufen."
@@ -5366,7 +5554,7 @@
           "Text": "Menschen mit niedrigem Selbstwert haben oft einen sehr strengen inneren Kritiker. Der innere Kritiker übersieht ihre Stärken oder redet sie klein. Er sagt zum Beispiel \"Auf so eine Kleinigkeit wirst Du doch wohl nicht noch stolz sein\". Es ist okay, einen inneren Kritiker zu haben. Aber er sollte nicht das ganze Leben bestimmen."
         },
         {
-          "Text": "Was der innere Kritiker zu uns sagt, muss nicht wahr sein. Manchmal ist er auch zu streng mit uns. Schau dir noch einmal an, was dein innerer Kritiker zu dir sagt: - Kann es sein, dass dein innerer Kritiker übertreibt?\n- Weißt du ganz sicher, dass das stimmt? Was spricht dagegen?\n- Was würde eine gute Freundin oder ein guter Freund dazu sagen?\n- Würdest du so mit einem Freund oder einer Freundin sprechen?"
+          "Text": "Was der innere Kritiker zu uns sagt, muss nicht wahr sein. Manchmal ist er auch zu streng mit uns. Schau dir noch einmal an, was dein innerer Kritiker zu dir sagt: - Kann es sein, dass dein innerer Kritiker übertreibt? - Weißt du ganz sicher, dass das stimmt? Was spricht dagegen? - Was würde eine gute Freundin oder ein guter Freund dazu sagen? - Würdest du so mit einem Freund oder einer Freundin sprechen?"
         }
       ],
       "Der wohlwollende Begleiter": [
@@ -5408,7 +5596,7 @@
       ],
       "Tagebuch führen": [
         {
-          "Text": "Wir können unseren Selbstwert stärken, indem wir unseren Blick auf das Gute lenken. Das geht zum Beispiel mit einem **Tagebuch**, in dem wir Dinge festhalten... - für die wir dankbar sind,\n- die wir an uns schätzen\n- oder die wir heute gut gemacht haben. Das können auch ganz kleine Dinge sein, wie die Tasse Kaffee, die wir uns am Morgen gemacht haben."
+          "Text": "Wir können unseren Selbstwert stärken, indem wir unseren Blick auf das Gute lenken. Das geht zum Beispiel mit einem **Tagebuch**, in dem wir Dinge festhalten... - für die wir dankbar sind, - die wir an uns schätzen - oder die wir heute gut gemacht haben. Das können auch ganz kleine Dinge sein, wie die Tasse Kaffee, die wir uns am Morgen gemacht haben."
         },
         {
           "Text": "Schreibe diese Woche täglich drei Dinge auf, die du an dir selbst schätzt oder die du an diesem Tag gut gemacht hast."
@@ -5428,10 +5616,10 @@
           "Text": "Die Übung besteht aus zwei Teilen. Zuerst, frage deine Familie oder Freunde nach deinen Stärken. Dann überlege selbst, was du in letzter Zeit richtig gut gemeistert hast. Das kann auch etwas Kleines sein, wie ein Einkauf im Supermarkt, der dir lange Zeit schwer gefallen ist."
         },
         {
-          "Text": "Stelle ihnen zum Beispiel diese Fragen:  - Was schätzt du an mir?\n- Was findest du gut an mir?\n- Wobei habe ich dir schon einmal geholfen?\n- Wie bin ich, wenn es mir gut geht?"
+          "Text": "Stelle ihnen zum Beispiel diese Fragen: - Was schätzt du an mir? - Was findest du gut an mir? - Wobei habe ich dir schon einmal geholfen? - Wie bin ich, wenn es mir gut geht?"
         },
         {
-          "Text": "Stelle dir dafür folgende Fragen: - Welche Situationen hast du selbst in letzter Zeit richtig gut gemeistert?\n- Was hast du gut hinbekommen?\n- Hast du vielleicht sogar ein Kompliment für etwas bekommen?"
+          "Text": "Stelle dir dafür folgende Fragen: - Welche Situationen hast du selbst in letzter Zeit richtig gut gemeistert? - Was hast du gut hinbekommen? - Hast du vielleicht sogar ein Kompliment für etwas bekommen?"
         },
         {
           "Text": "Schreibe alles auf, so dass du jederzeit wieder darauf schauen kannst, wenn es dir nicht gut geht. Vielleicht hast du auch eine kleine Schatztruhe zu Hause, in der du deine Notizen sicher aufbewahren kannst."
@@ -5462,7 +5650,7 @@
           "AnswerOptions": "free_text"
         },
         {
-          "Text": "**Kennst du schon Katharina Göppert oder Tobias Hohner?** Beide sind Künstler und verarbeiten ihre Gefühle durch Kreativität. Tobias ist selbst Psychose-Erfahrener, Katharina ist Angehörige einer psychoseerfahrenen Mutter. Schau hier gerne auf ihren Internetseiten vorbei: \n**Katharina Göppert:** [www.katharinagoeppert.de](https://www.katharinagoeppert.de/) **Tobias Hohner:** [www.hohnerart.com](https://www.hohnerart.com/)"
+          "Text": "**Kennst du schon Katharina Göppert oder Tobias Hohner?** Beide sind Künstler und verarbeiten ihre Gefühle durch Kreativität. Tobias ist selbst Psychose-Erfahrener, Katharina ist Angehörige einer psychoseerfahrenen Mutter. Schau hier gerne auf ihren Internetseiten vorbei: **Katharina Göppert:** **Tobias Hohner:**"
         }
       ],
       "Hilfe leisten": [
@@ -5474,7 +5662,7 @@
           "AnswerOptions": "free_text"
         },
         {
-          "Text": "Hilfe leisten kannst du auch im Kleinen. Vielleicht direkt in deiner Nachbarschaft? Wenn du dich für Freiwilligenarbeit oder ein Ehrenamt interessierst, kannst du recherchieren, welche Angebote es gibt. <u>Zum Beispiel auf folgenden Webseiten:</u> [Deutsche Stiftung für Engagement und Ehrenamt](https://www.deutsche-stiftung-engagement-und-ehrenamt.de/mitmachen/finde-dein-passendes-ehrenamt/) [Helfen kann jeder](https://helfenkannjeder.de/helf-o-mat/volunteer/question)"
+          "Text": "Hilfe leisten kannst du auch im Kleinen. Vielleicht direkt in deiner Nachbarschaft? Wenn du dich für Freiwilligenarbeit oder ein Ehrenamt interessierst, kannst du recherchieren, welche Angebote es gibt. Zum Beispiel auf folgenden Webseiten:"
         }
       ],
       "Das Regal": [
@@ -5485,7 +5673,7 @@
           "Text": "In dieser Übung geht es darum, dir bewusst zu machen, was dich als Person ausmacht, was dir im Leben wichtig ist und was du gut kannst. Wenn du deine Stärken kennst, fällt es oft leichter, auch mit schwierigen Zeiten oder Selbstzweifeln umzugehen."
         },
         {
-          "Text": "Stell dir vor, dein Leben ist wie ein Regal mit vielen Fächern. Manche Fächer sind mehr und andere weniger gut gefüllt. In jedem Fach liegt etwas, das dich als Mensch ausmacht – Eigenschaften, Fähigkeiten, Erfahrungen oder Werte.  Lass uns einmal gemeinsam in die Fächer deines Regals schauen."
+          "Text": "Stell dir vor, dein Leben ist wie ein Regal mit vielen Fächern. Manche Fächer sind mehr und andere weniger gut gefüllt. In jedem Fach liegt etwas, das dich als Mensch ausmacht – Eigenschaften, Fähigkeiten, Erfahrungen oder Werte. Lass uns einmal gemeinsam in die Fächer deines Regals schauen."
         },
         {
           "Question": "Hast du Hobbys und Leidenschaften, die dir wichtig sind? Das könnten Dinge sein wie Malen, Musik spielen, Kochen oder Lesen.",
@@ -5535,12 +5723,70 @@
       ]
     },
     "Unfaire Vergleiche": {
+      "Perfektes Leben?": [
+        {
+          "Text": "Wenn unser Selbstwert gerade niedrig ist, glauben wir oft, andere Menschen hätten überhaupt keine Probleme. Besonders bei bekannten und berühmten Personen denken wir vielleicht manchmal: \"Die haben bestimmt keine schlechten Tage.\" Aber gibt es wirklich das perfekte Leben?"
+        },
+        {
+          "Text": "Die Schauspielerin und Sängerin Selena Gomez ist an einer bipolaren Störung erkrankt. Dafür schämt sie sich aber nicht und spricht in ihrer Dokumentation \"My Mind and Me\" darüber. In ihrer Dokumentation erklärt sie, dass die Möglichkeit, offen über das \"chemische Ungleichgewicht\" in ihrem Gehirn zu sprechen, ihr das Gefühl gegeben habe \"freier\", nachdem sie ihre Diagnose entdeckt hatte."
+        },
+        {
+          "Text": "Auch der bekannte Musiker leidet unter einer bipolaren Störung. Trotz seines großen Talents und seines Erfolgs, erlebt er auch Phasen, in denen es ihm nicht gut geht und er sich zurückzieht. Kanye und seine Familie gehen offen mit der Erkrankung um, um mit Stigmata und Irrglauben über die psychische Gesundheit aufzuräumen."
+        },
+        {
+          "Text": "David Beckham hat einen Putz- und Aufräumzwang. Perfektion ist nur eine Seite der Medaille. David erlebt täglich einen immensen Druck durch diese Erkrankung."
+        },
+        {
+          "Text": "Auch Robbie WIlliams geht offen mit seiner Psyche um. Trotz seines großen Erfolgs gibt es immer wieder Phasen in seinem Leben, in denen er mit ADHS und depressiven Symptomen zu kämpfen hat."
+        },
+        {
+          "Text": "Auch der deutsche Comedian Kurt Krömer lässt mittlerweile in seine Psyche blicken. So schrieb er ein Buch, das den Titel \"Du darfst nicht alles glauben, was du denkst – Meine Depression\" trägt. Den Buchtitel erläutert er wie folgt: \"Ich habe das mal die ‚negative Depressionsschraube‘ genannt [...]. Du hast nur negative Gedanken und ‚katastrophisierst'.\" Wer an Depressionen leidet, hat auch oft mit einem angeknacksten Selbstwert zu kämpfen, was bei Betroffenen zu dem Gedanken führen kann, alle würden sie hassen. Menschen mit Depressionen gehen häufig vom Schlimmsten aus."
+        },
+        {
+          "Text": "Sie ist wohl die berühmteste Schlagersängerin in Deutschland. Das ging allerdings auch auf ihre mentale Gesundheit, und sie ist haarscharf an einem Zusammenbruch vorbeigeschrammt."
+        },
+        {
+          "Text": "Viele Menschen wirken nach außen gesund oder erfolgreich, aber innerlich kann es ganz anders aussehen. Vielleicht kämpfen sie mit Ängsten, Druck oder gesundheitlichen Schwierigkeiten. Du siehst nur einen kleinen Ausschnitt."
+        },
+        {
+          "Text": "Es besteht oft ein Unterschied zwischen unserer Selbstsicht und der Art und Weise, wie andere uns wahrnehmen. Wenn wir uns selbst z.B. für langweilig halten, müssen andere das nicht genauso sehen. Es gibt ganz verschiedene Ansichten! Viele Menschen betrachten sich selbst überkritisch."
+        }
+      ],
+      "Die 7-2-1-Regel": [
+        {
+          "Text": "In dieser Übung lernst du einen Selbstwertbooster kennen: Die 7-2-1-Regel. Lobe dich an 7 Tagen die Woche. Gönn dir an 2 Tagen pro Woche etwas Schönes. Stelle dich 1 Tag die Woche einer Herausforderung."
+        },
+        {
+          "Question": "Worauf bist du heute stolz?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Question": "Welche zwei Dinge könntest du dir diese Woche gönnen?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Question": "Welcher Herausforderung möchtest du dich diese Woche stellen?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Bevor du in der App weitermachst, nimm dir ein paar Tage Zeit, um die 7-2-1-Regel auszuprobieren."
+        }
+      ],
       "Unfaire Vergleiche": [
         {
-          "Text": "Wir vergleichen uns häufig schnell und unbewusst mit anderen Menschen. Das ist normal.  Mit wem und worin wir uns vergleichen, kann allerdings unseren Selbstwert beeinflussen. Menschen mit einem niedrigeren Selbstwert wählen häufig unfaire Vergleiche."
+          "Text": "Wir vergleichen uns häufig schnell und unbewusst mit anderen Menschen. Das ist normal. Mit wem und worin wir uns vergleichen, kann allerdings unseren Selbstwert beeinflussen. Menschen mit einem niedrigeren Selbstwert wählen häufig unfaire Vergleiche."
         },
         {
           "Text": "Hier siehst du einige Beispiele für unfaire Vergleiche. Kannst du dir vorstellen, weshalb sie unfair sind?"
+        },
+        {
+          "Text": "Hier wird eine persönliche Freizeitbeschäftigung mit den aufregenden Erlebnissen anderer verglichen, was nicht wirklich vergleichbar ist."
+        },
+        {
+          "Text": "Eine kurze Laufstrecke wird mit einem Marathonlauf vergleichen, was die unterschiedlichen Anforderungen und Schwierigkeitsgrade nicht berücksichtigt."
+        },
+        {
+          "Text": "Oft vergleichen wir Fotos aus den sozialen Medien - die meist digital bearbeitet wurden - mit \"echtem\" Aussehen. Das ist nicht wirklich vergleichbar."
         },
         {
           "Question": "Vergleichst du dich oft mit anderen Menschen?",
@@ -5573,38 +5819,7 @@
           "Text": "Es ist normal, sich mit anderen zu vergleichen und zu denken, vielleicht nicht mithalten zu können. Wenn wir aber mit Einschränkungen im Alltag leben, kann auch der Vergleich mit gesunden Menschen oder Menschen ohne diese Einschränkungen uns selbst gegenüber unfair sein."
         },
         {
-          "Text": "Ein gesunder Mensch hat gerade ganz andere Voraussetzungen. Du kämpfst vielleicht mit Halluzinationen, Medikamenten oder Erschöpfung. Das ist ein großer Unterschied – wie ein Wettrennen mit verschiedenen Startlinien.  Schau auf deinen eigenen Weg und frage dich: **Was habe ich in letzter Zeit geschafft – trotz allem?**"
-        }
-      ],
-      "Perfektes Leben?": [
-        {
-          "Text": "Wenn unser Selbstwert gerade niedrig ist, glauben wir oft, andere Menschen hätten überhaupt keine Probleme. Besonders bei bekannten und berühmten Personen denken wir vielleicht manchmal: \"Die haben bestimmt keine schlechten Tage.\" Aber gibt es wirklich das perfekte Leben?"
-        },
-        {
-          "Text": "Viele Menschen wirken nach außen gesund oder erfolgreich, aber innerlich kann es ganz anders aussehen. Vielleicht kämpfen sie mit Ängsten, Druck oder gesundheitlichen Schwierigkeiten. Du siehst nur einen kleinen Ausschnitt."
-        },
-        {
-          "Text": "Es besteht oft ein Unterschied zwischen unserer Selbstsicht und der Art und Weise, wie andere uns wahrnehmen. Wenn wir uns selbst z.B. für langweilig halten, müssen andere das nicht genauso sehen. Es gibt ganz verschiedene Ansichten! Viele Menschen betrachten sich selbst überkritisch."
-        }
-      ],
-      "Die 7-2-1-Regel": [
-        {
-          "Text": "In dieser Übung lernst du einen Selbstwertbooster kennen: Die 7-2-1-Regel. Lobe dich an 7 Tagen die Woche. Gönn dir an 2 Tagen pro Woche etwas Schönes. Stelle dich 1 Tag die Woche einer Herausforderung."
-        },
-        {
-          "Question": "Worauf bist du heute stolz?",
-          "AnswerOptions": "free_text"
-        },
-        {
-          "Question": "Welche zwei Dinge könntest du dir diese Woche gönnen?",
-          "AnswerOptions": "free_text"
-        },
-        {
-          "Question": "Welcher Herausforderung möchtest du dich diese Woche stellen?",
-          "AnswerOptions": "free_text"
-        },
-        {
-          "Text": "Bevor du in der App weitermachst, nimm dir ein paar Tage Zeit, um die 7-2-1-Regel auszuprobieren."
+          "Text": "Ein gesunder Mensch hat gerade ganz andere Voraussetzungen. Du kämpfst vielleicht mit Halluzinationen, Medikamenten oder Erschöpfung. Das ist ein großer Unterschied – wie ein Wettrennen mit verschiedenen Startlinien. Schau auf deinen eigenen Weg und frage dich: **Was habe ich in letzter Zeit geschafft – trotz allem?**"
         }
       ]
     },
@@ -5667,7 +5882,7 @@
           "Text": "Erstelle täglich eine Liste mit Aufgaben und Zielen, die du erreichen möchtest. Das Abhaken erledigter Aufgaben kann ein Gefühl der Erfüllung und Zufriedenheit vermitteln. Achte darauf, dir kleine und realistische Ziele zu setzen. Starte direkt: Was hast du heute geschafft? Was ist heute noch zu erledigen?"
         },
         {
-          "Text": "Nimm dir einen Moment Zeit, um eine kleine To-Do-Liste für den nächsten Tag zu erstellen und zu überlegen, wie du kleine Erfolge feiern kannst. - Was ist morgen dran?\n- Was könntest du morgen schaffen?\n- Und wie kannst du dich selbst dafür belohnen?\n- Was könntest du dir Gutes tun?"
+          "Text": "Nimm dir einen Moment Zeit, um eine kleine To-Do-Liste für den nächsten Tag zu erstellen und zu überlegen, wie du kleine Erfolge feiern kannst. - Was ist morgen dran? - Was könntest du morgen schaffen? - Und wie kannst du dich selbst dafür belohnen? - Was könntest du dir Gutes tun?"
         },
         {
           "Question": "Meine ToDos:",
@@ -5694,7 +5909,7 @@
           "AllowMultiple": true
         },
         {
-          "Text": "Diese Frage haben wir Marco gestellt. Im Video erzählt der Arzt und Spezialist für Psychosen, dass Schizophrenie nur _ein_ Teil des Lebens ist - und es noch viele Dinge mehr gibt, die eine Person ausmachen."
+          "Text": "Diese Frage haben wir Marco gestellt. Im Video erzählt der Arzt und Spezialist für Psychosen, dass Schizophrenie nur _ein_ Teil des Lebens ist - und es noch viele Dinge mehr gibt, die eine Person ausmachen."
         }
       ],
       "Positive Erinnerungen sammeln": [
@@ -5742,6 +5957,99 @@
         {
           "Question": "Was möchtest du noch in deinen Alltag mitnehmen?",
           "AnswerOptions": "free_text"
+        }
+      ]
+    }
+  },
+  "Willkommen": {
+    "Ankommen": {
+      "Gutes Leben": [
+        {
+          "Text": "Elyn Saks ist Professorin für Recht an der University of Southern California. Sie lebt mit Schizophrenie und hat ein Buch über ihr Leben geschrieben: *Die Mitte hält nicht mehr*. Elyn setzt sich stark gegen Vorurteile gegenüber psychischen Erkrankungen ein. Ihr Leben zeigt: Auch mit Psychosen kann man studieren, arbeiten und glücklich sein. Viele bekannte Menschen der Weltgeschichte hatten psychische Störungen - und haben trotzdem Großes erreicht."
+        },
+        {
+          "Text": "Lerne Marco kennen. Marco ist Arzt und behandelt Menschen mit Psychosen."
+        },
+        {
+          "Text": "Viele Menschen denken nach der Diagnose Schizophrenie, dass sie nie wieder ein \"normales\" Leben führen können. Marco hat viele Patientinnen und Patienten erlebt, die durch eine gute Behandlung, Therapie und eigene Strategien gelernt haben, mit ihrer Erkrankung umzugehen."
+        },
+        {
+          "Text": "Viele Menschen mit psychischen Erkrankungen führen ein erfülltes, sicheres und aktives Leben. Es gibt Therapien und Medikamente, die helfen. Aber auch außerhalb der Behandlung kann man selbst etwas tun. Schon kleine Schritte im Alltag können helfen: - jeden Tag zur gleichen Zeit aufstehen - sich etwas Leckeres kochen - eigene Strategien bei Stimmen oder anderen Halluzinationen entwickeln Was aber bedeutet eigentlich *ein gutes Leben*?"
+        },
+        {
+          "Question": "Was bedeutet ein gutes Leben für dich?",
+          "AnswerOptions": [
+            "Gesundheit",
+            "Liebe",
+            "Freundschaft",
+            "Familie",
+            "Sinn",
+            "Zufriedenheit",
+            "Wachstum",
+            "Freude",
+            "Selbstfürsorge",
+            "Struktur",
+            "Anerkennung"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Question": "Was gehört für dich noch zu einem guten Leben dazu?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Manche Menschen schaffen es, nach einer Psychose in ihren alten Beruf zurückzukehren. Für andere ist das nicht möglich, weil der Beruf zum Beispiel zu viel Stress bedeutet oder bestimmte Anforderungen schwer umzusetzen sind. Das ist kein Scheitern, sondern eine Folge der Erkrankung."
+        },
+        {
+          "Text": "Es ist wichtig zu wissen: Nicht jeder Mensch mit einer Psychose kann oder muss \"große\" Erfolge erreichen. Es gibt kein bestimmtes Ziel, das alle erreichen müssen. Für manche bedeutet ein erfülltes Leben, wieder alleine einkaufen zu können, für andere, Zeit mit der Familie zu verbringen oder eine neue Aufgabe zu finden, die Sinn gibt. Jeder Weg ist individuell."
+        },
+        {
+          "Text": "Ein gutes Leben mit Psychosen bedeutet mehr, als nur mit einer Diagnose zurechtzukommen. Gesundheit ist mehr als Symptomfreiheit. Sie zeigt sich auch darin, wie wir für uns sorgen, was uns wichtig ist und wie wir mit Herausforderungen umgehen. Ein gutes Leben mit Psychosen besteht aus vielen kleinen **Bausteinen**. Schau dir auf der nächsten Seite an, in welchen Bereichen des Lebens du, auch mit kleinen Schritten, etwas für dich tun kannst."
+        },
+        {
+          "Text": "Guter Schlaf gibt Kraft und hilft dem Gehirn, sich zu erholen. Feste Schlafzeiten und abends zur Ruhe kommen sind kleine Schritte mit großer Wirkung."
+        },
+        {
+          "Text": "Jeder Mensch ist wertvoll – auch mit psychischen Belastungen. Es hilft, sich an eigene Stärken zu erinnern und kleine Erfolge bewusst wahrzunehmen."
+        },
+        {
+          "Text": "Halluzinationen, wie das Hören von Stimmen, können beängstigend sein. Aber man kann lernen, besser mit ihnen umzugehen. Es hilft, sich bewusst zu machen: _Ich habe Stimmen, aber sie bestimmen nicht über mich_."
+        },
+        {
+          "Text": "Manche Gedanken fühlen sich sehr real an, auch wenn andere sie nicht teilen. Es kann helfen, sie zu hinterfragen und neue Sichtweisen zu entdecken."
+        },
+        {
+          "Text": "Offene Gespräche und kleine Begegnungen tun gut. Auch wenn es schwerfällt: Beziehungen zu pflegen ist gut für die Gesundheit."
+        },
+        {
+          "Text": "Manche Tage sind schwer. Sich bewegen, etwas Schönes planen oder mit jemandem reden – das sind erste Schritte aus Stimmungskrisen."
+        },
+        {
+          "Text": "Alle diese Themen findest du hier in der Kiso App. Du entscheidest, welches Thema dich am meisten interessiert und worüber du mehr erfahren möchtest. In den Themen findest du Übungen für den Alltag, die du über das Herz oben rechts in deinen Favoriten speichern kannst. So kannst du immer wieder auf deine Lieblingsübungen zurückgreifen. Womit möchtest du beginnen?"
+        }
+      ],
+      "Ankommen": [
+        {
+          "Text": "In Momenten von Stress, Anspannung oder Unruhe vergessen wir oft das Naheliegendste: unseren Atem. Wenn wir lernen, unseren Atem bewusst wahrzunehmen, kann er zu einer Quelle der Ruhe werden. Jetzt laden wir dich zu einer kleinen Atemübung ein, die dir hilft, bewusster zu atmen. Dabei atmest du tief in deine eigene Mitte, um Stress und Anspannung loszulassen."
+        },
+        {
+          "Text": "Stell dir vor, dein Atem ist wie ein Ballon in deinem Bauch. Atme tief ein und spür, wie sich dein Bauchraum mit Luft füllt, genauso wie ein Ballon, der sich langsam aufbläht. Halte den Atem kurz an und spür, wie sich die Luft in deinem Inneren ausdehnt. Dann lass die Luft langsam wieder heraus, während sich der Ballon zusammenzieht."
+        },
+        {
+          "Text": "Lerne Joke kennen. Joke lebt seit 2012 mit Schizophrenie und macht Aufklärungsarbeit. Du erfährst, wie sie ihr Leben trotz und mit der Diagnose Schizophrenie aktiv gestaltet. Joke begleitet dich, gemeinsam mit weiteren Betroffenen, durch die Kiso Mind App."
+        },
+        {
+          "Text": "Joke erzählt davon, wie sie gelernt hat, mit ihrer Diagnose Schizophrenie zu leben, ohne dass sie ihr Leben bestimmt. Ihr hilft es, sich die Schizophrenie bildlich, als Person *Mister Schi*, vorzustellen. *Mister Schi* ist Teil ihres Lebens. Sie entscheidet aber selbst, wann sie ihn in ihr Leben lässt, damit sie am Leben teilnehmen kann."
+        },
+        {
+          "Question": "Wenn du deiner Diagnose ein Bild geben müsstest, welches wäre das? Hast du eine Idee?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "_Deine Eingaben bleiben sicher in der Kiso App gespeichert und nur du kannst sie sehen. Deine Antworten bei Übungen kannst du dir immer wieder ansehen, durchlesen und verändern._"
+        },
+        {
+          "Text": "**Du hast die erste Übung in der Kiso App abgeschlossen!** Mache mit der nächsten Übung _Gutes Leben_ auf der Startseite weiter, um alle Themen der App freizuschalten."
         }
       ]
     }

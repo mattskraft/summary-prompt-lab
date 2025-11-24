@@ -155,15 +155,6 @@
       "Text": "**Sie ignoriert mich bestimmt absichtlich und will nichts mehr mit mir zu tun haben.**\n\nKim fühlt sich verletzt. Sie schaltet ihr Handy stumm. Niemand soll sie mehr erreichen, wenn sich eh niemand für sie interessiert."
     }
   ],
-  "Gesundheit - Gemeinsam entscheiden - A: Vorteile": [
-    {
-      "Text": "Für dich überwiegt der Nutzen der Medikamente in deinem Alltag. Deine Medikamente helfen dir spürbar.\n\nÜberlege gerne einmal für dich:\n\n- Was genau hilft dir am meisten?\n- Gibt es etwas, das du deiner Ärztin oder deinem Arzt sagen möchtest, weil es gut funktioniert?"
-    },
-    {
-      "Question": "Wenn du möchtest, kannst du deine Gedanken hier festhalten:",
-      "AnswerOptions": "free_text"
-    }
-  ],
   "Ungewöhnliche Gedanken - Tag mit Kim - Büro A": [
     {
       "Text": "**Er denkt bestimmt, ich bin unfähig oder komisch, weil ich nicht mehr arbeite.**\n\nKim grübelt lange und arbeitet unsicher weiter. Hat sie vielleicht sogar einen Fehler gemacht, von dem sie nichts weiß? Sie traut sich nicht, bei ihrem Chef nachzufragen und geht mit einem grummelnden Magen später nach Hause."
@@ -368,6 +359,15 @@
       "Text": "Guter Schlaf gibt Kraft und hilft dem Gehirn, sich zu erholen. Feste Schlafzeiten und abends zur Ruhe kommen sind kleine Schritte mit großer Wirkung."
     }
   ],
+  "Gesundheit - Gemeinsam entscheiden - A: Vorteile": [
+    {
+      "Text": "**Für dich überwiegt der Nutzen der Medikamente in deinem Alltag. Deine Medikamente helfen dir spürbar.**\n\nÜberlege gerne einmal für dich:\n\n- Was genau hilft dir am meisten?\n- Gibt es etwas, das du deiner Ärztin oder deinem Arzt sagen möchtest, weil es gut funktioniert?"
+    },
+    {
+      "Question": "Wenn du möchtest, kannst du deine Gedanken hier festhalten:",
+      "AnswerOptions": "free_text"
+    }
+  ],
   "Beziehungen - Anvertrauen - Option A: Bestärken": [
     {
       "Text": "Das klingt nach einem stärkenden Gedanken.\n\nEs braucht oft Mut, sich zu öffnen – aber es kann entlasten und dir den Weg zu Unterstützung erleichtern. Gut, dass du diese Möglichkeit für dich siehst.\n\nDenke daran: Du entscheidest, wann und wie viel du teilst."
@@ -488,6 +488,11 @@
       "Text": "**Könnte es vielleicht eine Magen-Darm-Grippe sein?**\n\nMax atmet einmal tief durch. Er hat zwar immer noch ein ungutes Gefühl im Magen, aber er versucht, ruhig zu bleiben.\n\nEr erinnert sich daran, dass seine Mutter, die vor ein paar Tagen zu Besuch war, auch Bauchschmerzen hatte. Und er erinnert sich daran, dass er schon seit gestern Abend ein leichtes Grummeln im Magen spürt.\n\nEr beschließt, abzuwarten und wenn es nicht besser wird, zu seinem Hausarzt zu gehen."
     }
   ],
+  "Willkommen - Stimmungskrisen": [
+    {
+      "Text": "Manche Tage sind schwer. Sich bewegen, etwas Schönes planen oder mit jemandem reden – das sind erste Schritte aus Stimmungskrisen."
+    }
+  ],
   "Gesundheit - Gemeinsam entscheiden - B: Ausgeglichen": [
     {
       "Text": "**Du siehst Vorteile und Nachteile. Die Medikamente helfen teilweise, aber es gibt Dinge, die dich stören oder unsicher machen.**\n\nÜberlege gerne einmal für dich:\n\n- Was genau hilft dir am meisten? Was möchtest du beibehalten?\n- Welche Nachteile möchtest du verändern?"
@@ -513,11 +518,6 @@
     {
       "Question": "Etwas anderes, und zwar:",
       "AnswerOptions": "free_text"
-    }
-  ],
-  "Willkommen - Stimmungskrisen": [
-    {
-      "Text": "Manche Tage sind schwer. Sich bewegen, etwas Schönes planen oder mit jemandem reden – das sind erste Schritte aus Stimmungskrisen."
     }
   ]
 }
