@@ -53,6 +53,7 @@ _sn_path_raw = os.getenv("KISO_SN_JSON") or os.getenv("SN_JSON_PATH")
 _lexicon_path_raw = os.getenv("KISO_SUICIDE_LEXICON") or os.getenv("SUICIDE_LEXICON_PATH")
 _prompts_path_raw = os.getenv("KISO_PROMPTS_CONFIG") or os.getenv("PROMPTS_CONFIG_PATH")
 GEMINI_API_KEY: Optional[str] = os.getenv("GEMINI_API_KEY")
+MISTRAL_API_KEY: Optional[str] = os.getenv("MISTRAL_API_KEY")
 APP_PASSWORD: Optional[str] = os.getenv("APP_PASSWORD")
 
 # Resolve paths if they're set (convert relative to absolute)
