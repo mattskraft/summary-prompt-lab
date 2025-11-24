@@ -11,7 +11,6 @@ summary-prompt-lab/
 ├── src/
 │   └── kiso_input/           # Importable package
 │       ├── __init__.py
-│       ├── process_user_input.py
 │       └── config.py
 ├── notebooks/
 │   └── 01_user_input.ipynb   # Research/development notebooks
