@@ -58,9 +58,9 @@ MODEL_CONFIGS = {
         "vllm_args": VLLM_ARGS_DEFAULT + "--trust-remote-code ",
     },
     "Mistral-NeMo-12B": {
-        "hf_name": "nvidia/Mistral-NeMo-12B-Instruct",
+        "hf_name": "casperhansen/mistral-nemo-instruct-2407-awq",
         "port": 8005,
-        "vllm_args": VLLM_ARGS_MISTRAL,
+        "vllm_args": VLLM_ARGS_DEFAULT + "--quantization awq ",
     },
 }
 
