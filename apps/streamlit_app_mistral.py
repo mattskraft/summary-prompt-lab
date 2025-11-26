@@ -449,13 +449,16 @@ def segments_to_inhalt(segments: List[Dict[str, Any]], empty_answers: bool = Fal
             lines.append(f"FRAGE: {question_text}")
         elif "Answer" in segment:
             if empty_answers:
-                lines.append("ANTWORT: ")
+                # Skip empty answers - don't add ANTWORT line at all
+                continue
             else:
                 answer_val = segment.get("Answer")
                 answer_text: Optional[str] = None
                 
                 if isinstance(answer_val, list):
-                    answer_text = ", ".join(str(item) for item in answer_val)
+                    # Only create text if list is not empty
+                    if answer_val:
+                        answer_text = ", ".join(str(item) for item in answer_val)
                 elif isinstance(answer_val, (int, float)):
                     answer_text = str(int(answer_val))
                 elif isinstance(answer_val, str):
@@ -472,8 +475,10 @@ def segments_to_inhalt(segments: List[Dict[str, Any]], empty_answers: bool = Fal
                         sub_parts = []
                         for key, value in answer_val.items():
                             sub_parts.append(f"{key}: {value}")
-                        answer_text = "; ".join(sub_parts)
+                        if sub_parts:
+                            answer_text = "; ".join(sub_parts)
                 
+                # Only add ANTWORT line if there's actual answer text
                 if answer_text:
                     lines.append(f"ANTWORT: {answer_text}")
     return "\n".join(lines)
@@ -760,6 +765,11 @@ if sel_uebung:
         if segments_for_prompt != current_segments:
             st.session_state[session_key] = segments_for_prompt
     
+    # Define state keys for all three text areas (needed for transfer buttons)
+    example1_state_key = f"{session_key}_example1"
+    example2_state_key = f"{session_key}_example2"
+    mainrecap_inhalt_key = f"{session_key}_mainrecap_inhalt"
+    
     # Transfer buttons
     st.markdown("---")
     st.subheader("Antworten übertragen")
@@ -768,20 +778,51 @@ if sel_uebung:
     with transfer_cols[0]:
         transfer_ex1_key = f"{session_key}_transfer_ex1"
         if st.button("📋 Example1", key=transfer_ex1_key, use_container_width=True):
+            # Preserve other text areas' state before transfer
+            # Read current values from session state (widgets store their values there)
+            if example2_state_key in st.session_state:
+                preserved_ex2 = st.session_state[example2_state_key]
+                st.session_state[f"{example2_state_key}_preserve"] = preserved_ex2
+            if mainrecap_inhalt_key in st.session_state:
+                preserved_main = st.session_state[mainrecap_inhalt_key]
+                st.session_state[f"{mainrecap_inhalt_key}_preserve"] = preserved_main
+            
+            # Set transfer flag
             st.session_state[f"{session_key}_transfer_ex1_clicked"] = True
+            st.success("✅ Antworten zu Example1 übertragen")
             st.rerun()
     
     with transfer_cols[1]:
         transfer_ex2_key = f"{session_key}_transfer_ex2"
         if st.button("📋 Example2", key=transfer_ex2_key, use_container_width=True):
+            # Preserve other text areas' state before transfer
+            if example1_state_key in st.session_state:
+                preserved_ex1 = st.session_state[example1_state_key]
+                st.session_state[f"{example1_state_key}_preserve"] = preserved_ex1
+            if mainrecap_inhalt_key in st.session_state:
+                preserved_main = st.session_state[mainrecap_inhalt_key]
+                st.session_state[f"{mainrecap_inhalt_key}_preserve"] = preserved_main
+            
+            # Set transfer flag
             st.session_state[f"{session_key}_transfer_ex2_clicked"] = True
+            st.success("✅ Antworten zu Example2 übertragen")
             st.rerun()
     
     with transfer_cols[2]:
         transfer_main_key = f"{session_key}_transfer_main"
         if st.button("📋 MainRecap", key=transfer_main_key, use_container_width=True):
+            # Preserve other text areas' state before transfer
+            if example1_state_key in st.session_state:
+                preserved_ex1 = st.session_state[example1_state_key]
+                st.session_state[f"{example1_state_key}_preserve"] = preserved_ex1
+            if example2_state_key in st.session_state:
+                preserved_ex2 = st.session_state[example2_state_key]
+                st.session_state[f"{example2_state_key}_preserve"] = preserved_ex2
+            
+            # Transfer to MainRecap
             inhalt = segments_to_inhalt(segments_for_prompt)
-            st.session_state[f"{session_key}_mainrecap_inhalt"] = inhalt
+            st.session_state[mainrecap_inhalt_key] = inhalt
+            st.success("✅ Antworten zu MainRecap übertragen")
             st.rerun()
     
     # Load exercise data
@@ -792,19 +833,22 @@ if sel_uebung:
         "example2": ""
     })
     
-    # Initialize empty values
+    # Initialize empty values (only for display/fallback, don't modify in place)
     default_prompt_path = PROJECT_ROOT / "config" / "recap_system_prompt.txt"
+    default_system_prompt = ""
     if not current_exercise_data.get("system_prompt"):
         if default_prompt_path.exists():
-            current_exercise_data["system_prompt"] = default_prompt_path.read_text(encoding="utf-8").strip()
+            default_system_prompt = default_prompt_path.read_text(encoding="utf-8").strip()
     
+    default_example1 = ""
     if not current_exercise_data.get("example1"):
         # Initialize with INHALT from segments with empty answers
-        current_exercise_data["example1"] = segments_to_inhalt(segments, empty_answers=True)
+        default_example1 = segments_to_inhalt(segments, empty_answers=True)
     
+    default_example2 = ""
     if not current_exercise_data.get("example2"):
         # Initialize with INHALT from segments with empty answers
-        current_exercise_data["example2"] = segments_to_inhalt(segments, empty_answers=True)
+        default_example2 = segments_to_inhalt(segments, empty_answers=True)
     
     # System Prompt Section
     st.markdown("---")
@@ -815,7 +859,7 @@ if sel_uebung:
     
     # Initialize system prompt
     if system_prompt_state_key not in st.session_state:
-        base_prompt = current_exercise_data.get("system_prompt", "")
+        base_prompt = current_exercise_data.get("system_prompt", "") or default_system_prompt
         st.session_state[system_prompt_base_key] = base_prompt
         st.session_state[system_prompt_state_key] = base_prompt
     
@@ -921,6 +965,15 @@ if sel_uebung:
     st.subheader("Example1")
     
     example1_state_key = f"{session_key}_example1"
+    
+    # Restore preserved value if it exists (from transfer button click)
+    # This MUST happen before any other logic that might affect the state
+    preserve_key = f"{example1_state_key}_preserve"
+    if preserve_key in st.session_state:
+        preserved_value = st.session_state[preserve_key]
+        st.session_state[example1_state_key] = preserved_value
+        del st.session_state[preserve_key]
+    
     # Check if transfer button was clicked (check button state after render)
     transfer_ex1_clicked = st.session_state.get(f"{session_key}_transfer_ex1_clicked", False)
     if transfer_ex1_clicked:
@@ -928,12 +981,14 @@ if sel_uebung:
         st.session_state[example1_state_key] = inhalt
         st.session_state[f"{session_key}_transfer_ex1_clicked"] = False
     
+    # Initialize only if key doesn't exist (preserve existing content)
+    # IMPORTANT: Only initialize if the key truly doesn't exist, don't overwrite existing content
+    # This check happens AFTER restore, so preserved values won't be overwritten
     if example1_state_key not in st.session_state:
-        example1_value = current_exercise_data.get("example1", "")
-        if not example1_value:
-            # Initialize with INHALT from segments with empty answers
-            example1_value = segments_to_inhalt(segments, empty_answers=True)
+        example1_value = current_exercise_data.get("example1", "") or default_example1
         st.session_state[example1_state_key] = example1_value
+    # Note: Widget with key=example1_state_key manages its own session state
+    # We only set it explicitly during transfer or load operations
     
     # Slider for Example1
     example1_length_key = f"{session_key}_example1_length"
@@ -948,9 +1003,16 @@ if sel_uebung:
         key=example1_length_key,
     )
     
+    # Check if we need to update Example1 from a previous recap generation
+    update_ex1_key = f"{session_key}_update_ex1"
+    if update_ex1_key in st.session_state:
+        st.session_state[example1_state_key] = st.session_state[update_ex1_key]
+        del st.session_state[update_ex1_key]
+    
+    # Create widget - Streamlit manages session state via key
+    # Always create the widget the same way - Streamlit will use the value from session state
     example1_text = st.text_area(
         "Example1 INHALT",
-        value=st.session_state[example1_state_key],
         key=example1_state_key,
         height=300,
         label_visibility="collapsed",
@@ -958,11 +1020,20 @@ if sel_uebung:
     
     example1_button_cols = st.columns(3)
     with example1_button_cols[0]:
-        if st.button("🧾 Recap generieren (Mistral)", key=f"{session_key}_gen_ex1", use_container_width=True):
+        gen_ex1_key = f"{session_key}_gen_ex1"
+        if st.button("🧾 Recap generieren (Mistral)", key=gen_ex1_key, use_container_width=True):
             if not MISTRAL_API_KEY:
                 st.error("❌ MISTRAL_API_KEY nicht gesetzt.")
             else:
                 try:
+                    # Preserve other text areas' state before rerun
+                    if example2_state_key in st.session_state:
+                        preserved_ex2 = st.session_state[example2_state_key]
+                        st.session_state[f"{example2_state_key}_preserve"] = preserved_ex2
+                    if mainrecap_inhalt_key in st.session_state:
+                        preserved_main = st.session_state[mainrecap_inhalt_key]
+                        st.session_state[f"{mainrecap_inhalt_key}_preserve"] = preserved_main
+                    
                     # Get system prompt with Example1 slider value
                     system_prompt_for_ex1 = update_system_prompt_length(
                         st.session_state[system_prompt_state_key],
@@ -987,8 +1058,12 @@ if sel_uebung:
                     lines = [line for line in lines if not line.startswith("ZUSAMMENFASSUNG:")]
                     # Add new ZUSAMMENFASSUNG
                     lines.append(f"ZUSAMMENFASSUNG: {recap}")
-                    st.session_state[example1_state_key] = "\n".join(lines)
-                    st.success("✅ Recap generiert")
+                    updated_ex1_text = "\n".join(lines)
+                    
+                    # Store in temporary key to update Example1 on next rerun
+                    st.session_state[update_ex1_key] = updated_ex1_text
+                    
+                    st.success("✅ Recap für Example1 generiert")
                     st.rerun()
                 except Exception as e:
                     st.error(f"❌ Fehler: {e}")
@@ -1036,18 +1111,28 @@ if sel_uebung:
     st.subheader("Example2")
     
     example2_state_key = f"{session_key}_example2"
+    
+    # Restore preserved value if it exists (from transfer button click)
+    # This MUST happen before any other logic that might affect the state
+    preserve_key = f"{example2_state_key}_preserve"
+    if preserve_key in st.session_state:
+        preserved_value = st.session_state[preserve_key]
+        st.session_state[example2_state_key] = preserved_value
+        del st.session_state[preserve_key]
+    
     transfer_ex2_clicked = st.session_state.get(f"{session_key}_transfer_ex2_clicked", False)
     if transfer_ex2_clicked:
         inhalt = segments_to_inhalt(segments_for_prompt)
         st.session_state[example2_state_key] = inhalt
         st.session_state[f"{session_key}_transfer_ex2_clicked"] = False
     
+    # Initialize only if key doesn't exist (preserve existing content)
+    # This check happens AFTER restore, so preserved values won't be overwritten
     if example2_state_key not in st.session_state:
-        example2_value = current_exercise_data.get("example2", "")
-        if not example2_value:
-            # Initialize with INHALT from segments with empty answers
-            example2_value = segments_to_inhalt(segments, empty_answers=True)
+        example2_value = current_exercise_data.get("example2", "") or default_example2
         st.session_state[example2_state_key] = example2_value
+    # Note: Widget with key=example2_state_key manages its own session state
+    # We only set it explicitly during transfer or load operations
     
     example2_length_key = f"{session_key}_example2_length"
     if example2_length_key not in st.session_state:
@@ -1061,9 +1146,16 @@ if sel_uebung:
         key=example2_length_key,
     )
     
+    # Check if we need to update Example2 from a previous recap generation
+    update_ex2_key = f"{session_key}_update_ex2"
+    if update_ex2_key in st.session_state:
+        st.session_state[example2_state_key] = st.session_state[update_ex2_key]
+        del st.session_state[update_ex2_key]
+    
+    # Create widget - Streamlit manages session state via key
+    # Always create the widget the same way - Streamlit will use the value from session state
     example2_text = st.text_area(
         "Example2 INHALT",
-        value=st.session_state[example2_state_key],
         key=example2_state_key,
         height=300,
         label_visibility="collapsed",
@@ -1071,11 +1163,20 @@ if sel_uebung:
     
     example2_button_cols = st.columns(3)
     with example2_button_cols[0]:
-        if st.button("🧾 Recap generieren (Mistral)", key=f"{session_key}_gen_ex2", use_container_width=True):
+        gen_ex2_key = f"{session_key}_gen_ex2"
+        if st.button("🧾 Recap generieren (Mistral)", key=gen_ex2_key, use_container_width=True):
             if not MISTRAL_API_KEY:
                 st.error("❌ MISTRAL_API_KEY nicht gesetzt.")
             else:
                 try:
+                    # Preserve other text areas' state before rerun
+                    if example1_state_key in st.session_state:
+                        preserved_ex1 = st.session_state[example1_state_key]
+                        st.session_state[f"{example1_state_key}_preserve"] = preserved_ex1
+                    if mainrecap_inhalt_key in st.session_state:
+                        preserved_main = st.session_state[mainrecap_inhalt_key]
+                        st.session_state[f"{mainrecap_inhalt_key}_preserve"] = preserved_main
+                    
                     system_prompt_for_ex2 = update_system_prompt_length(
                         st.session_state[system_prompt_state_key],
                         example2_length
@@ -1094,8 +1195,12 @@ if sel_uebung:
                     lines = example2_text.split("\n")
                     lines = [line for line in lines if not line.startswith("ZUSAMMENFASSUNG:")]
                     lines.append(f"ZUSAMMENFASSUNG: {recap}")
-                    st.session_state[example2_state_key] = "\n".join(lines)
-                    st.success("✅ Recap generiert")
+                    updated_ex2_text = "\n".join(lines)
+                    
+                    # Store in temporary key to update Example2 on next rerun
+                    st.session_state[update_ex2_key] = updated_ex2_text
+                    
+                    st.success("✅ Recap für Example2 generiert")
                     st.rerun()
                 except Exception as e:
                     st.error(f"❌ Fehler: {e}")
@@ -1143,14 +1248,23 @@ if sel_uebung:
     st.subheader("MainRecap")
     
     # MainRecap INHALT is constructed from segments (not stored in JSON)
-    mainrecap_inhalt = ""
-    if f"{session_key}_mainrecap_inhalt" in st.session_state:
-        mainrecap_inhalt = st.session_state[f"{session_key}_mainrecap_inhalt"]
-    else:
-        # Initialize with INHALT from segments with empty answers
-        mainrecap_inhalt = segments_to_inhalt(segments, empty_answers=True)
+    mainrecap_inhalt_key = f"{session_key}_mainrecap_inhalt"
     
-    # Build R1 text
+    # Restore preserved value if it exists (from transfer button click)
+    # This MUST happen before any other logic that might affect the state
+    preserve_key = f"{mainrecap_inhalt_key}_preserve"
+    if preserve_key in st.session_state:
+        preserved_value = st.session_state[preserve_key]
+        st.session_state[mainrecap_inhalt_key] = preserved_value
+        del st.session_state[preserve_key]
+    
+    # Initialize only if key doesn't exist (preserve existing content)
+    # This check happens AFTER restore, so preserved values won't be overwritten
+    if mainrecap_inhalt_key not in st.session_state:
+        # Initialize with INHALT from segments with empty answers
+        st.session_state[mainrecap_inhalt_key] = segments_to_inhalt(segments, empty_answers=True)
+    
+    # Slider for MainRecap
     mainrecap_length_key = f"{session_key}_mainrecap_length"
     if mainrecap_length_key not in st.session_state:
         st.session_state[mainrecap_length_key] = 80
@@ -1163,23 +1277,12 @@ if sel_uebung:
         key=mainrecap_length_key,
     )
     
-    # Build R1 content
-    system_prompt_for_main = update_system_prompt_length(
-        st.session_state[system_prompt_state_key],
-        mainrecap_length
-    )
-    
-    example1_final = st.session_state.get(example1_state_key, current_exercise_data.get("example1", ""))
-    example2_final = st.session_state.get(example2_state_key, current_exercise_data.get("example2", ""))
-    
-    r1_content = f"{system_prompt_for_main}\n\n# BEISPIELE\n\n## Beispiel 1\n{example1_final}\n\n## Beispiel 2\n{example2_final}\n\n# INHALT\n{mainrecap_inhalt}"
-    
-    r1_state_key = f"{session_key}_r1"
-    st.text_area(
-        "R1 (System-Prompt + Beispiele + INHALT)",
-        value=r1_content,
-        key=r1_state_key,
-        height=400,
+    # Show MainRecap INHALT text area - Streamlit manages session state via key
+    # Always create the widget the same way - Streamlit will use the value from session state
+    mainrecap_inhalt_text = st.text_area(
+        "MainRecap INHALT",
+        key=mainrecap_inhalt_key,
+        height=300,
         label_visibility="collapsed",
     )
     
@@ -1192,16 +1295,48 @@ if sel_uebung:
             st.error("❌ MISTRAL_API_KEY nicht gesetzt.")
         else:
             try:
+                # Preserve other text areas' state before rerun
+                if example1_state_key in st.session_state:
+                    preserved_ex1 = st.session_state[example1_state_key]
+                    st.session_state[f"{example1_state_key}_preserve"] = preserved_ex1
+                if example2_state_key in st.session_state:
+                    preserved_ex2 = st.session_state[example2_state_key]
+                    st.session_state[f"{example2_state_key}_preserve"] = preserved_ex2
+                
+                # Build the complete prompt internally
+                system_prompt_for_main = update_system_prompt_length(
+                    st.session_state[system_prompt_state_key],
+                    mainrecap_length
+                )
+                
+                example1_final = st.session_state.get(example1_state_key, current_exercise_data.get("example1", ""))
+                example2_final = st.session_state.get(example2_state_key, current_exercise_data.get("example2", ""))
+                
+                # Build complete Mistral prompt
+                mistral_prompt = f"{system_prompt_for_main}\n\n# BEISPIELE\n\n## Beispiel 1\n{example1_final}\n\n## Beispiel 2\n{example2_final}\n\n# INHALT\n{mainrecap_inhalt_text}"
+                
                 with st.spinner("Generiere MainRecap mit Mistral..."):
                     recap = generate_summary_with_mistral(
-                        prompt=r1_content,
+                        prompt=mistral_prompt,
                         api_key=MISTRAL_API_KEY,
                         model="mistral-medium-latest",
                         max_tokens=200,
                         temperature=0.7,
                     )
                     st.session_state[r2_state_key] = recap
+                
                 st.success("✅ MainRecap generiert")
+                
+                # Show the complete Mistral prompt in an expander for verification
+                with st.expander("🔍 Mistral Prompt (zur Überprüfung)"):
+                    st.text_area(
+                        "Vollständiger Prompt für Mistral",
+                        value=mistral_prompt,
+                        height=400,
+                        label_visibility="collapsed",
+                        key=f"{session_key}_mistral_prompt_display"
+                    )
+                
                 st.rerun()
             except Exception as e:
                 st.error(f"❌ Fehler: {e}")
@@ -1210,7 +1345,7 @@ if sel_uebung:
                     st.code(traceback.format_exc())
     
     st.text_area(
-        "R2 (Generierte Zusammenfassung)",
+        "Generierte Zusammenfassung",
         value=st.session_state[r2_state_key],
         key=r2_state_key,
         height=200,
