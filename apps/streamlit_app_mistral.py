@@ -714,7 +714,6 @@ if sel_uebung:
             "Temperature",
             min_value=0.0,
             max_value=2.0,
-            value=st.session_state[gemini_temp_key],
             step=0.1,
             key=gemini_temp_key,
         )
@@ -722,7 +721,6 @@ if sel_uebung:
             "Top-p",
             min_value=0.0,
             max_value=1.0,
-            value=st.session_state[gemini_top_p_key],
             step=0.05,
             key=gemini_top_p_key,
         )
@@ -980,7 +978,6 @@ if sel_uebung:
         "Maximale Wortanzahl",
         min_value=20,
         max_value=180,
-        value=st.session_state[system_length_key],
         key=system_length_key,
     )
     
@@ -1111,7 +1108,6 @@ if sel_uebung:
         "Maximale Wortanzahl (Example1)",
         min_value=20,
         max_value=180,
-        value=st.session_state[example1_length_key],
         key=example1_length_key,
     )
     
@@ -1144,7 +1140,6 @@ if sel_uebung:
             "Temperature (Example1)",
             min_value=0.0,
             max_value=2.0,
-            value=st.session_state[ex1_mistral_temp_key],
             step=0.1,
             key=ex1_mistral_temp_key,
         )
@@ -1153,7 +1148,6 @@ if sel_uebung:
             "Top-p (Example1)",
             min_value=0.0,
             max_value=1.0,
-            value=st.session_state[ex1_mistral_top_p_key],
             step=0.05,
             key=ex1_mistral_top_p_key,
         )
@@ -1287,7 +1281,6 @@ if sel_uebung:
         "Maximale Wortanzahl (Example2)",
         min_value=20,
         max_value=180,
-        value=st.session_state[example2_length_key],
         key=example2_length_key,
     )
     
@@ -1320,7 +1313,6 @@ if sel_uebung:
             "Temperature (Example2)",
             min_value=0.0,
             max_value=2.0,
-            value=st.session_state[ex2_mistral_temp_key],
             step=0.1,
             key=ex2_mistral_temp_key,
         )
@@ -1329,7 +1321,6 @@ if sel_uebung:
             "Top-p (Example2)",
             min_value=0.0,
             max_value=1.0,
-            value=st.session_state[ex2_mistral_top_p_key],
             step=0.05,
             key=ex2_mistral_top_p_key,
         )
@@ -1451,7 +1442,6 @@ if sel_uebung:
         "Maximale Wortanzahl (MainRecap)",
         min_value=20,
         max_value=180,
-        value=st.session_state[mainrecap_length_key],
         key=mainrecap_length_key,
     )
     
@@ -1478,7 +1468,6 @@ if sel_uebung:
             "Temperature (MainRecap)",
             min_value=0.0,
             max_value=2.0,
-            value=st.session_state[main_mistral_temp_key],
             step=0.1,
             key=main_mistral_temp_key,
         )
@@ -1487,7 +1476,6 @@ if sel_uebung:
             "Top-p (MainRecap)",
             min_value=0.0,
             max_value=1.0,
-            value=st.session_state[main_mistral_top_p_key],
             step=0.05,
             key=main_mistral_top_p_key,
         )
