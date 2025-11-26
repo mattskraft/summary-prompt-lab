@@ -95,7 +95,7 @@ def generate_summary_with_gemini_from_prompt(
 def generate_summary_with_mistral(
     prompt: str,
     api_key: str,
-    model: str = "mistral-medium-latest",
+    model: str = "mistral-small-latest",
     max_tokens: int = 200,
     temperature: float = 0.7,
     top_p: float = 0.9,
@@ -165,7 +165,7 @@ def extract_json_array_from_gemini_output(output: str) -> List[Dict[str, Any]]:
 def generate_answers_with_gemini(
     segments: List[Dict[str, Any]],
     api_key: str,
-    model: str = "gemini-2.5-flash-lite",
+    model: str = "gemini-2.5-flash",
     temperature: float = 0.9,
     top_p: float = 0.8,
     debug: bool = False,
@@ -319,16 +319,58 @@ def generate_answers_with_gemini(
                 print(prompt)
                 print("\n--- CALLING GEMINI ---")
 
-            response = client.models.generate_content(
-                model=model,
-                contents=prompt,
-                config={"temperature": temperature, "top_p": top_p, "max_output_tokens": 200},
-            )
+            try:
+                response = client.models.generate_content(
+                    model=model,
+                    contents=prompt,
+                    config={"temperature": temperature, "top_p": top_p, "max_output_tokens": 1000},
+                )
+            except Exception as e:
+                print(f"Error calling Gemini API with model '{model}': {e}")
+                raise
 
             if hasattr(response, "text") and response.text:
                 raw_output = response.text.strip()
             else:
-                raw_output = response.candidates[0].content.parts[0].text.strip()
+                # Add error handling for response structure
+                try:
+                    if not response.candidates:
+                        raise ValueError("No candidates in response")
+                    
+                    candidate = response.candidates[0]
+                    if not candidate.content:
+                        raise ValueError("No content in candidate")
+                    
+                    # Check finish reason first
+                    if hasattr(candidate, 'finish_reason'):
+                        if str(candidate.finish_reason) == 'MAX_TOKENS':
+                            print(f"Warning: Response was truncated due to max tokens limit")
+                        elif str(candidate.finish_reason) == 'SAFETY':
+                            raise ValueError("Response blocked due to safety filters")
+                        elif str(candidate.finish_reason) not in ['STOP', 'MAX_TOKENS']:
+                            print(f"Warning: Unexpected finish reason: {candidate.finish_reason}")
+                    
+                    # Handle missing parts (common when response is truncated)
+                    if not hasattr(candidate.content, 'parts') or not candidate.content.parts:
+                        # Try to get text from alternative locations or provide fallback
+                        if hasattr(candidate.content, 'text') and candidate.content.text:
+                            raw_output = candidate.content.text.strip()
+                        else:
+                            # If no content available, provide a meaningful error
+                            raise ValueError(f"No content parts available. Finish reason: {getattr(candidate, 'finish_reason', 'unknown')}")
+                    else:
+                        if not candidate.content.parts[0].text:
+                            raise ValueError("No text in first part")
+                        raw_output = candidate.content.parts[0].text.strip()
+                    
+                except (IndexError, AttributeError, ValueError) as e:
+                    print(f"Error accessing response structure: {e}")
+                    print(f"Response: {response}")
+                    if hasattr(response, 'candidates'):
+                        print(f"Candidates: {response.candidates}")
+                        if response.candidates:
+                            print(f"First candidate: {response.candidates[0]}")
+                    raise RuntimeError(f"Failed to extract text from Gemini response: {e}")
 
             all_raw_outputs.append(raw_output)
 

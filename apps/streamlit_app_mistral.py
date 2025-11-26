@@ -727,12 +727,13 @@ if sel_uebung:
                         preserved_main = st.session_state[mainrecap_inhalt_key]
                         st.session_state[f"{mainrecap_inhalt_key}_preserve"] = preserved_main
                     
-                    # Build segments for this exercise
+                    # Build fresh segments for this exercise (ensure new randomization each time)
                     try:
                         current_segments = get_prompt_segments_from_exercise(
                             exercise_name=sel_uebung,
                             json_struct_path=STRUCT_JSON_PATH,
                             json_sn_struct_path=SN_JSON_PATH,
+                            seed=None,  # Use None to get fresh randomization each time
                         )
                     except Exception as e:
                         st.error(f"Fehler bei der Segment-Generierung: {e}")
@@ -748,6 +749,7 @@ if sel_uebung:
                             system_prompt=system_prompt_with_words,
                             debug=False,
                             return_debug_info=True,
+                            seed=None,  # Use None to ensure fresh randomization each time
                         )
                         generated_segments, debug_info = result
                         # Store in session state
@@ -1386,8 +1388,17 @@ if sel_uebung:
         mainrecap_length
     )
     
+    # Get the current text area values (including any generated recaps)
     example1_final = st.session_state.get(example1_state_key, current_exercise_data.get("example1", ""))
     example2_final = st.session_state.get(example2_state_key, current_exercise_data.get("example2", ""))
+    
+    # Check if there are pending updates from recap generation
+    update_ex1_key = f"{session_key}_update_ex1"
+    update_ex2_key = f"{session_key}_update_ex2"
+    if update_ex1_key in st.session_state:
+        example1_final = st.session_state[update_ex1_key]
+    if update_ex2_key in st.session_state:
+        example2_final = st.session_state[update_ex2_key]
     
     # Build complete Mistral prompt for display
     mistral_prompt_preview = f"{system_prompt_for_main}\n\n# BEISPIELE\n\n## Beispiel 1\n{example1_final}\n\n## Beispiel 2\n{example2_final}\n\n# INHALT\n{mainrecap_inhalt_text}"
