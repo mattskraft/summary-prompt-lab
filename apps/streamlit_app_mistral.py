@@ -76,6 +76,12 @@ try:
     if not MISTRAL_API_KEY:
         MISTRAL_API_KEY = getattr(config_module, "MISTRAL_API_KEY", None)
     
+    # Load synth_answers_prompt.txt for Gemini system prompt
+    SYNTH_ANSWERS_PROMPT_PATH = PROJECT_ROOT / "config" / "synth_answers_prompt.txt"
+    SYNTH_ANSWERS_PROMPT = ""
+    if SYNTH_ANSWERS_PROMPT_PATH.exists():
+        SYNTH_ANSWERS_PROMPT = SYNTH_ANSWERS_PROMPT_PATH.read_text(encoding="utf-8").strip()
+    
     from kiso_input import (
         assess_free_text_answers,
         generate_answers_with_gemini,
@@ -678,51 +684,31 @@ with st.sidebar:
         else None
     )
     
-    # Seed key - let the widget handle initialization
-    seed_key = "global_seed"
-
 if sel_uebung:
-    # Track previous seed to detect changes (read before sidebar)
-    prev_seed_key = f"prev_seed_{sel_uebung}"
-    initial_seed = st.session_state.get("global_seed", 42)
-    prev_seed = st.session_state.get(prev_seed_key, initial_seed)
-    
-    # Add buttons to sidebar (seed widget is here, so we'll read seed after)
+    # Add buttons to sidebar
     with st.sidebar:
-        # Random seed moved to top to prevent state loss during reruns
-        st.markdown("---")
-        # Widget automatically updates st.session_state[seed_key] via the key parameter
-        st.number_input("random seed", min_value=0, value=st.session_state.get(seed_key, 42), step=1, key=seed_key)
-        
         st.markdown("---")
         
-        # Get current seed for sidebar controls (read fresh from session state)
-        # This ensures we use the most up-to-date seed value
-        sidebar_seed = st.session_state.get("global_seed", 42)
-        sidebar_session_key = f"generated_segments_{sel_uebung}_{sidebar_seed}"
+        # Session key for this exercise (no longer seed-dependent)
+        session_key = f"generated_segments_{sel_uebung}"
         
-        # Gemini temperature and top_p controls (use session_key that matches current seed)
-        gemini_temp_key = f"{sidebar_session_key}_gemini_temperature"
-        gemini_top_p_key = f"{sidebar_session_key}_gemini_top_p"
-        if gemini_temp_key not in st.session_state:
-            st.session_state[gemini_temp_key] = 0.9
-        if gemini_top_p_key not in st.session_state:
-            st.session_state[gemini_top_p_key] = 0.8
+        # Define state keys for all three text areas (tied to exercise only)
+        example1_state_key = f"{sel_uebung}_example1"
+        example2_state_key = f"{sel_uebung}_example2"
+        mainrecap_inhalt_key = f"{sel_uebung}_mainrecap_inhalt"
+        
+        # Gemini max words control
+        gemini_max_words_key = f"{session_key}_gemini_max_words"
+        if gemini_max_words_key not in st.session_state:
+            st.session_state[gemini_max_words_key] = 10
         
         st.subheader("Gemini Einstellungen")
-        gemini_temperature = st.slider(
-            "Temperature",
-            min_value=0.0,
-            max_value=2.0,
-            step=0.1,
-            key=gemini_temp_key,
-        )
-        gemini_top_p = st.slider(
-            "Top-p",
-            min_value=0.0,
-            max_value=1.0,
-            step=0.05,
-            key=gemini_top_p_key,
+        gemini_max_words = st.slider(
+            "Maximale Wortanzahl",
+            min_value=1,
+            max_value=50,
+            step=1,
+            key=gemini_max_words_key,
         )
         
         if st.button("✨ Generiere Antworten (Gemini)", use_container_width=True):
@@ -730,46 +716,51 @@ if sel_uebung:
                 st.error("❌ GEMINI_API_KEY nicht gesetzt.")
             else:
                 try:
-                    # Get current seed from session state (use sidebar_seed which was just read)
-                    # The seed widget updates st.session_state["global_seed"] when it renders
-                    current_seed = sidebar_seed
-                    # Create session_key based on current seed (MUST match calculation used in display code)
-                    current_session_key = f"generated_segments_{sel_uebung}_{current_seed}"
+                    # Preserve other text areas' state before rerun
+                    if example1_state_key in st.session_state:
+                        preserved_ex1 = st.session_state[example1_state_key]
+                        st.session_state[f"{example1_state_key}_preserve"] = preserved_ex1
+                    if example2_state_key in st.session_state:
+                        preserved_ex2 = st.session_state[example2_state_key]
+                        st.session_state[f"{example2_state_key}_preserve"] = preserved_ex2
+                    if mainrecap_inhalt_key in st.session_state:
+                        preserved_main = st.session_state[mainrecap_inhalt_key]
+                        st.session_state[f"{mainrecap_inhalt_key}_preserve"] = preserved_main
                     
-                    # Rebuild segments with current seed to ensure consistency
+                    # Build segments for this exercise
                     try:
                         current_segments = get_prompt_segments_from_exercise(
                             exercise_name=sel_uebung,
                             json_struct_path=STRUCT_JSON_PATH,
                             json_sn_struct_path=SN_JSON_PATH,
-                            seed=int(current_seed),
                         )
                     except Exception as e:
                         st.error(f"Fehler bei der Segment-Generierung: {e}")
                         st.stop()
                     
+                    # Create system prompt with max words
+                    system_prompt_with_words = SYNTH_ANSWERS_PROMPT.replace("x", str(gemini_max_words))
+                    
                     with st.spinner("Generiere Antworten mit Gemini..."):
                         result = generate_answers_with_gemini(
                             segments=current_segments,
                             api_key=GEMINI_API_KEY,
-                            temperature=gemini_temperature,
-                            top_p=gemini_top_p,
+                            system_prompt=system_prompt_with_words,
                             debug=False,
                             return_debug_info=True,
-                            seed=int(current_seed),
                         )
                         generated_segments, debug_info = result
-                        # Store in session state with current session_key (matches display code)
-                        st.session_state[current_session_key] = generated_segments
+                        # Store in session state
+                        st.session_state[session_key] = generated_segments
                         
                         # Clear ALL cached widget inputs for this session to ensure fresh UI
                         keys_to_remove = []
                         for state_key in list(st.session_state.keys()):
                             # Clear all widget keys that belong to this session
-                            if (state_key.startswith(f"{current_session_key}_original_ans_") or 
-                                state_key.startswith(f"{current_session_key}_generated_ans_") or
-                                state_key.startswith(f"{current_session_key}_original_") or
-                                state_key.startswith(f"{current_session_key}_generated_")):
+                            if (state_key.startswith(f"{session_key}_original_ans_") or 
+                                state_key.startswith(f"{session_key}_generated_ans_") or
+                                state_key.startswith(f"{session_key}_original_") or
+                                state_key.startswith(f"{session_key}_generated_")):
                                 keys_to_remove.append(state_key)
                         
                         for key in keys_to_remove:
@@ -784,12 +775,6 @@ if sel_uebung:
         
         # Transfer buttons in sidebar
         st.subheader("Antworten übertragen")
-        
-        # Define state keys for all three text areas (seed-independent, tied to exercise only)
-        # These should NOT include seed, so they persist across seed changes
-        example1_state_key = f"{sel_uebung}_example1"
-        example2_state_key = f"{sel_uebung}_example2"
-        mainrecap_inhalt_key = f"{sel_uebung}_mainrecap_inhalt"
         
         transfer_cols = st.columns(3)
         
@@ -842,36 +827,16 @@ if sel_uebung:
                 st.rerun()
         
     
-    # Re-read seed after sidebar (in case it changed)
-    seed = st.session_state.get("global_seed", 42)
-    
-    # Check if seed changed after sidebar rendered
-    if prev_seed != seed:
-        # Seed changed - clear old session state and update tracking
-        old_session_key = f"generated_segments_{sel_uebung}_{prev_seed}"
-        keys_to_remove = [
-            key for key in st.session_state.keys()
-            if key.startswith(old_session_key) or key.startswith(f"{old_session_key}_")
-        ]
-        for key in keys_to_remove:
-            del st.session_state[key]
-        # Update previous seed tracking
-        st.session_state[prev_seed_key] = seed
-    
-    # Create session_key with current seed (after sidebar has updated it)
-    session_key = f"generated_segments_{sel_uebung}_{seed}"
-    
     # Initialize session_key if it doesn't exist (don't overwrite existing generated segments)
     if session_key not in st.session_state:
         st.session_state[session_key] = None
     
-    # Build segments from processing pipeline (always rebuild to ensure correct seed)
+    # Build segments from processing pipeline
     try:
         segments = get_prompt_segments_from_exercise(
             exercise_name=sel_uebung,
             json_struct_path=STRUCT_JSON_PATH,
             json_sn_struct_path=SN_JSON_PATH,
-            seed=int(seed),
         )
     except Exception as e:
         st.error(f"Fehler bei der Segment-Generierung: {e}")
@@ -905,14 +870,7 @@ if sel_uebung:
     # Store segments_for_prompt in session state for transfer buttons
     st.session_state[f"{session_key}_segments_for_prompt"] = segments_for_prompt
     
-    # Define state keys for all three text areas (seed-independent, tied to exercise only)
-    # These should NOT include seed, so they persist across seed changes
-    example1_state_key = f"{sel_uebung}_example1"
-    example2_state_key = f"{sel_uebung}_example2"
-    mainrecap_inhalt_key = f"{sel_uebung}_mainrecap_inhalt"
-    
     # Handle transfer button clicks (using stored segments_for_prompt)
-    # Use seed-independent keys for transfer flags
     transfer_ex1_clicked = st.session_state.get(f"{sel_uebung}_transfer_ex1_clicked", False)
     if transfer_ex1_clicked:
         inhalt = segments_to_inhalt(segments_for_prompt)
@@ -1069,7 +1027,7 @@ if sel_uebung:
     st.markdown("---")
     st.subheader("Example1")
     
-    # Use seed-independent key for Example1 (persists across seed changes)
+    # Use exercise-specific key for Example1
     example1_state_key = f"{sel_uebung}_example1"
     
     # Restore preserved value if it exists (from transfer button click)
@@ -1081,7 +1039,6 @@ if sel_uebung:
         del st.session_state[preserve_key]
     
     # Check if transfer button was clicked (check button state after render)
-    # Use seed-independent key for transfer flag
     transfer_ex1_clicked = st.session_state.get(f"{sel_uebung}_transfer_ex1_clicked", False)
     if transfer_ex1_clicked:
         inhalt = segments_to_inhalt(segments_for_prompt)
@@ -1097,7 +1054,6 @@ if sel_uebung:
         st.session_state[example1_state_key] = example1_value
     # Note: Widget with key=example1_state_key manages its own session state
     # We only set it explicitly during transfer or load operations
-    # The widget value persists across seed changes because the key is seed-independent
     
     # Slider for Example1
     example1_length_key = f"{session_key}_example1_length"
@@ -1126,31 +1082,6 @@ if sel_uebung:
         label_visibility="collapsed",
     )
     
-    # Mistral temperature and top_p controls for Example1
-    ex1_mistral_temp_key = f"{session_key}_ex1_mistral_temperature"
-    ex1_mistral_top_p_key = f"{session_key}_ex1_mistral_top_p"
-    if ex1_mistral_temp_key not in st.session_state:
-        st.session_state[ex1_mistral_temp_key] = 0.7
-    if ex1_mistral_top_p_key not in st.session_state:
-        st.session_state[ex1_mistral_top_p_key] = 0.9
-    
-    ex1_mistral_cols = st.columns(3)
-    with ex1_mistral_cols[0]:
-        ex1_mistral_temperature = st.slider(
-            "Temperature (Example1)",
-            min_value=0.0,
-            max_value=2.0,
-            step=0.1,
-            key=ex1_mistral_temp_key,
-        )
-    with ex1_mistral_cols[1]:
-        ex1_mistral_top_p = st.slider(
-            "Top-p (Example1)",
-            min_value=0.0,
-            max_value=1.0,
-            step=0.05,
-            key=ex1_mistral_top_p_key,
-        )
     
     example1_button_cols = st.columns(3)
     with example1_button_cols[0]:
@@ -1183,8 +1114,6 @@ if sel_uebung:
                             api_key=MISTRAL_API_KEY,
                             model="mistral-medium-latest",
                             max_tokens=200,
-                            temperature=ex1_mistral_temperature,
-                            top_p=ex1_mistral_top_p,
                         )
                     
                     # Add or replace ZUSAMMENFASSUNG line
@@ -1245,7 +1174,7 @@ if sel_uebung:
     st.markdown("---")
     st.subheader("Example2")
     
-    # Use seed-independent key for Example2 (persists across seed changes)
+    # Use exercise-specific key for Example2
     example2_state_key = f"{sel_uebung}_example2"
     
     # Restore preserved value if it exists (from transfer button click)
@@ -1256,7 +1185,7 @@ if sel_uebung:
         st.session_state[example2_state_key] = preserved_value
         del st.session_state[preserve_key]
     
-    # Use seed-independent key for transfer flag
+    # Check transfer flag
     transfer_ex2_clicked = st.session_state.get(f"{sel_uebung}_transfer_ex2_clicked", False)
     if transfer_ex2_clicked:
         inhalt = segments_to_inhalt(segments_for_prompt)
@@ -1271,7 +1200,6 @@ if sel_uebung:
         st.session_state[example2_state_key] = example2_value
     # Note: Widget with key=example2_state_key manages its own session state
     # We only set it explicitly during transfer or load operations
-    # The widget value persists across seed changes because the key is seed-independent
     
     example2_length_key = f"{session_key}_example2_length"
     if example2_length_key not in st.session_state:
@@ -1299,31 +1227,6 @@ if sel_uebung:
         label_visibility="collapsed",
     )
     
-    # Mistral temperature and top_p controls for Example2
-    ex2_mistral_temp_key = f"{session_key}_ex2_mistral_temperature"
-    ex2_mistral_top_p_key = f"{session_key}_ex2_mistral_top_p"
-    if ex2_mistral_temp_key not in st.session_state:
-        st.session_state[ex2_mistral_temp_key] = 0.7
-    if ex2_mistral_top_p_key not in st.session_state:
-        st.session_state[ex2_mistral_top_p_key] = 0.9
-    
-    ex2_mistral_cols = st.columns(3)
-    with ex2_mistral_cols[0]:
-        ex2_mistral_temperature = st.slider(
-            "Temperature (Example2)",
-            min_value=0.0,
-            max_value=2.0,
-            step=0.1,
-            key=ex2_mistral_temp_key,
-        )
-    with ex2_mistral_cols[1]:
-        ex2_mistral_top_p = st.slider(
-            "Top-p (Example2)",
-            min_value=0.0,
-            max_value=1.0,
-            step=0.05,
-            key=ex2_mistral_top_p_key,
-        )
     
     example2_button_cols = st.columns(3)
     with example2_button_cols[0]:
@@ -1353,8 +1256,6 @@ if sel_uebung:
                             api_key=MISTRAL_API_KEY,
                             model="mistral-medium-latest",
                             max_tokens=200,
-                            temperature=ex2_mistral_temperature,
-                            top_p=ex2_mistral_top_p,
                         )
                     
                     lines = example2_text.split("\n")
@@ -1413,7 +1314,7 @@ if sel_uebung:
     st.subheader("MainRecap")
     
     # MainRecap INHALT is constructed from segments (not stored in JSON)
-    # Use seed-independent key for MainRecap (persists across seed changes)
+    # Use exercise-specific key for MainRecap
     mainrecap_inhalt_key = f"{sel_uebung}_mainrecap_inhalt"
     
     # Restore preserved value if it exists (from transfer button click)
@@ -1431,7 +1332,6 @@ if sel_uebung:
         # Initialize with INHALT from segments with empty answers
         st.session_state[mainrecap_inhalt_key] = segments_to_inhalt(segments, empty_answers=True)
     # Note: Widget with key=mainrecap_inhalt_key manages its own session state
-    # The widget value persists across seed changes because the key is seed-independent
     
     # Slider for MainRecap
     mainrecap_length_key = f"{session_key}_mainrecap_length"

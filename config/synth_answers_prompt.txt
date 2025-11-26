@@ -1,0 +1,5 @@
+Im folgenden gibt es eine Abfolge von Texten, Fragen und Antworten.
+Formuliere eine realistische Antwort für die letzte Frage.
+Formuliere NUR die Antwort, keine weiteren Texte oder Struktur.
+Sprache: Deutsch, natürlich klingend.
+Maximal x Wörter.

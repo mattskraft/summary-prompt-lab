@@ -171,6 +171,7 @@ def generate_answers_with_gemini(
     debug: bool = False,
     return_debug_info: bool = False,
     seed: Optional[int] = None,
+    system_prompt: Optional[str] = None,
 ) -> Union[List[Dict[str, Any]], Tuple[List[Dict[str, Any]], Dict[str, Any]]]:
     """
     Generate user answers using Gemini and merge them into the segment structure.
@@ -184,6 +185,7 @@ def generate_answers_with_gemini(
         debug: Enable debug output
         return_debug_info: Return debug information along with segments
         seed: Random seed for reproducible MC/slider answer generation
+        system_prompt: Optional custom system prompt to use instead of default
 
     Returns:
         The merged segments and optionally debug information.
@@ -292,6 +294,21 @@ def generate_answers_with_gemini(
                 is_target_question=True,
                 free_text_answers=free_text_answers_by_text,
             )
+            
+            # Replace system prompt if custom one is provided
+            if system_prompt:
+                # Split prompt into header and content
+                lines = prompt.split('\n')
+                # Find where the content starts (after the header)
+                content_start = 0
+                for i, line in enumerate(lines):
+                    if line.startswith('TEXT:') or line.startswith('FRAGE:') or line.startswith('ANTWORT:'):
+                        content_start = i
+                        break
+                
+                # Replace header with custom system prompt
+                content_lines = lines[content_start:]
+                prompt = system_prompt + '\n' + '\n'.join(content_lines)
 
             if debug:
                 print(f"\n{'=' * 80}")
