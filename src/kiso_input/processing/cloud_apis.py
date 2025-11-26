@@ -98,6 +98,7 @@ def generate_summary_with_mistral(
     model: str = "mistral-medium-latest",
     max_tokens: int = 200,
     temperature: float = 0.7,
+    top_p: float = 0.9,
 ) -> str:
     """Generate a summary using the Mistral API from a prompt string.
     
@@ -107,6 +108,7 @@ def generate_summary_with_mistral(
         model: Model name to use (default: mistral-medium-latest)
         max_tokens: Maximum tokens to generate (default: 200)
         temperature: Sampling temperature (default: 0.7)
+        top_p: Top-p sampling parameter (default: 0.9)
         
     Returns:
         Generated summary text
@@ -130,6 +132,7 @@ def generate_summary_with_mistral(
             stream=False,
             max_tokens=max_tokens,
             temperature=temperature,
+            top_p=top_p,
         )
         summary = res.choices[0].message.content.strip()
     
@@ -163,13 +166,27 @@ def generate_answers_with_gemini(
     segments: List[Dict[str, Any]],
     api_key: str,
     model: str = "gemini-2.5-flash-lite",
+    temperature: float = 0.9,
+    top_p: float = 0.8,
     debug: bool = False,
     return_debug_info: bool = False,
+    seed: Optional[int] = None,
 ) -> Union[List[Dict[str, Any]], Tuple[List[Dict[str, Any]], Dict[str, Any]]]:
     """
     Generate user answers using Gemini and merge them into the segment structure.
 
-    Returns the merged segments and optionally debug information.
+    Args:
+        segments: List of segment dictionaries
+        api_key: Gemini API key
+        model: Gemini model to use
+        temperature: Sampling temperature
+        top_p: Top-p sampling parameter
+        debug: Enable debug output
+        return_debug_info: Return debug information along with segments
+        seed: Random seed for reproducible MC/slider answer generation
+
+    Returns:
+        The merged segments and optionally debug information.
     """
     try:
         from google import genai
@@ -178,7 +195,7 @@ def generate_answers_with_gemini(
             "google-genai package not installed. Install it with: pip install google-genai"
         ) from exc
 
-    rng = random.Random()
+    rng = random.Random(seed)
     mc_answers: Dict[str, List[str]] = {}
     slider_answers: Dict[str, int] = {}
 
@@ -288,7 +305,7 @@ def generate_answers_with_gemini(
             response = client.models.generate_content(
                 model=model,
                 contents=prompt,
-                config={"temperature": 0.9, "top_p": 0.8, "max_output_tokens": 200},
+                config={"temperature": temperature, "top_p": top_p, "max_output_tokens": 200},
             )
 
             if hasattr(response, "text") and response.text:
