@@ -626,6 +626,7 @@ if sel_uebung:
                             api_key=GEMINI_API_KEY,
                             debug=False,  # Set to True for console debugging
                             return_debug_info=True,
+                            seed=int(seed),
                         )
                         generated_segments, debug_info = result
                         
