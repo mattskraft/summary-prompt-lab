@@ -755,6 +755,9 @@ if sel_uebung:
                         # Store in session state
                         st.session_state[session_key] = generated_segments
                         
+                        # Set flag to indicate fresh generation occurred
+                        st.session_state[f"{session_key}_fresh_generated"] = True
+                        
                         # Clear ALL cached widget inputs for this session to ensure fresh UI
                         keys_to_remove = []
                         for state_key in list(st.session_state.keys()):
@@ -846,9 +849,17 @@ if sel_uebung:
     
     # Choose which segments to display
     has_generated = st.session_state.get(session_key) is not None
-    segments_to_display = (
-        st.session_state[session_key] if has_generated else segments
-    )
+    fresh_generated = st.session_state.get(f"{session_key}_fresh_generated", False)
+    
+    # If fresh generation occurred, clear the flag and use the generated segments
+    if fresh_generated:
+        st.session_state[f"{session_key}_fresh_generated"] = False
+        segments_to_display = st.session_state[session_key]
+        has_generated = True  # Ensure we use the generated key prefix
+    else:
+        segments_to_display = (
+            st.session_state[session_key] if has_generated else segments
+        )
     key_prefix = (
         f"{session_key}_generated" if has_generated else f"{session_key}_original"
     )
@@ -1382,34 +1393,37 @@ if sel_uebung:
             key=main_mistral_top_p_key,
         )
     
-    # Show the complete Mistral prompt that would be sent
-    system_prompt_for_main = update_system_prompt_length(
-        st.session_state[system_prompt_state_key],
-        mainrecap_length
-    )
+    # Mistral prompt preview text area (populated by button)
+    mistral_prompt_preview_key = f"{session_key}_mistral_prompt_preview"
+    if mistral_prompt_preview_key not in st.session_state:
+        st.session_state[mistral_prompt_preview_key] = ""
     
-    # Get the current text area values (including any generated recaps)
-    example1_final = st.session_state.get(example1_state_key, current_exercise_data.get("example1", ""))
-    example2_final = st.session_state.get(example2_state_key, current_exercise_data.get("example2", ""))
-    
-    # Check if there are pending updates from recap generation
-    update_ex1_key = f"{session_key}_update_ex1"
-    update_ex2_key = f"{session_key}_update_ex2"
-    if update_ex1_key in st.session_state:
-        example1_final = st.session_state[update_ex1_key]
-    if update_ex2_key in st.session_state:
-        example2_final = st.session_state[update_ex2_key]
-    
-    # Build complete Mistral prompt for display
-    mistral_prompt_preview = f"{system_prompt_for_main}\n\n# BEISPIELE\n\n## Beispiel 1\n{example1_final}\n\n## Beispiel 2\n{example2_final}\n\n# INHALT\n{mainrecap_inhalt_text}"
+    # Button to build the complete Mistral prompt
+    if st.button("🔧 Prompt zusammenstellen", key=f"{session_key}_build_prompt", use_container_width=True):
+        # Build the complete Mistral prompt
+        system_prompt_for_main = update_system_prompt_length(
+            st.session_state[system_prompt_state_key],
+            mainrecap_length
+        )
+        
+        # Get the current text area values (including any generated recaps)
+        example1_final = st.session_state.get(example1_state_key, current_exercise_data.get("example1", ""))
+        example2_final = st.session_state.get(example2_state_key, current_exercise_data.get("example2", ""))
+        
+        # Build complete Mistral prompt
+        mistral_prompt_preview = f"{system_prompt_for_main}\n\n# BEISPIELE\n\n## Beispiel 1\n{example1_final}\n\n## Beispiel 2\n{example2_final}\n\n# INHALT\n{mainrecap_inhalt_text}"
+        
+        # Store in session state
+        st.session_state[mistral_prompt_preview_key] = mistral_prompt_preview
+        st.success("✅ Prompt zusammengestellt")
+        st.rerun()
     
     with st.expander("🔍 Mistral Prompt (zur Überprüfung)"):
         st.text_area(
             "Vollständiger Prompt für Mistral",
-            value=mistral_prompt_preview,
+            key=mistral_prompt_preview_key,
             height=400,
             label_visibility="collapsed",
-            key=f"{session_key}_mistral_prompt_preview",
             disabled=True
         )
     
@@ -1430,8 +1444,11 @@ if sel_uebung:
                     preserved_ex2 = st.session_state[example2_state_key]
                     st.session_state[f"{example2_state_key}_preserve"] = preserved_ex2
                 
-                # Use the same prompt construction as the preview
-                mistral_prompt = mistral_prompt_preview
+                # Use the prompt from the preview text area
+                mistral_prompt = st.session_state.get(mistral_prompt_preview_key, "")
+                if not mistral_prompt.strip():
+                    st.error("❌ Bitte erst den Prompt mit '🔧 Prompt zusammenstellen' erstellen.")
+                    st.stop()
                 
                 with st.spinner("Generiere MainRecap mit Mistral..."):
                     recap = generate_summary_with_mistral(
