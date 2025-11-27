@@ -50,7 +50,7 @@ else:
 # Support both naming conventions for flexibility
 _struct_path_raw = os.getenv("KISO_STRUCT_JSON") or os.getenv("STRUCT_JSON_PATH")
 _sn_path_raw = os.getenv("KISO_SN_JSON") or os.getenv("SN_JSON_PATH")
-_lexicon_path_raw = os.getenv("KISO_SUICIDE_LEXICON") or os.getenv("SUICIDE_LEXICON_PATH")
+_lexicon_path_raw = os.getenv("KISO_SAFETY_LEXICON") or os.getenv("SAFETY_LEXICON_PATH")
 _prompts_path_raw = os.getenv("KISO_PROMPTS_CONFIG") or os.getenv("PROMPTS_CONFIG_PATH")
 GEMINI_API_KEY: Optional[str] = os.getenv("GEMINI_API_KEY")
 MISTRAL_API_KEY: Optional[str] = os.getenv("MISTRAL_API_KEY")
@@ -123,30 +123,30 @@ if not SN_JSON_PATH:
         if shared_data.exists():
             SN_JSON_PATH = str(shared_data)
 
-SUICIDE_LEXICON_PATH: Optional[str] = None
+SAFETY_LEXICON_PATH: Optional[str] = None
 DEFAULT_LEXICON_PATH = PROJECT_ROOT / "config" / "safety_3tier_de.yaml"
 if _lexicon_path_raw:
     lexicon_path = Path(_lexicon_path_raw)
     if lexicon_path.is_absolute():
-        SUICIDE_LEXICON_PATH = str(lexicon_path) if lexicon_path.exists() else None
+        SAFETY_LEXICON_PATH = str(lexicon_path) if lexicon_path.exists() else None
     else:
         for base in [PROJECT_ROOT, Path.cwd()]:
             full_path = base / lexicon_path
             if full_path.exists():
-                SUICIDE_LEXICON_PATH = str(full_path.resolve())
+                SAFETY_LEXICON_PATH = str(full_path.resolve())
                 break
 
-if not SUICIDE_LEXICON_PATH:
+if not SAFETY_LEXICON_PATH:
     if DEFAULT_LEXICON_PATH.exists():
-        SUICIDE_LEXICON_PATH = str(DEFAULT_LEXICON_PATH.resolve())
+        SAFETY_LEXICON_PATH = str(DEFAULT_LEXICON_PATH.resolve())
     else:
         fallback_candidates = [
-            PROJECT_ROOT / "config" / "suicide_lexicon_de.yaml",
-            PROJECT_ROOT / "config" / "lexica" / "suicide_lexicon_de.yaml",
+            PROJECT_ROOT / "config" / "safety_lexicon_de.yaml",
+            PROJECT_ROOT / "config" / "lexica" / "safety_lexicon_de.yaml",
         ]
         for candidate in fallback_candidates:
             if candidate.exists():
-                SUICIDE_LEXICON_PATH = str(candidate.resolve())
+                SAFETY_LEXICON_PATH = str(candidate.resolve())
                 break
 
 PROMPTS_CONFIG_PATH: Optional[str] = None

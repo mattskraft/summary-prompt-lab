@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Iterable, Tuple
 
 from kiso_input import classify_self_harm, load_self_harm_lexicon
-from kiso_input.config import SUICIDE_LEXICON_PATH
+from kiso_input.config import SAFETY_LEXICON_PATH
 
 
 def _load_examples(path: Path) -> Iterable[Tuple[str, str]]:
@@ -37,10 +37,10 @@ def main() -> None:
     if not examples_path.exists():
         raise FileNotFoundError(f"Examples file not found: {examples_path}")
 
-    if not SUICIDE_LEXICON_PATH:
-        raise RuntimeError("SUICIDE_LEXICON_PATH is not configured.")
+    if not SAFETY_LEXICON_PATH:
+        raise RuntimeError("SAFETY_LEXICON_PATH is not configured.")
 
-    lexicon = load_self_harm_lexicon(SUICIDE_LEXICON_PATH)
+    lexicon = load_self_harm_lexicon(SAFETY_LEXICON_PATH)
     tests = list(_load_examples(examples_path))
 
     if not tests:

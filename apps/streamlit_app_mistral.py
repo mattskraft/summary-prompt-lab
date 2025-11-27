@@ -19,7 +19,7 @@ try:
     from kiso_input.config import (
         STRUCT_JSON_PATH,
         SN_JSON_PATH,
-        SUICIDE_LEXICON_PATH,
+        SAFETY_LEXICON_PATH,
     )
     import kiso_input.config as config_module
     

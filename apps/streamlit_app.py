@@ -18,7 +18,7 @@ try:
     from kiso_input.config import (
         STRUCT_JSON_PATH,
         SN_JSON_PATH,
-        SUICIDE_LEXICON_PATH,
+        SAFETY_LEXICON_PATH,
     )
     import kiso_input.config as config_module
     
@@ -901,12 +901,12 @@ if sel_uebung:
     # Safety check function (shared across all models)
     def perform_safety_check() -> Tuple[bool, list]:
         """Perform safety check and return (is_safe, assessments)."""
-        if not SUICIDE_LEXICON_PATH:
-            st.error("❌ Sicherheitsprüfung nicht möglich: `SUICIDE_LEXICON_PATH` ist nicht gesetzt.")
+        if not SAFETY_LEXICON_PATH:
+            st.error("❌ Sicherheitsprüfung nicht möglich: `SAFETY_LEXICON_PATH` ist nicht gesetzt.")
             return False, []
         
         try:
-            lexicon = load_self_harm_lexicon_cached(SUICIDE_LEXICON_PATH)
+            lexicon = load_self_harm_lexicon_cached(SAFETY_LEXICON_PATH)
             assessments = assess_free_text_answers(segments_for_prompt, lexicon)
         except Exception as exc:
             st.error(f"❌ Sicherheitsprüfung fehlgeschlagen: {exc}")
