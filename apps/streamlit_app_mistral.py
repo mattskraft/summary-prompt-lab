@@ -85,6 +85,7 @@ try:
     from kiso_input import (
         assess_free_text_answers,
         generate_answers_with_gemini,
+        generate_answers_with_mistral,
         get_prompt_segments_from_exercise,
         load_self_harm_lexicon,
     )
@@ -726,7 +727,16 @@ if sel_uebung:
             key=gemini_max_words_key,
         )
         
-        if st.button("✨ Generiere Antworten", use_container_width=True):
+        # Answer generation buttons
+        answer_gen_cols = st.columns(2)
+        
+        with answer_gen_cols[0]:
+            gemini_gen_clicked = st.button("✨ Gemini Antworten", use_container_width=True)
+        
+        with answer_gen_cols[1]:
+            mistral_gen_clicked = st.button("🤖 Mistral Antworten", use_container_width=True)
+        
+        if gemini_gen_clicked:
             if not GEMINI_API_KEY:
                 st.error("❌ GEMINI_API_KEY nicht gesetzt.")
             else:
@@ -808,6 +818,88 @@ if sel_uebung:
                     with st.expander("🔍 Fehlerdetails anzeigen"):
                         st.code(traceback.format_exc(), language="python")
         
+        if mistral_gen_clicked:
+            if not MISTRAL_API_KEY:
+                st.error("❌ MISTRAL_API_KEY nicht gesetzt.")
+            else:
+                try:
+                    # Preserve other text areas' state before rerun
+                    if example1_state_key in st.session_state:
+                        preserved_ex1 = st.session_state[example1_state_key]
+                        st.session_state[f"{example1_state_key}_preserve"] = preserved_ex1
+                    if example2_state_key in st.session_state:
+                        preserved_ex2 = st.session_state[example2_state_key]
+                        st.session_state[f"{example2_state_key}_preserve"] = preserved_ex2
+                    if mainrecap_inhalt_key in st.session_state:
+                        preserved_main = st.session_state[mainrecap_inhalt_key]
+                        st.session_state[f"{mainrecap_inhalt_key}_preserve"] = preserved_main
+                    
+                    # Build fresh segments for this exercise
+                    try:
+                        current_segments = get_prompt_segments_from_exercise(
+                            exercise_name=sel_uebung,
+                            json_struct_path=STRUCT_JSON_PATH,
+                            json_sn_struct_path=SN_JSON_PATH,
+                            seed=None,
+                        )
+                    except Exception as e:
+                        st.error(f"Fehler bei der Segment-Generierung: {e}")
+                        st.stop()
+                    
+                    # Create system prompt with max words
+                    system_prompt_with_words = SYNTH_ANSWERS_PROMPT.replace("x", str(gemini_max_words))
+                    
+                    with st.spinner("Generiere Antworten mit Mistral..."):
+                        result = generate_answers_with_mistral(
+                            segments=current_segments,
+                            api_key=MISTRAL_API_KEY,
+                            system_prompt=system_prompt_with_words,
+                            debug=False,
+                            return_debug_info=True,
+                            seed=None,
+                            max_words=gemini_max_words,
+                        )
+                        generated_segments, debug_info = result
+                        # Store in session state
+                        st.session_state[session_key] = generated_segments
+                        
+                        # Set flag to indicate fresh generation occurred
+                        st.session_state[f"{session_key}_fresh_generated"] = True
+                        
+                        # Clear old widget inputs and pre-populate new ones with generated answers
+                        keys_to_remove = []
+                        for state_key in list(st.session_state.keys()):
+                            # Clear old widget keys
+                            if (state_key.startswith(f"{session_key}_original_ans_") or 
+                                state_key.startswith(f"{session_key}_generated_ans_")):
+                                keys_to_remove.append(state_key)
+                        
+                        for key in keys_to_remove:
+                            del st.session_state[key]
+                        
+                        # Pre-populate new widget keys with generated answers
+                        for idx, seg in enumerate(generated_segments):
+                            if "Answer" in seg:
+                                widget_key = f"{session_key}_generated_ans_{idx}"
+                                answer_val = seg["Answer"]
+                                
+                                # Set the widget value in session state
+                                if isinstance(answer_val, list):
+                                    st.session_state[widget_key] = answer_val
+                                elif isinstance(answer_val, (int, float)):
+                                    st.session_state[widget_key] = int(answer_val)
+                                elif isinstance(answer_val, str):
+                                    st.session_state[widget_key] = answer_val
+                                else:
+                                    st.session_state[widget_key] = answer_val
+                    st.success("✅ Antworten mit Mistral generiert")
+                    st.rerun()
+                except Exception as e:
+                    st.error(f"❌ Fehler bei der Mistral Antwort-Generierung: {e}")
+                    import traceback
+                    with st.expander("🔍 Fehlerdetails anzeigen"):
+                        st.code(traceback.format_exc(), language="python")
+        
         # Transfer buttons in sidebar
         st.subheader("Antworten übertragen")
         
@@ -861,6 +953,19 @@ if sel_uebung:
                 st.session_state[f"{sel_uebung}_transfer_main_success"] = True
                 st.rerun()
         
+        # Display transfer success messages right below the buttons
+        if st.session_state.get(f"{sel_uebung}_transfer_ex1_success", False):
+            st.success("✅ Antworten zu Beispiel 1 übertragen")
+            st.session_state[f"{sel_uebung}_transfer_ex1_success"] = False
+        
+        if st.session_state.get(f"{sel_uebung}_transfer_ex2_success", False):
+            st.success("✅ Antworten zu Beispiel 2 übertragen")
+            st.session_state[f"{sel_uebung}_transfer_ex2_success"] = False
+        
+        if st.session_state.get(f"{sel_uebung}_transfer_main_success", False):
+            st.success("✅ Antworten zu TEST übertragen")
+            st.session_state[f"{sel_uebung}_transfer_main_success"] = False
+    
     
     # Initialize session_key if it doesn't exist (don't overwrite existing generated segments)
     if session_key not in st.session_state:
@@ -876,19 +981,6 @@ if sel_uebung:
     except Exception as e:
         st.error(f"Fehler bei der Segment-Generierung: {e}")
         st.stop()
-    
-    # Display transfer success messages
-    if st.session_state.get(f"{sel_uebung}_transfer_ex1_success", False):
-        st.success("✅ Antworten zu Beispiel 1 übertragen")
-        st.session_state[f"{sel_uebung}_transfer_ex1_success"] = False
-    
-    if st.session_state.get(f"{sel_uebung}_transfer_ex2_success", False):
-        st.success("✅ Antworten zu Beispiel 2 übertragen")
-        st.session_state[f"{sel_uebung}_transfer_ex2_success"] = False
-    
-    if st.session_state.get(f"{sel_uebung}_transfer_main_success", False):
-        st.success("✅ Antworten zu TEST übertragen")
-        st.session_state[f"{sel_uebung}_transfer_main_success"] = False
     
     # Choose which segments to display
     has_generated = st.session_state.get(session_key) is not None
@@ -1172,7 +1264,6 @@ if sel_uebung:
                         recap = generate_summary_with_mistral(
                             prompt=prompt,
                             api_key=MISTRAL_API_KEY,
-                            model="mistral-medium-latest",
                             max_tokens=200,
                         )
                     
@@ -1316,7 +1407,6 @@ if sel_uebung:
                         recap = generate_summary_with_mistral(
                             prompt=prompt,
                             api_key=MISTRAL_API_KEY,
-                            model="mistral-medium-latest",
                             max_tokens=200,
                         )
                     
@@ -1442,32 +1532,23 @@ if sel_uebung:
             key=main_mistral_top_p_key,
         )
     
-    # Mistral prompt preview text area (populated automatically)
-    mistral_prompt_preview_key = f"{session_key}_mistral_prompt_preview"
-    mistral_prompt_content_key = f"{session_key}_mistral_prompt_content"
+    # Simple prompt display - just show what was last sent to Mistral
+    last_mistral_prompt_key = f"{session_key}_last_mistral_prompt"
     
-    # Build the current prompt content automatically
-    system_prompt_for_preview = update_system_prompt_length(
-        st.session_state[system_prompt_state_key],
-        mainrecap_length
-    )
-    
-    # Get the current text area values
-    example1_current = st.session_state.get(example1_state_key, current_exercise_data.get("example1", ""))
-    example2_current = st.session_state.get(example2_state_key, current_exercise_data.get("example2", ""))
-    
-    # Build complete Mistral prompt for preview
-    current_prompt_content = f"{system_prompt_for_preview}\n\n# BEISPIELE\n\n## Beispiel 1\n{example1_current}\n\n## Beispiel 2\n{example2_current}\n\n# INHALT\n{mainrecap_inhalt_text}"
+    # Get the last prompt that was sent to Mistral (empty if none yet)
+    last_prompt = st.session_state.get(last_mistral_prompt_key, "")
     
     with st.expander("🔍 Mistral Prompt"):
-        st.text_area(
-            "Vollständiger Prompt für Mistral",
-            value=current_prompt_content,
-            key=mistral_prompt_preview_key,
-            height=400,
-            label_visibility="collapsed",
-            disabled=True
-        )
+        if last_prompt:
+            st.text_area(
+                "Letzter an Mistral gesendeter Prompt",
+                value=last_prompt,
+                height=400,
+                label_visibility="collapsed",
+                disabled=True
+            )
+        else:
+            st.info("Prompt wird hier angezeigt, nachdem 'Summary generieren' gedrückt wurde.")
     
     r2_state_key = f"{session_key}_r2"
     if r2_state_key not in st.session_state:
@@ -1488,7 +1569,7 @@ if sel_uebung:
                     preserved_ex2 = st.session_state[example2_state_key]
                     st.session_state[f"{example2_state_key}_preserve"] = preserved_ex2
                 
-                # Build the complete Mistral prompt automatically
+                # Build the complete Mistral prompt
                 system_prompt_for_main = update_system_prompt_length(
                     st.session_state[system_prompt_state_key],
                     mainrecap_length
@@ -1501,14 +1582,13 @@ if sel_uebung:
                 # Build complete Mistral prompt
                 mistral_prompt = f"{system_prompt_for_main}\n\n# BEISPIELE\n\n## Beispiel 1\n{example1_final}\n\n## Beispiel 2\n{example2_final}\n\n# INHALT\n{mainrecap_inhalt_text}"
                 
-                # Store in session state for preview (use content key, not widget key)
-                st.session_state[mistral_prompt_content_key] = mistral_prompt
-                
                 with st.spinner("Generiere Zusammenfassung..."):
+                    # Store the exact prompt that we're about to send
+                    st.session_state[last_mistral_prompt_key] = mistral_prompt
+                    
                     recap = generate_summary_with_mistral(
                         prompt=mistral_prompt,
                         api_key=MISTRAL_API_KEY,
-                        model="mistral-medium-latest",
                         max_tokens=200,
                         temperature=main_mistral_temperature,
                         top_p=main_mistral_top_p,

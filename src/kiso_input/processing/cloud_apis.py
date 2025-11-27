@@ -8,15 +8,19 @@ import re
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 from .prompts import build_gemini_prompt_up_to_question, build_summary_prompt
+from ..config import GEMINI_MODEL_SUMMARY, GEMINI_MODEL_ANSWERS, MISTRAL_MODEL_SUMMARY, MISTRAL_MODEL_ANSWERS
 
 
 def generate_summary_with_gemini(
     segments: List[Dict[str, Any]],
     api_key: str,
-    model: str = "gemini-2.5-flash-lite",
+    model: str = None,
     debug: bool = False,
 ) -> str:
     """Generate a therapeutic summary using the Gemini API from segments."""
+    if model is None:
+        model = GEMINI_MODEL_SUMMARY
+        
     try:
         from google import genai
     except ImportError as exc:  # pragma: no cover - dependency guard
@@ -95,7 +99,7 @@ def generate_summary_with_gemini_from_prompt(
 def generate_summary_with_mistral(
     prompt: str,
     api_key: str,
-    model: str = "mistral-small-latest",
+    model: str = None,
     max_tokens: int = 200,
     temperature: float = 0.7,
     top_p: float = 0.9,
@@ -113,6 +117,9 @@ def generate_summary_with_mistral(
     Returns:
         Generated summary text
     """
+    if model is None:
+        model = MISTRAL_MODEL_SUMMARY
+        
     try:
         from mistralai import Mistral
     except ImportError as exc:
@@ -137,6 +144,218 @@ def generate_summary_with_mistral(
         summary = res.choices[0].message.content.strip()
     
     return summary
+
+
+def generate_answers_with_mistral(
+    segments: List[Dict[str, Any]],
+    api_key: str,
+    model: str = None,
+    temperature: float = 0.9,
+    top_p: float = 0.8,
+    debug: bool = False,
+    return_debug_info: bool = False,
+    seed: Optional[int] = None,
+    system_prompt: Optional[str] = None,
+    max_words: Optional[int] = None,
+) -> Union[List[Dict[str, Any]], Tuple[List[Dict[str, Any]], Dict[str, Any]]]:
+    """
+    Generate user answers using Mistral and merge them into the segment structure.
+    Similar to generate_answers_with_gemini but uses Mistral API.
+
+    Args:
+        segments: List of segment dictionaries
+        api_key: Mistral API key
+        model: Mistral model to use
+        temperature: Sampling temperature
+        top_p: Top-p sampling parameter
+        debug: Enable debug output
+        return_debug_info: Return debug information along with segments
+        seed: Random seed for reproducible MC/slider answer generation
+        system_prompt: Optional custom system prompt to use instead of default
+        max_words: Optional max words setting to make MC selection proportional
+
+    Returns:
+        The merged segments and optionally debug information.
+    """
+    if model is None:
+        model = MISTRAL_MODEL_ANSWERS
+        
+    try:
+        from mistralai import Mistral
+    except ImportError as exc:  # pragma: no cover - dependency guard
+        raise ImportError(
+            "mistralai package not installed. Install it with: pip install mistralai"
+        ) from exc
+
+    rng = random.Random(seed)
+    mc_answers: Dict[str, List[str]] = {}
+    slider_answers: Dict[str, int] = {}
+
+    # Generate random MC and slider answers (same logic as Gemini version)
+    for index, segment in enumerate(segments):
+        if "Answer" in segment and "Question" not in segment:
+            options = segment.get("AnswerOptions")
+            if isinstance(options, list) and options:
+                allow_multiple = bool(segment.get("AllowMultiple", True))
+                for back_index in range(index - 1, -1, -1):
+                    question_segment = segments[back_index]
+                    if "Question" in question_segment and "Answer" not in question_segment:
+                        question_text = question_segment.get("Question")
+                        if question_text:
+                            option_count = len(options)
+                            if allow_multiple:
+                                if max_words is not None:
+                                    # Calculate proportional selection based on max_words
+                                    max_words_clamped = max(1, min(40, max_words))
+                                    selection_ratio = 0.1 + (max_words_clamped - 1) * (0.9 / 39)
+                                    num_selections = max(1, min(option_count, int(option_count * selection_ratio)))
+                                else:
+                                    num_selections = rng.randint(1, option_count)
+                                selected = rng.sample(options, num_selections)
+                            else:
+                                selected = [rng.choice(options)]
+                            mc_answers[question_text] = selected
+                            if debug:
+                                mode = "Mehrfach" if allow_multiple else "Einfach"
+                                proportional_info = ""
+                                if allow_multiple and max_words is not None:
+                                    proportional_info = f" (proportional to max_words={max_words})"
+                                print(f"🎲 MC ({mode}) Question at index {back_index}: "
+                                      f"Selected {len(selected)}/{option_count} options{proportional_info}")
+                                print(f"   Question: {question_text[:60]}...")
+                                print(f"   Selected: {selected}")
+                        break
+            else:
+                # Handle slider questions (same logic as Gemini version)
+                slider_config = None
+                if isinstance(options, dict):
+                    slider_config = options
+                elif isinstance(segment.get("Answer"), dict):
+                    slider_config = segment.get("Answer")
+
+                if isinstance(slider_config, dict):
+                    min_numeric = slider_config.get("min")
+                    max_numeric = slider_config.get("max")
+                    try:
+                        min_int = int(float(min_numeric)) if min_numeric is not None else None
+                        max_int = int(float(max_numeric)) if max_numeric is not None else None
+                        if min_int is not None and max_int is not None and min_int <= max_int:
+                            for back_index in range(index - 1, -1, -1):
+                                question_segment = segments[back_index]
+                                if "Question" in question_segment and "Answer" not in question_segment:
+                                    question_text = question_segment.get("Question")
+                                    if question_text:
+                                        selected_value = rng.randint(min_int, max_int)
+                                        slider_answers[question_text] = selected_value
+                                        if debug:
+                                            print(
+                                                f"🎲 Slider Question at index {back_index}: "
+                                                f"Selected value {selected_value} "
+                                                f"(from {min_int}-{max_int})"
+                                            )
+                                            print(f"   Question: {question_text[:60]}...")
+                                    break
+                    except (TypeError, ValueError):
+                        if debug:
+                            print(f"⚠️ Slider config invalid at index {index}: {slider_config}")
+
+    if debug:
+        print(f"\n📊 Total MC questions found: {len(mc_answers)}")
+        print(f"📊 Total Slider questions found: {len(slider_answers)}")
+
+    # For free text questions, we'll use Mistral to generate answers
+    free_text_answers: Dict[str, str] = {}
+    free_text_questions = []
+
+    # Find free text questions
+    for index, segment in enumerate(segments):
+        if "Answer" in segment and "Question" not in segment:
+            answer_val = segment.get("Answer")
+            if (isinstance(answer_val, str) and 
+                answer_val.strip().lower() in {"free_text", "freetext", "free text"}):
+                # Find the corresponding question
+                for back_index in range(index - 1, -1, -1):
+                    question_segment = segments[back_index]
+                    if "Question" in question_segment and "Answer" not in question_segment:
+                        question_text = question_segment.get("Question")
+                        if question_text:
+                            free_text_questions.append(question_text)
+                        break
+
+    # Generate free text answers using Mistral
+    if free_text_questions:
+        for question in free_text_questions:
+            try:
+                # Build a simple prompt for this question
+                if system_prompt:
+                    prompt = f"{system_prompt}\n\nFrage: {question}\n\nAntwort:"
+                else:
+                    prompt = f"Beantworte diese Frage kurz und prägnant:\n\nFrage: {question}\n\nAntwort:"
+                
+                with Mistral(api_key=api_key) as mistral:
+                    res = mistral.chat.complete(
+                        model=model,
+                        messages=[{"role": "user", "content": prompt}],
+                        temperature=temperature,
+                        top_p=top_p,
+                        max_tokens=100,  # Keep answers short
+                    )
+                    
+                    if res.choices and res.choices[0].message:
+                        answer = res.choices[0].message.content.strip()
+                        free_text_answers[question] = answer
+                        if debug:
+                            print(f"📝 Free text answer for: {question[:60]}...")
+                            print(f"   Answer: {answer}")
+                    
+            except Exception as e:
+                if debug:
+                    print(f"❌ Error generating answer for question: {question[:60]}...")
+                    print(f"   Error: {e}")
+                # Use a fallback answer
+                free_text_answers[question] = "Keine Antwort generiert."
+
+    # Merge answers into segments (same logic as Gemini version)
+    merged_segments = []
+    for segment in segments:
+        new_segment = segment.copy()
+        
+        if "Question" in segment and "Answer" not in segment:
+            merged_segments.append(new_segment)
+        elif "Answer" in segment and "Question" not in segment:
+            # Find the corresponding question
+            question_text = None
+            for back_index in range(len(merged_segments) - 1, -1, -1):
+                back_segment = merged_segments[back_index]
+                if "Question" in back_segment and "Answer" not in back_segment:
+                    question_text = back_segment.get("Question")
+                    break
+            
+            if question_text:
+                # Replace with generated answers
+                if question_text in mc_answers:
+                    new_segment["Answer"] = mc_answers[question_text]
+                elif question_text in slider_answers:
+                    new_segment["Answer"] = slider_answers[question_text]
+                elif question_text in free_text_answers:
+                    new_segment["Answer"] = free_text_answers[question_text]
+            
+            merged_segments.append(new_segment)
+        else:
+            merged_segments.append(new_segment)
+
+    debug_info = {
+        "mc_questions": len(mc_answers),
+        "slider_questions": len(slider_answers),
+        "free_text_questions": len(free_text_answers),
+        "model_used": model,
+        "temperature": temperature,
+        "top_p": top_p,
+    }
+
+    if return_debug_info:
+        return merged_segments, debug_info
+    return merged_segments
 
 
 def extract_json_array_from_gemini_output(output: str) -> List[Dict[str, Any]]:
@@ -165,7 +384,7 @@ def extract_json_array_from_gemini_output(output: str) -> List[Dict[str, Any]]:
 def generate_answers_with_gemini(
     segments: List[Dict[str, Any]],
     api_key: str,
-    model: str = "gemini-2.5-flash",
+    model: str = None,
     temperature: float = 0.9,
     top_p: float = 0.8,
     debug: bool = False,
@@ -192,6 +411,9 @@ def generate_answers_with_gemini(
     Returns:
         The merged segments and optionally debug information.
     """
+    if model is None:
+        model = GEMINI_MODEL_ANSWERS
+        
     try:
         from google import genai
     except ImportError as exc:  # pragma: no cover - dependency guard

@@ -165,3 +165,9 @@ if _prompts_path_raw:
 if not PROMPTS_CONFIG_PATH and DEFAULT_PROMPTS_CONFIG.exists():
     PROMPTS_CONFIG_PATH = str(DEFAULT_PROMPTS_CONFIG.resolve())
 
+# Model configurations
+GEMINI_MODEL_SUMMARY = os.getenv("GEMINI_MODEL_SUMMARY", "gemini-2.5-flash-lite")
+GEMINI_MODEL_ANSWERS = os.getenv("GEMINI_MODEL_ANSWERS", "gemini-2.5-flash")
+MISTRAL_MODEL_SUMMARY = os.getenv("MISTRAL_MODEL_SUMMARY", "mistral-medium-latest")
+MISTRAL_MODEL_ANSWERS = os.getenv("MISTRAL_MODEL_ANSWERS", "mistral-medium-latest")
+

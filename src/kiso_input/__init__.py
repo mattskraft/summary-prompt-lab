@@ -9,6 +9,7 @@ from .processing.classification import (
 from .processing.cloud_apis import (
     extract_json_array_from_gemini_output,
     generate_answers_with_gemini,
+    generate_answers_with_mistral,
     generate_summary_with_gemini,
 )
 from .processing.formatting import (
@@ -32,6 +33,7 @@ __all__ = [
     "extract_json_array_from_gemini_output",
     "format_answer_for_text",
     "generate_answers_with_gemini",
+    "generate_answers_with_mistral",
     "generate_summary_with_gemini",
     "get_prompt_segments_from_exercise",
     "load_self_harm_lexicon",
