@@ -438,6 +438,21 @@ def render_segments_ui(segments: List[Dict[str, Any]], key_prefix: str = "") -> 
     return filled
 
 
+def has_non_empty_answers(inhalt_text: str) -> bool:
+    """Check if INHALT text contains any non-empty answers."""
+    if not inhalt_text.strip():
+        return False
+    
+    lines = inhalt_text.strip().split("\n")
+    for line in lines:
+        line = line.strip()
+        if line.startswith("ANTWORT: "):
+            answer_content = line[9:].strip()  # Remove "ANTWORT: " prefix
+            if answer_content:  # Non-empty answer found
+                return True
+    return False
+
+
 def segments_to_inhalt(segments: List[Dict[str, Any]], empty_answers: bool = False) -> str:
     """Convert segments to INHALT format (one line per segment).
     
@@ -750,6 +765,7 @@ if sel_uebung:
                             debug=False,
                             return_debug_info=True,
                             seed=None,  # Use None to ensure fresh randomization each time
+                            max_words=gemini_max_words,  # Pass max words for proportional MC selection
                         )
                         generated_segments, debug_info = result
                         # Store in session state
@@ -758,18 +774,32 @@ if sel_uebung:
                         # Set flag to indicate fresh generation occurred
                         st.session_state[f"{session_key}_fresh_generated"] = True
                         
-                        # Clear ALL cached widget inputs for this session to ensure fresh UI
+                        # Clear old widget inputs and pre-populate new ones with generated answers
                         keys_to_remove = []
                         for state_key in list(st.session_state.keys()):
-                            # Clear all widget keys that belong to this session
+                            # Clear old widget keys
                             if (state_key.startswith(f"{session_key}_original_ans_") or 
-                                state_key.startswith(f"{session_key}_generated_ans_") or
-                                state_key.startswith(f"{session_key}_original_") or
-                                state_key.startswith(f"{session_key}_generated_")):
+                                state_key.startswith(f"{session_key}_generated_ans_")):
                                 keys_to_remove.append(state_key)
                         
                         for key in keys_to_remove:
                             del st.session_state[key]
+                        
+                        # Pre-populate new widget keys with generated answers
+                        for idx, seg in enumerate(generated_segments):
+                            if "Answer" in seg:
+                                widget_key = f"{session_key}_generated_ans_{idx}"
+                                answer_val = seg["Answer"]
+                                
+                                # Set the widget value in session state
+                                if isinstance(answer_val, list):
+                                    st.session_state[widget_key] = answer_val
+                                elif isinstance(answer_val, (int, float)):
+                                    st.session_state[widget_key] = int(answer_val)
+                                elif isinstance(answer_val, str):
+                                    st.session_state[widget_key] = answer_val
+                                else:
+                                    st.session_state[widget_key] = answer_val
                     st.success("✅ Antworten generiert")
                     st.rerun()
                 except Exception as e:
@@ -796,7 +826,7 @@ if sel_uebung:
                 
                 # Set transfer flag - will use segments_for_prompt computed later
                 st.session_state[f"{sel_uebung}_transfer_ex1_clicked"] = True
-                st.success("✅ Antworten zu Beispiel 1 übertragen")
+                st.session_state[f"{sel_uebung}_transfer_ex1_success"] = True
                 st.rerun()
         
         with transfer_cols[1]:
@@ -812,7 +842,7 @@ if sel_uebung:
                 
                 # Set transfer flag
                 st.session_state[f"{sel_uebung}_transfer_ex2_clicked"] = True
-                st.success("✅ Antworten zu Beispiel 2 übertragen")
+                st.session_state[f"{sel_uebung}_transfer_ex2_success"] = True
                 st.rerun()
         
         with transfer_cols[2]:
@@ -828,7 +858,7 @@ if sel_uebung:
                 
                 # Set transfer flag - will use segments_for_prompt computed later
                 st.session_state[f"{sel_uebung}_transfer_main_clicked"] = True
-                st.success("✅ Antworten zu TEST übertragen")
+                st.session_state[f"{sel_uebung}_transfer_main_success"] = True
                 st.rerun()
         
     
@@ -847,19 +877,35 @@ if sel_uebung:
         st.error(f"Fehler bei der Segment-Generierung: {e}")
         st.stop()
     
+    # Display transfer success messages
+    if st.session_state.get(f"{sel_uebung}_transfer_ex1_success", False):
+        st.success("✅ Antworten zu Beispiel 1 übertragen")
+        st.session_state[f"{sel_uebung}_transfer_ex1_success"] = False
+    
+    if st.session_state.get(f"{sel_uebung}_transfer_ex2_success", False):
+        st.success("✅ Antworten zu Beispiel 2 übertragen")
+        st.session_state[f"{sel_uebung}_transfer_ex2_success"] = False
+    
+    if st.session_state.get(f"{sel_uebung}_transfer_main_success", False):
+        st.success("✅ Antworten zu TEST übertragen")
+        st.session_state[f"{sel_uebung}_transfer_main_success"] = False
+    
     # Choose which segments to display
     has_generated = st.session_state.get(session_key) is not None
     fresh_generated = st.session_state.get(f"{session_key}_fresh_generated", False)
     
-    # If fresh generation occurred, clear the flag and use the generated segments
+    # If fresh generation occurred, use the generated segments and clear the flag
     if fresh_generated:
         st.session_state[f"{session_key}_fresh_generated"] = False
         segments_to_display = st.session_state[session_key]
         has_generated = True  # Ensure we use the generated key prefix
     else:
+        # Use generated segments if available, otherwise use original
         segments_to_display = (
             st.session_state[session_key] if has_generated else segments
         )
+    
+    # Always use generated key prefix if we have generated segments
     key_prefix = (
         f"{session_key}_generated" if has_generated else f"{session_key}_original"
     )
@@ -1101,6 +1147,8 @@ if sel_uebung:
         if st.button("🧾 Summary generieren", key=gen_ex1_key, use_container_width=True):
             if not MISTRAL_API_KEY:
                 st.error("❌ MISTRAL_API_KEY nicht gesetzt.")
+            elif not has_non_empty_answers(example1_text):
+                st.warning("⚠️ Keine Antworten vorhanden. Bitte erst Antworten generieren oder manuell eingeben.")
             else:
                 try:
                     # Preserve other text areas' state before rerun
@@ -1246,6 +1294,8 @@ if sel_uebung:
         if st.button("🧾 Summary generieren", key=gen_ex2_key, use_container_width=True):
             if not MISTRAL_API_KEY:
                 st.error("❌ MISTRAL_API_KEY nicht gesetzt.")
+            elif not has_non_empty_answers(example2_text):
+                st.warning("⚠️ Keine Antworten vorhanden. Bitte erst Antworten generieren oder manuell eingeben.")
             else:
                 try:
                     # Preserve other text areas' state before rerun
@@ -1378,8 +1428,8 @@ if sel_uebung:
     with main_mistral_cols[0]:
         main_mistral_temperature = st.slider(
             "Temperature",
-            min_value=0.0,
-            max_value=2.0,
+            min_value=0.1,
+            max_value=1.5,
             step=0.1,
             key=main_mistral_temp_key,
         )
@@ -1394,12 +1444,25 @@ if sel_uebung:
     
     # Mistral prompt preview text area (populated automatically)
     mistral_prompt_preview_key = f"{session_key}_mistral_prompt_preview"
-    if mistral_prompt_preview_key not in st.session_state:
-        st.session_state[mistral_prompt_preview_key] = ""
+    mistral_prompt_content_key = f"{session_key}_mistral_prompt_content"
+    
+    # Build the current prompt content automatically
+    system_prompt_for_preview = update_system_prompt_length(
+        st.session_state[system_prompt_state_key],
+        mainrecap_length
+    )
+    
+    # Get the current text area values
+    example1_current = st.session_state.get(example1_state_key, current_exercise_data.get("example1", ""))
+    example2_current = st.session_state.get(example2_state_key, current_exercise_data.get("example2", ""))
+    
+    # Build complete Mistral prompt for preview
+    current_prompt_content = f"{system_prompt_for_preview}\n\n# BEISPIELE\n\n## Beispiel 1\n{example1_current}\n\n## Beispiel 2\n{example2_current}\n\n# INHALT\n{mainrecap_inhalt_text}"
     
     with st.expander("🔍 Mistral Prompt"):
         st.text_area(
             "Vollständiger Prompt für Mistral",
+            value=current_prompt_content,
             key=mistral_prompt_preview_key,
             height=400,
             label_visibility="collapsed",
@@ -1413,6 +1476,8 @@ if sel_uebung:
     if st.button("🧾 Summary generieren", key=f"{session_key}_gen_main", use_container_width=True):
         if not MISTRAL_API_KEY:
             st.error("❌ MISTRAL_API_KEY nicht gesetzt.")
+        elif not has_non_empty_answers(mainrecap_inhalt_text):
+            st.warning("⚠️ Keine Antworten vorhanden. Bitte erst Antworten generieren oder manuell eingeben.")
         else:
             try:
                 # Preserve other text areas' state before rerun
@@ -1436,8 +1501,8 @@ if sel_uebung:
                 # Build complete Mistral prompt
                 mistral_prompt = f"{system_prompt_for_main}\n\n# BEISPIELE\n\n## Beispiel 1\n{example1_final}\n\n## Beispiel 2\n{example2_final}\n\n# INHALT\n{mainrecap_inhalt_text}"
                 
-                # Store in session state for preview
-                st.session_state[mistral_prompt_preview_key] = mistral_prompt
+                # Store in session state for preview (use content key, not widget key)
+                st.session_state[mistral_prompt_content_key] = mistral_prompt
                 
                 with st.spinner("Generiere Zusammenfassung..."):
                     recap = generate_summary_with_mistral(
@@ -1465,6 +1530,14 @@ if sel_uebung:
         height=200,
         label_visibility="collapsed",
     )
+    
+    # Display word count for the generated summary
+    summary_text = st.session_state.get(r2_state_key, "")
+    if summary_text.strip():
+        word_count = len(summary_text.split())
+        st.caption(f"📊 Anzahl Wörter: {word_count}")
+    else:
+        st.caption("📊 Anzahl Wörter: 0")
 
 else:
     st.info("Bitte wähle eine Übung aus.")

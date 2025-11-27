@@ -172,6 +172,7 @@ def generate_answers_with_gemini(
     return_debug_info: bool = False,
     seed: Optional[int] = None,
     system_prompt: Optional[str] = None,
+    max_words: Optional[int] = None,
 ) -> Union[List[Dict[str, Any]], Tuple[List[Dict[str, Any]], Dict[str, Any]]]:
     """
     Generate user answers using Gemini and merge them into the segment structure.
@@ -186,6 +187,7 @@ def generate_answers_with_gemini(
         return_debug_info: Return debug information along with segments
         seed: Random seed for reproducible MC/slider answer generation
         system_prompt: Optional custom system prompt to use instead of default
+        max_words: Optional max words setting to make MC selection proportional
 
     Returns:
         The merged segments and optionally debug information.
@@ -213,15 +215,25 @@ def generate_answers_with_gemini(
                         if question_text:
                             option_count = len(options)
                             if allow_multiple:
-                                num_selections = rng.randint(1, option_count)
+                                if max_words is not None:
+                                    # Calculate proportional selection based on max_words
+                                    # Scale max_words (typically 1-40) to selection ratio (0.1-1.0)
+                                    max_words_clamped = max(1, min(40, max_words))
+                                    selection_ratio = 0.1 + (max_words_clamped - 1) * (0.9 / 39)
+                                    num_selections = max(1, min(option_count, int(option_count * selection_ratio)))
+                                else:
+                                    num_selections = rng.randint(1, option_count)
                                 selected = rng.sample(options, num_selections)
                             else:
                                 selected = [rng.choice(options)]
                             mc_answers[question_text] = selected
                             if debug:
                                 mode = "Mehrfach" if allow_multiple else "Einfach"
+                                proportional_info = ""
+                                if allow_multiple and max_words is not None:
+                                    proportional_info = f" (proportional to max_words={max_words})"
                                 print(f"🎲 MC ({mode}) Question at index {back_index}: "
-                                      f"Selected {len(selected)}/{option_count} options")
+                                      f"Selected {len(selected)}/{option_count} options{proportional_info}")
                                 print(f"   Question: {question_text[:60]}...")
                                 print(f"   Selected: {selected}")
                         break
@@ -319,15 +331,48 @@ def generate_answers_with_gemini(
                 print(prompt)
                 print("\n--- CALLING GEMINI ---")
 
-            try:
-                response = client.models.generate_content(
-                    model=model,
-                    contents=prompt,
-                    config={"temperature": temperature, "top_p": top_p, "max_output_tokens": 1000},
-                )
-            except Exception as e:
-                print(f"Error calling Gemini API with model '{model}': {e}")
-                raise
+            # Try with full prompt first
+            max_retries = 2
+            retry_count = 0
+            response = None
+            current_prompt = prompt
+            
+            while retry_count < max_retries:
+                try:
+                    response = client.models.generate_content(
+                        model=model,
+                        contents=current_prompt,
+                        config={"temperature": temperature, "top_p": top_p, "max_output_tokens": 2000},
+                    )
+                    
+                    # Check if we got a valid response
+                    if (response.candidates and 
+                        response.candidates[0].content and 
+                        hasattr(response.candidates[0].content, 'parts') and 
+                        response.candidates[0].content.parts):
+                        break  # Success, exit retry loop
+                    
+                    # If we hit MAX_TOKENS and have no content, try with shorter prompt
+                    finish_reason = getattr(response.candidates[0], 'finish_reason', None) if response.candidates else None
+                    if str(finish_reason) == 'MAX_TOKENS' and retry_count < max_retries - 1:
+                        print(f"Retry {retry_count + 1}: Shortening prompt due to MAX_TOKENS")
+                        # Truncate the prompt to roughly half its length
+                        lines = current_prompt.split('\n')
+                        if len(lines) > 10:
+                            # Keep system prompt and first half of content
+                            current_prompt = '\n'.join(lines[:len(lines)//2])
+                        else:
+                            # If already short, just add instruction to be brief
+                            current_prompt = current_prompt + "\n\nBitte antworte sehr kurz und prägnant."
+                        retry_count += 1
+                    else:
+                        break  # No more retries or different error
+                        
+                except Exception as e:
+                    print(f"Error calling Gemini API with model '{model}': {e}")
+                    if retry_count == max_retries - 1:
+                        raise
+                    retry_count += 1
 
             if hasattr(response, "text") and response.text:
                 raw_output = response.text.strip()
@@ -356,8 +401,14 @@ def generate_answers_with_gemini(
                         if hasattr(candidate.content, 'text') and candidate.content.text:
                             raw_output = candidate.content.text.strip()
                         else:
-                            # If no content available, provide a meaningful error
-                            raise ValueError(f"No content parts available. Finish reason: {getattr(candidate, 'finish_reason', 'unknown')}")
+                            # If no content available due to MAX_TOKENS, provide a fallback response
+                            finish_reason = getattr(candidate, 'finish_reason', 'unknown')
+                            if str(finish_reason) == 'MAX_TOKENS':
+                                print(f"Warning: Response completely truncated due to max tokens. Using fallback response.")
+                                # Provide a minimal fallback response instead of crashing
+                                raw_output = "[Response truncated due to token limit]"
+                            else:
+                                raise ValueError(f"No content parts available. Finish reason: {finish_reason}")
                     else:
                         if not candidate.content.parts[0].text:
                             raise ValueError("No text in first part")
