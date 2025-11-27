@@ -454,6 +454,58 @@ def has_non_empty_answers(inhalt_text: str) -> bool:
     return False
 
 
+def has_answer_lines(inhalt_text: str) -> bool:
+    """Return True if text already contains at least one ANTWORT line."""
+    return count_answer_lines(inhalt_text) > 0
+
+
+def count_answer_lines(inhalt_text: str) -> int:
+    """Count the number of ANTWORT lines in the provided text."""
+    if not inhalt_text:
+        return 0
+    return sum(1 for line in inhalt_text.split("\n") if line.strip().startswith("ANTWORT:"))
+
+
+def copy_answer_metadata(source: Dict[str, Any], target: Dict[str, Any]) -> None:
+    """Copy slider/multiple-choice metadata from source to target."""
+    answer_options = source.get("AnswerOptions")
+    if not answer_options and isinstance(source.get("Answer"), dict):
+        answer_options = source.get("Answer")
+
+    if answer_options and not target.get("AnswerOptions"):
+        target["AnswerOptions"] = answer_options
+
+    if "AllowMultiple" in source and "AllowMultiple" not in target:
+        target["AllowMultiple"] = source["AllowMultiple"]
+
+
+def count_answer_segments(segments: List[Dict[str, Any]]) -> int:
+    """Count how many answer-bearing segments exist."""
+    return sum(1 for seg in segments if "Answer" in seg)
+
+
+def enrich_segments_with_answer_metadata(
+    source_segments: List[Dict[str, Any]],
+    target_segments: List[Dict[str, Any]],
+) -> List[Dict[str, Any]]:
+    """Ensure generated segments keep their slider/MC metadata."""
+    enriched: List[Dict[str, Any]] = []
+    source_answer_iter = (
+        seg for seg in source_segments if "Answer" in seg or "AnswerOptions" in seg
+    )
+
+    for seg in target_segments:
+        new_seg = seg.copy()
+        if "Answer" in new_seg or "AnswerOptions" in new_seg:
+            base_seg = next(source_answer_iter, None)
+            if base_seg:
+                copy_answer_metadata(base_seg, new_seg)
+
+        enriched.append(new_seg)
+
+    return enriched
+
+
 def segments_to_inhalt(segments: List[Dict[str, Any]], empty_answers: bool = False) -> str:
     """Convert segments to INHALT format (one line per segment).
     
@@ -526,18 +578,16 @@ def inhalt_to_segments(inhalt_text: str) -> List[Dict[str, Any]]:
     return segments
 
 
-def replace_answers_in_inhalt(inhalt_text: str, new_answers: List[Dict[str, Any]]) -> str:
-    """Replace ANTWORT blocks in INHALT with new answers, preserving structure."""
+def replace_answers_in_inhalt(inhalt_text: str, updated_segments: List[Dict[str, Any]]) -> str:
+    """Replace ANTWORT blocks in INHALT with answers from the current segments."""
     segments = inhalt_to_segments(inhalt_text)
-    answer_idx = 0
+    new_answers: List[Any] = [seg.get("Answer") for seg in updated_segments if "Answer" in seg]
     
+    answer_idx = 0
     for seg in segments:
-        if "Answer" in seg:
-            if answer_idx < len(new_answers):
-                new_seg = new_answers[answer_idx]
-                if "Answer" in new_seg:
-                    seg["Answer"] = new_seg["Answer"]
-                answer_idx += 1
+        if "Answer" in seg and answer_idx < len(new_answers):
+            seg["Answer"] = new_answers[answer_idx]
+            answer_idx += 1
     
     return segments_to_inhalt(segments)
 
@@ -772,6 +822,9 @@ if sel_uebung:
                             max_words=gemini_max_words,
                         )
                         generated_segments, debug_info = result
+                        generated_segments = enrich_segments_with_answer_metadata(
+                            current_segments, generated_segments
+                        )
                         # Store in session state
                         st.session_state[session_key] = generated_segments
                         
@@ -797,9 +850,22 @@ if sel_uebung:
                                 
                                 # Set the widget value in session state
                                 if isinstance(answer_val, list):
-                                    st.session_state[widget_key] = answer_val
+                                    # Check if this is a single-choice MC question
+                                    if ("AnswerOptions" in seg and 
+                                        isinstance(seg["AnswerOptions"], list) and
+                                        not seg.get("AllowMultiple", True)):
+                                        # Single-choice MC: store first item as string
+                                        st.session_state[widget_key] = answer_val[0] if answer_val else ""
+                                    else:
+                                        # Multi-choice MC: store as list
+                                        st.session_state[widget_key] = answer_val
                                 elif isinstance(answer_val, (int, float)):
+                                    # For sliders, also set the slider-specific key
                                     st.session_state[widget_key] = int(answer_val)
+                                    if "AnswerOptions" in seg and isinstance(seg["AnswerOptions"], dict):
+                                        # This is a slider - also set the slider key
+                                        slider_key = f"{widget_key}_slider"
+                                        st.session_state[slider_key] = int(answer_val)
                                 elif isinstance(answer_val, str):
                                     st.session_state[widget_key] = answer_val
                                 else:
@@ -831,7 +897,6 @@ if sel_uebung:
                 # Set transfer flag - will use segments_for_prompt computed later
                 st.session_state[f"{sel_uebung}_transfer_ex1_clicked"] = True
                 st.session_state[f"{sel_uebung}_transfer_ex1_success"] = True
-                st.rerun()
         
         with transfer_cols[1]:
             transfer_ex2_key = f"{sel_uebung}_transfer_ex2"
@@ -847,7 +912,6 @@ if sel_uebung:
                 # Set transfer flag
                 st.session_state[f"{sel_uebung}_transfer_ex2_clicked"] = True
                 st.session_state[f"{sel_uebung}_transfer_ex2_success"] = True
-                st.rerun()
         
         with transfer_cols[2]:
             transfer_main_key = f"{sel_uebung}_transfer_main"
@@ -863,7 +927,6 @@ if sel_uebung:
                 # Set transfer flag - will use segments_for_prompt computed later
                 st.session_state[f"{sel_uebung}_transfer_main_clicked"] = True
                 st.session_state[f"{sel_uebung}_transfer_main_success"] = True
-                st.rerun()
         
         # Display transfer success messages right below the buttons
         if st.session_state.get(f"{sel_uebung}_transfer_ex1_success", False):
@@ -924,6 +987,7 @@ if sel_uebung:
         filled_segments
     )
     
+    
     # Update session state if segments changed
     if has_generated:
         current_segments = st.session_state[session_key]
@@ -936,19 +1000,37 @@ if sel_uebung:
     # Handle transfer button clicks (using stored segments_for_prompt)
     transfer_ex1_clicked = st.session_state.get(f"{sel_uebung}_transfer_ex1_clicked", False)
     if transfer_ex1_clicked:
-        inhalt = segments_to_inhalt(segments_for_prompt)
+        existing_text = st.session_state.get(example1_state_key, "")
+        existing_count = count_answer_lines(existing_text)
+        segment_count = count_answer_segments(segments_for_prompt)
+        if existing_count and existing_count == segment_count:
+            inhalt = replace_answers_in_inhalt(existing_text, segments_for_prompt)
+        else:
+            inhalt = segments_to_inhalt(segments_for_prompt)
         st.session_state[example1_state_key] = inhalt
         st.session_state[f"{sel_uebung}_transfer_ex1_clicked"] = False
     
     transfer_ex2_clicked = st.session_state.get(f"{sel_uebung}_transfer_ex2_clicked", False)
     if transfer_ex2_clicked:
-        inhalt = segments_to_inhalt(segments_for_prompt)
+        existing_text = st.session_state.get(example2_state_key, "")
+        existing_count = count_answer_lines(existing_text)
+        segment_count = count_answer_segments(segments_for_prompt)
+        if existing_count and existing_count == segment_count:
+            inhalt = replace_answers_in_inhalt(existing_text, segments_for_prompt)
+        else:
+            inhalt = segments_to_inhalt(segments_for_prompt)
         st.session_state[example2_state_key] = inhalt
         st.session_state[f"{sel_uebung}_transfer_ex2_clicked"] = False
     
     transfer_main_clicked = st.session_state.get(f"{sel_uebung}_transfer_main_clicked", False)
     if transfer_main_clicked:
-        inhalt = segments_to_inhalt(segments_for_prompt)
+        existing_text = st.session_state.get(mainrecap_inhalt_key, "")
+        existing_count = count_answer_lines(existing_text)
+        segment_count = count_answer_segments(segments_for_prompt)
+        if existing_count and existing_count == segment_count:
+            inhalt = replace_answers_in_inhalt(existing_text, segments_for_prompt)
+        else:
+            inhalt = segments_to_inhalt(segments_for_prompt)
         st.session_state[mainrecap_inhalt_key] = inhalt
         st.session_state[f"{sel_uebung}_transfer_main_clicked"] = False
     
@@ -1100,12 +1182,6 @@ if sel_uebung:
         st.session_state[example1_state_key] = preserved_value
         del st.session_state[preserve_key]
     
-    # Check if transfer button was clicked (check button state after render)
-    transfer_ex1_clicked = st.session_state.get(f"{sel_uebung}_transfer_ex1_clicked", False)
-    if transfer_ex1_clicked:
-        inhalt = segments_to_inhalt(segments_for_prompt)
-        st.session_state[example1_state_key] = inhalt
-        st.session_state[f"{sel_uebung}_transfer_ex1_clicked"] = False
     
     # Initialize only if key doesn't exist (preserve existing content)
     # IMPORTANT: Only initialize if the key truly doesn't exist, don't overwrite existing content
@@ -1248,12 +1324,6 @@ if sel_uebung:
         st.session_state[example2_state_key] = preserved_value
         del st.session_state[preserve_key]
     
-    # Check transfer flag
-    transfer_ex2_clicked = st.session_state.get(f"{sel_uebung}_transfer_ex2_clicked", False)
-    if transfer_ex2_clicked:
-        inhalt = segments_to_inhalt(segments_for_prompt)
-        st.session_state[example2_state_key] = inhalt
-        st.session_state[f"{sel_uebung}_transfer_ex2_clicked"] = False
     
     # Initialize only if key doesn't exist (preserve existing content)
     # This check happens AFTER restore, so preserved values won't be overwritten
