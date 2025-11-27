@@ -265,9 +265,9 @@ def generate_answers_with_mistral(
 
     # For free text questions, we'll use Mistral to generate answers
     free_text_answers: Dict[str, str] = {}
-    free_text_questions = []
+    free_text_question_indices = []
 
-    # Find free text questions
+    # Find free text questions and their indices (same logic as Gemini)
     for index, segment in enumerate(segments):
         if "Answer" in segment and "Question" not in segment:
             answer_val = segment.get("Answer")
@@ -279,23 +279,60 @@ def generate_answers_with_mistral(
                     if "Question" in question_segment and "Answer" not in question_segment:
                         question_text = question_segment.get("Question")
                         if question_text:
-                            free_text_questions.append(question_text)
+                            free_text_question_indices.append((back_index, question_text))
                         break
 
-    # Generate free text answers using Mistral
-    if free_text_questions:
-        for question in free_text_questions:
+    # Generate free text answers using Mistral with full context
+    free_text_answers_by_text: Dict[str, str] = {}
+    free_text_answers_by_index: Dict[int, str] = {}  # Track by question index to avoid duplicates
+    
+    if free_text_question_indices:
+        for idx, (question_idx, question_text) in enumerate(free_text_question_indices, start=1):
             try:
-                # Build a simple prompt for this question
+                # Build complete context prompt (same as Gemini approach)
+                context_prompt = build_gemini_prompt_up_to_question(
+                    segments,
+                    question_idx,
+                    mc_answers,
+                    is_target_question=True,
+                    free_text_answers=free_text_answers_by_text,
+                )
+                
+                # Replace system prompt if custom one is provided
                 if system_prompt:
-                    prompt = f"{system_prompt}\n\nFrage: {question}\n\nAntwort:"
-                else:
-                    prompt = f"Beantworte diese Frage kurz und prägnant:\n\nFrage: {question}\n\nAntwort:"
+                    # Find where the actual content starts (after the header)
+                    lines = context_prompt.split('\n')
+                    content_start = 0
+                    for i, line in enumerate(lines):
+                        if line.startswith('TEXT:') or line.startswith('FRAGE:'):
+                            content_start = i
+                            break
+                    
+                    # Replace everything before content with our custom system prompt
+                    if content_start > 0:
+                        content_lines = lines[content_start:]
+                        context_prompt = system_prompt + '\n\n' + '\n'.join(content_lines)
+                    else:
+                        # Fallback: just prepend the system prompt
+                        context_prompt = system_prompt + '\n\n' + context_prompt
+                
+                # DEBUG: Print the complete prompt being sent to Mistral
+                print(f"\n{'='*80}")
+                print(f"🤖 MISTRAL API CALL - Free Text Question {idx}/{len(free_text_question_indices)}")
+                print(f"{'='*80}")
+                print(f"Question: {question_text}")
+                print(f"Question Index: {question_idx}")
+                print(f"Model: {model}")
+                print(f"Temperature: {temperature}, Top-p: {top_p}")
+                print(f"\nComplete Context Prompt:")
+                print(f"{'─'*40}")
+                print(context_prompt)
+                print(f"{'─'*40}")
                 
                 with Mistral(api_key=api_key) as mistral:
                     res = mistral.chat.complete(
                         model=model,
-                        messages=[{"role": "user", "content": prompt}],
+                        messages=[{"role": "user", "content": context_prompt}],
                         temperature=temperature,
                         top_p=top_p,
                         max_tokens=100,  # Keep answers short
@@ -303,42 +340,69 @@ def generate_answers_with_mistral(
                     
                     if res.choices and res.choices[0].message:
                         answer = res.choices[0].message.content.strip()
-                        free_text_answers[question] = answer
+                        free_text_answers_by_index[question_idx] = answer
+                        # Only store in by_text if we haven't seen this question before
+                        if question_text not in free_text_answers_by_text:
+                            free_text_answers_by_text[question_text] = answer
+                        
+                        # DEBUG: Print the response
+                        print(f"\nMistral Response:")
+                        print(f"{'─'*40}")
+                        print(answer)
+                        print(f"{'─'*40}")
+                        print(f"✅ Answer stored for question")
+                        print(f"{'='*80}\n")
+                        
                         if debug:
-                            print(f"📝 Free text answer for: {question[:60]}...")
+                            print(f"📝 Free text answer for: {question_text[:60]}...")
                             print(f"   Answer: {answer}")
                     
             except Exception as e:
+                # DEBUG: Print error details
+                print(f"\n❌ MISTRAL API ERROR")
+                print(f"{'─'*40}")
+                print(f"Question: {question_text}")
+                print(f"Error: {e}")
+                print(f"{'─'*40}")
+                print(f"Using fallback answer")
+                print(f"{'='*80}\n")
+                
                 if debug:
-                    print(f"❌ Error generating answer for question: {question[:60]}...")
+                    print(f"❌ Error generating answer for question: {question_text[:60]}...")
                     print(f"   Error: {e}")
                 # Use a fallback answer
-                free_text_answers[question] = "Keine Antwort generiert."
+                free_text_answers_by_index[question_idx] = "Keine Antwort generiert."
+                if question_text not in free_text_answers_by_text:
+                    free_text_answers_by_text[question_text] = "Keine Antwort generiert."
 
     # Merge answers into segments (same logic as Gemini version)
     merged_segments = []
-    for segment in segments:
+    for segment_idx, segment in enumerate(segments):
         new_segment = segment.copy()
         
         if "Question" in segment and "Answer" not in segment:
             merged_segments.append(new_segment)
         elif "Answer" in segment and "Question" not in segment:
-            # Find the corresponding question
+            # Find the corresponding question by looking backwards in original segments
             question_text = None
-            for back_index in range(len(merged_segments) - 1, -1, -1):
-                back_segment = merged_segments[back_index]
+            question_idx = None
+            for back_index in range(segment_idx - 1, -1, -1):
+                back_segment = segments[back_index]
                 if "Question" in back_segment and "Answer" not in back_segment:
                     question_text = back_segment.get("Question")
+                    question_idx = back_index
                     break
             
             if question_text:
-                # Replace with generated answers
+                # Replace with generated answers - prioritize index-based lookup for free text
                 if question_text in mc_answers:
                     new_segment["Answer"] = mc_answers[question_text]
                 elif question_text in slider_answers:
                     new_segment["Answer"] = slider_answers[question_text]
-                elif question_text in free_text_answers:
-                    new_segment["Answer"] = free_text_answers[question_text]
+                elif question_idx is not None and question_idx in free_text_answers_by_index:
+                    new_segment["Answer"] = free_text_answers_by_index[question_idx]
+                elif question_text in free_text_answers_by_text:
+                    new_segment["Answer"] = free_text_answers_by_text[question_text]
             
             merged_segments.append(new_segment)
         else:
@@ -347,7 +411,7 @@ def generate_answers_with_mistral(
     debug_info = {
         "mc_questions": len(mc_answers),
         "slider_questions": len(slider_answers),
-        "free_text_questions": len(free_text_answers),
+        "free_text_questions": len(free_text_answers_by_index),
         "model_used": model,
         "temperature": temperature,
         "top_p": top_p,

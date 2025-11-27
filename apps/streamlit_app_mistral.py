@@ -727,96 +727,8 @@ if sel_uebung:
             key=gemini_max_words_key,
         )
         
-        # Answer generation buttons
-        answer_gen_cols = st.columns(2)
-        
-        with answer_gen_cols[0]:
-            gemini_gen_clicked = st.button("✨ Gemini Antworten", use_container_width=True)
-        
-        with answer_gen_cols[1]:
-            mistral_gen_clicked = st.button("🤖 Mistral Antworten", use_container_width=True)
-        
-        if gemini_gen_clicked:
-            if not GEMINI_API_KEY:
-                st.error("❌ GEMINI_API_KEY nicht gesetzt.")
-            else:
-                try:
-                    # Preserve other text areas' state before rerun
-                    if example1_state_key in st.session_state:
-                        preserved_ex1 = st.session_state[example1_state_key]
-                        st.session_state[f"{example1_state_key}_preserve"] = preserved_ex1
-                    if example2_state_key in st.session_state:
-                        preserved_ex2 = st.session_state[example2_state_key]
-                        st.session_state[f"{example2_state_key}_preserve"] = preserved_ex2
-                    if mainrecap_inhalt_key in st.session_state:
-                        preserved_main = st.session_state[mainrecap_inhalt_key]
-                        st.session_state[f"{mainrecap_inhalt_key}_preserve"] = preserved_main
-                    
-                    # Build fresh segments for this exercise (ensure new randomization each time)
-                    try:
-                        current_segments = get_prompt_segments_from_exercise(
-                            exercise_name=sel_uebung,
-                            json_struct_path=STRUCT_JSON_PATH,
-                            json_sn_struct_path=SN_JSON_PATH,
-                            seed=None,  # Use None to get fresh randomization each time
-                        )
-                    except Exception as e:
-                        st.error(f"Fehler bei der Segment-Generierung: {e}")
-                        st.stop()
-                    
-                    # Create system prompt with max words
-                    system_prompt_with_words = SYNTH_ANSWERS_PROMPT.replace("x", str(gemini_max_words))
-                    
-                    with st.spinner("Generiere Antworten..."):
-                        result = generate_answers_with_gemini(
-                            segments=current_segments,
-                            api_key=GEMINI_API_KEY,
-                            system_prompt=system_prompt_with_words,
-                            debug=False,
-                            return_debug_info=True,
-                            seed=None,  # Use None to ensure fresh randomization each time
-                            max_words=gemini_max_words,  # Pass max words for proportional MC selection
-                        )
-                        generated_segments, debug_info = result
-                        # Store in session state
-                        st.session_state[session_key] = generated_segments
-                        
-                        # Set flag to indicate fresh generation occurred
-                        st.session_state[f"{session_key}_fresh_generated"] = True
-                        
-                        # Clear old widget inputs and pre-populate new ones with generated answers
-                        keys_to_remove = []
-                        for state_key in list(st.session_state.keys()):
-                            # Clear old widget keys
-                            if (state_key.startswith(f"{session_key}_original_ans_") or 
-                                state_key.startswith(f"{session_key}_generated_ans_")):
-                                keys_to_remove.append(state_key)
-                        
-                        for key in keys_to_remove:
-                            del st.session_state[key]
-                        
-                        # Pre-populate new widget keys with generated answers
-                        for idx, seg in enumerate(generated_segments):
-                            if "Answer" in seg:
-                                widget_key = f"{session_key}_generated_ans_{idx}"
-                                answer_val = seg["Answer"]
-                                
-                                # Set the widget value in session state
-                                if isinstance(answer_val, list):
-                                    st.session_state[widget_key] = answer_val
-                                elif isinstance(answer_val, (int, float)):
-                                    st.session_state[widget_key] = int(answer_val)
-                                elif isinstance(answer_val, str):
-                                    st.session_state[widget_key] = answer_val
-                                else:
-                                    st.session_state[widget_key] = answer_val
-                    st.success("✅ Antworten generiert")
-                    st.rerun()
-                except Exception as e:
-                    st.error(f"❌ Fehler bei der Antwort-Generierung: {e}")
-                    import traceback
-                    with st.expander("🔍 Fehlerdetails anzeigen"):
-                        st.code(traceback.format_exc(), language="python")
+        # Answer generation button
+        mistral_gen_clicked = st.button("🤖 Antworten generieren", use_container_width=True)
         
         if mistral_gen_clicked:
             if not MISTRAL_API_KEY:
@@ -847,9 +759,9 @@ if sel_uebung:
                         st.stop()
                     
                     # Create system prompt with max words
-                    system_prompt_with_words = SYNTH_ANSWERS_PROMPT.replace("x", str(gemini_max_words))
+                    system_prompt_with_words = SYNTH_ANSWERS_PROMPT.replace("xxx", str(gemini_max_words))
                     
-                    with st.spinner("Generiere Antworten mit Mistral..."):
+                    with st.spinner("Generiere Antworten..."):
                         result = generate_answers_with_mistral(
                             segments=current_segments,
                             api_key=MISTRAL_API_KEY,
@@ -892,10 +804,10 @@ if sel_uebung:
                                     st.session_state[widget_key] = answer_val
                                 else:
                                     st.session_state[widget_key] = answer_val
-                    st.success("✅ Antworten mit Mistral generiert")
+                    st.success("✅ Antworten generiert")
                     st.rerun()
                 except Exception as e:
-                    st.error(f"❌ Fehler bei der Mistral Antwort-Generierung: {e}")
+                    st.error(f"❌ Fehler bei der Antwort-Generierung: {e}")
                     import traceback
                     with st.expander("🔍 Fehlerdetails anzeigen"):
                         st.code(traceback.format_exc(), language="python")
