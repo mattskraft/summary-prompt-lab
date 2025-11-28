@@ -1087,32 +1087,6 @@ if sel_uebung:
         label_visibility="collapsed",
     )
     
-    # Slider for system prompt length
-    system_length_key = f"{session_key}_system_length"
-    if system_length_key not in st.session_state:
-        st.session_state[system_length_key] = 30
-    
-    system_length = st.slider(
-        "Maximale Wortanzahl",
-        min_value=10,
-        max_value=60,
-        key=system_length_key,
-    )
-    
-    # Update system prompt with slider value immediately
-    # Track slider changes
-    slider_changed_key = f"{system_length_key}_last_value"
-    if slider_changed_key not in st.session_state:
-        st.session_state[slider_changed_key] = system_length
-    
-    # Update base prompt if slider changed
-    if st.session_state[slider_changed_key] != system_length:
-        st.session_state[slider_changed_key] = system_length
-        # Update base prompt with new length
-        updated_base = update_system_prompt_length(base_prompt, system_length)
-        st.session_state[system_prompt_base_key] = updated_base
-        st.session_state[system_prompt_state_key] = updated_base
-    
     # Update base prompt when user edits (remove length line for base)
     if system_prompt_input != current_prompt:
         # User edited - extract base (without length line)
@@ -1129,9 +1103,7 @@ if sel_uebung:
         if st.button("📥 System-Prompt laden", key=f"{session_key}_load_system", use_container_width=True):
             base_prompt = current_exercise_data.get("system_prompt", "")
             st.session_state[system_prompt_base_key] = base_prompt
-            updated = update_system_prompt_length(base_prompt, system_length)
-            st.session_state[system_prompt_state_key] = updated
-            st.session_state[f"{system_length_key}_last_value"] = system_length
+            st.session_state[system_prompt_state_key] = base_prompt
             st.rerun()
     
     with system_button_cols[1]:
