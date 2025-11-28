@@ -127,6 +127,10 @@ def generate_summary_with_mistral(
             "mistralai package not installed. Install it with: pip install mistralai"
         ) from exc
 
+    print(
+        f"[Mistral Recap] model={model}, temperature={temperature}, top_p={top_p}, max_tokens={max_tokens}"
+    )
+
     with Mistral(api_key=api_key) as mistral:
         res = mistral.chat.complete(
             model=model,
@@ -220,8 +224,10 @@ def generate_answers_with_mistral(
                                 proportional_info = ""
                                 if allow_multiple and max_words is not None:
                                     proportional_info = f" (proportional to max_words={max_words})"
-                                print(f"🎲 MC ({mode}) Question at index {back_index}: "
-                                      f"Selected {len(selected)}/{option_count} options{proportional_info}")
+                                print(
+                                    f"🎲 MC ({mode}) Question at index {back_index}: "
+                                    f"Selected {len(selected)}/{option_count} options{proportional_info}"
+                                )
                                 print(f"   Question: {question_text[:60]}...")
                                 print(f"   Selected: {selected}")
                         break
@@ -316,18 +322,18 @@ def generate_answers_with_mistral(
                         # Fallback: just prepend the system prompt
                         context_prompt = system_prompt + '\n\n' + context_prompt
                 
-                # DEBUG: Print the complete prompt being sent to Mistral
-                print(f"\n{'='*80}")
-                print(f"🤖 MISTRAL API CALL - Free Text Question {idx}/{len(free_text_question_indices)}")
-                print(f"{'='*80}")
-                print(f"Question: {question_text}")
-                print(f"Question Index: {question_idx}")
-                print(f"Model: {model}")
-                print(f"Temperature: {temperature}, Top-p: {top_p}")
-                print(f"\nComplete Context Prompt:")
-                print(f"{'─'*40}")
-                print(context_prompt)
-                print(f"{'─'*40}")
+                if debug:
+                    print(f"\n{'='*80}")
+                    print(f"🤖 MISTRAL API CALL - Free Text Question {idx}/{len(free_text_question_indices)}")
+                    print(f"{'='*80}")
+                    print(f"Question: {question_text}")
+                    print(f"Question Index: {question_idx}")
+                    print(f"Model: {model}")
+                    print(f"Temperature: {temperature}, Top-p: {top_p}")
+                    print(f"\nComplete Context Prompt:")
+                    print(f"{'─'*40}")
+                    print(context_prompt)
+                    print(f"{'─'*40}")
                 
                 with Mistral(api_key=api_key) as mistral:
                     res = mistral.chat.complete(
@@ -345,29 +351,25 @@ def generate_answers_with_mistral(
                         if question_text not in free_text_answers_by_text:
                             free_text_answers_by_text[question_text] = answer
                         
-                        # DEBUG: Print the response
-                        print(f"\nMistral Response:")
-                        print(f"{'─'*40}")
-                        print(answer)
-                        print(f"{'─'*40}")
-                        print(f"✅ Answer stored for question")
-                        print(f"{'='*80}\n")
-                        
                         if debug:
+                            print(f"\nMistral Response:")
+                            print(f"{'─'*40}")
+                            print(answer)
+                            print(f"{'─'*40}")
+                            print(f"✅ Answer stored for question")
+                            print(f"{'='*80}\n")
                             print(f"📝 Free text answer for: {question_text[:60]}...")
                             print(f"   Answer: {answer}")
                     
             except Exception as e:
-                # DEBUG: Print error details
-                print(f"\n❌ MISTRAL API ERROR")
-                print(f"{'─'*40}")
-                print(f"Question: {question_text}")
-                print(f"Error: {e}")
-                print(f"{'─'*40}")
-                print(f"Using fallback answer")
-                print(f"{'='*80}\n")
-                
                 if debug:
+                    print(f"\n❌ MISTRAL API ERROR")
+                    print(f"{'─'*40}")
+                    print(f"Question: {question_text}")
+                    print(f"Error: {e}")
+                    print(f"{'─'*40}")
+                    print(f"Using fallback answer")
+                    print(f"{'='*80}\n")
                     print(f"❌ Error generating answer for question: {question_text[:60]}...")
                     print(f"   Error: {e}")
                 # Use a fallback answer
