@@ -1,0 +1,8 @@
+{
+  "Aktiv zuhören": {
+    "anweisungen": "## ANWEISUNGEN\n1. Lies alle TEXT-, FRAGE- und ANTWORT-Blöcke\n2. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n5. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen",
+    "ausgabeformat": "## AUSGABEFORMAT\n- Sprache: Deutsch\n- Länge: Maximal 80 Wörter\n- Format: Flieaßtext (keine Aufzählungen)\n- Struktur: 1 Absatz",
+    "example1": "",
+    "example2": ""
+  }
+}

@@ -6,7 +6,8 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from ..config import PROMPTS_CONFIG_PATH, PROJECT_ROOT
+from ..config import PROMPTS_CONFIG_PATH
+from .recap_sections import assembled_prompt_for_exercise
 
 
 def _load_yaml() -> Any:
@@ -98,35 +99,6 @@ def build_gemini_prompt_up_to_question(
     return header + "\n" + "\n".join(lines)
 
 
-@lru_cache(maxsize=1)
-def _load_recap_system_prompt() -> str:
-    """Load the recap system prompt from the text file."""
-    recap_prompt_path = PROJECT_ROOT / "config" / "recap_system_prompt.txt"
-    if not recap_prompt_path.exists():
-        raise FileNotFoundError(
-            f"Recap system prompt file not found: {recap_prompt_path}"
-        )
-    return recap_prompt_path.read_text(encoding="utf-8").strip()
-
-
-def _load_exercise_system_prompt(exercise_name: Optional[str] = None) -> str:
-    """Load the system prompt for a specific exercise from JSON file, or fallback to default."""
-    if exercise_name:
-        exercise_prompts_path = PROJECT_ROOT / "config" / "exercise_system_prompts.json"
-        if exercise_prompts_path.exists():
-            try:
-                import json
-                with exercise_prompts_path.open("r", encoding="utf-8") as f:
-                    exercise_prompts = json.load(f)
-                if isinstance(exercise_prompts, dict) and exercise_name in exercise_prompts:
-                    return exercise_prompts[exercise_name].strip()
-            except Exception:
-                # Fall through to default if JSON loading fails
-                pass
-    # Fallback to default system prompt
-    return _load_recap_system_prompt()
-
-
 def build_summary_prompt(segments: List[Dict[str, Any]], exercise_name: Optional[str] = None) -> str:
     """Create a summary prompt from processed segments.
     
@@ -134,8 +106,8 @@ def build_summary_prompt(segments: List[Dict[str, Any]], exercise_name: Optional
         segments: List of segment dictionaries
         exercise_name: Optional exercise name to load exercise-specific system prompt
     """
-    # Load exercise-specific system prompt if available, otherwise use default
-    system_prompt = _load_exercise_system_prompt(exercise_name)
+    answer_count = sum(1 for segment in segments if "Answer" in segment)
+    system_prompt = assembled_prompt_for_exercise(exercise_name, answer_count)
 
     content_lines: List[str] = []
 

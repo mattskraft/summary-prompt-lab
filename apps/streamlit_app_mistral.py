@@ -4,7 +4,7 @@ import random
 import re
 import sys
 from pathlib import Path
-from typing import Dict, List, Any, Optional, Tuple
+from typing import Any, Dict, List, Optional
 
 import streamlit as st
 
@@ -92,6 +92,18 @@ try:
     from kiso_input.processing.cloud_apis import (
         generate_summary_with_mistral,
     )
+    from kiso_input.processing.recap_sections import (
+        assemble_system_prompt,
+        choose_max_words,
+        get_exercise_sections,
+        load_global_section,
+        load_global_sections,
+        load_word_limit_config,
+        max_words_default,
+        save_exercise_sections,
+        save_global_section,
+        save_word_limit_config,
+    )
 except ImportError as e:
     st.error(f"""
     ❌ Import error: {e}
@@ -115,6 +127,166 @@ def load_json(path: str) -> Any:
         return json.load(f)
 
 
+EXERCISE_PROMPTS_STORE = PROJECT_ROOT / "config" / "prompts" / "exercise_specific_prompts.json"
+LEGACY_PROMPTS_PATH = PROJECT_ROOT / "config" / "exercise_system_prompts.json"
+SECTION_UI_CONFIG = [
+    {"key": "rolle", "label": "Rolle & Aufgabe", "scope": "global"},
+    {"key": "eingabeformat", "label": "Eingabeformat", "scope": "global"},
+    {"key": "anweisungen", "label": "Anweisungen", "scope": "exercise"},
+    {"key": "stil", "label": "Stil & Ton", "scope": "global"},
+    {"key": "ausgabeformat", "label": "Ausgabeformat", "scope": "exercise"},
+]
+GLOBAL_SECTION_KEYS = [cfg["key"] for cfg in SECTION_UI_CONFIG if cfg["scope"] == "global"]
+EXERCISE_SECTION_EDITOR_KEYS = ["anweisungen", "ausgabeformat"]
+WORD_LIMIT_COLUMNS = 3
+WORD_LIMIT_SESSION_PREFIX = "recap_word_limits"
+
+
+def ensure_exercise_prompt_store() -> Path:
+    EXERCISE_PROMPTS_STORE.parent.mkdir(parents=True, exist_ok=True)
+    if not EXERCISE_PROMPTS_STORE.exists():
+        EXERCISE_PROMPTS_STORE.write_text("{}", encoding="utf-8")
+    return EXERCISE_PROMPTS_STORE
+
+
+def confirm_action(dialog_key: str, message: str, on_confirm) -> None:
+    """Show a confirmation dialog and call on_confirm when accepted."""
+    if not st.session_state.get(dialog_key):
+        return
+    with st.dialog("Bestätigung"):
+        st.write(message)
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("Ja", key=f"{dialog_key}_yes", use_container_width=True):
+                try:
+                    on_confirm()
+                finally:
+                    st.session_state[dialog_key] = False
+                st.rerun()
+        with col2:
+            if st.button("Nein", key=f"{dialog_key}_no", use_container_width=True):
+                st.session_state[dialog_key] = False
+                st.rerun()
+
+
+def section_state_key(section_key: str, scope: str, session_key: str) -> str:
+    if scope == "global":
+        return f"global_section_{section_key}"
+    return f"{session_key}_{section_key}_section"
+
+
+def section_exercise_tracker_key(section_state: str) -> str:
+    return f"{section_state}_exercise"
+
+
+def initialize_word_limit_inputs(config: Dict[str, List[int]]) -> None:
+    answers = config["answer_counts"]
+    words = config["max_words"]
+    for idx in range(WORD_LIMIT_COLUMNS):
+        ans_key = f"{WORD_LIMIT_SESSION_PREFIX}_answers_{idx}"
+        words_key = f"{WORD_LIMIT_SESSION_PREFIX}_words_{idx}"
+        if ans_key not in st.session_state:
+            st.session_state[ans_key] = int(answers[idx])
+        if words_key not in st.session_state:
+            st.session_state[words_key] = int(words[idx])
+
+
+def current_word_limit_config() -> Dict[str, List[int]]:
+    answers = [int(st.session_state[f"{WORD_LIMIT_SESSION_PREFIX}_answers_{idx}"]) for idx in range(WORD_LIMIT_COLUMNS)]
+    words = [int(st.session_state[f"{WORD_LIMIT_SESSION_PREFIX}_words_{idx}"]) for idx in range(WORD_LIMIT_COLUMNS)]
+    pairs = sorted(zip(answers, words), key=lambda item: item[0])
+    return {
+        "answer_counts": [pair[0] for pair in pairs],
+        "max_words": [pair[1] for pair in pairs],
+    }
+
+
+def save_exercise_payload(exercise_name: str, payload: Dict[str, str]) -> bool:
+    try:
+        save_exercise_sections(exercise_name, payload)
+        persist_legacy_prompt(exercise_name)
+        return True
+    except Exception as exc:
+        st.error(f"Fehler beim Speichern: {exc}")
+        return False
+
+
+def collect_global_section_values(session_key: str) -> Dict[str, str]:
+    values: Dict[str, str] = {}
+    for cfg in SECTION_UI_CONFIG:
+        if cfg["scope"] != "global":
+            continue
+        key = section_state_key(cfg["key"], "global", session_key)
+        values[cfg["key"]] = st.session_state.get(key, "")
+    return values
+
+
+def collect_exercise_section_values(session_key: str) -> Dict[str, str]:
+    values: Dict[str, str] = {}
+    for section_key in EXERCISE_SECTION_EDITOR_KEYS:
+        key = section_state_key(section_key, "exercise", session_key)
+        values[section_key] = st.session_state.get(key, "")
+    return values
+
+
+def print_prompt_debug(context: str, prompt: str, params: Dict[str, Any]) -> None:
+    print(f"[Recap:{context}] Prompt:\n{prompt}\n")  # noqa: T201
+    print(f"[Recap:{context}] Params: {params}\n")  # noqa: T201
+
+
+def persist_legacy_prompt(exercise_name: Optional[str]) -> None:
+    config = load_word_limit_config()
+    global_sections = load_global_sections()
+    max_words_value = max_words_default(config)
+    exercises: List[str]
+    if exercise_name:
+        exercises = [exercise_name]
+    else:
+        if not EXERCISE_PROMPTS_STORE.exists():
+            return
+        try:
+            with EXERCISE_PROMPTS_STORE.open("r", encoding="utf-8") as handle:
+                stored = json.load(handle)
+            exercises = list(stored.keys())
+        except json.JSONDecodeError:
+            exercises = []
+    if not exercises:
+        return
+    legacy_data: Dict[str, Dict[str, str]] = {}
+    if LEGACY_PROMPTS_PATH.exists():
+        try:
+            with LEGACY_PROMPTS_PATH.open("r", encoding="utf-8") as handle:
+                legacy_data = json.load(handle)
+        except json.JSONDecodeError:
+            legacy_data = {}
+    for name in exercises:
+        entry = get_exercise_sections(name, config)
+        legacy_data[name] = {
+            "system_prompt": assemble_system_prompt(global_sections, entry, max_words_value),
+            "example1": entry.get("example1", ""),
+            "example2": entry.get("example2", ""),
+        }
+    LEGACY_PROMPTS_PATH.write_text(json.dumps(legacy_data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def initialize_section_states(
+    sel_uebung: str,
+    session_key: str,
+    global_defaults: Dict[str, str],
+    exercise_sections: Dict[str, str],
+) -> None:
+    for cfg in SECTION_UI_CONFIG:
+        state_key = section_state_key(cfg["key"], cfg["scope"], session_key)
+        if cfg["scope"] == "global":
+            if state_key not in st.session_state:
+                st.session_state[state_key] = global_defaults.get(cfg["key"], "")
+            continue
+        tracker_key = section_exercise_tracker_key(state_key)
+        if st.session_state.get(tracker_key) != sel_uebung:
+            st.session_state[state_key] = exercise_sections.get(cfg["key"], "")
+            st.session_state[tracker_key] = sel_uebung
+
+
 def get_all_exercise_names(hierarchy: Dict[str, Dict[str, List[str]]]) -> List[str]:
     """Extract all exercise names from the hierarchy."""
     exercise_names: List[str] = []
@@ -122,117 +294,6 @@ def get_all_exercise_names(hierarchy: Dict[str, Dict[str, List[str]]]) -> List[s
         for path_list in thema_dict.values():
             exercise_names.extend(path_list)
     return sorted(set(exercise_names))
-
-
-def ensure_exercise_prompts_json(exercise_names: List[str]) -> Path:
-    """Ensure the exercise_system_prompts.json file exists with all exercises.
-    Returns the path to the JSON file."""
-    json_path = PROJECT_ROOT / "config" / "exercise_system_prompts.json"
-    
-    # Load existing JSON if it exists
-    existing_data: Dict[str, Dict[str, str]] = {}
-    if json_path.exists():
-        try:
-            with json_path.open("r", encoding="utf-8") as f:
-                loaded = json.load(f)
-                # Handle both old format (flat) and new format (nested)
-                if loaded and isinstance(list(loaded.values())[0], str):
-                    # Old format: convert to new format (empty values)
-                    existing_data = {
-                        name: {"system_prompt": "", "example1": "", "example2": ""}
-                        for name in loaded.keys()
-                    }
-                else:
-                    existing_data = loaded
-                    # Remove mainrecap if it exists
-                    for name in existing_data:
-                        if "mainrecap" in existing_data[name]:
-                            del existing_data[name]["mainrecap"]
-        except Exception:
-            existing_data = {}
-    
-    # Update with any missing exercises (with empty values)
-    updated = False
-    for exercise_name in exercise_names:
-        if exercise_name not in existing_data:
-            existing_data[exercise_name] = {
-                "system_prompt": "",
-                "example1": "",
-                "example2": ""
-            }
-            updated = True
-        elif not isinstance(existing_data[exercise_name], dict):
-            # Convert old format entry to new format (empty values)
-            existing_data[exercise_name] = {
-                "system_prompt": "",
-                "example1": "",
-                "example2": ""
-            }
-            updated = True
-        elif "mainrecap" in existing_data[exercise_name]:
-            # Remove mainrecap if it exists
-            del existing_data[exercise_name]["mainrecap"]
-            updated = True
-    
-    # Write back if updated
-    if updated:
-        with json_path.open("w", encoding="utf-8") as f:
-            json.dump(existing_data, f, ensure_ascii=False, indent=2)
-    
-    return json_path
-
-
-def load_exercise_prompts_json() -> Dict[str, Dict[str, str]]:
-    """Load the exercise prompts JSON file with new structure."""
-    json_path = PROJECT_ROOT / "config" / "exercise_system_prompts.json"
-    if json_path.exists():
-        try:
-            with json_path.open("r", encoding="utf-8") as f:
-                loaded = json.load(f)
-                # Handle both old format (flat) and new format (nested)
-                if loaded and isinstance(list(loaded.values())[0], str):
-                    # Old format: convert to new format (empty values)
-                    return {
-                        name: {"system_prompt": "", "example1": "", "example2": ""}
-                        for name in loaded.keys()
-                    }
-                # Remove mainrecap if it exists
-                result = {}
-                for name, data in loaded.items():
-                    result[name] = {k: v for k, v in data.items() if k != "mainrecap"}
-                return result
-        except Exception:
-            return {}
-    return {}
-
-
-def save_exercise_data(exercise_name: str, data: Dict[str, str]) -> bool:
-    """Save exercise data to the JSON file."""
-    json_path = PROJECT_ROOT / "config" / "exercise_system_prompts.json"
-    try:
-        # Load existing data
-        existing_data = load_exercise_prompts_json()
-        
-        # Update the entry
-        if exercise_name not in existing_data:
-            existing_data[exercise_name] = {
-                "system_prompt": "",
-                "example1": "",
-                "example2": ""
-            }
-        
-        # Filter out mainrecap if present
-        filtered_data = {k: v for k, v in data.items() if k != "mainrecap"}
-        existing_data[exercise_name].update(filtered_data)
-        
-        # Write back
-        with json_path.open("w", encoding="utf-8") as f:
-            json.dump(existing_data, f, ensure_ascii=False, indent=2)
-        
-        return True
-    except Exception as e:
-        st.error(f"Fehler beim Speichern: {e}")
-        return False
 
 
 @st.cache_resource(show_spinner=False)
@@ -592,24 +653,6 @@ def replace_answers_in_inhalt(inhalt_text: str, updated_segments: List[Dict[str,
     return segments_to_inhalt(segments)
 
 
-def update_system_prompt_length(system_prompt: str, max_words: int) -> str:
-    """Update the last line of system prompt with max word count."""
-    lines = system_prompt.split("\n")
-    
-    # Find and replace the line with "Länge: Maximal"
-    for i in range(len(lines) - 1, -1, -1):
-        if "Länge:" in lines[i] or "Maximal" in lines[i]:
-            # Replace the number in this line
-            lines[i] = re.sub(r"Maximal\s+\d+\s+Wörter", f"Maximal {max_words} Wörter", lines[i])
-            lines[i] = re.sub(r"Länge:\s*Maximal\s+\d+\s+Wörter", f"Länge: Maximal {max_words} Wörter", lines[i])
-            break
-    else:
-        # If no line found, append it
-        lines.append(f"- Länge: Maximal {max_words} Wörter")
-    
-    return "\n".join(lines)
-
-
 def merge_filled_answers_into_segments(
     original_segments: List[Dict[str, Any]], 
     filled_segments: List[Dict[str, Any]]
@@ -693,7 +736,7 @@ if not hier:
 # Ensure exercise prompts JSON file exists
 all_exercise_names = get_all_exercise_names(hier) if hier else []
 if all_exercise_names:
-    ensure_exercise_prompts_json(all_exercise_names)
+    ensure_exercise_prompt_store()
 
 with st.sidebar:
     st.header("Navigation")
@@ -1034,110 +1077,88 @@ if sel_uebung:
         st.session_state[mainrecap_inhalt_key] = inhalt
         st.session_state[f"{sel_uebung}_transfer_main_clicked"] = False
     
-    # Load exercise data
-    exercise_data = load_exercise_prompts_json()
-    current_exercise_data = exercise_data.get(sel_uebung, {
-        "system_prompt": "",
-        "example1": "",
-        "example2": ""
-    })
+    word_limit_file_config = load_word_limit_config()
+    initialize_word_limit_inputs(word_limit_file_config)
+    active_word_limit_config = current_word_limit_config()
+    exercise_sections = get_exercise_sections(sel_uebung, word_limit_file_config)
+    global_section_defaults = load_global_sections()
+    initialize_section_states(sel_uebung, session_key, global_section_defaults, exercise_sections)
     
-    # Initialize empty values (only for display/fallback, don't modify in place)
-    default_prompt_path = PROJECT_ROOT / "config" / "recap_system_prompt.txt"
-    default_system_prompt = ""
-    if not current_exercise_data.get("system_prompt"):
-        if default_prompt_path.exists():
-            default_system_prompt = default_prompt_path.read_text(encoding="utf-8").strip()
-    
-    default_example1 = ""
-    if not current_exercise_data.get("example1"):
-        # Initialize with INHALT from segments with empty answers
-        default_example1 = segments_to_inhalt(segments, empty_answers=True)
-    
-    default_example2 = ""
-    if not current_exercise_data.get("example2"):
-        # Initialize with INHALT from segments with empty answers
-        default_example2 = segments_to_inhalt(segments, empty_answers=True)
+    default_example1 = exercise_sections.get("example1") or segments_to_inhalt(segments, empty_answers=True)
+    default_example2 = exercise_sections.get("example2") or segments_to_inhalt(segments, empty_answers=True)
     
     # System Prompt Section
     st.markdown("---")
     st.subheader("System-Prompt")
+    for cfg in SECTION_UI_CONFIG:
+        scope = cfg["scope"]
+        key = cfg["key"]
+        state_key = section_state_key(key, scope, session_key)
+        with st.expander(cfg["label"], expanded=False):
+            st.text_area(
+                cfg["label"],
+                key=state_key,
+                height=180,
+                label_visibility="collapsed",
+            )
+            button_cols = st.columns(2)
+            with button_cols[0]:
+                load_key = f"{state_key}_load"
+                if st.button("📥 Laden", key=load_key, use_container_width=True):
+                    if scope == "global":
+                        st.session_state[state_key] = load_global_section(key)
+                    else:
+                        fresh_sections = get_exercise_sections(sel_uebung, active_word_limit_config)
+                        st.session_state[state_key] = fresh_sections.get(key, "")
+                        st.session_state[section_exercise_tracker_key(state_key)] = sel_uebung
+                    st.rerun()
+            with button_cols[1]:
+                save_button_key = f"{state_key}_save"
+                if st.button("💾 Speichern", key=save_button_key, use_container_width=True):
+                    st.session_state[f"{save_button_key}_dialog"] = True
+                dialog_message = (
+                    f"Möchten Sie den globalen Abschnitt '{cfg['label']}' wirklich überschreiben?"
+                    if scope == "global"
+                    else f"Möchten Sie den Abschnitt '{cfg['label']}' für '{sel_uebung}' wirklich speichern?"
+                )
+                def _save_section(scope=scope, section_key=key, value_key=state_key) -> None:
+                    if scope == "global":
+                        save_global_section(section_key, st.session_state.get(value_key, ""))
+                        persist_legacy_prompt(None)
+                    else:
+                        save_exercise_payload(sel_uebung, {section_key: st.session_state.get(value_key, "")})
+                confirm_action(f"{save_button_key}_dialog", dialog_message, _save_section)
     
-    system_prompt_state_key = f"{session_key}_system_prompt"
-    system_prompt_base_key = f"{session_key}_system_prompt_base"
-    
-    # Initialize system prompt
-    if system_prompt_state_key not in st.session_state:
-        base_prompt = current_exercise_data.get("system_prompt", "") or default_system_prompt
-        st.session_state[system_prompt_base_key] = base_prompt
-        st.session_state[system_prompt_state_key] = base_prompt
-    
-    # Get current prompt (may have been manually edited)
-    base_prompt = st.session_state.get(system_prompt_base_key, current_exercise_data.get("system_prompt", ""))
-    current_prompt = st.session_state.get(system_prompt_state_key, "")
-    if not current_prompt:
-        current_prompt = base_prompt
-        st.session_state[system_prompt_state_key] = current_prompt
-    
-    system_prompt_input = st.text_area(
-        "System-Prompt",
-        value=current_prompt,
-        key=system_prompt_state_key,
-        height=200,
-        label_visibility="collapsed",
+    st.markdown("---")
+    st.subheader("Wortlimits")
+    st.caption("Ordne den Anzahl-Antworten-Schwellen entsprechende Wortlimits zu.")
+    limit_cols = st.columns(WORD_LIMIT_COLUMNS)
+    for idx, col in enumerate(limit_cols):
+        with col:
+            st.number_input(
+                "Anzahl Antworten",
+                min_value=0,
+                step=1,
+                key=f"{WORD_LIMIT_SESSION_PREFIX}_answers_{idx}",
+            )
+            st.number_input(
+                "Max. Wörter",
+                min_value=1,
+                step=1,
+                key=f"{WORD_LIMIT_SESSION_PREFIX}_words_{idx}",
+            )
+    save_limits_key = f"{session_key}_save_word_limits"
+    if st.button("💾 Wortlimits speichern", key=save_limits_key, use_container_width=True):
+        st.session_state[f"{save_limits_key}_dialog"] = True
+    def _save_word_limits() -> None:
+        config = current_word_limit_config()
+        save_word_limit_config(config["answer_counts"], config["max_words"])
+        persist_legacy_prompt(None)
+    confirm_action(
+        f"{save_limits_key}_dialog",
+        "Aktuelle Wortlimits dauerhaft speichern?",
+        _save_word_limits,
     )
-    
-    # Update base prompt when user edits (remove length line for base)
-    if system_prompt_input != current_prompt:
-        # User edited - extract base (without length line)
-        base_lines = system_prompt_input.split("\n")
-        base_lines_clean = []
-        for line in base_lines:
-            if "Länge:" not in line and "Maximal" not in line:
-                base_lines_clean.append(line)
-        base_clean = "\n".join(base_lines_clean).strip()
-        st.session_state[system_prompt_base_key] = base_clean
-    
-    system_button_cols = st.columns(2)
-    with system_button_cols[0]:
-        if st.button("📥 System-Prompt laden", key=f"{session_key}_load_system", use_container_width=True):
-            base_prompt = current_exercise_data.get("system_prompt", "")
-            st.session_state[system_prompt_base_key] = base_prompt
-            st.session_state[system_prompt_state_key] = base_prompt
-            st.rerun()
-    
-    with system_button_cols[1]:
-        save_system_key = f"{session_key}_save_system"
-        save_system_clicked = st.button("💾 System-Prompt speichern", key=save_system_key, use_container_width=True)
-        if save_system_clicked:
-            # Show confirmation dialog
-            confirm_key = f"{save_system_key}_dialog"
-            if confirm_key not in st.session_state:
-                st.session_state[confirm_key] = True
-            
-            if st.session_state[confirm_key]:
-                with st.dialog("Bestätigung") as dialog:
-                    st.write(f"Möchten Sie den System-Prompt für '{sel_uebung}' wirklich überschreiben?")
-                    col1, col2 = st.columns(2)
-                    with col1:
-                        if st.button("Ja", key=f"{save_system_key}_yes", use_container_width=True):
-                            # Extract base prompt (without length line) for saving
-                            base_lines = system_prompt_input.split("\n")
-                            base_lines_clean = [line for line in base_lines if "Länge:" not in line and "Maximal" not in line]
-                            base_prompt_clean = "\n".join(base_lines_clean).strip()
-                            
-                            if save_exercise_data(sel_uebung, {"system_prompt": base_prompt_clean}):
-                                st.session_state[system_prompt_base_key] = base_prompt_clean
-                                st.session_state[confirm_key] = False
-                                dialog.close()
-                                st.rerun()
-                            else:
-                                st.error("❌ Fehler beim Speichern")
-                    with col2:
-                        if st.button("Nein", key=f"{save_system_key}_no", use_container_width=True):
-                            st.session_state[confirm_key] = False
-                            dialog.close()
-                            st.rerun()
     
     # Beispiel 1 Section
     st.markdown("---")
@@ -1160,7 +1181,7 @@ if sel_uebung:
     # This check happens AFTER restore, so preserved values won't be overwritten
     # CRITICAL: Never overwrite existing text area content, even if segments change
     if example1_state_key not in st.session_state:
-        example1_value = current_exercise_data.get("example1", "") or default_example1
+        example1_value = exercise_sections.get("example1", "") or default_example1
         st.session_state[example1_state_key] = example1_value
     # Note: Widget with key=example1_state_key manages its own session state
     # We only set it explicitly during transfer or load operations
@@ -1180,19 +1201,6 @@ if sel_uebung:
         label_visibility="collapsed",
     )
     
-    # Slider for Beispiel 1
-    example1_length_key = f"{session_key}_example1_length"
-    if example1_length_key not in st.session_state:
-        st.session_state[example1_length_key] = 30
-    
-    example1_length = st.slider(
-        "Maximale Wortanzahl",
-        min_value=10,
-        max_value=60,
-        key=example1_length_key,
-    )
-    
-    
     example1_button_cols = st.columns(3)
     with example1_button_cols[0]:
         gen_ex1_key = f"{session_key}_gen_ex1"
@@ -1211,14 +1219,23 @@ if sel_uebung:
                         preserved_main = st.session_state[mainrecap_inhalt_key]
                         st.session_state[f"{mainrecap_inhalt_key}_preserve"] = preserved_main
                     
-                    # Get system prompt with Beispiel 1 slider value
-                    system_prompt_for_ex1 = update_system_prompt_length(
-                        st.session_state[system_prompt_state_key],
-                        example1_length
+                    answer_count = count_answer_lines(example1_text)
+                    max_words_value = choose_max_words(answer_count, active_word_limit_config)
+                    global_section_values = collect_global_section_values(session_key)
+                    exercise_section_values = collect_exercise_section_values(session_key)
+                    system_prompt_for_ex1 = assemble_system_prompt(
+                        global_section_values,
+                        exercise_section_values,
+                        max_words_value,
                     )
                     
                     # Build prompt: system prompt + INHALT
                     prompt = f"{system_prompt_for_ex1}\n\n{example1_text}"
+                    print_prompt_debug(
+                        "beispiel1",
+                        prompt,
+                        {"max_tokens": 200, "max_words": max_words_value},
+                    )
                     
                     with st.spinner("Generiere Recap..."):
                         recap = generate_summary_with_mistral(
@@ -1260,7 +1277,7 @@ if sel_uebung:
                     col1, col2 = st.columns(2)
                     with col1:
                         if st.button("Ja", key=f"{save_ex1_key}_yes", use_container_width=True):
-                            if save_exercise_data(sel_uebung, {"example1": example1_text}):
+                            if save_exercise_payload(sel_uebung, {"example1": example1_text}):
                                 st.session_state[confirm_key] = False
                                 dialog.close()
                                 st.rerun()
@@ -1274,7 +1291,7 @@ if sel_uebung:
     
     with example1_button_cols[2]:
         if st.button("📥 Beispiel 1 laden", key=f"{session_key}_load_ex1", use_container_width=True):
-            example1_value = current_exercise_data.get("example1", "")
+            example1_value = exercise_sections.get("example1", "")
             if not example1_value:
                 # Initialize with INHALT from segments with empty answers
                 example1_value = segments_to_inhalt(segments, empty_answers=True)
@@ -1301,7 +1318,7 @@ if sel_uebung:
     # This check happens AFTER restore, so preserved values won't be overwritten
     # CRITICAL: Never overwrite existing text area content, even if segments change
     if example2_state_key not in st.session_state:
-        example2_value = current_exercise_data.get("example2", "") or default_example2
+        example2_value = exercise_sections.get("example2", "") or default_example2
         st.session_state[example2_state_key] = example2_value
     # Note: Widget with key=example2_state_key manages its own session state
     # We only set it explicitly during transfer or load operations
@@ -1321,18 +1338,6 @@ if sel_uebung:
         label_visibility="collapsed",
     )
     
-    example2_length_key = f"{session_key}_example2_length"
-    if example2_length_key not in st.session_state:
-        st.session_state[example2_length_key] = 30
-    
-    example2_length = st.slider(
-        "Maximale Wortanzahl",
-        min_value=10,
-        max_value=60,
-        key=example2_length_key,
-    )
-    
-    
     example2_button_cols = st.columns(3)
     with example2_button_cols[0]:
         gen_ex2_key = f"{session_key}_gen_ex2"
@@ -1351,11 +1356,21 @@ if sel_uebung:
                         preserved_main = st.session_state[mainrecap_inhalt_key]
                         st.session_state[f"{mainrecap_inhalt_key}_preserve"] = preserved_main
                     
-                    system_prompt_for_ex2 = update_system_prompt_length(
-                        st.session_state[system_prompt_state_key],
-                        example2_length
+                    answer_count = count_answer_lines(example2_text)
+                    max_words_value = choose_max_words(answer_count, active_word_limit_config)
+                    global_section_values = collect_global_section_values(session_key)
+                    exercise_section_values = collect_exercise_section_values(session_key)
+                    system_prompt_for_ex2 = assemble_system_prompt(
+                        global_section_values,
+                        exercise_section_values,
+                        max_words_value,
                     )
                     prompt = f"{system_prompt_for_ex2}\n\n{example2_text}"
+                    print_prompt_debug(
+                        "beispiel2",
+                        prompt,
+                        {"max_tokens": 200, "max_words": max_words_value},
+                    )
                     
                     with st.spinner("Generiere Recap..."):
                         recap = generate_summary_with_mistral(
@@ -1394,7 +1409,7 @@ if sel_uebung:
                     col1, col2 = st.columns(2)
                     with col1:
                         if st.button("Ja", key=f"{save_ex2_key}_yes", use_container_width=True):
-                            if save_exercise_data(sel_uebung, {"example2": example2_text}):
+                            if save_exercise_payload(sel_uebung, {"example2": example2_text}):
                                 st.session_state[confirm_key] = False
                                 dialog.close()
                                 st.rerun()
@@ -1408,7 +1423,7 @@ if sel_uebung:
     
     with example2_button_cols[2]:
         if st.button("📥 Beispiel 2 laden", key=f"{session_key}_load_ex2", use_container_width=True):
-            example2_value = current_exercise_data.get("example2", "")
+            example2_value = exercise_sections.get("example2", "")
             if not example2_value:
                 # Initialize with INHALT from segments with empty answers
                 example2_value = segments_to_inhalt(segments, empty_answers=True)
@@ -1449,17 +1464,6 @@ if sel_uebung:
     )
     
     # Slider for TEST
-    mainrecap_length_key = f"{session_key}_mainrecap_length"
-    if mainrecap_length_key not in st.session_state:
-        st.session_state[mainrecap_length_key] = 30
-    
-    mainrecap_length = st.slider(
-        "Maximale Wortanzahl",
-        min_value=10,
-        max_value=60,
-        key=mainrecap_length_key,
-    )
-    
     # Mistral temperature and top_p controls for TEST
     main_mistral_temp_key = f"{session_key}_main_mistral_temperature"
     main_mistral_top_p_key = f"{session_key}_main_mistral_top_p"
@@ -1523,18 +1527,30 @@ if sel_uebung:
                     preserved_ex2 = st.session_state[example2_state_key]
                     st.session_state[f"{example2_state_key}_preserve"] = preserved_ex2
                 
-                # Build the complete Mistral prompt
-                system_prompt_for_main = update_system_prompt_length(
-                    st.session_state[system_prompt_state_key],
-                    mainrecap_length
+                answer_count = count_answer_lines(mainrecap_inhalt_text)
+                max_words_value = choose_max_words(answer_count, active_word_limit_config)
+                system_prompt_for_main = assemble_system_prompt(
+                    collect_global_section_values(session_key),
+                    collect_exercise_section_values(session_key),
+                    max_words_value,
                 )
                 
                 # Get the current text area values (including any generated recaps)
-                example1_final = st.session_state.get(example1_state_key, current_exercise_data.get("example1", ""))
-                example2_final = st.session_state.get(example2_state_key, current_exercise_data.get("example2", ""))
+                example1_final = st.session_state.get(example1_state_key, exercise_sections.get("example1", ""))
+                example2_final = st.session_state.get(example2_state_key, exercise_sections.get("example2", ""))
                 
                 # Build complete Mistral prompt
                 mistral_prompt = f"{system_prompt_for_main}\n\n# BEISPIELE\n\n## Beispiel 1\n{example1_final}\n\n## Beispiel 2\n{example2_final}\n\n# INHALT\n{mainrecap_inhalt_text}"
+                print_prompt_debug(
+                    "text",
+                    mistral_prompt,
+                    {
+                        "max_tokens": 200,
+                        "temperature": main_mistral_temperature,
+                        "top_p": main_mistral_top_p,
+                        "max_words": max_words_value,
+                    },
+                )
                 
                 with st.spinner("Generiere Zusammenfassung..."):
                     # Store the exact prompt that we're about to send
