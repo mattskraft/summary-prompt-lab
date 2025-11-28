@@ -1,7 +1,121 @@
 {
+  "Test Exercise": {
+    "anweisungen": "TEST TEXT",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "example1": "",
+    "example2": ""
+  },
+  "Me-Time": {
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "example1": "",
+    "example2": ""
+  },
+  "Das Regal": {
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "example1": "",
+    "example2": ""
+  },
+  "Positive Erinnerungen sammeln": {
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "example1": "",
+    "example2": ""
+  },
+  "Die 7-2-1-Regel": {
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "example1": "",
+    "example2": ""
+  },
+  "Ankommen": {
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "example1": "",
+    "example2": ""
+  },
+  "Angenehme Gefühle zeigen": {
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal 18 Wörter",
+    "example1": "",
+    "example2": ""
+  },
   "Aktiv zuhören": {
-    "anweisungen": "## ANWEISUNGEN\n1. Lies alle TEXT-, FRAGE- und ANTWORT-Blöcke\n2. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n5. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen",
-    "ausgabeformat": "## AUSGABEFORMAT\n- Sprache: Deutsch\n- Länge: Maximal 80 Wörter\n- Format: Flieaßtext (keine Aufzählungen)\n- Struktur: 1 Absatz",
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "example1": "",
+    "example2": ""
+  },
+  "Einschlafen mit Naturgeräuschen": {
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "example1": "",
+    "example2": ""
+  },
+  "Gutes Leben": {
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "example1": "",
+    "example2": ""
+  },
+  "Wie viel Schlaf brauchen wir?": {
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "example1": "",
+    "example2": ""
+  },
+  "Hilfreiche Gedanken": {
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal 20 Wörter",
+    "example1": "",
+    "example2": ""
+  },
+  "Automatische Gedanken": {
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "example1": "",
+    "example2": ""
+  },
+  "Der Zug": {
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "example1": "",
+    "example2": ""
+  },
+  "Ungewöhnliches erklären": {
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "example1": "",
+    "example2": ""
+  },
+  "Hilfreiche Gedanken entwickeln": {
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "example1": "",
+    "example2": ""
+  },
+  "Prüfen was man sieht": {
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "example1": "",
+    "example2": ""
+  },
+  "Selbstwirksamkeit": {
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "example1": "",
+    "example2": ""
+  },
+  "Achtsam, unachtsam oder bewertend?": {
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "example1": "",
+    "example2": ""
+  },
+  "Meine hilfreichen Gedanken": {
+    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
     "example1": "",
     "example2": ""
   }

@@ -21,7 +21,6 @@ EXERCISE_SECTION_TEMPLATES: Dict[str, Path] = {
     "ausgabeformat": PROMPTS_DIR / "system_prompt_ausgabeformat.txt",
 }
 EXERCISE_SPECIFIC_PATH = PROMPTS_DIR / "exercise_specific_prompts.json"
-LEGACY_PROMPTS_PATH = CONFIG_DIR / "exercise_system_prompts.json"
 WORD_LIMITS_PATH = PROMPTS_DIR / "recap_word_limits.json"
 
 DEFAULT_WORD_LIMITS = {
@@ -143,33 +142,6 @@ def _extract_sections_from_text(text: str) -> Dict[str, str]:
     return sections
 
 
-def _migrate_from_legacy(exercise_name: str) -> Dict[str, str]:
-    if not LEGACY_PROMPTS_PATH.exists():
-        return {}
-    legacy = _read_json(LEGACY_PROMPTS_PATH, {})
-    if not isinstance(legacy, dict) or exercise_name not in legacy:
-        return {}
-    entry = legacy[exercise_name]
-    result = _empty_exercise_entry()
-    if isinstance(entry, dict):
-        system_prompt = entry.get("system_prompt", "")
-        if isinstance(system_prompt, str):
-            sections = _extract_sections_from_text(system_prompt)
-            for key in ("anweisungen", "ausgabeformat"):
-                if key in sections:
-                    result[key] = sections[key]
-        for example_key in ("example1", "example2"):
-            value = entry.get(example_key)
-            if isinstance(value, str):
-                result[example_key] = value
-    elif isinstance(entry, str):
-        sections = _extract_sections_from_text(entry)
-        for key in ("anweisungen", "ausgabeformat"):
-            if key in sections:
-                result[key] = sections[key]
-    return result
-
-
 def _default_exercise_section(section_key: str, config: Optional[Dict[str, List[int]]] = None) -> str:
     template_path = EXERCISE_SECTION_TEMPLATES.get(section_key)
     if not template_path or not template_path.exists():
@@ -190,10 +162,6 @@ def get_exercise_sections(
     store = _load_exercise_store()
     entry = store.get(exercise_name, {}).copy()
     changed = False
-    if not entry and auto_create:
-        entry = _migrate_from_legacy(exercise_name)
-        if entry:
-            changed = True
     for key in EXERCISE_SECTION_KEYS:
         if key not in entry or not isinstance(entry[key], str):
             entry[key] = ""

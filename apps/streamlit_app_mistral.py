@@ -99,7 +99,6 @@ try:
         load_global_section,
         load_global_sections,
         load_word_limit_config,
-        max_words_default,
         save_exercise_sections,
         save_global_section,
         save_word_limit_config,
@@ -128,7 +127,6 @@ def load_json(path: str) -> Any:
 
 
 EXERCISE_PROMPTS_STORE = PROJECT_ROOT / "config" / "prompts" / "exercise_specific_prompts.json"
-LEGACY_PROMPTS_PATH = PROJECT_ROOT / "config" / "exercise_system_prompts.json"
 SECTION_UI_CONFIG = [
     {"key": "rolle", "label": "Rolle & Aufgabe", "scope": "global"},
     {"key": "eingabeformat", "label": "Eingabeformat", "scope": "global"},
@@ -153,8 +151,9 @@ def confirm_action(dialog_key: str, message: str, on_confirm) -> None:
     """Show a confirmation dialog and call on_confirm when accepted."""
     if not st.session_state.get(dialog_key):
         return
-    with st.dialog("Bestätigung"):
-        st.write(message)
+    confirmation_box = st.container()
+    with confirmation_box:
+        st.write(f"**Bestätigung erforderlich**\n\n{message}")
         col1, col2 = st.columns(2)
         with col1:
             if st.button("Ja", key=f"{dialog_key}_yes", use_container_width=True):
@@ -204,7 +203,6 @@ def current_word_limit_config() -> Dict[str, List[int]]:
 def save_exercise_payload(exercise_name: str, payload: Dict[str, str]) -> bool:
     try:
         save_exercise_sections(exercise_name, payload)
-        persist_legacy_prompt(exercise_name)
         return True
     except Exception as exc:
         st.error(f"Fehler beim Speichern: {exc}")
@@ -234,39 +232,6 @@ def print_prompt_debug(context: str, prompt: str, params: Dict[str, Any]) -> Non
     print(f"[Recap:{context}] Params: {params}\n")  # noqa: T201
 
 
-def persist_legacy_prompt(exercise_name: Optional[str]) -> None:
-    config = load_word_limit_config()
-    global_sections = load_global_sections()
-    max_words_value = max_words_default(config)
-    exercises: List[str]
-    if exercise_name:
-        exercises = [exercise_name]
-    else:
-        if not EXERCISE_PROMPTS_STORE.exists():
-            return
-        try:
-            with EXERCISE_PROMPTS_STORE.open("r", encoding="utf-8") as handle:
-                stored = json.load(handle)
-            exercises = list(stored.keys())
-        except json.JSONDecodeError:
-            exercises = []
-    if not exercises:
-        return
-    legacy_data: Dict[str, Dict[str, str]] = {}
-    if LEGACY_PROMPTS_PATH.exists():
-        try:
-            with LEGACY_PROMPTS_PATH.open("r", encoding="utf-8") as handle:
-                legacy_data = json.load(handle)
-        except json.JSONDecodeError:
-            legacy_data = {}
-    for name in exercises:
-        entry = get_exercise_sections(name, config)
-        legacy_data[name] = {
-            "system_prompt": assemble_system_prompt(global_sections, entry, max_words_value),
-            "example1": entry.get("example1", ""),
-            "example2": entry.get("example2", ""),
-        }
-    LEGACY_PROMPTS_PATH.write_text(json.dumps(legacy_data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def initialize_section_states(
@@ -575,6 +540,16 @@ def segments_to_inhalt(segments: List[Dict[str, Any]], empty_answers: bool = Fal
         empty_answers: If True, use empty strings for answers instead of actual values
     """
     lines: List[str] = []
+
+    def answer_uses_percent(options: Optional[Dict[str, Any]]) -> bool:
+        if not isinstance(options, dict):
+            return False
+        for key in ("minText", "maxText"):
+            text_val = options.get(key)
+            if isinstance(text_val, str) and text_val.strip().endswith("%"):
+                return True
+        return False
+    
     for segment in segments:
         if "Text" in segment:
             clean_text = " ".join(segment["Text"].split())
@@ -595,7 +570,8 @@ def segments_to_inhalt(segments: List[Dict[str, Any]], empty_answers: bool = Fal
                     if answer_val:
                         answer_text = ", ".join(str(item) for item in answer_val)
                 elif isinstance(answer_val, (int, float)):
-                    answer_text = str(int(answer_val))
+                    suffix = "%" if answer_uses_percent(segment.get("AnswerOptions")) else ""
+                    answer_text = f"{int(answer_val)}{suffix}"
                 elif isinstance(answer_val, str):
                     answer_text = answer_val.strip()
                 elif isinstance(answer_val, dict):
@@ -1080,7 +1056,13 @@ if sel_uebung:
     word_limit_file_config = load_word_limit_config()
     initialize_word_limit_inputs(word_limit_file_config)
     active_word_limit_config = current_word_limit_config()
-    exercise_sections = get_exercise_sections(sel_uebung, word_limit_file_config)
+    forced_sections = st.session_state.pop(f"{session_key}_force_reload_sections", None)
+    exercise_sections = forced_sections or get_exercise_sections(sel_uebung, word_limit_file_config)
+    if forced_sections:
+        for exercise_key in EXERCISE_SECTION_EDITOR_KEYS:
+            section_state = section_state_key(exercise_key, "exercise", session_key)
+            st.session_state[section_state] = forced_sections.get(exercise_key, "")
+            st.session_state[section_exercise_tracker_key(section_state)] = sel_uebung
     global_section_defaults = load_global_sections()
     initialize_section_states(sel_uebung, session_key, global_section_defaults, exercise_sections)
     
@@ -1124,9 +1106,10 @@ if sel_uebung:
                 def _save_section(scope=scope, section_key=key, value_key=state_key) -> None:
                     if scope == "global":
                         save_global_section(section_key, st.session_state.get(value_key, ""))
-                        persist_legacy_prompt(None)
                     else:
                         save_exercise_payload(sel_uebung, {section_key: st.session_state.get(value_key, "")})
+                        refreshed_sections = get_exercise_sections(sel_uebung, active_word_limit_config)
+                        st.session_state[f"{session_key}_force_reload_sections"] = refreshed_sections
                 confirm_action(f"{save_button_key}_dialog", dialog_message, _save_section)
     
     st.markdown("---")
@@ -1153,7 +1136,6 @@ if sel_uebung:
     def _save_word_limits() -> None:
         config = current_word_limit_config()
         save_word_limit_config(config["answer_counts"], config["max_words"])
-        persist_legacy_prompt(None)
     confirm_action(
         f"{save_limits_key}_dialog",
         "Aktuelle Wortlimits dauerhaft speichern?",
