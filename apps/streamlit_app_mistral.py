@@ -77,7 +77,7 @@ try:
         MISTRAL_API_KEY = getattr(config_module, "MISTRAL_API_KEY", None)
     
     # Load synth_answers_prompt.txt for Gemini system prompt
-    SYNTH_ANSWERS_PROMPT_PATH = PROJECT_ROOT / "config" / "synth_answers_prompt.txt"
+    SYNTH_ANSWERS_PROMPT_PATH = PROJECT_ROOT / "config" / "prompts" / "synth_answers_prompt.txt"
     SYNTH_ANSWERS_PROMPT = ""
     if SYNTH_ANSWERS_PROMPT_PATH.exists():
         SYNTH_ANSWERS_PROMPT = SYNTH_ANSWERS_PROMPT_PATH.read_text(encoding="utf-8").strip()
