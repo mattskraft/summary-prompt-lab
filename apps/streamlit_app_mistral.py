@@ -4,7 +4,7 @@ import random
 import re
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 import streamlit as st
 
@@ -259,6 +259,40 @@ def get_all_exercise_names(hierarchy: Dict[str, Dict[str, List[str]]]) -> List[s
         for path_list in thema_dict.values():
             exercise_names.extend(path_list)
     return sorted(set(exercise_names))
+
+
+def get_all_exercises_with_paths(hierarchy: Dict[str, Dict[str, List[str]]]) -> List[Tuple[str, str, str]]:
+    """Get all exercises as (thema, pfad, uebung) tuples in sorted order."""
+    exercises: List[Tuple[str, str, str]] = []
+    for thema in sorted(hierarchy.keys()):
+        for pfad in sorted(hierarchy[thema].keys()):
+            for uebung in sorted(hierarchy[thema][pfad]):
+                exercises.append((thema, pfad, uebung))
+    return exercises
+
+
+def get_next_exercise(hierarchy: Dict[str, Dict[str, List[str]]], current_uebung: Optional[str]) -> Optional[Tuple[str, str, str]]:
+    """Get the next exercise after the current one, wrapping around if at the end."""
+    all_exercises = get_all_exercises_with_paths(hierarchy)
+    if not all_exercises:
+        return None
+    
+    if not current_uebung:
+        return all_exercises[0]
+    
+    # Find current exercise index
+    current_idx = None
+    for idx, (_, _, uebung) in enumerate(all_exercises):
+        if uebung == current_uebung:
+            current_idx = idx
+            break
+    
+    if current_idx is None:
+        return all_exercises[0]
+    
+    # Get next exercise (wrap around)
+    next_idx = (current_idx + 1) % len(all_exercises)
+    return all_exercises[next_idx]
 
 
 @st.cache_resource(show_spinner=False)
@@ -723,21 +757,36 @@ with st.sidebar:
     
     themen = sorted(hier.keys())
     
-    if st.button("🎲 Zufällige Übung", use_container_width=True, disabled=not hier):
-        if themen:
-            zufalls_thema = random.choice(themen)
-            available_paths = sorted(hier.get(zufalls_thema, {}).keys())
-            if available_paths:
-                zufalls_path = random.choice(available_paths)
-                available_uebungen = sorted(
-                    hier.get(zufalls_thema, {}).get(zufalls_path, [])
-                )
-                if available_uebungen:
-                    zufalls_uebung = random.choice(available_uebungen)
-                    st.session_state[thema_key] = zufalls_thema
-                    st.session_state[path_key] = zufalls_path
-                    st.session_state[uebung_key] = zufalls_uebung
-                    st.rerun()
+    # Navigation buttons in two columns
+    nav_button_cols = st.columns(2)
+    
+    with nav_button_cols[0]:
+        if st.button("🎲 Zufällige Übung", use_container_width=True, disabled=not hier):
+            if themen:
+                zufalls_thema = random.choice(themen)
+                available_paths = sorted(hier.get(zufalls_thema, {}).keys())
+                if available_paths:
+                    zufalls_path = random.choice(available_paths)
+                    available_uebungen = sorted(
+                        hier.get(zufalls_thema, {}).get(zufalls_path, [])
+                    )
+                    if available_uebungen:
+                        zufalls_uebung = random.choice(available_uebungen)
+                        st.session_state[thema_key] = zufalls_thema
+                        st.session_state[path_key] = zufalls_path
+                        st.session_state[uebung_key] = zufalls_uebung
+                        st.rerun()
+    
+    with nav_button_cols[1]:
+        current_uebung = st.session_state.get(uebung_key)
+        if st.button("➡️ Nächste Übung", use_container_width=True, disabled=not hier):
+            next_exercise = get_next_exercise(hier, current_uebung)
+            if next_exercise:
+                next_thema, next_path, next_uebung = next_exercise
+                st.session_state[thema_key] = next_thema
+                st.session_state[path_key] = next_path
+                st.session_state[uebung_key] = next_uebung
+                st.rerun()
     
     if themen and st.session_state.get(thema_key) not in themen:
         st.session_state[thema_key] = themen[0]
