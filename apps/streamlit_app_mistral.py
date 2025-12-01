@@ -127,6 +127,7 @@ def load_json(path: str) -> Any:
 
 
 EXERCISE_PROMPTS_STORE = PROJECT_ROOT / "config" / "prompts" / "exercise_specific_prompts.json"
+SUMMARY_SWITCH_PATH = PROJECT_ROOT / "config" / "prompts" / "summary_switch.json"
 SECTION_UI_CONFIG = [
     {"key": "rolle", "label": "Rolle & Aufgabe", "scope": "global"},
     {"key": "eingabeformat", "label": "Eingabeformat", "scope": "global"},
@@ -145,6 +146,37 @@ def ensure_exercise_prompt_store() -> Path:
     if not EXERCISE_PROMPTS_STORE.exists():
         EXERCISE_PROMPTS_STORE.write_text("{}", encoding="utf-8")
     return EXERCISE_PROMPTS_STORE
+
+
+def ensure_summary_switch_store() -> Path:
+    SUMMARY_SWITCH_PATH.parent.mkdir(parents=True, exist_ok=True)
+    if not SUMMARY_SWITCH_PATH.exists():
+        SUMMARY_SWITCH_PATH.write_text("{}", encoding="utf-8")
+    return SUMMARY_SWITCH_PATH
+
+
+def load_summary_switch_config() -> Dict[str, str]:
+    ensure_summary_switch_store()
+    try:
+        raw = SUMMARY_SWITCH_PATH.read_text(encoding="utf-8").strip() or "{}"
+        return json.loads(raw)
+    except json.JSONDecodeError as exc:
+        st.warning(f"Ungültige summary_switch.json: {exc}")
+        return {}
+
+
+def save_summary_switch_config(config: Dict[str, str]) -> None:
+    ensure_summary_switch_store()
+    SUMMARY_SWITCH_PATH.write_text(
+        json.dumps(config, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+
+def summary_switch_is_on(value: Optional[str]) -> bool:
+    if not value:
+        return False
+    return value.strip().lower().startswith("summary")
 
 
 def confirm_action(dialog_key: str, message: str, on_confirm) -> None:
@@ -544,6 +576,11 @@ def count_answer_segments(segments: List[Dict[str, Any]]) -> int:
     return sum(1 for seg in segments if "Answer" in seg)
 
 
+def exercise_has_questions(segments: List[Dict[str, Any]]) -> bool:
+    """Return True if any question segments exist."""
+    return any("Question" in seg for seg in segments)
+
+
 def enrich_segments_with_answer_metadata(
     source_segments: List[Dict[str, Any]],
     target_segments: List[Dict[str, Any]],
@@ -747,6 +784,7 @@ if not hier:
 all_exercise_names = get_all_exercise_names(hier) if hier else []
 if all_exercise_names:
     ensure_exercise_prompt_store()
+    ensure_summary_switch_store()
 
 with st.sidebar:
     st.header("Navigation")
@@ -1024,6 +1062,15 @@ if sel_uebung:
     except Exception as e:
         st.error(f"Fehler bei der Segment-Generierung: {e}")
         st.stop()
+
+    has_questions = exercise_has_questions(segments)
+    summary_switch_config = load_summary_switch_config()
+    summary_switch_value = summary_switch_config.get(sel_uebung)
+
+    if summary_switch_value is None:
+        summary_switch_value = "summary" if has_questions else "no questions"
+        summary_switch_config[sel_uebung] = summary_switch_value
+        save_summary_switch_config(summary_switch_config)
     
     # Choose which segments to display
     has_generated = st.session_state.get(session_key) is not None
@@ -1101,6 +1148,41 @@ if sel_uebung:
             inhalt = segments_to_inhalt(segments_for_prompt)
         st.session_state[mainrecap_inhalt_key] = inhalt
         st.session_state[f"{sel_uebung}_transfer_main_clicked"] = False
+
+    st.markdown("---")
+    st.subheader("Summary Switch")
+    summary_switch_cols = st.columns([3, 1])
+    summary_switch_input_key = f"{session_key}_summary_switch_input"
+    with summary_switch_cols[0]:
+        st.text_input(
+            "Summary Switch Eintrag",
+            key=summary_switch_input_key,
+            value=summary_switch_value,
+            label_visibility="collapsed",
+        )
+    with summary_switch_cols[1]:
+        summary_switch_save_clicked = st.button(
+            "💾 Speichern",
+            key=f"{summary_switch_input_key}_save",
+            use_container_width=True,
+        )
+
+    if summary_switch_save_clicked:
+        new_value = st.session_state.get(summary_switch_input_key, "").strip()
+        summary_switch_config[sel_uebung] = new_value
+        save_summary_switch_config(summary_switch_config)
+        summary_switch_value = new_value
+        st.session_state[summary_switch_input_key] = new_value
+        st.success("✅ Summary Switch aktualisiert")
+
+    summary_mode_active = summary_switch_is_on(summary_switch_value)
+
+    if not summary_mode_active:
+        st.info(
+            "Diese Übung ist deaktiviert. Setze den Summary Switch auf 'summary', "
+            "um die nachfolgenden Bereiche zu verwenden."
+        )
+        st.stop()
     
     word_limit_file_config = load_word_limit_config()
     initialize_word_limit_inputs(word_limit_file_config)
