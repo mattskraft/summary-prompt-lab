@@ -2,18 +2,21 @@
 """
 Benchmark script for measuring Mistral API response latency.
 
-This script makes multiple API calls to the Mistral LLM and reports
-latency statistics (mean, median, min, max, standard deviation).
+This script tests multiple models with and without examples to assess
+how prompt length and model size affect latency.
 
 Usage:
     python scripts/benchmark_mistral_latency.py
+    python scripts/benchmark_mistral_latency.py -n 5  # 5 calls per configuration
 """
 
 import os
 import sys
 import time
+from dataclasses import dataclass
 from pathlib import Path
 from statistics import mean, median, stdev
+from typing import Dict, List, Tuple
 
 # Add src directory to path for imports
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -24,8 +27,15 @@ if str(SRC_DIR) not in sys.path:
 from kiso_input.config import MISTRAL_API_KEY
 from kiso_input.processing.cloud_apis import generate_summary_with_mistral
 
-# Test prompt provided by user
-TEST_PROMPT = """# Rolle und Aufgabe
+# Models to benchmark
+MODELS = [
+    "mistral-small-latest",
+    "mistral-medium-latest",
+    "mistral-large-latest",
+]
+
+# Prompt components
+SYSTEM_PROMPT = """# Rolle und Aufgabe
 
 Du bist eine therapeutische Assistenz. Deine Aufgabe ist es, eine empathische Zusammenfassung zu erstellen.
 
@@ -79,9 +89,9 @@ Der INHALT besteht aus:
 
 - Struktur: 1 Absatz
 
-- Länge: Maximal 50 Wörter
+- Länge: Maximal 50 Wörter"""
 
-
+EXAMPLES = """
 
 # BEISPIELE
 
@@ -155,9 +165,9 @@ FRAGE: Was hat dir in der Vergangenheit dabei geholfen, trotz Halluzinationen od
 
 ANTWORT: Mir hat geholfen, mich auf die Stimme meines Gegenübers zu fokussieren – fast wie ein Anker. Manchmal zähle ich innerlich die Worte oder halte kurz inne, um mich zu sammeln, bevor ich reagiere.
 
-ZUSAMMENFASSUNG: Du beschreibst, wie wichtig es dir ist, in deinen Erlebnissen gesehen und wertgeschätzt zu werden – ob durch enttäuschte Stille oder warme Bestätigung, die deine Freude noch strahlen lässt. Beim Zuhören trotz Ablenkung setzt du auf achtsame Strategien: bewusste Atmung, geduldiges Nachfragen und das sanfte Verankern in der Stimme deines Gegenübers, um präsent zu bleiben, ohne dich unter Druck zu setzen. Das zeigt viel Einfühlungsvermögen und Kraft.
+ZUSAMMENFASSUNG: Du beschreibst, wie wichtig es dir ist, in deinen Erlebnissen gesehen und wertgeschätzt zu werden – ob durch enttäuschte Stille oder warme Bestätigung, die deine Freude noch strahlen lässt. Beim Zuhören trotz Ablenkung setzt du auf achtsame Strategien: bewusste Atmung, geduldiges Nachfragen und das sanfte Verankern in der Stimme deines Gegenübers, um präsent zu bleiben, ohne dich unter Druck zu setzen. Das zeigt viel Einfühlungsvermögen und Kraft."""
 
-
+CONTENT = """
 
 # INHALT
 
@@ -192,8 +202,191 @@ FRAGE: Was hat dir in der Vergangenheit dabei geholfen, trotz Halluzinationen od
 ANTWORT: Ich habe mich auf die Stimme meines Gegenübers konzentriert und tief durchgeatmet."""
 
 
-def run_benchmark(num_calls: int = 10):
-    """Run the latency benchmark."""
+@dataclass
+class BenchmarkResult:
+    """Results from a single benchmark configuration."""
+    model: str
+    with_examples: bool
+    prompt_length: int
+    latencies: List[float]
+    response_lengths: List[int]
+    errors: List[str]
+    
+    @property
+    def mean_latency(self) -> float:
+        return mean(self.latencies) if self.latencies else 0.0
+    
+    @property
+    def median_latency(self) -> float:
+        return median(self.latencies) if self.latencies else 0.0
+    
+    @property
+    def min_latency(self) -> float:
+        return min(self.latencies) if self.latencies else 0.0
+    
+    @property
+    def max_latency(self) -> float:
+        return max(self.latencies) if self.latencies else 0.0
+    
+    @property
+    def std_latency(self) -> float:
+        return stdev(self.latencies) if len(self.latencies) >= 2 else 0.0
+    
+    @property
+    def success_rate(self) -> float:
+        total = len(self.latencies) + len(self.errors)
+        return len(self.latencies) / total if total > 0 else 0.0
+
+
+def build_prompt(with_examples: bool) -> str:
+    """Build the prompt with or without examples."""
+    if with_examples:
+        return SYSTEM_PROMPT + EXAMPLES + CONTENT
+    else:
+        return SYSTEM_PROMPT + CONTENT
+
+
+def run_single_benchmark(
+    api_key: str,
+    model: str,
+    prompt: str,
+    num_calls: int,
+    with_examples: bool,
+) -> BenchmarkResult:
+    """Run benchmark for a single configuration."""
+    latencies: List[float] = []
+    response_lengths: List[int] = []
+    errors: List[str] = []
+    
+    example_label = "with examples" if with_examples else "without examples"
+    print(f"\n{'─' * 60}")
+    print(f"📊 {model} ({example_label})")
+    print(f"   Prompt: {len(prompt):,} chars")
+    print(f"{'─' * 60}")
+    
+    for i in range(num_calls):
+        call_num = i + 1
+        print(f"   Call {call_num}/{num_calls}...", end=" ", flush=True)
+        
+        try:
+            start_time = time.perf_counter()
+            response = generate_summary_with_mistral(
+                prompt=prompt,
+                api_key=api_key,
+                model=model,
+                max_tokens=200,
+                temperature=0.7,
+                top_p=0.9,
+            )
+            end_time = time.perf_counter()
+            
+            latency = end_time - start_time
+            latencies.append(latency)
+            response_lengths.append(len(response))
+            
+            print(f"✅ {latency:.2f}s ({len(response)} chars)")
+            
+        except Exception as e:
+            print(f"❌ {e}")
+            errors.append(str(e))
+    
+    result = BenchmarkResult(
+        model=model,
+        with_examples=with_examples,
+        prompt_length=len(prompt),
+        latencies=latencies,
+        response_lengths=response_lengths,
+        errors=errors,
+    )
+    
+    if latencies:
+        print(f"   → Mean: {result.mean_latency:.2f}s | "
+              f"Median: {result.median_latency:.2f}s | "
+              f"Min: {result.min_latency:.2f}s | "
+              f"Max: {result.max_latency:.2f}s")
+    
+    return result
+
+
+def print_comparison_table(results: List[BenchmarkResult]) -> None:
+    """Print a comparison table of all results."""
+    print("\n" + "=" * 90)
+    print("📊 COMPARISON TABLE")
+    print("=" * 90)
+    
+    # Header
+    print(f"\n{'Model':<25} {'Examples':<10} {'Prompt':<10} {'Mean':<10} {'Median':<10} {'Min':<10} {'Max':<10} {'StdDev':<10}")
+    print("-" * 95)
+    
+    for r in results:
+        example_str = "Yes" if r.with_examples else "No"
+        if r.latencies:
+            print(f"{r.model:<25} {example_str:<10} {r.prompt_length:<10,} "
+                  f"{r.mean_latency:<10.2f} {r.median_latency:<10.2f} "
+                  f"{r.min_latency:<10.2f} {r.max_latency:<10.2f} {r.std_latency:<10.2f}")
+        else:
+            print(f"{r.model:<25} {example_str:<10} {r.prompt_length:<10,} {'FAILED':<40}")
+
+
+def print_analysis(results: List[BenchmarkResult]) -> None:
+    """Print analysis of prompt length and model size effects."""
+    print("\n" + "=" * 90)
+    print("📈 ANALYSIS: Effect of Prompt Length and Model Size")
+    print("=" * 90)
+    
+    # Group by model
+    models_data: Dict[str, Dict[str, BenchmarkResult]] = {}
+    for r in results:
+        if r.model not in models_data:
+            models_data[r.model] = {}
+        key = "with_examples" if r.with_examples else "without_examples"
+        models_data[r.model][key] = r
+    
+    # Effect of examples (prompt length) per model
+    print("\n🔍 Effect of Examples (Prompt Length):")
+    print("-" * 60)
+    for model in MODELS:
+        if model in models_data:
+            data = models_data[model]
+            if "with_examples" in data and "without_examples" in data:
+                with_ex = data["with_examples"]
+                without_ex = data["without_examples"]
+                if with_ex.latencies and without_ex.latencies:
+                    diff = with_ex.mean_latency - without_ex.mean_latency
+                    pct = (diff / without_ex.mean_latency) * 100 if without_ex.mean_latency > 0 else 0
+                    prompt_diff = with_ex.prompt_length - without_ex.prompt_length
+                    print(f"  {model}:")
+                    print(f"    Without examples: {without_ex.mean_latency:.2f}s ({without_ex.prompt_length:,} chars)")
+                    print(f"    With examples:    {with_ex.mean_latency:.2f}s ({with_ex.prompt_length:,} chars)")
+                    print(f"    Difference:       +{diff:.2f}s (+{pct:.1f}%) for +{prompt_diff:,} chars")
+                    print()
+    
+    # Effect of model size (comparing same prompt type)
+    print("\n🔍 Effect of Model Size (with examples):")
+    print("-" * 60)
+    with_examples_results = [r for r in results if r.with_examples and r.latencies]
+    if len(with_examples_results) >= 2:
+        baseline = with_examples_results[0]
+        print(f"  Baseline: {baseline.model} = {baseline.mean_latency:.2f}s")
+        for r in with_examples_results[1:]:
+            diff = r.mean_latency - baseline.mean_latency
+            pct = (diff / baseline.mean_latency) * 100 if baseline.mean_latency > 0 else 0
+            print(f"  {r.model}: {r.mean_latency:.2f}s ({diff:+.2f}s, {pct:+.1f}%)")
+    
+    print("\n🔍 Effect of Model Size (without examples):")
+    print("-" * 60)
+    without_examples_results = [r for r in results if not r.with_examples and r.latencies]
+    if len(without_examples_results) >= 2:
+        baseline = without_examples_results[0]
+        print(f"  Baseline: {baseline.model} = {baseline.mean_latency:.2f}s")
+        for r in without_examples_results[1:]:
+            diff = r.mean_latency - baseline.mean_latency
+            pct = (diff / baseline.mean_latency) * 100 if baseline.mean_latency > 0 else 0
+            print(f"  {r.model}: {r.mean_latency:.2f}s ({diff:+.2f}s, {pct:+.1f}%)")
+
+
+def run_benchmark(num_calls: int = 5):
+    """Run the complete latency benchmark across all configurations."""
     
     # Check for API key
     api_key = MISTRAL_API_KEY
@@ -205,108 +398,68 @@ def run_benchmark(num_calls: int = 10):
         print("Please set it in your .env file or as an environment variable.")
         sys.exit(1)
     
-    print("=" * 70)
-    print("🚀 Mistral API Latency Benchmark")
-    print("=" * 70)
-    print(f"\nNumber of API calls: {num_calls}")
-    print(f"Prompt length: {len(TEST_PROMPT)} characters")
-    print(f"Max tokens: 200")
-    print(f"Temperature: 0.7")
-    print(f"Top-p: 0.9")
-    print("-" * 70)
+    # Build prompts
+    prompt_with_examples = build_prompt(with_examples=True)
+    prompt_without_examples = build_prompt(with_examples=False)
     
-    latencies: list[float] = []
-    responses: list[str] = []
-    errors: list[tuple[int, str]] = []
+    print("=" * 90)
+    print("🚀 Mistral API Latency Benchmark - Model & Prompt Length Comparison")
+    print("=" * 90)
+    print(f"\nModels to test: {', '.join(MODELS)}")
+    print(f"Calls per configuration: {num_calls}")
+    print(f"Prompt with examples: {len(prompt_with_examples):,} chars")
+    print(f"Prompt without examples: {len(prompt_without_examples):,} chars")
+    print(f"Total configurations: {len(MODELS) * 2}")
+    print(f"Total API calls: {len(MODELS) * 2 * num_calls}")
+    print(f"\nSettings: max_tokens=200, temperature=0.7, top_p=0.9")
     
-    for i in range(num_calls):
-        call_num = i + 1
-        print(f"\n📡 Call {call_num}/{num_calls}...", end=" ", flush=True)
+    results: List[BenchmarkResult] = []
+    
+    # Run benchmarks for each model and prompt configuration
+    for model in MODELS:
+        # Without examples (shorter prompt)
+        result = run_single_benchmark(
+            api_key=api_key,
+            model=model,
+            prompt=prompt_without_examples,
+            num_calls=num_calls,
+            with_examples=False,
+        )
+        results.append(result)
         
-        try:
-            start_time = time.perf_counter()
-            response = generate_summary_with_mistral(
-                prompt=TEST_PROMPT,
-                api_key=api_key,
-                max_tokens=200,
-                temperature=0.7,
-                top_p=0.9,
-            )
-            end_time = time.perf_counter()
-            
-            latency = end_time - start_time
-            latencies.append(latency)
-            responses.append(response)
-            
-            print(f"✅ {latency:.2f}s ({len(response)} chars)")
-            
-        except Exception as e:
-            print(f"❌ Error: {e}")
-            errors.append((call_num, str(e)))
+        # With examples (longer prompt)
+        result = run_single_benchmark(
+            api_key=api_key,
+            model=model,
+            prompt=prompt_with_examples,
+            num_calls=num_calls,
+            with_examples=True,
+        )
+        results.append(result)
     
-    # Calculate and display statistics
-    print("\n" + "=" * 70)
-    print("📊 LATENCY STATISTICS")
-    print("=" * 70)
+    # Print summary
+    print_comparison_table(results)
+    print_analysis(results)
     
-    if not latencies:
-        print("❌ No successful calls to analyze.")
-        return
-    
-    successful_calls = len(latencies)
-    failed_calls = len(errors)
-    
-    print(f"\nSuccessful calls: {successful_calls}/{num_calls}")
-    if failed_calls > 0:
-        print(f"Failed calls: {failed_calls}")
-        for call_num, error_msg in errors:
-            print(f"  - Call {call_num}: {error_msg}")
-    
-    print(f"\n{'Metric':<20} {'Value':<15}")
-    print("-" * 35)
-    print(f"{'Mean:':<20} {mean(latencies):.3f} s")
-    print(f"{'Median:':<20} {median(latencies):.3f} s")
-    print(f"{'Min:':<20} {min(latencies):.3f} s")
-    print(f"{'Max:':<20} {max(latencies):.3f} s")
-    
-    if len(latencies) >= 2:
-        print(f"{'Std Dev:':<20} {stdev(latencies):.3f} s")
-    
-    print(f"{'Total time:':<20} {sum(latencies):.3f} s")
-    
-    # Response length statistics
-    response_lengths = [len(r) for r in responses]
-    print(f"\n{'Response Lengths':<20}")
-    print("-" * 35)
-    print(f"{'Mean chars:':<20} {mean(response_lengths):.0f}")
-    print(f"{'Min chars:':<20} {min(response_lengths)}")
-    print(f"{'Max chars:':<20} {max(response_lengths)}")
-    
-    # Show sample responses
-    print("\n" + "=" * 70)
-    print("📝 SAMPLE RESPONSES")
-    print("=" * 70)
-    
-    for i, response in enumerate(responses[:3], 1):
-        print(f"\n--- Response {i} ---")
-        print(response[:300] + "..." if len(response) > 300 else response)
-    
-    print("\n" + "=" * 70)
+    print("\n" + "=" * 90)
     print("✅ Benchmark complete!")
-    print("=" * 70)
+    print("=" * 90)
+    
+    return results
 
 
 if __name__ == "__main__":
     import argparse
     
-    parser = argparse.ArgumentParser(description="Benchmark Mistral API latency")
+    parser = argparse.ArgumentParser(
+        description="Benchmark Mistral API latency across models and prompt sizes"
+    )
     parser.add_argument(
         "-n", "--num-calls",
         type=int,
-        default=10,
-        help="Number of API calls to make (default: 10)"
+        default=5,
+        help="Number of API calls per configuration (default: 5)"
     )
     
     args = parser.parse_args()
     run_benchmark(num_calls=args.num_calls)
-
