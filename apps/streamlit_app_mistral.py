@@ -156,6 +156,7 @@ GLOBAL_SECTION_KEYS = [cfg["key"] for cfg in SECTION_UI_CONFIG if cfg["scope"] =
 EXERCISE_SECTION_EDITOR_KEYS = ["anweisungen", "ausgabeformat"]
 WORD_LIMIT_COLUMNS = 3
 WORD_LIMIT_SESSION_PREFIX = "recap_word_limits"
+MISTRAL_MAX_TOKENS = 120
 
 
 def ensure_exercise_prompt_store() -> Path:
@@ -1434,18 +1435,18 @@ if sel_uebung:
                     )
                     
                     # Build prompt: system prompt + INHALT
-                    prompt = f"{system_prompt_for_ex1}\n\n{example1_text}"
+                    prompt = f"{system_prompt_for_ex1}\n\n# INHALT\n{example1_text}"
                     print_prompt_debug(
                         "beispiel1",
                         prompt,
-                        {"max_tokens": 200, "max_words": max_words_value},
+                        {"max_tokens": MISTRAL_MAX_TOKENS, "max_words": max_words_value},
                     )
                     
                     with st.spinner("Generiere Recap..."):
                         recap = generate_summary_with_mistral(
                             prompt=prompt,
                             api_key=MISTRAL_API_KEY,
-                            max_tokens=200,
+                            max_tokens=MISTRAL_MAX_TOKENS,
                         )
                     
                     # Add or replace ZUSAMMENFASSUNG line
@@ -1565,18 +1566,18 @@ if sel_uebung:
                         exercise_section_values,
                         max_words_value,
                     )
-                    prompt = f"{system_prompt_for_ex2}\n\n{example2_text}"
+                    prompt = f"{system_prompt_for_ex2}\n\n# INHALT\n{example2_text}"
                     print_prompt_debug(
                         "beispiel2",
                         prompt,
-                        {"max_tokens": 200, "max_words": max_words_value},
+                        {"max_tokens": MISTRAL_MAX_TOKENS, "max_words": max_words_value},
                     )
                     
                     with st.spinner("Generiere Recap..."):
                         recap = generate_summary_with_mistral(
                             prompt=prompt,
                             api_key=MISTRAL_API_KEY,
-                            max_tokens=200,
+                            max_tokens=MISTRAL_MAX_TOKENS,
                         )
                     
                     lines = example2_text.split("\n")
@@ -1736,7 +1737,7 @@ if sel_uebung:
                     "text",
                     mistral_prompt,
                     {
-                        "max_tokens": 200,
+                        "max_tokens": MISTRAL_MAX_TOKENS,
                         "temperature": main_mistral_temperature,
                         "top_p": main_mistral_top_p,
                         "max_words": max_words_value,
@@ -1750,7 +1751,7 @@ if sel_uebung:
                     recap = generate_summary_with_mistral(
                         prompt=mistral_prompt,
                         api_key=MISTRAL_API_KEY,
-                        max_tokens=200,
+                        max_tokens=MISTRAL_MAX_TOKENS,
                         temperature=main_mistral_temperature,
                         top_p=main_mistral_top_p,
                     )
