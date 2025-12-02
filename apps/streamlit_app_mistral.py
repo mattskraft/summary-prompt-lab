@@ -6,6 +6,12 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
+try:
+    from github import Github, GithubException
+except ImportError:  # pragma: no cover - optional dependency for cloud sync
+    Github = None  # type: ignore
+    GithubException = Exception  # type: ignore
+
 import streamlit as st
 
 # Add src directory to path for imports
@@ -126,8 +132,15 @@ def load_json(path: str) -> Any:
         return json.load(f)
 
 
-EXERCISE_PROMPTS_STORE = PROJECT_ROOT / "config" / "prompts" / "exercise_specific_prompts.json"
-SUMMARY_SWITCH_PATH = PROJECT_ROOT / "config" / "prompts" / "summary_switch.json"
+PROMPTS_DIR = PROJECT_ROOT / "config" / "prompts"
+EXERCISE_PROMPTS_STORE = PROMPTS_DIR / "exercise_specific_prompts.json"
+SUMMARY_SWITCH_PATH = PROMPTS_DIR / "summary_switch.json"
+WORD_LIMITS_PATH = PROMPTS_DIR / "recap_word_limits.json"
+GLOBAL_SECTION_FILE_MAP = {
+    "rolle": PROMPTS_DIR / "system_prompt_rolle.txt",
+    "eingabeformat": PROMPTS_DIR / "system_prompt_eingabeformat.txt",
+    "stil": PROMPTS_DIR / "system_prompt_stil.txt",
+}
 SECTION_UI_CONFIG = [
     {"key": "rolle", "label": "Rolle & Aufgabe", "scope": "global"},
     {"key": "eingabeformat", "label": "Eingabeformat", "scope": "global"},
@@ -153,6 +166,56 @@ def ensure_summary_switch_store() -> Path:
     if not SUMMARY_SWITCH_PATH.exists():
         SUMMARY_SWITCH_PATH.write_text("{}", encoding="utf-8")
     return SUMMARY_SWITCH_PATH
+
+
+def get_github_settings() -> Dict[str, Optional[str]]:
+    token = os.environ.get("GITHUB_TOKEN")
+    repo_name = os.environ.get("GITHUB_REPO")
+    branch = os.environ.get("GITHUB_BRANCH", "main")
+    try:
+        secrets_obj = getattr(st, "secrets", None)
+        if secrets_obj is not None:
+            token = secrets_obj.get("GITHUB_TOKEN", token)
+            repo_name = secrets_obj.get("GITHUB_REPO", repo_name)
+            branch = secrets_obj.get("GITHUB_BRANCH", branch)
+    except Exception:
+        pass
+    return {
+        "token": token,
+        "repo": repo_name,
+        "branch": branch or "main",
+    }
+
+
+def commit_prompt_file(file_path: Path, message: str) -> bool:
+    """Commit the given file to GitHub using PyGithub (if configured)."""
+    settings = get_github_settings()
+    token = settings["token"]
+    repo_name = settings["repo"]
+    branch = settings["branch"]
+    if not token or not repo_name or Github is None:
+        return False
+    abs_path = file_path if isinstance(file_path, Path) else Path(file_path)
+    try:
+        rel_path = abs_path.relative_to(PROJECT_ROOT).as_posix()
+    except ValueError:
+        rel_path = abs_path.as_posix()
+    try:
+        client = Github(token)
+        repo = client.get_repo(repo_name)
+        content = abs_path.read_text(encoding="utf-8")
+        try:
+            remote_file = repo.get_contents(rel_path, ref=branch)
+            repo.update_file(rel_path, message, content, remote_file.sha, branch=branch)
+        except GithubException as exc:
+            if getattr(exc, "status", None) == 404:
+                repo.create_file(rel_path, message, content, branch=branch)
+            else:
+                raise
+        return True
+    except Exception as exc:
+        st.warning(f"GitHub-Sync fehlgeschlagen: {exc}")
+        return False
 
 
 def load_summary_switch_config() -> Dict[str, str]:
@@ -235,6 +298,10 @@ def current_word_limit_config() -> Dict[str, List[int]]:
 def save_exercise_payload(exercise_name: str, payload: Dict[str, str]) -> bool:
     try:
         save_exercise_sections(exercise_name, payload)
+        commit_prompt_file(
+            EXERCISE_PROMPTS_STORE,
+            f"Update exercise-specific prompts for {exercise_name}",
+        )
         return True
     except Exception as exc:
         st.error(f"Fehler beim Speichern: {exc}")
@@ -1237,6 +1304,12 @@ if sel_uebung:
                 def _save_section(scope=scope, section_key=key, value_key=state_key) -> None:
                     if scope == "global":
                         save_global_section(section_key, st.session_state.get(value_key, ""))
+                        file_path = GLOBAL_SECTION_FILE_MAP.get(section_key)
+                        if file_path:
+                            commit_prompt_file(
+                                file_path,
+                                f"Update global prompt section '{section_key}'",
+                            )
                     else:
                         save_exercise_payload(sel_uebung, {section_key: st.session_state.get(value_key, "")})
                         refreshed_sections = get_exercise_sections(sel_uebung, active_word_limit_config)
@@ -1267,6 +1340,10 @@ if sel_uebung:
     def _save_word_limits() -> None:
         config = current_word_limit_config()
         save_word_limit_config(config["answer_counts"], config["max_words"])
+        commit_prompt_file(
+            WORD_LIMITS_PATH,
+            "Update recap word limit presets",
+        )
     confirm_action(
         f"{save_limits_key}_dialog",
         "Aktuelle Wortlimits dauerhaft speichern?",
