@@ -1458,26 +1458,16 @@ if sel_uebung:
         save_ex1_clicked = st.button("💾 Beispiel 1 speichern", key=save_ex1_key, use_container_width=True)
         if save_ex1_clicked:
             confirm_key = f"{save_ex1_key}_dialog"
-            if confirm_key not in st.session_state:
-                st.session_state[confirm_key] = True
-            
-            if st.session_state[confirm_key]:
-                with st.dialog("Bestätigung") as dialog:
-                    st.write(f"Möchten Sie Beispiel 1 für '{sel_uebung}' wirklich überschreiben?")
-                    col1, col2 = st.columns(2)
-                    with col1:
-                        if st.button("Ja", key=f"{save_ex1_key}_yes", use_container_width=True):
-                            if save_exercise_payload(sel_uebung, {"example1": example1_text}):
-                                st.session_state[confirm_key] = False
-                                dialog.close()
-                                st.rerun()
-                            else:
-                                st.error("❌ Fehler beim Speichern")
-                    with col2:
-                        if st.button("Nein", key=f"{save_ex1_key}_no", use_container_width=True):
-                            st.session_state[confirm_key] = False
-                            dialog.close()
-                            st.rerun()
+            st.session_state[confirm_key] = True
+            def _save_example1() -> None:
+                if save_exercise_payload(sel_uebung, {"example1": example1_text}):
+                    st.session_state[confirm_key] = False
+                    st.rerun()
+            confirm_action(
+                confirm_key,
+                f"Möchten Sie Beispiel 1 für '{sel_uebung}' wirklich überschreiben?",
+                _save_example1,
+            )
     
     with example1_button_cols[2]:
         if st.button("📥 Beispiel 1 laden", key=f"{session_key}_load_ex1", use_container_width=True):
@@ -1590,26 +1580,16 @@ if sel_uebung:
         save_ex2_clicked = st.button("💾 Beispiel 2 speichern", key=save_ex2_key, use_container_width=True)
         if save_ex2_clicked:
             confirm_key = f"{save_ex2_key}_dialog"
-            if confirm_key not in st.session_state:
-                st.session_state[confirm_key] = True
-            
-            if st.session_state[confirm_key]:
-                with st.dialog("Bestätigung") as dialog:
-                    st.write(f"Möchten Sie Beispiel 2 für '{sel_uebung}' wirklich überschreiben?")
-                    col1, col2 = st.columns(2)
-                    with col1:
-                        if st.button("Ja", key=f"{save_ex2_key}_yes", use_container_width=True):
-                            if save_exercise_payload(sel_uebung, {"example2": example2_text}):
-                                st.session_state[confirm_key] = False
-                                dialog.close()
-                                st.rerun()
-                            else:
-                                st.error("❌ Fehler beim Speichern")
-                    with col2:
-                        if st.button("Nein", key=f"{save_ex2_key}_no", use_container_width=True):
-                            st.session_state[confirm_key] = False
-                            dialog.close()
-                            st.rerun()
+            st.session_state[confirm_key] = True
+            def _save_example2() -> None:
+                if save_exercise_payload(sel_uebung, {"example2": example2_text}):
+                    st.session_state[confirm_key] = False
+                    st.rerun()
+            confirm_action(
+                confirm_key,
+                f"Möchten Sie Beispiel 2 für '{sel_uebung}' wirklich überschreiben?",
+                _save_example2,
+            )
     
     with example2_button_cols[2]:
         if st.button("📥 Beispiel 2 laden", key=f"{session_key}_load_ex2", use_container_width=True):
