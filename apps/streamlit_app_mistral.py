@@ -207,9 +207,11 @@ def commit_prompt_file(file_path: Path, message: str) -> bool:
         try:
             remote_file = repo.get_contents(rel_path, ref=branch)
             repo.update_file(rel_path, message, content, remote_file.sha, branch=branch)
+            print(f"[GitHubSync] Updated {repo_name}:{branch}:{rel_path} – {message}")  # noqa: T201
         except GithubException as exc:
             if getattr(exc, "status", None) == 404:
                 repo.create_file(rel_path, message, content, branch=branch)
+                print(f"[GitHubSync] Created {repo_name}:{branch}:{rel_path} – {message}")  # noqa: T201
             else:
                 raise
         return True
@@ -298,6 +300,7 @@ def current_word_limit_config() -> Dict[str, List[int]]:
 def save_exercise_payload(exercise_name: str, payload: Dict[str, str]) -> bool:
     try:
         save_exercise_sections(exercise_name, payload)
+        print(f"[GitHubSync] Locally updated exercise data for '{exercise_name}'.")  # noqa: T201
         commit_prompt_file(
             EXERCISE_PROMPTS_STORE,
             f"Update exercise-specific prompts for {exercise_name}",
