@@ -3,6 +3,7 @@ import os
 import random
 import re
 import sys
+import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -157,6 +158,12 @@ EXERCISE_SECTION_EDITOR_KEYS = ["anweisungen", "ausgabeformat"]
 WORD_LIMIT_COLUMNS = 3
 WORD_LIMIT_SESSION_PREFIX = "recap_word_limits"
 MISTRAL_MAX_TOKENS = 120
+MISTRAL_MODEL_OPTIONS = [
+    "mistral-small-latest",
+    "mistral-medium-latest",
+    "mistral-large-latest",
+]
+MISTRAL_DEFAULT_MODEL = "mistral-small-latest"
 
 
 def ensure_exercise_prompt_store() -> Path:
@@ -1406,6 +1413,17 @@ if sel_uebung:
         label_visibility="collapsed",
     )
     
+    # Model selector for Beispiel 1
+    ex1_model_key = f"{session_key}_ex1_model"
+    if ex1_model_key not in st.session_state:
+        st.session_state[ex1_model_key] = MISTRAL_DEFAULT_MODEL
+    st.selectbox(
+        "Modell",
+        options=MISTRAL_MODEL_OPTIONS,
+        key=ex1_model_key,
+        label_visibility="collapsed",
+    )
+    
     example1_button_cols = st.columns(3)
     with example1_button_cols[0]:
         gen_ex1_key = f"{session_key}_gen_ex1"
@@ -1443,9 +1461,11 @@ if sel_uebung:
                     )
                     
                     with st.spinner("Generiere Recap..."):
+                        selected_model_ex1 = st.session_state.get(ex1_model_key, MISTRAL_DEFAULT_MODEL)
                         recap = generate_summary_with_mistral(
                             prompt=prompt,
                             api_key=MISTRAL_API_KEY,
+                            model=selected_model_ex1,
                             max_tokens=MISTRAL_MAX_TOKENS,
                         )
                     
@@ -1539,6 +1559,17 @@ if sel_uebung:
         label_visibility="collapsed",
     )
     
+    # Model selector for Beispiel 2
+    ex2_model_key = f"{session_key}_ex2_model"
+    if ex2_model_key not in st.session_state:
+        st.session_state[ex2_model_key] = MISTRAL_DEFAULT_MODEL
+    st.selectbox(
+        "Modell",
+        options=MISTRAL_MODEL_OPTIONS,
+        key=ex2_model_key,
+        label_visibility="collapsed",
+    )
+    
     example2_button_cols = st.columns(3)
     with example2_button_cols[0]:
         gen_ex2_key = f"{session_key}_gen_ex2"
@@ -1574,9 +1605,11 @@ if sel_uebung:
                     )
                     
                     with st.spinner("Generiere Recap..."):
+                        selected_model_ex2 = st.session_state.get(ex2_model_key, MISTRAL_DEFAULT_MODEL)
                         recap = generate_summary_with_mistral(
                             prompt=prompt,
                             api_key=MISTRAL_API_KEY,
+                            model=selected_model_ex2,
                             max_tokens=MISTRAL_MAX_TOKENS,
                         )
                     
@@ -1655,7 +1688,17 @@ if sel_uebung:
         label_visibility="collapsed",
     )
     
-    # Slider for TEST
+    # Model selector for TEST
+    main_model_key = f"{session_key}_main_model"
+    if main_model_key not in st.session_state:
+        st.session_state[main_model_key] = MISTRAL_DEFAULT_MODEL
+    st.selectbox(
+        "Modell",
+        options=MISTRAL_MODEL_OPTIONS,
+        key=main_model_key,
+        label_visibility="collapsed",
+    )
+    
     # Mistral temperature and top_p controls for TEST
     main_mistral_temp_key = f"{session_key}_main_mistral_temperature"
     main_mistral_top_p_key = f"{session_key}_main_mistral_top_p"
@@ -1748,14 +1791,19 @@ if sel_uebung:
                     # Store the exact prompt that we're about to send
                     st.session_state[last_mistral_prompt_key] = mistral_prompt
                     
+                    selected_model_main = st.session_state.get(main_model_key, MISTRAL_DEFAULT_MODEL)
+                    start_time = time.time()
                     recap = generate_summary_with_mistral(
                         prompt=mistral_prompt,
                         api_key=MISTRAL_API_KEY,
+                        model=selected_model_main,
                         max_tokens=MISTRAL_MAX_TOKENS,
                         temperature=main_mistral_temperature,
                         top_p=main_mistral_top_p,
                     )
+                    latency_ms = (time.time() - start_time) * 1000
                     st.session_state[r2_state_key] = recap
+                    st.session_state[f"{session_key}_latency"] = latency_ms
                 
                 st.success("✅ Zusammenfassung generiert")
                 st.rerun()
@@ -1773,11 +1821,13 @@ if sel_uebung:
         label_visibility="collapsed",
     )
     
-    # Display word count for the generated summary
+    # Display word count and latency for the generated summary
     summary_text = st.session_state.get(r2_state_key, "")
+    latency_ms = st.session_state.get(f"{session_key}_latency")
     if summary_text.strip():
         word_count = len(summary_text.split())
-        st.caption(f"📊 Anzahl Wörter: {word_count}")
+        latency_str = f" | ⏱️ Latenz: {latency_ms:.0f} ms" if latency_ms else ""
+        st.caption(f"📊 Anzahl Wörter: {word_count}{latency_str}")
     else:
         st.caption("📊 Anzahl Wörter: 0")
 
