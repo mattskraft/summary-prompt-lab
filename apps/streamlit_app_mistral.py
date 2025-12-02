@@ -1382,6 +1382,11 @@ if sel_uebung:
         st.session_state[example1_state_key] = st.session_state[update_ex1_key]
         del st.session_state[update_ex1_key]
     
+    pending_load_key = f"{example1_state_key}_pending_load"
+    if pending_load_key in st.session_state:
+        st.session_state[example1_state_key] = st.session_state[pending_load_key]
+        del st.session_state[pending_load_key]
+    
     # Create widget - Streamlit manages session state via key
     # Always create the widget the same way - Streamlit will use the value from session state
     example1_text = st.text_area(
@@ -1475,7 +1480,7 @@ if sel_uebung:
             if not example1_value:
                 # Initialize with INHALT from segments with empty answers
                 example1_value = segments_to_inhalt(segments, empty_answers=True)
-            st.session_state[example1_state_key] = example1_value
+            st.session_state[f"{example1_state_key}_pending_load"] = example1_value
             st.rerun()
     
     # Beispiel 2 Section
@@ -1508,6 +1513,11 @@ if sel_uebung:
     if update_ex2_key in st.session_state:
         st.session_state[example2_state_key] = st.session_state[update_ex2_key]
         del st.session_state[update_ex2_key]
+    
+    pending_load_key = f"{example2_state_key}_pending_load"
+    if pending_load_key in st.session_state:
+        st.session_state[example2_state_key] = st.session_state[pending_load_key]
+        del st.session_state[pending_load_key]
     
     # Create widget - Streamlit manages session state via key
     # Always create the widget the same way - Streamlit will use the value from session state
@@ -1597,7 +1607,7 @@ if sel_uebung:
             if not example2_value:
                 # Initialize with INHALT from segments with empty answers
                 example2_value = segments_to_inhalt(segments, empty_answers=True)
-            st.session_state[example2_state_key] = example2_value
+            st.session_state[f"{example2_state_key}_pending_load"] = example2_value
             st.rerun()
     
     # TEST Section
