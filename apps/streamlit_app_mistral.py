@@ -305,6 +305,7 @@ def save_exercise_payload(exercise_name: str, payload: Dict[str, str]) -> bool:
             EXERCISE_PROMPTS_STORE,
             f"Update exercise-specific prompts for {exercise_name}",
         )
+        st.toast(f"✅ '{exercise_name}' gespeichert.")
         return True
     except Exception as exc:
         st.error(f"Fehler beim Speichern: {exc}")
@@ -1313,6 +1314,7 @@ if sel_uebung:
                                 file_path,
                                 f"Update global prompt section '{section_key}'",
                             )
+                        st.toast("✅ Globaler Abschnitt gespeichert.")
                     else:
                         save_exercise_payload(sel_uebung, {section_key: st.session_state.get(value_key, "")})
                         refreshed_sections = get_exercise_sections(sel_uebung, active_word_limit_config)
