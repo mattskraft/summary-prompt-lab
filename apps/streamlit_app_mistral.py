@@ -20,6 +20,10 @@ SRC_DIR = PROJECT_ROOT / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
+pending_toast = st.session_state.pop("pending_toast", None)
+if pending_toast:
+    st.toast(pending_toast)
+
 # Import from the kiso_input package
 try:
     from kiso_input.config import (
@@ -305,7 +309,7 @@ def save_exercise_payload(exercise_name: str, payload: Dict[str, str]) -> bool:
             EXERCISE_PROMPTS_STORE,
             f"Update exercise-specific prompts for {exercise_name}",
         )
-        st.toast(f"✅ '{exercise_name}' gespeichert.")
+        st.session_state["pending_toast"] = f"✅ '{exercise_name}' gespeichert."
         return True
     except Exception as exc:
         st.error(f"Fehler beim Speichern: {exc}")
@@ -1314,7 +1318,7 @@ if sel_uebung:
                                 file_path,
                                 f"Update global prompt section '{section_key}'",
                             )
-                        st.toast("✅ Globaler Abschnitt gespeichert.")
+                        st.session_state["pending_toast"] = "✅ Globaler Abschnitt gespeichert."
                     else:
                         save_exercise_payload(sel_uebung, {section_key: st.session_state.get(value_key, "")})
                         refreshed_sections = get_exercise_sections(sel_uebung, active_word_limit_config)
@@ -1469,10 +1473,12 @@ if sel_uebung:
         if save_ex1_clicked:
             confirm_key = f"{save_ex1_key}_dialog"
             st.session_state[confirm_key] = True
+
             def _save_example1() -> None:
                 if save_exercise_payload(sel_uebung, {"example1": example1_text}):
                     st.session_state[confirm_key] = False
                     st.rerun()
+
             confirm_action(
                 confirm_key,
                 f"Möchten Sie Beispiel 1 für '{sel_uebung}' wirklich überschreiben?",
@@ -1596,10 +1602,12 @@ if sel_uebung:
         if save_ex2_clicked:
             confirm_key = f"{save_ex2_key}_dialog"
             st.session_state[confirm_key] = True
+
             def _save_example2() -> None:
                 if save_exercise_payload(sel_uebung, {"example2": example2_text}):
                     st.session_state[confirm_key] = False
                     st.rerun()
+
             confirm_action(
                 confirm_key,
                 f"Möchten Sie Beispiel 2 für '{sel_uebung}' wirklich überschreiben?",
