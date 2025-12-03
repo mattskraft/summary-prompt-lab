@@ -121,7 +121,7 @@ def generate_summary_with_mistral(
         model = MISTRAL_MODEL_SUMMARY
         
     try:
-        from mistralai import Mistral
+        from mistralai import Mistral  # type: ignore
     except ImportError as exc:
         raise ImportError(
             "mistralai package not installed. Install it with: pip install mistralai"
@@ -178,7 +178,7 @@ def stream_summary_with_mistral(
         model = MISTRAL_MODEL_SUMMARY
         
     try:
-        from mistralai import Mistral
+        from mistralai import Mistral  # type: ignore
     except ImportError as exc:
         raise ImportError(
             "mistralai package not installed. Install it with: pip install mistralai"
@@ -243,7 +243,7 @@ def generate_answers_with_mistral(
         model = MISTRAL_MODEL_ANSWERS
         
     try:
-        from mistralai import Mistral
+        from mistralai import Mistral  # type: ignore
     except ImportError as exc:  # pragma: no cover - dependency guard
         raise ImportError(
             "mistralai package not installed. Install it with: pip install mistralai"

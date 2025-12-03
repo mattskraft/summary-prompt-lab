@@ -33,3 +33,11 @@ packages = ["kiso_input", "kiso_input.processing"]
 [tool.setuptools.package-dir]
 "" = "src"
 
+[tool.pyright]
+include = ["src"]
+extraPaths = ["src"]
+reportMissingImports = "warning"
+reportMissingModuleSource = false
+reportOptionalMemberAccess = false
+reportOptionalSubscript = false
+
