@@ -607,7 +607,7 @@
   },
   "Was sind Schlafstörungen?": {
     "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
-    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal 30 Wörter",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch, eher einfache Sprache, keine Fremdwörter\n- Format: Fließtext, keine Aufzählungen, eher kurze Sätze\n- Struktur: 1 Absatz\n- Länge: Maximal 30 Wörter",
     "example1": "",
     "example2": ""
   }
