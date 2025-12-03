@@ -60,7 +60,7 @@
     "example2": ""
   },
   "Wie viel Schlaf brauchen wir?": {
-    "anweisungen": "# Anweisungen\n1. Identifiziere die Kernthemen in den ANTWORT-Blöcken\n2. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n3. Nutze TEXT und FRAGE nur als Kontext\n4. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n5. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n6. Interpretiere keine allzu negativen Gedanken in die Anworten hinein",
+    "anweisungen": "# Anweisungen\n1. Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n2. Nutze TEXT und FRAGE nur als Kontext\n3. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n4. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n5. Interpretiere keine allzu negativen Gedanken in die Antworten hinein\n6. Falls in den ANTWORT-Blöcken zu \"Wie viele Stunden schläfst du durchschnittlich pro Nacht?\" und \"Mit wie viel Stunden Schlaf fühlst du dich besonders fit?\" gleiche Werte angegeben werden und auf die Frage \"Fühlst du dich danach ausgeruht und erholt?\"  \"ja, meistens\", verstärke positiv. Das ist ein Erfolg.",
     "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch, eher einfache Sprache, keine Fremdwörter\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
     "example1": "",
     "example2": ""
