@@ -328,7 +328,13 @@
   "Warum schlafen wir?": {
     "enabled": true,
     "comment": "",
-    "segment_toggles": []
+    "segment_toggles": [
+      false,
+      true,
+      true,
+      true,
+      true
+    ]
   },
   "Aktivitäten planen": {
     "enabled": true,
