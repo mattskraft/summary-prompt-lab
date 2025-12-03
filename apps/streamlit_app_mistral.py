@@ -424,6 +424,30 @@ def get_next_exercise(hierarchy: Dict[str, Dict[str, List[str]]], current_uebung
     return all_exercises[next_idx]
 
 
+def get_previous_exercise(hierarchy: Dict[str, Dict[str, List[str]]], current_uebung: Optional[str]) -> Optional[Tuple[str, str, str]]:
+    """Get the previous exercise before the current one, wrapping around if at the beginning."""
+    all_exercises = get_all_exercises_with_paths(hierarchy)
+    if not all_exercises:
+        return None
+    
+    if not current_uebung:
+        return all_exercises[-1]
+    
+    # Find current exercise index
+    current_idx = None
+    for idx, (_, _, uebung) in enumerate(all_exercises):
+        if uebung == current_uebung:
+            current_idx = idx
+            break
+    
+    if current_idx is None:
+        return all_exercises[-1]
+    
+    # Get previous exercise (wrap around)
+    prev_idx = (current_idx - 1) % len(all_exercises)
+    return all_exercises[prev_idx]
+
+
 @st.cache_resource(show_spinner=False)
 def load_self_harm_lexicon_cached(path: str) -> Dict[str, Any]:
     return load_self_harm_lexicon(path)
@@ -474,20 +498,67 @@ def render_segment_header(label: str, color: str, with_background: bool = False)
     )
 
 
-def render_segments_ui(segments: List[Dict[str, Any]], key_prefix: str = "") -> List[Dict[str, Any]]:
-    """Render the segments and collect user inputs in a parallel list."""
+def render_segments_ui(
+    segments: List[Dict[str, Any]], 
+    key_prefix: str = "",
+    segment_toggles: Optional[List[bool]] = None,
+    show_toggles: bool = False,
+) -> Tuple[List[Dict[str, Any]], List[bool]]:
+    """Render the segments and collect user inputs in a parallel list.
+    
+    Args:
+        segments: List of segment dictionaries
+        key_prefix: Prefix for widget keys
+        segment_toggles: Initial toggle states (default: all True)
+        show_toggles: Whether to show toggle checkboxes
+        
+    Returns:
+        Tuple of (filled_segments, toggle_states)
+    """
     filled: List[Dict[str, Any]] = []
+    toggles: List[bool] = []
+    
+    # Initialize toggles to all True if not provided
+    if segment_toggles is None:
+        segment_toggles = [True] * len(segments)
+    # Ensure we have enough toggles
+    while len(segment_toggles) < len(segments):
+        segment_toggles.append(True)
 
     for idx, seg in enumerate(segments):
+        toggle_key = f"{key_prefix}_toggle_{idx}"
+        
+        # Initialize toggle state
+        if toggle_key not in st.session_state:
+            st.session_state[toggle_key] = segment_toggles[idx]
+        
         if "Text" in seg:
-            render_segment_header("TEXT", "#93C5FD")
-            st.markdown(seg["Text"])
+            if show_toggles:
+                toggle_cols = st.columns([0.06, 0.94])
+                with toggle_cols[0]:
+                    st.checkbox("", key=toggle_key, label_visibility="collapsed")
+                with toggle_cols[1]:
+                    render_segment_header("TEXT", "#93C5FD")
+                    st.markdown(seg["Text"])
+            else:
+                render_segment_header("TEXT", "#93C5FD")
+                st.markdown(seg["Text"])
             filled.append({"Text": seg["Text"]})
+            toggles.append(st.session_state.get(toggle_key, True))
 
         elif "Question" in seg:
-            render_segment_header("FRAGE", "#22C55E")
-            st.markdown(seg["Question"])
+            if show_toggles:
+                toggle_cols = st.columns([0.06, 0.94])
+                with toggle_cols[0]:
+                    st.checkbox("", key=toggle_key, label_visibility="collapsed")
+                with toggle_cols[1]:
+                    render_segment_header("FRAGE", "#22C55E")
+                    st.markdown(seg["Question"])
+            else:
+                render_segment_header("FRAGE", "#22C55E")
+                st.markdown(seg["Question"])
             filled.append({"Question": seg["Question"]})
+            toggles.append(st.session_state.get(toggle_key, True))
 
         elif "Answer" in seg or "AnswerOptions" in seg:
             answer_val = seg.get("Answer")
@@ -495,137 +566,149 @@ def render_segments_ui(segments: List[Dict[str, Any]], key_prefix: str = "") -> 
             allow_multiple = bool(seg.get("AllowMultiple", True))
 
             key = f"{key_prefix}_ans_{idx}"
-            render_segment_header("ANTWORT", "#F97316")
+            
+            if show_toggles:
+                toggle_cols = st.columns([0.06, 0.94])
+                with toggle_cols[0]:
+                    st.checkbox("", key=toggle_key, label_visibility="collapsed")
+                content_container = toggle_cols[1]
+            else:
+                content_container = st.container()
+            
+            with content_container:
+                render_segment_header("ANTWORT", "#F97316")
 
-            if isinstance(answer_options, list):
-                options = answer_options
+                if isinstance(answer_options, list):
+                    options = answer_options
 
-                default_selection: List[str] = []
-                if isinstance(answer_val, list):
-                    default_selection = [item for item in answer_val if item in options]
-                elif isinstance(answer_val, str) and answer_val in options:
-                    default_selection = [answer_val]
+                    default_selection: List[str] = []
+                    if isinstance(answer_val, list):
+                        default_selection = [item for item in answer_val if item in options]
+                    elif isinstance(answer_val, str) and answer_val in options:
+                        default_selection = [answer_val]
 
-                if allow_multiple:
-                    user_val = st.multiselect(
-                        "Answer Options",
-                        options=options,
-                        default=default_selection,
-                        key=key,
-                        label_visibility="collapsed",
-                    )
-                else:
-                    default_value = default_selection[0] if default_selection else None
-                    if default_value is not None and default_value in options:
-                        selected_value = st.selectbox(
+                    if allow_multiple:
+                        user_val = st.multiselect(
                             "Answer Options",
                             options=options,
-                            index=options.index(default_value),
+                            default=default_selection,
                             key=key,
                             label_visibility="collapsed",
                         )
                     else:
-                        selected_value = st.selectbox(
-                            "Answer Options",
-                            options=options,
-                            key=key,
-                            label_visibility="collapsed",
-                            placeholder="Option auswählen",
-                            index=None,
-                        )
-                    user_val = [selected_value] if selected_value else []
+                        default_value = default_selection[0] if default_selection else None
+                        if default_value is not None and default_value in options:
+                            selected_value = st.selectbox(
+                                "Answer Options",
+                                options=options,
+                                index=options.index(default_value),
+                                key=key,
+                                label_visibility="collapsed",
+                            )
+                        else:
+                            selected_value = st.selectbox(
+                                "Answer Options",
+                                options=options,
+                                key=key,
+                                label_visibility="collapsed",
+                                placeholder="Option auswählen",
+                                index=None,
+                            )
+                        user_val = [selected_value] if selected_value else []
 
-                filled.append(
-                    {
-                        "Answer": user_val,
-                        "AnswerOptions": options,
-                        "AllowMultiple": allow_multiple,
-                    }
-                )
-
-            elif isinstance(answer_options, dict) or isinstance(answer_val, dict):
-                slider_config = answer_options if isinstance(answer_options, dict) else answer_val
-
-                min_numeric_raw = slider_config.get("min")
-                max_numeric_raw = slider_config.get("max")
-                min_text = slider_config.get("minText")
-                max_text = slider_config.get("maxText")
-
-                min_numeric: Optional[int] = None
-                max_numeric: Optional[int] = None
-
-                try:
-                    min_numeric = int(float(min_numeric_raw)) if min_numeric_raw is not None else None
-                except (TypeError, ValueError):
-                    min_numeric = None
-                try:
-                    max_numeric = int(float(max_numeric_raw)) if max_numeric_raw is not None else None
-                except (TypeError, ValueError):
-                    max_numeric = None
-
-                if (
-                    min_numeric is not None
-                    and max_numeric is not None
-                    and min_numeric <= max_numeric
-                ):
-                    if min_numeric > max_numeric:
-                        min_numeric, max_numeric = max_numeric, min_numeric
-
-                    current_answer = answer_val
-                    default_value = None
-                    if isinstance(current_answer, (int, float)):
-                        default_value = int(current_answer)
-                    elif isinstance(current_answer, dict) and isinstance(current_answer.get("value"), (int, float)):
-                        default_value = int(current_answer["value"])
-
-                    if default_value is None or not (min_numeric <= default_value <= max_numeric):
-                        default_value = min_numeric
-
-                    label_cols = st.columns([1, 4, 1])
-                    with label_cols[0]:
-                        st.caption(min_text if min_text else str(min_numeric))
-                    with label_cols[2]:
-                        st.caption(max_text if max_text else str(max_numeric))
-
-                    slider_key = f"{key}_slider"
-                    slider_value = st.slider(
-                        "Value",
-                        min_value=min_numeric,
-                        max_value=max_numeric,
-                        value=default_value,
-                        format="%d",
-                        key=slider_key,
-                        label_visibility="collapsed",
-                    )
                     filled.append(
                         {
-                            "Answer": int(slider_value),
-                            "AnswerOptions": slider_config,
+                            "Answer": user_val,
+                            "AnswerOptions": options,
+                            "AllowMultiple": allow_multiple,
                         }
                     )
+
+                elif isinstance(answer_options, dict) or isinstance(answer_val, dict):
+                    slider_config = answer_options if isinstance(answer_options, dict) else answer_val
+
+                    min_numeric_raw = slider_config.get("min")
+                    max_numeric_raw = slider_config.get("max")
+                    min_text = slider_config.get("minText")
+                    max_text = slider_config.get("maxText")
+
+                    min_numeric: Optional[int] = None
+                    max_numeric: Optional[int] = None
+
+                    try:
+                        min_numeric = int(float(min_numeric_raw)) if min_numeric_raw is not None else None
+                    except (TypeError, ValueError):
+                        min_numeric = None
+                    try:
+                        max_numeric = int(float(max_numeric_raw)) if max_numeric_raw is not None else None
+                    except (TypeError, ValueError):
+                        max_numeric = None
+
+                    if (
+                        min_numeric is not None
+                        and max_numeric is not None
+                        and min_numeric <= max_numeric
+                    ):
+                        if min_numeric > max_numeric:
+                            min_numeric, max_numeric = max_numeric, min_numeric
+
+                        current_answer = answer_val
+                        default_value = None
+                        if isinstance(current_answer, (int, float)):
+                            default_value = int(current_answer)
+                        elif isinstance(current_answer, dict) and isinstance(current_answer.get("value"), (int, float)):
+                            default_value = int(current_answer["value"])
+
+                        if default_value is None or not (min_numeric <= default_value <= max_numeric):
+                            default_value = min_numeric
+
+                        label_cols = st.columns([1, 4, 1])
+                        with label_cols[0]:
+                            st.caption(min_text if min_text else str(min_numeric))
+                        with label_cols[2]:
+                            st.caption(max_text if max_text else str(max_numeric))
+
+                        slider_key = f"{key}_slider"
+                        slider_value = st.slider(
+                            "Value",
+                            min_value=min_numeric,
+                            max_value=max_numeric,
+                            value=default_value,
+                            format="%d",
+                            key=slider_key,
+                            label_visibility="collapsed",
+                        )
+                        filled.append(
+                            {
+                                "Answer": int(slider_value),
+                                "AnswerOptions": slider_config,
+                            }
+                        )
+                    else:
+                        st.warning("Slider configuration unvollständig – zeige Rohdaten.")
+                        st.json(slider_config)
+                        filled.append({"Answer": answer_val, "AnswerOptions": slider_config})
+
+                elif isinstance(answer_val, str) and answer_val.strip().lower() in {"free_text", "freetext", "free text"}:
+                    user_val = st.text_input("Answer", key=key, label_visibility="collapsed")
+                    filled.append({"Answer": user_val})
+
+                elif isinstance(answer_val, str):
+                    user_val = st.text_area(
+                        "Answer",
+                        value=answer_val,
+                        key=key,
+                        label_visibility="collapsed",
+                    )
+                    filled.append({"Answer": user_val})
+
                 else:
-                    st.warning("Slider configuration unvollständig – zeige Rohdaten.")
-                    st.json(slider_config)
-                    filled.append({"Answer": answer_val, "AnswerOptions": slider_config})
+                    st.markdown(str(answer_val))
+                    filled.append({"Answer": answer_val})
+            
+            toggles.append(st.session_state.get(toggle_key, True))
 
-            elif isinstance(answer_val, str) and answer_val.strip().lower() in {"free_text", "freetext", "free text"}:
-                user_val = st.text_input("Answer", key=key, label_visibility="collapsed")
-                filled.append({"Answer": user_val})
-
-            elif isinstance(answer_val, str):
-                user_val = st.text_area(
-                    "Answer",
-                    value=answer_val,
-                    key=key,
-                    label_visibility="collapsed",
-                )
-                filled.append({"Answer": user_val})
-
-            else:
-                st.markdown(str(answer_val))
-                filled.append({"Answer": answer_val})
-
-    return filled
+    return filled, toggles
 
 
 def has_non_empty_answers(inhalt_text: str) -> bool:
@@ -671,6 +754,16 @@ def copy_answer_metadata(source: Dict[str, Any], target: Dict[str, Any]) -> None
 def count_answer_segments(segments: List[Dict[str, Any]]) -> int:
     """Count how many answer-bearing segments exist."""
     return sum(1 for seg in segments if "Answer" in seg)
+
+
+def filter_segments_by_toggles(
+    segments: List[Dict[str, Any]], 
+    toggles: List[bool]
+) -> List[Dict[str, Any]]:
+    """Filter segments based on toggle states."""
+    if not toggles:
+        return segments
+    return [seg for seg, enabled in zip(segments, toggles) if enabled]
 
 
 def exercise_has_questions(segments: List[Dict[str, Any]]) -> bool:
@@ -893,10 +986,21 @@ with st.sidebar:
     themen = sorted(hier.keys())
     
     # Navigation buttons in two columns
-    nav_button_cols = st.columns(2)
+    nav_button_cols = st.columns(3)
     
     with nav_button_cols[0]:
-        if st.button("🎲 Zufällige Übung", use_container_width=True, disabled=not hier):
+        current_uebung = st.session_state.get(uebung_key)
+        if st.button("⬅️ Previous", use_container_width=True, disabled=not hier):
+            previous_exercise = get_previous_exercise(hier, current_uebung)
+            if previous_exercise:
+                previous_thema, previous_path, previous_uebung = previous_exercise
+                st.session_state[thema_key] = previous_thema
+                st.session_state[path_key] = previous_path
+                st.session_state[uebung_key] = previous_uebung
+                st.rerun()
+
+    with nav_button_cols[1]:
+        if st.button("🎲 Random", use_container_width=True, disabled=not hier):
             if themen:
                 zufalls_thema = random.choice(themen)
                 available_paths = sorted(hier.get(zufalls_thema, {}).keys())
@@ -912,9 +1016,9 @@ with st.sidebar:
                         st.session_state[uebung_key] = zufalls_uebung
                         st.rerun()
     
-    with nav_button_cols[1]:
+    with nav_button_cols[2]:
         current_uebung = st.session_state.get(uebung_key)
-        if st.button("➡️ Nächste Übung", use_container_width=True, disabled=not hier):
+        if st.button("➡️ Next", use_container_width=True, disabled=not hier):
             next_exercise = get_next_exercise(hier, current_uebung)
             if next_exercise:
                 next_thema, next_path, next_uebung = next_exercise
@@ -1082,7 +1186,7 @@ if sel_uebung:
                         st.code(traceback.format_exc(), language="python")
         
         # Transfer buttons in sidebar
-        st.subheader("Antworten übertragen")
+        st.subheader("Inhalte übertragen")
         
         transfer_cols = st.columns(3)
         
@@ -1118,7 +1222,7 @@ if sel_uebung:
         
         with transfer_cols[2]:
             transfer_main_key = f"{sel_uebung}_transfer_main"
-            if st.button("📋 Summary", key=transfer_main_key, use_container_width=True):
+            if st.button("📋 TEST", key=transfer_main_key, use_container_width=True):
                 # Preserve other text areas' state before transfer
                 if example1_state_key in st.session_state:
                     preserved_ex1 = st.session_state[example1_state_key]
@@ -1169,9 +1273,13 @@ if sel_uebung:
         summary_switch_value = {
             "enabled": has_questions,
             "comment": "" if has_questions else "Übung enthält keine Fragen",
+            "segment_toggles": [],  # Will be populated when segments are rendered
         }
         summary_switch_config[sel_uebung] = summary_switch_value
         save_summary_switch_config(summary_switch_config)
+    
+    # Get segment toggles from config (default all True)
+    saved_segment_toggles = summary_switch_value.get("segment_toggles", [])
     
     # Choose which segments to display
     has_generated = st.session_state.get(session_key) is not None
@@ -1195,7 +1303,12 @@ if sel_uebung:
     
     st.markdown("---")
     st.subheader("Übung")
-    filled_segments = render_segments_ui(segments_to_display, key_prefix=key_prefix)
+    filled_segments, current_toggles = render_segments_ui(
+        segments_to_display, 
+        key_prefix=key_prefix,
+        segment_toggles=saved_segment_toggles,
+        show_toggles=True,
+    )
     
     # Merge filled answers back into segments
     segments_for_prompt = merge_filled_answers_into_segments(
@@ -1213,40 +1326,25 @@ if sel_uebung:
     # Store segments_for_prompt in session state for transfer buttons
     st.session_state[f"{session_key}_segments_for_prompt"] = segments_for_prompt
     
-    # Handle transfer button clicks (using stored segments_for_prompt)
+    # Filter segments by current toggles for transfer
+    filtered_segments = filter_segments_by_toggles(segments_for_prompt, current_toggles)
+    
+    # Handle transfer button clicks (using filtered segments)
     transfer_ex1_clicked = st.session_state.get(f"{sel_uebung}_transfer_ex1_clicked", False)
     if transfer_ex1_clicked:
-        existing_text = st.session_state.get(example1_state_key, "")
-        existing_count = count_answer_lines(existing_text)
-        segment_count = count_answer_segments(segments_for_prompt)
-        if existing_count and existing_count == segment_count:
-            inhalt = replace_answers_in_inhalt(existing_text, segments_for_prompt)
-        else:
-            inhalt = segments_to_inhalt(segments_for_prompt)
+        inhalt = segments_to_inhalt(filtered_segments)
         st.session_state[example1_state_key] = inhalt
         st.session_state[f"{sel_uebung}_transfer_ex1_clicked"] = False
     
     transfer_ex2_clicked = st.session_state.get(f"{sel_uebung}_transfer_ex2_clicked", False)
     if transfer_ex2_clicked:
-        existing_text = st.session_state.get(example2_state_key, "")
-        existing_count = count_answer_lines(existing_text)
-        segment_count = count_answer_segments(segments_for_prompt)
-        if existing_count and existing_count == segment_count:
-            inhalt = replace_answers_in_inhalt(existing_text, segments_for_prompt)
-        else:
-            inhalt = segments_to_inhalt(segments_for_prompt)
+        inhalt = segments_to_inhalt(filtered_segments)
         st.session_state[example2_state_key] = inhalt
         st.session_state[f"{sel_uebung}_transfer_ex2_clicked"] = False
     
     transfer_main_clicked = st.session_state.get(f"{sel_uebung}_transfer_main_clicked", False)
     if transfer_main_clicked:
-        existing_text = st.session_state.get(mainrecap_inhalt_key, "")
-        existing_count = count_answer_lines(existing_text)
-        segment_count = count_answer_segments(segments_for_prompt)
-        if existing_count and existing_count == segment_count:
-            inhalt = replace_answers_in_inhalt(existing_text, segments_for_prompt)
-        else:
-            inhalt = segments_to_inhalt(segments_for_prompt)
+        inhalt = segments_to_inhalt(filtered_segments)
         st.session_state[mainrecap_inhalt_key] = inhalt
         st.session_state[f"{sel_uebung}_transfer_main_clicked"] = False
 
@@ -1293,10 +1391,14 @@ if sel_uebung:
     if summary_switch_save_clicked:
         new_enabled = st.session_state.get(switch_checkbox_key, False)
         new_comment = st.session_state.get(switch_comment_key, "").strip()
-        summary_switch_value = {"enabled": new_enabled, "comment": new_comment}
+        summary_switch_value = {
+            "enabled": new_enabled, 
+            "comment": new_comment,
+            "segment_toggles": current_toggles,
+        }
         summary_switch_config[sel_uebung] = summary_switch_value
         save_summary_switch_config(summary_switch_config)
-        st.success("✅ Summary Switch aktualisiert")
+        st.success("✅ Einstellungen gespeichert")
 
     # React immediately to checkbox state (not just saved value)
     summary_mode_active = st.session_state.get(switch_checkbox_key, False)
