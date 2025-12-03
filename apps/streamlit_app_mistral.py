@@ -148,11 +148,11 @@ GLOBAL_SECTION_FILE_MAP = {
     "stil": PROMPTS_DIR / "system_prompt_stil.txt",
 }
 SECTION_UI_CONFIG = [
-    {"key": "rolle", "label": "Rolle & Aufgabe", "scope": "global"},
-    {"key": "eingabeformat", "label": "Eingabeformat", "scope": "global"},
-    {"key": "anweisungen", "label": "Anweisungen", "scope": "exercise"},
-    {"key": "stil", "label": "Stil & Ton", "scope": "global"},
-    {"key": "ausgabeformat", "label": "Ausgabeformat", "scope": "exercise"},
+    {"key": "rolle", "label": "Rolle & Aufgabe (global)", "scope": "global"},
+    {"key": "eingabeformat", "label": "Eingabeformat (global)", "scope": "global"},
+    {"key": "anweisungen", "label": "Anweisungen (exercise)", "scope": "exercise"},
+    {"key": "stil", "label": "Stil & Ton (global)", "scope": "global"},
+    {"key": "ausgabeformat", "label": "Ausgabeformat (exercise)", "scope": "exercise"},
 ]
 GLOBAL_SECTION_KEYS = [cfg["key"] for cfg in SECTION_UI_CONFIG if cfg["scope"] == "global"]
 EXERCISE_SECTION_EDITOR_KEYS = ["anweisungen", "ausgabeformat"]
@@ -536,7 +536,7 @@ def render_segments_ui(
             if show_toggles:
                 toggle_cols = st.columns([0.06, 0.94])
                 with toggle_cols[0]:
-                    st.checkbox("", key=toggle_key, label_visibility="collapsed")
+                    st.checkbox("Toggle segment", key=toggle_key, label_visibility="collapsed")
                 with toggle_cols[1]:
                     render_segment_header("TEXT", "#93C5FD")
                     st.markdown(seg["Text"])
@@ -550,7 +550,7 @@ def render_segments_ui(
             if show_toggles:
                 toggle_cols = st.columns([0.06, 0.94])
                 with toggle_cols[0]:
-                    st.checkbox("", key=toggle_key, label_visibility="collapsed")
+                    st.checkbox("Toggle segment", key=toggle_key, label_visibility="collapsed")
                 with toggle_cols[1]:
                     render_segment_header("FRAGE", "#22C55E")
                     st.markdown(seg["Question"])
@@ -570,7 +570,7 @@ def render_segments_ui(
             if show_toggles:
                 toggle_cols = st.columns([0.06, 0.94])
                 with toggle_cols[0]:
-                    st.checkbox("", key=toggle_key, label_visibility="collapsed")
+                    st.checkbox("Toggle segment", key=toggle_key, label_visibility="collapsed")
                 content_container = toggle_cols[1]
             else:
                 content_container = st.container()
@@ -1348,7 +1348,6 @@ if sel_uebung:
         st.session_state[mainrecap_inhalt_key] = inhalt
         st.session_state[f"{sel_uebung}_transfer_main_clicked"] = False
 
-    st.markdown("---")
     st.subheader("Summary Switch")
     
     # Extract current values from config
@@ -1365,29 +1364,28 @@ if sel_uebung:
     if switch_comment_key not in st.session_state:
         st.session_state[switch_comment_key] = switch_comment
     
-    # Checkbox and save button in same row
-    switch_cols = st.columns([3, 1])
-    with switch_cols[0]:
-        st.checkbox(
-            "Summary aktiviert",
-            key=switch_checkbox_key,
-        )
-    with switch_cols[1]:
-        summary_switch_save_clicked = st.button(
-            "💾 Speichern",
-            key=f"{session_key}_summary_switch_save",
-            use_container_width=True,
-        )
-    
-    # Comment text area
+    # Checkbox
+    st.checkbox(
+       "Summary aktiviert",
+       key=switch_checkbox_key,
+    )
+
+    # Comment
     st.text_area(
         "Kommentar zur Übung",
         key=switch_comment_key,
         height=80,
         label_visibility="collapsed",
-        placeholder="Kommentar zur Übung (optional)",
+        placeholder="Comment for the exercise (optional)",
     )
 
+    # Save button
+    summary_switch_save_clicked = st.button(
+        "💾 Speichern",
+        key=f"{session_key}_summary_switch_save",
+        use_container_width=True,
+    )
+    
     if summary_switch_save_clicked:
         new_enabled = st.session_state.get(switch_checkbox_key, False)
         new_comment = st.session_state.get(switch_comment_key, "").strip()
@@ -1423,8 +1421,9 @@ if sel_uebung:
     global_section_defaults = load_global_sections()
     initialize_section_states(sel_uebung, session_key, global_section_defaults, exercise_sections)
     
-    default_example1 = exercise_sections.get("example1") or segments_to_inhalt(segments, empty_answers=True)
-    default_example2 = exercise_sections.get("example2") or segments_to_inhalt(segments, empty_answers=True)
+    # Only use saved values, start empty otherwise (transfer buttons populate)
+    default_example1 = exercise_sections.get("example1", "")
+    default_example2 = exercise_sections.get("example2", "")
     
     # System Prompt Section
     st.markdown("---")
@@ -1531,7 +1530,7 @@ if sel_uebung:
     # This check happens AFTER restore, so preserved values won't be overwritten
     # CRITICAL: Never overwrite existing text area content, even if segments change
     if example1_state_key not in st.session_state:
-        example1_value = exercise_sections.get("example1", "") or default_example1
+        example1_value = default_example1
         st.session_state[example1_state_key] = example1_value
     # Note: Widget with key=example1_state_key manages its own session state
     # We only set it explicitly during transfer or load operations
@@ -1650,9 +1649,6 @@ if sel_uebung:
     with example1_button_cols[2]:
         if st.button("📥 Beispiel 1 laden", key=f"{session_key}_load_ex1", use_container_width=True):
             example1_value = exercise_sections.get("example1", "")
-            if not example1_value:
-                # Initialize with INHALT from segments with empty answers
-                example1_value = segments_to_inhalt(segments, empty_answers=True)
             st.session_state[f"{example1_state_key}_pending_load"] = example1_value
             st.rerun()
     
@@ -1676,7 +1672,7 @@ if sel_uebung:
     # This check happens AFTER restore, so preserved values won't be overwritten
     # CRITICAL: Never overwrite existing text area content, even if segments change
     if example2_state_key not in st.session_state:
-        example2_value = exercise_sections.get("example2", "") or default_example2
+        example2_value = default_example2
         st.session_state[example2_state_key] = example2_value
     # Note: Widget with key=example2_state_key manages its own session state
     # We only set it explicitly during transfer or load operations
@@ -1790,9 +1786,6 @@ if sel_uebung:
     with example2_button_cols[2]:
         if st.button("📥 Beispiel 2 laden", key=f"{session_key}_load_ex2", use_container_width=True):
             example2_value = exercise_sections.get("example2", "")
-            if not example2_value:
-                # Initialize with INHALT from segments with empty answers
-                example2_value = segments_to_inhalt(segments, empty_answers=True)
             st.session_state[f"{example2_state_key}_pending_load"] = example2_value
             st.rerun()
     
@@ -1816,8 +1809,8 @@ if sel_uebung:
     # This check happens AFTER restore, so preserved values won't be overwritten
     # CRITICAL: Never overwrite existing text area content, even if segments change
     if mainrecap_inhalt_key not in st.session_state:
-        # Initialize with INHALT from segments with empty answers
-        st.session_state[mainrecap_inhalt_key] = segments_to_inhalt(segments, empty_answers=True)
+        # Start empty - use transfer button to populate
+        st.session_state[mainrecap_inhalt_key] = ""
     # Note: Widget with key=mainrecap_inhalt_key manages its own session state
     
     # Show TEST Inhalt text area - Streamlit manages session state via key
@@ -1912,11 +1905,23 @@ if sel_uebung:
                 )
                 
                 # Get the current text area values (including any generated recaps)
-                example1_final = st.session_state.get(example1_state_key, exercise_sections.get("example1", ""))
-                example2_final = st.session_state.get(example2_state_key, exercise_sections.get("example2", ""))
+                example1_final = st.session_state.get(example1_state_key, exercise_sections.get("example1", "")).strip()
+                example2_final = st.session_state.get(example2_state_key, exercise_sections.get("example2", "")).strip()
+                
+                # Build examples section only if at least one example has content
+                examples_parts = []
+                if example1_final:
+                    examples_parts.append(f"## Beispiel 1\n{example1_final}")
+                if example2_final:
+                    examples_parts.append(f"## Beispiel 2\n{example2_final}")
+                
+                if examples_parts:
+                    examples_section = f"# BEISPIELE\n\n" + "\n\n".join(examples_parts) + "\n\n"
+                else:
+                    examples_section = ""
                 
                 # Build complete Mistral prompt
-                mistral_prompt = f"{system_prompt_for_main}\n\n# BEISPIELE\n\n## Beispiel 1\n{example1_final}\n\n## Beispiel 2\n{example2_final}\n\n# INHALT\n{mainrecap_inhalt_text}"
+                mistral_prompt = f"{system_prompt_for_main}\n\n{examples_section}# INHALT\n{mainrecap_inhalt_text}"
                 selected_model_main = st.session_state.get(main_model_key, MISTRAL_DEFAULT_MODEL)
                 print_params_debug(
                     "test",
