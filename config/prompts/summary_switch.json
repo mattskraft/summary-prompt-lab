@@ -321,7 +321,9 @@
   "Ankerübung": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": []
+    "segment_toggles": [
+      true
+    ]
   },
   "Warum schlafen wir?": {
     "enabled": true,
@@ -412,5 +414,10 @@
       true,
       true
     ]
+  },
+  "Was sind Schlafstörungen?": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
   }
 }
