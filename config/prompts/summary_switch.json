@@ -1,19 +1,126 @@
 {
-  "Aktiv zuhören": "summary",
-  "Beziehungen und Selbstwert": "summary",
-  "Kontakte pflegen": "summary",
-  "Postkartenübung": "no questions",
-  "Wünsche äußern": "summary",
-  "Angenehme Gefühle zeigen": "summary",
-  "Gefühle entdecken": "summary",
-  "Unangenehme Gefühle zeigen": "summary",
-  "Warum ist Gefühle zeigen wichtig?": "summary",
-  "Wie Gefühle entstehen": "summary",
-  "(K)eine einfache Sache": "summary",
-  "Absagen": "summary",
-  "Kritik oder Angriff?": "summary",
-  "Kritik äußern": "summary",
-  "Mein Recht durchsetzen": "summary",
-  "Nein-Sagen": "summary",
-  "Recht durchsetzen": "summary"
+  "Aktiv zuhören": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Beziehungen und Selbstwert": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Kontakte pflegen": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Postkartenübung": {
+    "enabled": false,
+    "comment": "no questions"
+  },
+  "Wünsche äußern": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Angenehme Gefühle zeigen": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Gefühle entdecken": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Unangenehme Gefühle zeigen": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Warum ist Gefühle zeigen wichtig?": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Wie Gefühle entstehen": {
+    "enabled": true,
+    "comment": ""
+  },
+  "(K)eine einfache Sache": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Absagen": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Kritik oder Angriff?": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Kritik äußern": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Mein Recht durchsetzen": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Nein-Sagen": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Recht durchsetzen": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Kleine Erfolge feiern": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Positiver Start": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen"
+  },
+  "Psychose und Selbstwertgefühl": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Positive Erinnerungen sammeln": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Rückblick: Selbstwert": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Tipps für deinen Selbstwert": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Das Regal": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Hilfe leisten": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Kreativ werden": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Stabilität finden": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Verlorene Schätze wiederfinden": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen"
+  },
+  "Die 7-2-1-Regel": {
+    "enabled": true,
+    "comment": ""
+  },
+  "Perfektes Leben?": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen"
+  },
+  "Unfaire Vergleiche": {
+    "enabled": true,
+    "comment": ""
+  }
 }
