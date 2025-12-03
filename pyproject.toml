@@ -34,7 +34,7 @@ packages = ["kiso_input", "kiso_input.processing"]
 "" = "src"
 
 [tool.pyright]
-include = ["src"]
+include = ["src", "apps", "scripts"]
 extraPaths = ["src"]
 reportMissingImports = "warning"
 reportMissingModuleSource = false
