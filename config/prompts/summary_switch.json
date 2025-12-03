@@ -425,5 +425,22 @@
     "enabled": true,
     "comment": "",
     "segment_toggles": []
+  },
+  "Wie viel Schlaf brauchen wir?": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": [
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
