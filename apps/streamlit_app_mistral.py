@@ -382,7 +382,10 @@ def initialize_section_states(
                 st.session_state[state_key] = global_defaults.get(cfg["key"], "")
             continue
         tracker_key = section_exercise_tracker_key(state_key)
-        if st.session_state.get(tracker_key) != sel_uebung:
+        # Populate if exercise changed OR if state key was never set
+        exercise_changed = st.session_state.get(tracker_key) != sel_uebung
+        state_never_set = state_key not in st.session_state
+        if exercise_changed or state_never_set:
             st.session_state[state_key] = exercise_sections.get(cfg["key"], "")
             st.session_state[tracker_key] = sel_uebung
 
