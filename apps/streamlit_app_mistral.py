@@ -102,6 +102,7 @@ try:
     )
     from kiso_input.processing.cloud_apis import (
         generate_summary_with_mistral,
+        stream_summary_with_mistral,
     )
     from kiso_input.processing.recap_sections import (
         assemble_system_prompt,
@@ -342,9 +343,8 @@ def collect_exercise_section_values(session_key: str) -> Dict[str, str]:
     return values
 
 
-def print_prompt_debug(context: str, prompt: str, params: Dict[str, Any]) -> None:
-    print(f"[Recap:{context}] Prompt:\n{prompt}\n")  # noqa: T201
-    print(f"[Recap:{context}] Params: {params}\n")  # noqa: T201
+def print_params_debug(context: str, params: Dict[str, Any]) -> None:
+    print(f"[Recap:{context}] Params: {params}")  # noqa: T201
 
 
 
@@ -1454,14 +1454,13 @@ if sel_uebung:
                     
                     # Build prompt: system prompt + INHALT
                     prompt = f"{system_prompt_for_ex1}\n\n# INHALT\n{example1_text}"
-                    print_prompt_debug(
+                    selected_model_ex1 = st.session_state.get(ex1_model_key, MISTRAL_DEFAULT_MODEL)
+                    print_params_debug(
                         "beispiel1",
-                        prompt,
-                        {"max_tokens": MISTRAL_MAX_TOKENS, "max_words": max_words_value},
+                        {"model": selected_model_ex1, "max_tokens": MISTRAL_MAX_TOKENS, "max_words": max_words_value},
                     )
                     
                     with st.spinner("Generiere Recap..."):
-                        selected_model_ex1 = st.session_state.get(ex1_model_key, MISTRAL_DEFAULT_MODEL)
                         recap = generate_summary_with_mistral(
                             prompt=prompt,
                             api_key=MISTRAL_API_KEY,
@@ -1598,14 +1597,13 @@ if sel_uebung:
                         max_words_value,
                     )
                     prompt = f"{system_prompt_for_ex2}\n\n# INHALT\n{example2_text}"
-                    print_prompt_debug(
+                    selected_model_ex2 = st.session_state.get(ex2_model_key, MISTRAL_DEFAULT_MODEL)
+                    print_params_debug(
                         "beispiel2",
-                        prompt,
-                        {"max_tokens": MISTRAL_MAX_TOKENS, "max_words": max_words_value},
+                        {"model": selected_model_ex2, "max_tokens": MISTRAL_MAX_TOKENS, "max_words": max_words_value},
                     )
                     
                     with st.spinner("Generiere Recap..."):
-                        selected_model_ex2 = st.session_state.get(ex2_model_key, MISTRAL_DEFAULT_MODEL)
                         recap = generate_summary_with_mistral(
                             prompt=prompt,
                             api_key=MISTRAL_API_KEY,
@@ -1776,10 +1774,11 @@ if sel_uebung:
                 
                 # Build complete Mistral prompt
                 mistral_prompt = f"{system_prompt_for_main}\n\n# BEISPIELE\n\n## Beispiel 1\n{example1_final}\n\n## Beispiel 2\n{example2_final}\n\n# INHALT\n{mainrecap_inhalt_text}"
-                print_prompt_debug(
-                    "text",
-                    mistral_prompt,
+                selected_model_main = st.session_state.get(main_model_key, MISTRAL_DEFAULT_MODEL)
+                print_params_debug(
+                    "test",
                     {
+                        "model": selected_model_main,
                         "max_tokens": MISTRAL_MAX_TOKENS,
                         "temperature": main_mistral_temperature,
                         "top_p": main_mistral_top_p,
@@ -1787,13 +1786,14 @@ if sel_uebung:
                     },
                 )
                 
-                with st.spinner("Generiere Zusammenfassung..."):
-                    # Store the exact prompt that we're about to send
-                    st.session_state[last_mistral_prompt_key] = mistral_prompt
-                    
-                    selected_model_main = st.session_state.get(main_model_key, MISTRAL_DEFAULT_MODEL)
-                    start_time = time.time()
-                    recap = generate_summary_with_mistral(
+                # Store the exact prompt that we're about to send
+                st.session_state[last_mistral_prompt_key] = mistral_prompt
+                
+                start_time = time.time()
+                
+                # Stream the response in real-time
+                recap = st.write_stream(
+                    stream_summary_with_mistral(
                         prompt=mistral_prompt,
                         api_key=MISTRAL_API_KEY,
                         model=selected_model_main,
@@ -1801,9 +1801,11 @@ if sel_uebung:
                         temperature=main_mistral_temperature,
                         top_p=main_mistral_top_p,
                     )
-                    latency_ms = (time.time() - start_time) * 1000
-                    st.session_state[r2_state_key] = recap
-                    st.session_state[f"{session_key}_latency"] = latency_ms
+                )
+                
+                latency_ms = (time.time() - start_time) * 1000
+                st.session_state[r2_state_key] = recap.strip() if recap else ""
+                st.session_state[f"{session_key}_latency"] = latency_ms
                 
                 st.success("✅ Zusammenfassung generiert")
                 st.rerun()

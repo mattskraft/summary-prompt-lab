@@ -150,6 +150,64 @@ def generate_summary_with_mistral(
     return summary
 
 
+def stream_summary_with_mistral(
+    prompt: str,
+    api_key: str,
+    model: str = None,
+    max_tokens: int = 200,
+    temperature: float = 0.7,
+    top_p: float = 0.9,
+):
+    """Stream a summary using the Mistral API from a prompt string.
+    
+    This is a generator that yields tokens as they arrive from the API.
+    Use with Streamlit's st.write_stream() for real-time display.
+    
+    Args:
+        prompt: The complete prompt string to send to Mistral
+        api_key: Mistral API key
+        model: Model name to use (default: mistral-medium-latest)
+        max_tokens: Maximum tokens to generate (default: 200)
+        temperature: Sampling temperature (default: 0.7)
+        top_p: Top-p sampling parameter (default: 0.9)
+        
+    Yields:
+        String chunks as they arrive from the API
+    """
+    if model is None:
+        model = MISTRAL_MODEL_SUMMARY
+        
+    try:
+        from mistralai import Mistral
+    except ImportError as exc:
+        raise ImportError(
+            "mistralai package not installed. Install it with: pip install mistralai"
+        ) from exc
+
+    print(
+        f"[Mistral Recap Stream] model={model}, temperature={temperature}, top_p={top_p}, max_tokens={max_tokens}"
+    )
+
+    with Mistral(api_key=api_key) as mistral:
+        stream = mistral.chat.stream(
+            model=model,
+            messages=[
+                {
+                    "content": prompt,
+                    "role": "user",
+                },
+            ],
+            max_tokens=max_tokens,
+            temperature=temperature,
+            top_p=top_p,
+        )
+        
+        for chunk in stream:
+            content = chunk.data.choices[0].delta.content
+            if content:
+                yield content
+
+
 def generate_answers_with_mistral(
     segments: List[Dict[str, Any]],
     api_key: str,
