@@ -362,5 +362,19 @@
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
     "segment_toggles": []
+  },
+  "Ankommen": {
+    "enabled": false,
+    "comment": "kein Summary notwendig",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
