@@ -395,5 +395,22 @@
       true,
       true
     ]
+  },
+  "Was ist Schlaf?": {
+    "enabled": false,
+    "comment": "kein Summary notwendig, nur Quiz-Fragen mit Auflösung",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
