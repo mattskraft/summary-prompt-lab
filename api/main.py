@@ -14,7 +14,7 @@ SRC_DIR = PROJECT_ROOT / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from kiso_input.processing.local_models import (
+from kiso_input.processing.local_models import (  # type: ignore
     LlamaCppBackend,
     MODEL_MAP,
     get_backend_for_model,

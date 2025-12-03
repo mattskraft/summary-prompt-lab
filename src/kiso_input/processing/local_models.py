@@ -130,7 +130,7 @@ class LlamaCppBackend(InferenceBackend):
             n_threads: Number of threads for inference
         """
         try:
-            from llama_cpp import Llama
+            from llama_cpp import Llama  # type: ignore
         except ImportError as exc:
             raise ImportError(
                 "llama-cpp-python package not installed. Install it with: pip install llama-cpp-python"
@@ -147,7 +147,7 @@ class LlamaCppBackend(InferenceBackend):
     def _get_llm(self) -> Any:
         """Lazy load the Llama model."""
         if self._llm is None:
-            from llama_cpp import Llama
+            from llama_cpp import Llama  # type: ignore
             self._llm = Llama(
                 model_path=str(self.model_path),
                 n_ctx=self.n_ctx,
@@ -338,7 +338,7 @@ def get_available_models() -> list[str]:
 def is_local_models_available() -> bool:
     """Check if local models are available (models exist and llama_cpp is installed)."""
     try:
-        import llama_cpp  # noqa: F401
+        import llama_cpp  # type: ignore # noqa: F401
     except ImportError:
         return False
     

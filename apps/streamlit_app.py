@@ -15,12 +15,12 @@ if str(SRC_DIR) not in sys.path:
 
 # Import from the kiso_input package
 try:
-    from kiso_input.config import (
+    from kiso_input.config import (  # type: ignore
         STRUCT_JSON_PATH,
         SN_JSON_PATH,
         SAFETY_LEXICON_PATH,
     )
-    import kiso_input.config as config_module
+    import kiso_input.config as config_module  # type: ignore
     
     # Get APP_PASSWORD from Streamlit secrets first, then fallback to config/.env
     # Streamlit Cloud provides secrets via st.secrets, not environment variables
@@ -94,7 +94,7 @@ try:
     if not MISTRAL_API_KEY:
         MISTRAL_API_KEY = getattr(config_module, "MISTRAL_API_KEY", None)
     
-    from kiso_input import (
+    from kiso_input import (  # type: ignore
         assess_free_text_answers,
         build_summary_prompt,
         generate_answers_with_gemini,
@@ -103,11 +103,11 @@ try:
         load_self_harm_lexicon,
         prompt_segments_to_text,
     )
-    from kiso_input.processing.cloud_apis import (
+    from kiso_input.processing.cloud_apis import (  # type: ignore
         generate_summary_with_gemini_from_prompt,
         generate_summary_with_mistral,
     )
-    from kiso_input.processing.local_models import (
+    from kiso_input.processing.local_models import (  # type: ignore
         generate_summary_with_model,
         get_available_models,
         is_local_models_available,

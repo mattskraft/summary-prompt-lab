@@ -7,8 +7,8 @@ import ast
 from pathlib import Path
 from typing import Iterable, Tuple
 
-from kiso_input import classify_self_harm, load_self_harm_lexicon
-from kiso_input.config import SAFETY_LEXICON_PATH
+from kiso_input import classify_self_harm, load_self_harm_lexicon  # type: ignore
+from kiso_input.config import SAFETY_LEXICON_PATH  # type: ignore
 
 
 def _load_examples(path: Path) -> Iterable[Tuple[str, str]]:

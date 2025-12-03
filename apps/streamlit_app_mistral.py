@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 try:
-    from github import Github, GithubException
+    from github import Github, GithubException  # type: ignore
 except ImportError:  # pragma: no cover - optional dependency for cloud sync
     Github = None  # type: ignore
     GithubException = Exception  # type: ignore
@@ -27,12 +27,12 @@ if pending_toast:
 
 # Import from the kiso_input package
 try:
-    from kiso_input.config import (
+    from kiso_input.config import (  # type: ignore
         STRUCT_JSON_PATH,
         SN_JSON_PATH,
         SAFETY_LEXICON_PATH,
     )
-    import kiso_input.config as config_module
+    import kiso_input.config as config_module  # type: ignore
     
     # Get APP_PASSWORD from Streamlit secrets first, then fallback to config/.env
     APP_PASSWORD = None
@@ -93,18 +93,18 @@ try:
     if SYNTH_ANSWERS_PROMPT_PATH.exists():
         SYNTH_ANSWERS_PROMPT = SYNTH_ANSWERS_PROMPT_PATH.read_text(encoding="utf-8").strip()
     
-    from kiso_input import (
+    from kiso_input import (  # type: ignore
         assess_free_text_answers,
         generate_answers_with_gemini,
         generate_answers_with_mistral,
         get_prompt_segments_from_exercise,
         load_self_harm_lexicon,
     )
-    from kiso_input.processing.cloud_apis import (
+    from kiso_input.processing.cloud_apis import (  # type: ignore
         generate_summary_with_mistral,
         stream_summary_with_mistral,
     )
-    from kiso_input.processing.recap_sections import (
+    from kiso_input.processing.recap_sections import (  # type: ignore
         assemble_system_prompt,
         choose_max_words,
         get_exercise_sections,

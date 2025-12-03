@@ -24,8 +24,8 @@ SRC_DIR = PROJECT_ROOT / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from kiso_input.config import MISTRAL_API_KEY
-from kiso_input.processing.cloud_apis import generate_summary_with_mistral
+from kiso_input.config import MISTRAL_API_KEY  # type: ignore
+from kiso_input.processing.cloud_apis import generate_summary_with_mistral  # type: ignore
 
 # Models to benchmark
 MODELS = [

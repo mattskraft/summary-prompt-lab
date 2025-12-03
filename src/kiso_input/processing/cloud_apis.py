@@ -22,7 +22,7 @@ def generate_summary_with_gemini(
         model = GEMINI_MODEL_SUMMARY
         
     try:
-        from google import genai
+        from google import genai  # type: ignore
     except ImportError as exc:  # pragma: no cover - dependency guard
         raise ImportError(
             "google-genai package not installed. Install it with: pip install google-genai"
@@ -75,7 +75,7 @@ def generate_summary_with_gemini_from_prompt(
         Generated summary text
     """
     try:
-        from google import genai
+        from google import genai  # type: ignore
     except ImportError as exc:
         raise ImportError(
             "google-genai package not installed. Install it with: pip install google-genai"
@@ -539,7 +539,7 @@ def generate_answers_with_gemini(
         model = GEMINI_MODEL_ANSWERS
         
     try:
-        from google import genai
+        from google import genai  # type: ignore
     except ImportError as exc:  # pragma: no cover - dependency guard
         raise ImportError(
             "google-genai package not installed. Install it with: pip install google-genai"
