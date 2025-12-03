@@ -424,7 +424,17 @@
   "Was sind Schlafstörungen?": {
     "enabled": true,
     "comment": "",
-    "segment_toggles": []
+    "segment_toggles": [
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   },
   "Wie viel Schlaf brauchen wir?": {
     "enabled": false,
