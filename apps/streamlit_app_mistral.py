@@ -1448,6 +1448,11 @@ if sel_uebung:
         scope = cfg["scope"]
         key = cfg["key"]
         state_key = section_state_key(key, scope, session_key)
+        # Apply any pending load value BEFORE the widget renders
+        pending_load_key = f"{state_key}_pending_load"
+        pending_value = st.session_state.pop(pending_load_key, None)
+        if pending_value is not None:
+            st.session_state[state_key] = pending_value
         with st.expander(cfg["label"], expanded=False):
             st.text_area(
                 cfg["label"],
@@ -1460,10 +1465,10 @@ if sel_uebung:
                 load_key = f"{state_key}_load"
                 if st.button("📥 Laden", key=load_key, use_container_width=True):
                     if scope == "global":
-                        st.session_state[state_key] = load_global_section(key)
+                        st.session_state[pending_load_key] = load_global_section(key)
                     else:
                         fresh_sections = get_exercise_sections(sel_uebung, active_word_limit_config)
-                        st.session_state[state_key] = fresh_sections.get(key, "")
+                        st.session_state[pending_load_key] = fresh_sections.get(key, "")
                         st.session_state[section_exercise_tracker_key(state_key)] = sel_uebung
                     st.rerun()
             with button_cols[1]:
