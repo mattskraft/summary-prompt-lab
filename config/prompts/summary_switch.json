@@ -354,9 +354,28 @@
     "segment_toggles": []
   },
   "Gutes Leben": {
-    "enabled": true,
-    "comment": "",
-    "segment_toggles": []
+    "enabled": false,
+    "comment": "kein Summary notwendig",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   },
   "Knie-Umarmung": {
     "enabled": false,
