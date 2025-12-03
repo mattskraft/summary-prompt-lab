@@ -328,12 +328,18 @@ def save_exercise_payload(exercise_name: str, payload: Dict[str, str]) -> bool:
     try:
         save_exercise_sections(exercise_name, payload)
         print(f"[GitHubSync] Locally updated exercise data for '{exercise_name}'.")  # noqa: T201
-        commit_prompt_file(
+        github_success = commit_prompt_file(
             EXERCISE_PROMPTS_STORE,
             f"Update exercise-specific prompts for {exercise_name}",
         )
-        st.session_state["pending_toast"] = f"✅ '{exercise_name}' gespeichert."
-        return True
+        if github_success:
+            st.session_state["pending_toast"] = f"✅ '{exercise_name}' gespeichert."
+        else:
+            st.session_state["pending_toast"] = (
+                f"⚠️ '{exercise_name}' lokal gespeichert, aber GitHub-Sync fehlgeschlagen! "
+                "Daten gehen beim Neustart verloren."
+            )
+        return github_success
     except Exception as exc:
         st.error(f"Fehler beim Speichern: {exc}")
         return False
@@ -1396,7 +1402,17 @@ if sel_uebung:
         }
         summary_switch_config[sel_uebung] = summary_switch_value
         save_summary_switch_config(summary_switch_config)
-        st.success("✅ Einstellungen gespeichert")
+        github_success = commit_prompt_file(
+            SUMMARY_SWITCH_PATH,
+            f"Update summary switch for {sel_uebung}",
+        )
+        if github_success:
+            st.success("✅ Einstellungen gespeichert")
+        else:
+            st.warning(
+                "⚠️ Einstellungen lokal gespeichert, aber GitHub-Sync fehlgeschlagen! "
+                "Daten gehen beim Neustart verloren."
+            )
 
     # React immediately to checkbox state (not just saved value)
     summary_mode_active = st.session_state.get(switch_checkbox_key, False)
@@ -1463,12 +1479,19 @@ if sel_uebung:
                     if scope == "global":
                         save_global_section(section_key, st.session_state.get(value_key, ""))
                         file_path = GLOBAL_SECTION_FILE_MAP.get(section_key)
+                        github_success = False
                         if file_path:
-                            commit_prompt_file(
+                            github_success = commit_prompt_file(
                                 file_path,
                                 f"Update global prompt section '{section_key}'",
                             )
-                        st.session_state["pending_toast"] = "✅ Globaler Abschnitt gespeichert."
+                        if github_success:
+                            st.session_state["pending_toast"] = "✅ Globaler Abschnitt gespeichert."
+                        else:
+                            st.session_state["pending_toast"] = (
+                                "⚠️ Globaler Abschnitt lokal gespeichert, aber GitHub-Sync fehlgeschlagen! "
+                                "Daten gehen beim Neustart verloren."
+                            )
                     else:
                         save_exercise_payload(sel_uebung, {section_key: st.session_state.get(value_key, "")})
                         refreshed_sections = get_exercise_sections(sel_uebung, active_word_limit_config)
@@ -1499,10 +1522,17 @@ if sel_uebung:
     def _save_word_limits() -> None:
         config = current_word_limit_config()
         save_word_limit_config(config["answer_counts"], config["max_words"])
-        commit_prompt_file(
+        github_success = commit_prompt_file(
             WORD_LIMITS_PATH,
             "Update recap word limit presets",
         )
+        if github_success:
+            st.session_state["pending_toast"] = "✅ Wortlimits gespeichert."
+        else:
+            st.session_state["pending_toast"] = (
+                "⚠️ Wortlimits lokal gespeichert, aber GitHub-Sync fehlgeschlagen! "
+                "Daten gehen beim Neustart verloren."
+            )
     confirm_action(
         f"{save_limits_key}_dialog",
         "Aktuelle Wortlimits dauerhaft speichern?",
