@@ -882,7 +882,9 @@ __all__ = [
     "generate_summary_with_gemini",
     "generate_summary_with_gemini_from_prompt",
     "generate_summary_with_mistral",
+    "stream_summary_with_mistral",
     "extract_json_array_from_gemini_output",
     "generate_answers_with_gemini",
+    "generate_answers_with_mistral",
 ]
 
