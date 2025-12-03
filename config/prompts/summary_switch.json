@@ -427,8 +427,8 @@
     "segment_toggles": []
   },
   "Wie viel Schlaf brauchen wir?": {
-    "enabled": true,
-    "comment": "",
+    "enabled": false,
+    "comment": "würde die Summary hier vorerst noch deaktivieren, könnte sich mit der letzten Seite der Übung etwas in die Quere kommen. Wäre perspektivisch fürs Profil aber interessant",
     "segment_toggles": [
       false,
       true,
