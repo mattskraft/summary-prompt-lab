@@ -233,17 +233,25 @@ def commit_prompt_file(file_path: Path, message: str) -> bool:
         return False
 
 
-def load_summary_switch_config() -> Dict[str, str]:
+def load_summary_switch_config() -> Dict[str, Any]:
+    """Load summary switch config. Each exercise entry is {"enabled": bool, "comment": str}."""
     ensure_summary_switch_store()
     try:
         raw = SUMMARY_SWITCH_PATH.read_text(encoding="utf-8").strip() or "{}"
-        return json.loads(raw)
+        config = json.loads(raw)
+        # Migrate old string format to new dict format
+        for key, value in list(config.items()):
+            if isinstance(value, str):
+                # Old format: "summary" or "no questions" string
+                enabled = value.strip().lower().startswith("summary")
+                config[key] = {"enabled": enabled, "comment": "" if enabled else value}
+        return config
     except json.JSONDecodeError as exc:
         st.warning(f"Ungültige summary_switch.json: {exc}")
         return {}
 
 
-def save_summary_switch_config(config: Dict[str, str]) -> None:
+def save_summary_switch_config(config: Dict[str, Any]) -> None:
     ensure_summary_switch_store()
     SUMMARY_SWITCH_PATH.write_text(
         json.dumps(config, ensure_ascii=False, indent=2),
@@ -251,10 +259,16 @@ def save_summary_switch_config(config: Dict[str, str]) -> None:
     )
 
 
-def summary_switch_is_on(value: Optional[str]) -> bool:
+def summary_switch_is_on(value: Optional[Dict[str, Any]]) -> bool:
+    """Check if summary is enabled for an exercise."""
     if not value:
         return False
-    return value.strip().lower().startswith("summary")
+    if isinstance(value, dict):
+        return value.get("enabled", False)
+    # Legacy string format fallback
+    if isinstance(value, str):
+        return value.strip().lower().startswith("summary")
+    return False
 
 
 def confirm_action(dialog_key: str, message: str, on_confirm) -> None:
@@ -1151,7 +1165,11 @@ if sel_uebung:
     summary_switch_value = summary_switch_config.get(sel_uebung)
 
     if summary_switch_value is None:
-        summary_switch_value = "summary" if has_questions else "no questions"
+        # Default: enabled if has questions, disabled with comment if no questions
+        summary_switch_value = {
+            "enabled": has_questions,
+            "comment": "" if has_questions else "Übung enthält keine Fragen",
+        }
         summary_switch_config[sel_uebung] = summary_switch_value
         save_summary_switch_config(summary_switch_config)
     
@@ -1234,35 +1252,58 @@ if sel_uebung:
 
     st.markdown("---")
     st.subheader("Summary Switch")
-    summary_switch_cols = st.columns([3, 1])
-    summary_switch_input_key = f"{session_key}_summary_switch_input"
-    with summary_switch_cols[0]:
-        st.text_input(
-            "Summary Switch Eintrag",
-            key=summary_switch_input_key,
-            value=summary_switch_value,
-            label_visibility="collapsed",
+    
+    # Extract current values from config
+    switch_enabled = summary_switch_value.get("enabled", False) if isinstance(summary_switch_value, dict) else False
+    switch_comment = summary_switch_value.get("comment", "") if isinstance(summary_switch_value, dict) else ""
+    
+    # Session state keys
+    switch_checkbox_key = f"{session_key}_summary_switch_enabled"
+    switch_comment_key = f"{session_key}_summary_switch_comment"
+    
+    # Initialize session state if needed
+    if switch_checkbox_key not in st.session_state:
+        st.session_state[switch_checkbox_key] = switch_enabled
+    if switch_comment_key not in st.session_state:
+        st.session_state[switch_comment_key] = switch_comment
+    
+    # Checkbox and save button in same row
+    switch_cols = st.columns([3, 1])
+    with switch_cols[0]:
+        st.checkbox(
+            "Summary aktiviert",
+            key=switch_checkbox_key,
         )
-    with summary_switch_cols[1]:
+    with switch_cols[1]:
         summary_switch_save_clicked = st.button(
             "💾 Speichern",
-            key=f"{summary_switch_input_key}_save",
+            key=f"{session_key}_summary_switch_save",
             use_container_width=True,
         )
+    
+    # Comment text area
+    st.text_area(
+        "Kommentar zur Übung",
+        key=switch_comment_key,
+        height=80,
+        label_visibility="collapsed",
+        placeholder="Kommentar zur Übung (optional)",
+    )
 
     if summary_switch_save_clicked:
-        new_value = st.session_state.get(summary_switch_input_key, "").strip()
-        summary_switch_config[sel_uebung] = new_value
+        new_enabled = st.session_state.get(switch_checkbox_key, False)
+        new_comment = st.session_state.get(switch_comment_key, "").strip()
+        summary_switch_value = {"enabled": new_enabled, "comment": new_comment}
+        summary_switch_config[sel_uebung] = summary_switch_value
         save_summary_switch_config(summary_switch_config)
-        summary_switch_value = new_value
-        st.session_state[summary_switch_input_key] = new_value
         st.success("✅ Summary Switch aktualisiert")
 
-    summary_mode_active = summary_switch_is_on(summary_switch_value)
+    # React immediately to checkbox state (not just saved value)
+    summary_mode_active = st.session_state.get(switch_checkbox_key, False)
 
     if not summary_mode_active:
         st.info(
-            "Diese Übung ist deaktiviert. Setze den Summary Switch auf 'summary', "
+            "Diese Übung ist deaktiviert. Aktiviere den Summary Switch, "
             "um die nachfolgenden Bereiche zu verwenden."
         )
         st.stop()
