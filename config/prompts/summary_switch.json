@@ -299,9 +299,16 @@
     "segment_toggles": []
   },
   "Einschlafen": {
-    "enabled": true,
-    "comment": "",
-    "segment_toggles": []
+    "enabled": false,
+    "comment": "keine Summary nötig, nur eine Frage",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   },
   "Einschlafen mit Musik": {
     "enabled": false,
@@ -452,5 +459,95 @@
       true,
       true
     ]
+  },
+  "Gedanken und Gefühle": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Hilfreiche Schlafgedanken": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Einschlafritual": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Katzenbuckel": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": []
+  },
+  "Schlafgewohnheiten 1": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Schlafgewohnheiten 2": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Schlafzimmer": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Abstand zum Grübeln": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": []
+  },
+  "Gedankenstopp": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Gedankenstuhl": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Was ist Grübeln?": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Der innere Kritiker": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Der wohlwollende Begleiter": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Brilleneinstellungen": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Inneren Abstand suchen": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Was tun bei Stimmungskrisen?": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Atem und Entspannung": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": []
+  },
+  "Ungewöhnliches erklären": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
   }
 }
