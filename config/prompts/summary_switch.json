@@ -528,7 +528,7 @@
   },
   "Schlafzimmer": {
     "enabled": true,
-    "comment": "",
+    "comment": "Könnten wir noch mehr stresstesten, aber die Antworten sind gerade ganz gut",
     "segment_toggles": [
       true,
       true,
