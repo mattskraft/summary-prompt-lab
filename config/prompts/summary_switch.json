@@ -529,7 +529,22 @@
   "Schlafzimmer": {
     "enabled": true,
     "comment": "",
-    "segment_toggles": []
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   },
   "Abstand zum Grübeln": {
     "enabled": false,
