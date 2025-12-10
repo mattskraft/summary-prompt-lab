@@ -482,7 +482,7 @@
   },
   "Schlafgewohnheiten 1": {
     "enabled": true,
-    "comment": "",
+    "comment": "hier sind die Headlines nicht mit aufgeführt, ich versuche sie daher in den Prompt mit aufzunehmen",
     "segment_toggles": [
       false,
       false,
