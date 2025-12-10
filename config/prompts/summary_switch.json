@@ -473,7 +473,15 @@
   "Einschlafritual": {
     "enabled": true,
     "comment": "",
-    "segment_toggles": []
+    "segment_toggles": [
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true
+    ]
   },
   "Katzenbuckel": {
     "enabled": false,
