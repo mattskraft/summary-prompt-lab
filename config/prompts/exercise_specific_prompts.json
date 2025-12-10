@@ -619,7 +619,7 @@
   },
   "Schlafgewohnheiten 1": {
     "anweisungen": "# Anweisungen\n1. Die ANTWORT bezieht sich hier immer auf die FRAGE davor.\n1. Erstelle eine Zusammenfassung, die aus zwei Absätzen besteht. Die Überschriften der zwei Absätze entsprechen den Antwortoptionen \"Darauf gebe ich schon acht\" und \"Das würde ich gerne verändern\". \n2. Aus der Zusammenfassung soll klar werden, auf welche Punkte schon acht gegeben wird und was man gerne verändern würde. Die Inhalte der FRAGE sollen also einem der beiden Absätze, in knapper Form, zugeordnet werden.\n3. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen",
-    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Aufzählungen\n- Struktur: 2 Absätze",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Aufzählungen oder Fließtext\n- Struktur: 2 Absätze",
     "example1": "",
     "example2": ""
   }
