@@ -486,7 +486,7 @@
     "segment_toggles": [
       false,
       false,
-      true,
+      false,
       true,
       true,
       true,
