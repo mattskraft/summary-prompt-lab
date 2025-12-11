@@ -580,7 +580,7 @@
   },
   "Gedankenstuhl": {
     "enabled": false,
-    "comment": "Übung enthält nur eine Frage, mehr Selbstreflexion, vorerst keine Antwort",
+    "comment": "Übung enthält nur eine Frage, mehr Selbstreflexion, vorerst keine Summary notwendig",
     "segment_toggles": [
       true,
       true,
