@@ -637,7 +637,7 @@
   },
   "Hilfreiche Schlafgedanken": {
     "anweisungen": "# Anweisungen\n1. Formuliere eine Zusammenfassung der ANTWORT-Blöcke\n2. Nutze TEXT und FRAGE nur als Kontext\n3. Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n4. Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider\n5. Interpretiere keine allzu negativen Gedanken in die Antworten hinein\n6. Erstelle aus den folgenden FRAGE/ANTWORT-Paaren eine freundliche, positive Übersicht darüber, welche hilfreichen Gedanken der Nutzer für sich mitnehmen möchte\n7. Gib eine kurze Liste der hilfreichen Gedanken aus und formuliere anschließend einen ermutigenden, schlafbezogenen Abschlusssatz, z. B. im Sinne von: \"Diese Gedanken können dir helfen, leichter einzuschlafen.\"\n8.",
-    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Aufzählungen\n- Struktur: 2 Absätze\n\nFormat:\nDeine hilfreichen Schlafgedanken:\n– [Gedanke 1]\n– [Gedanke 2]\n– …\n\n[Ermutigende, kurze Schlafbotschaft]",
     "example1": "",
     "example2": ""
   }
