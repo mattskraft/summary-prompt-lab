@@ -461,9 +461,24 @@
     ]
   },
   "Gedanken und Gefühle": {
-    "enabled": true,
-    "comment": "",
-    "segment_toggles": []
+    "enabled": false,
+    "comment": "ist eher als Intro gedacht, braucht nicht notwendigerweise eine Zusammenfassung",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   },
   "Hilfreiche Schlafgedanken": {
     "enabled": true,
@@ -612,5 +627,15 @@
       true,
       true
     ]
+  },
+  "Beine an die Wand": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": []
+  },
+  "Bodyscan: Anspannen & Entspannen": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": []
   }
 }
