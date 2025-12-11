@@ -579,9 +579,14 @@
     "segment_toggles": []
   },
   "Gedankenstuhl": {
-    "enabled": true,
-    "comment": "",
-    "segment_toggles": []
+    "enabled": false,
+    "comment": "Übung enthält nur eine Frage, mehr Selbstreflexion, vorerst keine Antwort",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true
+    ]
   },
   "Was ist Grübeln?": {
     "enabled": false,
