@@ -584,9 +584,16 @@
     "segment_toggles": []
   },
   "Was ist Grübeln?": {
-    "enabled": true,
-    "comment": "",
-    "segment_toggles": []
+    "enabled": false,
+    "comment": "Quiz-Frage wird aufgelöst, erste Frage dient mehr der Selbstreflexion",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   },
   "Der innere Kritiker": {
     "enabled": true,
