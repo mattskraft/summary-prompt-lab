@@ -600,5 +600,17 @@
     "enabled": true,
     "comment": "",
     "segment_toggles": []
+  },
+  "Anspannung bemerken": {
+    "enabled": false,
+    "comment": "für den Moment nicht zwingend notwendig, dient eher der Selbstreflexion",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
