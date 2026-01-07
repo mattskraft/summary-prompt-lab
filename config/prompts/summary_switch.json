@@ -1366,5 +1366,22 @@
       true,
       true
     ]
+  },
+  "Alles oder Nichts": {
+    "enabled": false,
+    "comment": "TODO\nDer letzte Text hilft schon beim Reflektieren, Zusammenfassung unnötig",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
