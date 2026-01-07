@@ -836,5 +836,21 @@
       true,
       true
     ]
+  },
+  "Beharrlichkeit": {
+    "enabled": false,
+    "comment": "TODO\nNur Intro- und Outro-Fragen",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
