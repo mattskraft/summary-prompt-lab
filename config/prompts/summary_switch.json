@@ -902,5 +902,13 @@
       true,
       true
     ]
+  },
+  "Quadratatmung": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true
+    ]
   }
 }
