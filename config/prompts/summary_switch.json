@@ -799,5 +799,32 @@
       true,
       true
     ]
+  },
+  "Rückblick: Wahngedanken": {
+    "enabled": true,
+    "comment": "TODO\nNur zusammenfassen, was man mitnehmen will?\nTo-do: Anweisungen",
+    "segment_toggles": [
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
