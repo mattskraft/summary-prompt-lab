@@ -852,5 +852,23 @@
       true,
       true
     ]
+  },
+  "Brilleneinstellung: Korrigierbarkeit": {
+    "enabled": false,
+    "comment": "Nur Quiz-Fragen",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
