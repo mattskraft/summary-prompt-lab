@@ -1646,5 +1646,19 @@
       true,
       true
     ]
+  },
+  "Spaziergang": {
+    "enabled": false,
+    "comment": "TODO\nZusammenfassung lohn nicht?",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
