@@ -744,5 +744,12 @@
     "segment_toggles": [
       true
     ]
+  },
+  "Bauchatmung": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true
+    ]
   }
 }
