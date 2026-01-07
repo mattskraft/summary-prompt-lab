@@ -969,5 +969,19 @@
       true,
       true
     ]
+  },
+  "Schlüsse ziehen: Ein Tag mit Max": {
+    "enabled": false,
+    "comment": "TODO\nKeine Zusammenfassung da nur story node antworten?",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
