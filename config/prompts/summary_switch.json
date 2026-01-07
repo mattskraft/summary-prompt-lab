@@ -1584,5 +1584,18 @@
       true,
       true
     ]
+  },
+  "Hoffnung finden": {
+    "enabled": true,
+    "comment": "TODO\nAnweisungen angepasst -> testen",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      false,
+      true,
+      true
+    ]
   }
 }
