@@ -1575,5 +1575,14 @@
       true,
       true
     ]
+  },
+  "Glücksglas": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true,
+      true
+    ]
   }
 }
