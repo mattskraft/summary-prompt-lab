@@ -1344,5 +1344,27 @@
       true,
       true
     ]
+  },
+  "Ziele setzen": {
+    "enabled": false,
+    "comment": "TODO\nEher Quiz Fragen",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
