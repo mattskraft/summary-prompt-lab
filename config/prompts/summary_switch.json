@@ -1081,5 +1081,27 @@
       true,
       true
     ]
+  },
+  "Realität testen": {
+    "enabled": true,
+    "comment": "TODO\nZusammenfassung?",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
