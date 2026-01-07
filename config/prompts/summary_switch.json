@@ -1386,7 +1386,7 @@
   },
   "Experimente": {
     "enabled": false,
-    "comment": "TODO\nKeine Zusammenfassung, die \"richtigen\" Antworten werden schon vorgegeben",
+    "comment": "TODO\nKeine Zusammenfassung, die \"richtigen\" Antworten werden schon geliefert",
     "segment_toggles": [
       true,
       true,
@@ -1403,5 +1403,10 @@
       true,
       true
     ]
+  },
+  "Ich sollte": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
   }
 }
