@@ -675,7 +675,7 @@
   },
   "Die Lebensbrille": {
     "enabled": true,
-    "comment": "TO-DO; Story-node",
+    "comment": "TO-DO\nStory-node",
     "segment_toggles": [
       true,
       true,
