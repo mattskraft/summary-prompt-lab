@@ -948,5 +948,12 @@
       true,
       true
     ]
+  },
+  "Benennen": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true
+    ]
   }
 }
