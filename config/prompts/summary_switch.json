@@ -1597,5 +1597,37 @@
       true,
       true
     ]
+  },
+  "Rückblick: Stimmung": {
+    "enabled": true,
+    "comment": "TODO\nZusammenfassung nur der nicht-quiz-fragen?",
+    "segment_toggles": [
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "Mein Experiment": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
   }
 }
