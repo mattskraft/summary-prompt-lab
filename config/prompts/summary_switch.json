@@ -1549,5 +1549,31 @@
       true,
       true
     ]
+  },
+  "Was sind Stimmungen?": {
+    "enabled": false,
+    "comment": "TODO\nKeine Zusammenfassung, (korrekte) Antworten werden schon besprochen",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
