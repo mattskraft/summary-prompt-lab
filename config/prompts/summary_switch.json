@@ -910,5 +910,28 @@
       true,
       true
     ]
+  },
+  "Sehen was man sehen will": {
+    "enabled": true,
+    "comment": "TODO\nNicht sicher ob Zusammenfassung notwendig ist?",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
