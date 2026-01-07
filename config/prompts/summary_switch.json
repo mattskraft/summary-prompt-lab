@@ -983,5 +983,30 @@
       true,
       true
     ]
+  },
+  "Wie sicher bist du dir?": {
+    "enabled": false,
+    "comment": "Kontext ist visuell",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
