@@ -357,8 +357,23 @@
   },
   "Aktivitäten planen": {
     "enabled": true,
-    "comment": "",
-    "segment_toggles": []
+    "comment": "TODO\nUnabhängig von der story node Entscheidung, könnten die zwei darauffolgenden Frage-Antworten zusammengefasst werden.",
+    "segment_toggles": [
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+      true
+    ]
   },
   "Angenehme Aktivitäten 1": {
     "enabled": true,
