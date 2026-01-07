@@ -1285,5 +1285,41 @@
       true,
       true
     ]
+  },
+  "Meine Woche planen": {
+    "enabled": true,
+    "comment": "TODO\nZusammenfassung erst nach (und unabhängig von) story node.\nAnweisungen angepasst: Explizit keine Details, damit Zusammenfassung nicht zu lang wird.",
+    "segment_toggles": [
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
