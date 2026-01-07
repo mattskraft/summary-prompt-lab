@@ -1008,5 +1008,27 @@
       true,
       true
     ]
+  },
+  "Ausgewogene Zuschreibungen": {
+    "enabled": true,
+    "comment": "TODO",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
