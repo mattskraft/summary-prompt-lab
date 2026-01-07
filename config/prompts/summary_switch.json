@@ -1054,5 +1054,32 @@
       true,
       true
     ]
+  },
+  "Die Mischung macht's": {
+    "enabled": true,
+    "comment": "TODO\nDie erste MC rausnehmen?",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
