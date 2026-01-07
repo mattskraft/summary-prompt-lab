@@ -760,5 +760,19 @@
       true,
       true
     ]
+  },
+  "Austausch mit anderen": {
+    "enabled": true,
+    "comment": "TODO",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false
+    ]
   }
 }
