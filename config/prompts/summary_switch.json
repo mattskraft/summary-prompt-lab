@@ -1629,5 +1629,14 @@
     "enabled": true,
     "comment": "",
     "segment_toggles": []
+  },
+  "Am Fenster": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true,
+      true
+    ]
   }
 }
