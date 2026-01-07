@@ -1030,5 +1030,29 @@
       true,
       true
     ]
+  },
+  "Brilleneinstellung: Zuschreibungsstil": {
+    "enabled": true,
+    "comment": "TODO",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
