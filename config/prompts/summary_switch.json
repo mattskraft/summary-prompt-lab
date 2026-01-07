@@ -933,5 +933,20 @@
       true,
       true
     ]
+  },
+  "Simon: Bedrohung oder Einbildung?": {
+    "enabled": true,
+    "comment": "TODO\nHier fehlt der Inhalt des Audios als Kontext für Mistral. Könnte man aber irgendwie manuell in den Prompt einfügen, falls Zusammenfassung wichtig ist.",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
