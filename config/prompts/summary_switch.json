@@ -1266,5 +1266,24 @@
       true,
       true
     ]
+  },
+  "Anrufen": {
+    "enabled": true,
+    "comment": "TODO\nAnweisungen angepasst",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
