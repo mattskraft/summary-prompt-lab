@@ -357,7 +357,7 @@
   },
   "Aktivitäten planen": {
     "enabled": true,
-    "comment": "TODO\nUnabhängig von der story node Entscheidung, könnten die zwei darauffolgenden Frage-Antworten zusammengefasst werden.",
+    "comment": "TODO\nUnabhängig von der story node Entscheidung, können die zwei darauffolgenden Frage-Antworten zusammengefasst werden.",
     "segment_toggles": [
       false,
       false,
