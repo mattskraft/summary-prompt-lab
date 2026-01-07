@@ -654,8 +654,26 @@
   },
   "Ungewöhnliches erklären": {
     "enabled": true,
-    "comment": "",
-    "segment_toggles": []
+    "comment": "TODO",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   },
   "Anspannung bemerken": {
     "enabled": false,
