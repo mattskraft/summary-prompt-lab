@@ -731,5 +731,12 @@
       true,
       true
     ]
+  },
+  "Schulteratmung": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true
+    ]
   }
 }
