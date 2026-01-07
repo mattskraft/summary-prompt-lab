@@ -1206,7 +1206,7 @@
   },
   "Angenehme Aktivitäten 2": {
     "enabled": true,
-    "comment": "",
+    "comment": "TODO\nAnweisungen angepasst",
     "segment_toggles": [
       true,
       false,
