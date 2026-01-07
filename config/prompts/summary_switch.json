@@ -160,9 +160,21 @@
     "segment_toggles": []
   },
   "Situationen erklären: Ein Tag mit Kim": {
-    "enabled": true,
-    "comment": "",
-    "segment_toggles": []
+    "enabled": false,
+    "comment": "TODO\nNur story node Eingaben",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   },
   "Andere Betroffene kennenlernen": {
     "enabled": false,
