@@ -1693,5 +1693,12 @@
       true,
       true
     ]
+  },
+  "Ruhig atmen": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true
+    ]
   }
 }
