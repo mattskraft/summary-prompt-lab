@@ -6,6 +6,9 @@
           "Text": "Wir können auf ganz unterschiedliche Art aktiv im Alltag werden. Was wem gut tut, ist bei jedem Menschen verschieden. In dieser Übung geht es darum, dir bewusst zu machen, welche Aktivitäten dir im Alltag Spaß machen oder angenehm sind. In dieser Übung geht es speziell um Aktivitäten, die du **draußen** machen kannst."
         },
         {
+          "Text": "Nach draußen gehen"
+        },
+        {
           "Text": "Suche dir **drei** der folgenden Aktivitäten aus, die dir gut tun und von denen du dir vorstellen kannst, sie in den nächsten Tagen zu machen."
         },
         {
@@ -62,6 +65,9 @@
       "Angenehme Aktivitäten 3": [
         {
           "Text": "Aktiv im Alltag können wir auf ganz unterschiedliche Art und Weise werden. Und was wem gut tut, ist bei jedem Menschen verschieden. In dieser Übung geht es darum, dir bewusst zu machen, welche Aktivitäten dir im Alltag Spaß machen oder angenehm sind. In dieser Übung geht es speziell um Aktivitäten **gemeinsam mit anderen Menschen**."
+        },
+        {
+          "Text": "Mit anderen Menschen sein"
         },
         {
           "Text": "Suche dir aus den folgenden Aktivitäten einmal **drei Aktivitäten** aus, die dir gut tun und von denen du dir vorstellen kannst, sie in den nächsten Tagen zu machen. Das können auch kleine Aktivitäten sein. Wichtig ist, dass sie gerade für dich erreichbar sind, auch wenn sie vielleicht schwer fallen."
@@ -167,6 +173,9 @@
           ]
         },
         {
+          "Text": "Welche Strategien nutzt du im Alltag, um dich besser zu fühlen?"
+        },
+        {
           "Text": "Diese Frage haben wir Joke gestellt. Im Video erzählt sie davon, wie wichtig eine feste Tagesstruktur für sie ist. Für Joke ist es besonders wichtig, auf die Woche gesehen, nicht zu viel und nicht zu wenig einzuplanen, sich nicht zu überfordern, aber aktiv zu bleiben."
         },
         {
@@ -198,6 +207,9 @@
         },
         {
           "Text": "Wenn du deine Wochen planst, dann plane sowohl Aktivitäten ein, die dir Spaß machen, als auch solche, die erledigt werden müssen (wie Zimmer aufräumen, Wäsche waschen) und dich stolz oder zufrieden machen."
+        },
+        {
+          "Text": "Welche Strategien nutzt du im Alltag, um dich besser zu fühlen?"
         },
         {
           "Text": "Auch für den Betroffenen Elias ist es wichtig, im Alltag die Balance zu halten. Ausreichend Schlafen, Frühstücken, kein Alkohol, Bewegen und auf sich hören sind für ihn wichtige Strategien."
@@ -275,6 +287,9 @@
           "Text": "Schritt 4: Teufelskreis: Der Teufelskreis entsteht, weil sich die Traurigkeit und die negativen Gedanken gegenseitig verstärken. Je mehr man sich zurückzieht, desto schlechter fühlt man sich und desto schwerer wird es, wieder aktiv zu werden."
         },
         {
+          "Text": "Wie Aktivitäten helfen"
+        },
+        {
           "Text": "Schöne Erlebnisse: Aktivitäten bringen schöne Erlebnisse und lenken negative Gedanken ab"
         },
         {
@@ -290,6 +305,9 @@
       "Angenehme Aktivitäten 4": [
         {
           "Text": "Aktiv im Alltag können wir auf ganz unterschiedliche Art und Weise werden. Und was wem gut tut, ist bei jedem Menschen verschieden. In dieser Übung geht es darum, dir deiner **Hobbys** bewusst zu werden, die dir früher Spaß gemacht haben oder die du ausprobieren möchtest."
+        },
+        {
+          "Text": "Hobbys"
         },
         {
           "Text": "Vielleicht gibt es Hobbys, die dir früher gut getan haben, die du aus dem Blick verloren hast? Suche dir aus den folgenden Aktivitäten einmal **eine Aktivität** aus, die dir gut tut und von der du dir vorstellen kannst, sie in der nächsten Wochen zu machen."
@@ -350,6 +368,9 @@
       "Angenehme Aktivitäten 1": [
         {
           "Text": "Aktiv im Alltag können wir auf ganz unterschiedliche Art und Weise werden. Und was wem gut tut, ist bei jedem Menschen verschieden. In dieser Übung geht es darum, dir bewusst zu machen, welche Aktivitäten dir im Alltag Spaß machen oder angenehm sind. Schaue dabei zuerst auf Aktivitäten, die du **alleine zu Hause** machen kannst."
+        },
+        {
+          "Text": "Mit sich selbst sein"
         },
         {
           "Text": "Suche dir aus den folgenden Aktivitäten einmal **drei Aktivitäten** aus, die dir gut tun und von denen du dir vorstellen kannst, sie in den nächsten Tagen zu machen. Das können auch kleine Aktivitäten sein. Wichtig ist, dass sie gerade für dich machbar erscheinen, auch wenn sie vielleicht schwer fallen."
@@ -483,6 +504,9 @@
           ]
         },
         {
+          "Text": "Schritte planen"
+        },
+        {
           "Text": "Viele Aktivitäten sind komplex und brauchen ein wenig Planung. Wenn du zum Beispiel Schwimmen gehen möchtest, solltest du ein Schwimmbad in deiner Nähe finden, in Erfahrung bringen, wie du dort hin kommen kannst und dich über die Öffnungszeiten informieren. Du musst deine Badesachen packen, hinfahren, Eintritt bezahlen und so weiter."
         },
         {
@@ -497,7 +521,13 @@
           "AnswerOptions": "free_text"
         },
         {
+          "Text": "Langsam steigern"
+        },
+        {
           "Text": "Vermeide es, zu viele Aktivitäten auf einmal zu planen. Steiger dich langsam, um Erfolge zu haben und dich langfristig zu motivieren."
+        },
+        {
+          "Text": "Pläne teilen"
         },
         {
           "Text": "Es kann auch hilfreich sein, jemandem von deinen Plänen zu erzählen und diese Person anzurufen oder ihr zu schreiben, wenn du deine Aktivität geschafft hast."
@@ -744,6 +774,9 @@
           "Text": "Unsere **Gedanken**, unsere **Stimmung** und unser **Verhalten**, also was wir tun, sind eng miteinander verbunden. Sie beeinflussen sich gegenseitig. Wenn wir unsere Stimmung beeinflussen möchten, gibt es zwei Wege: - Wir können unser **Verhalten** ändern - Wir können unsere **Gedanken** hinterfragen"
         },
         {
+          "Text": "Welche kleinen Schritte kann jeder für sich selbst tun, um besser mit der Erkrankung umzugehen?"
+        },
+        {
           "Text": "Diese Frage haben wir dem Betroffenen Elias gestellt. Für ihn zählt dazu zum Beispiel, auf eine regelmäßige Einnahme der Medikamente und guten Schlaf zu achten."
         },
         {
@@ -755,7 +788,13 @@
           "Text": "Vielen Betroffenen hilft es, einen regelmäßigen Tagesablauf einzuhalten. Sie stehen etwa jeden Tag zur gleichen Zeit auf, auch am Wochenende, planen Mahlzeiten zu bestimmten Tageszeiten ein und achten auf genug Schlaf. Auch eine **Morgenroutine** kann dabei helfen, dem Tag Struktur zu geben. Sie kann dich auch in Stimmungskrisen unterstützen."
         },
         {
+          "Text": "Elias Morgenroutine"
+        },
+        {
           "Text": "Der Betroffene Elias teilt seine Tipps für eine gute Alltagsstruktur. Seine Morgenroutine hilft ihm dabei, gut in den Tag zu starten."
+        },
+        {
+          "Text": "Denke einmal zurück:"
         },
         {
           "Question": "Wann hattest du in letzter Zeit einen guten Morgen oder einen Morgen, der zumindest etwas besser war, als sonst?",
@@ -903,7 +942,13 @@
           "Text": "Vorübergehende Gefühle wie Traurigkeit, Scham und auch Hoffnungslosigkeit gehören zum Leben dazu. Hoffnungslosigkeit kann uns in manchen Fällen sogar helfen, unveränderliche Situationen zu akzeptieren und uns im Leben neu zu orientieren. Nach einer Psychose darfst du aber auch Hoffnung haben. Ein aktives Leben ist auch mit Symptomen möglich."
         },
         {
+          "Text": "Was hilft Betroffenen dabei, ein aktives Leben zu führen, auch wenn Symptome vorhanden sind?"
+        },
+        {
           "Text": "Um Unterstützung in der Familie oder im Freundeskreis bitten, Psychotherapie, Bewegung - im Video erzählt der Arzt Marco, was Betroffenen dabei hilft, ein aktives Leben auch mit Symptomen zu führen."
+        },
+        {
+          "Text": "Was gibt dir Hoffnung für die Zukunft?"
         },
         {
           "Text": "Diese Frage haben wir Elias gestellt. Er erzählt, was ihm als Betroffenem Hoffnung gibt."
@@ -929,6 +974,9 @@
           "Text": "**Zeit, dir auf die Schulter zu klopfen!** Du bist fast am Ende des Themas Stimmung angekommen. Du kannst stolz auf dich sein! Lass uns zum Abschluss einen Blick zurück werfen. Was möchtest du für dich in deinen Alltag mitnehmen? Für diese Übung solltest du dir **Gefühle und Stimmung**, **Natur entdecken**, **Stimmungskrisen**, **Aktiv werden** und **Gedanken ändern** angesehen haben."
         },
         {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
           "Question": "In einer Stimmungskrise können Dinge, die einem sonst leicht fallen, deutlich anstrengender sein. Man fühlt sich zum Beispiel überwältigt davon, mit den eigenen Kindern zu spielen.",
           "AnswerOptions": [
             "Wahr",
@@ -938,6 +986,9 @@
         },
         {
           "Text": "**Dieser Satz ist wahr.** In Stimmungskrisen können selbst alltägliche Dinge, wie Aufstehen, Duschen oder Zähneputzen schwer fallen. Trotzdem kleine Schritte zu tun, ist wichtig - ohne sich dabei zu überfordern."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
         },
         {
           "Question": "Wenn man sich in einer Stimmungskrise in sein Bett zurück zieht statt andere Dinge zu tun (z.B. mit den Kindern zu spielen) ist das gut für die eigene Stimmung.",
@@ -951,6 +1002,9 @@
           "Text": "**Dieser Satz ist falsch.** Wenn man sich zurück zieht, in die Wohnung, das Bett, die eigene sichere Höhle, ist zwar kurzfristig das Gefühl der Überforderung weg. Langfristig führt das jedoch häufig zu Scham, Selbstvorwürfen oder Konflikten mit nahestehenden Menschen. Es ist wichtig, auch bei einer Stimmungskrise oder wenig Antrieb, Dinge zu tun, die einem selbst wertvoll, wichtig und sinnvoll erscheinen."
         },
         {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
           "Question": "Wenn ich eine Verabredung mit einem Freund vergesse, dann sollte ich besonders streng zu mir sein. Wenn ich nur oft genug \"Ich vergesse immer alles\" zu mir sage, werde ich mich in Zukunft besser an Verabredungen erinnern.",
           "AnswerOptions": [
             "Wahr",
@@ -960,6 +1014,9 @@
         },
         {
           "Text": "**Dieser Satz ist falsch.** _Ich vergesse immer alles_ ist eine Verallgemeinerung. Sie macht die Situation größer und schlimmer, als sie ist. Hilfreicher ist ein Gedanke, der sich nur auf das Hier und Jetzt bezieht. Zum Beispiel: _Ich habe die Verabredung heute vergessen. Das ärgert mich, aber das kann passieren. Nächstes mal schreibe ich sie mir in den Kalender._"
+        },
+        {
+          "Text": "Wahr oder Falsch?"
         },
         {
           "Question": "Lisa steckt in einer Stimmungskrise. Statt sich vorzunehmen, wieder mehr im Kontakt mit der Natur zu sein, sollte sie sich lieber ganz konkrete, kleine Ziele im Alltag setzen. Zum Beispiel, am nächsten Tag fünf Minuten spazieren zu gehen.",
@@ -1042,7 +1099,13 @@
           "Text": "Nach einer Psychose fühlen sich viele Betroffene verunsichert. Es kann schwer sein, den eigenen Wahrnehmungen wieder zu vertrauen. Manche hören Stimmen, die abwertend oder entmutigend klingen. Auch Verluste – wie Freundschaften oder Arbeit – können das Leben zusätzlich belasten. Oft erleben Betroffene dann Stimmungskrisen. Manche fühlen sich niedergeschlagen oder ziehen sich zurück. Andere berichten, sich auf und über nichts mehr freuen zu können."
         },
         {
+          "Text": "Joke"
+        },
+        {
           "Text": "Joke hatte nach ihrer ersten Psychose sehr wenig Antrieb und kaum Kraft für ihren Alltag. Im Video erzählt sie von diesen schwersten Momenten mit ihrer Erkrankung."
+        },
+        {
+          "Text": "Elias"
         },
         {
           "Text": "Elias ist von Schizophrenie betroffen. Auch er hatte in der Zeit nach seiner ersten Psychose mit einer Stimmungskrise zu kämpfen. Er erzählt, wie schwer das erste Jahr nach seiner Diagnose für ihn war."
@@ -1054,7 +1117,13 @@
           "Text": "Ein Stimmungskrise muss aber nicht bleiben. Es gibt Wege, sich davon zu erholen und wieder mehr Kraft und Antrieb im Alltag zu finden. Deine Stimmung kann wieder besser werden!"
         },
         {
+          "Text": "Joke"
+        },
+        {
           "Text": "Im Video erzählt Joke, wann und wie sich ihr Alltag wieder verändert hat. Joke hat im Rahmen einer Reha-Maßnahme in ihren Alltag zurück gefunden. Besonders wichtig ist für sie Struktur in ihrem Alltag."
+        },
+        {
+          "Text": "Elias"
         },
         {
           "Text": "Auch Elias hat es geschafft, aus seiner Stimmungskrise heraus zu finden. Wir haben ihn gefragt, was er jemandem sagen würde, der gerade frisch die Diagnose Schizophrenie bekommen hat."
@@ -1067,7 +1136,10 @@
       ],
       "Die Macht der Stimmung": [
         {
-          "Question": "**Hast du Lust auf ein kleines Experiment?** Finde auf den nächsten Seiten heraus, welchen Einfluss deine Stimmung auf deine Gedanken haben kann."
+          "Text": "**Hast du Lust auf ein kleines Experiment?** Finde auf den nächsten Seiten heraus, welchen Einfluss deine Stimmung auf deine Gedanken haben kann."
+        },
+        {
+          "Question": "Was denkst du, wenn du die Frau auf dem Foto siehst?"
         },
         {
           "Branch": [
@@ -1119,6 +1191,9 @@
       ],
       "Was sind Gefühle?": [
         {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
           "Question": "Gefühle kommen und gehen. Kein Gefühl bleibt für immer.",
           "AnswerOptions": [
             "Wahr",
@@ -1128,6 +1203,9 @@
         },
         {
           "Text": "**Dieser Satz ist wahr.** Gefühle sind wie Wellen. Sie kommen und gehen. Auch wenn sie stark sind, verändern sie sich mit der Zeit und werden oft von anderen Gefühlen abgelöst."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
         },
         {
           "Question": "Gefühle wie Traurigkeit oder Angst sind immer schlecht. Man sollte sie vermeiden.",
@@ -1141,6 +1219,9 @@
           "Text": "**Dieser Satz ist falsch.** Alle Gefühle, auch unangenehme, haben eine Funktion. Zum Beispiel kann Angst uns vor Gefahr warnen und Traurigkeit hilft uns, Verluste zu verarbeiten. Gefühle geben uns wertvolle Hinweise auf unsere Bedürfnisse und Wünsche, auch wenn man sie nicht immer einfach erkennt."
         },
         {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
           "Question": "Man kann nur ein Gefühl zur gleichen Zeit empfinden.",
           "AnswerOptions": [
             "Wahr",
@@ -1152,6 +1233,9 @@
           "Text": "**Dieser Satz ist falsch.** Menschen können mehrere Gefühle gleichzeitig empfinden. Zum Beispiel kann man sich gleichzeitig traurig und erleichtert fühlen."
         },
         {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
           "Question": "Körperliche Reaktionen gehören zu Gefühlen dazu.",
           "AnswerOptions": [
             "Wahr",
@@ -1161,6 +1245,9 @@
         },
         {
           "Text": "**Dieser Satz ist wahr.** Gefühle zeigen sich oft auch im Körper. Bei Angst zum Beispiel schlägt das Herz schneller oder die Muskeln spannen sich an."
+        },
+        {
+          "Text": "Welche angenehmen Gefühle kennst du?"
         },
         {
           "Text": "Freude: Ein Gefühl von Glück und Zufriedenheit, oft durch angenehme Erfahrungen verursacht."
@@ -1188,6 +1275,9 @@
         },
         {
           "Text": "Inspiration: Das Gefühl, motiviert und begeistert zu sein, etwas zu tun oder zu erreichen."
+        },
+        {
+          "Text": "Welche unangenehmen Gefühle kennst du?"
         },
         {
           "Text": "Angst: Ein unangenehmes Gefühl der Sorge oder Furcht vor etwas, das passieren könnte."
@@ -1222,10 +1312,16 @@
           "Text": "Medikamente geben vielen Betroffenen die Freiheit zurück, ihren Alltag zu bewältigen und mit Symptomen besser umzugehen. Medikamente können sich jedoch auch auf die Stimmung auswirken. Antrieb kann verloren gehen und Gefühle werden vielleicht nicht mehr so stark erlebt wie früher."
         },
         {
+          "Text": "Jokes Nebenwirkungen"
+        },
+        {
           "Text": "Für die Betroffene Joke sind Medikamente sehr wichtig. Sie geben ihr Stabilität und helfen ihr dabei, weniger Halluzinationen zu erleben. Am Anfang ihrer Krankheitsphase hatte sie jedoch mit starken Nebenwirkungen zu kämpfen, von denen sie im Video erzählt."
         },
         {
           "Text": "Solltest du darüber nachdenken, deine Medikamente wegen der Nebenwirkungen zu reduzieren, dann sprich mit deinem Arzt oder deiner Ärztin darüber. Wichtig ist nämlich, Medikamente langsam und schrittweise zu reduzieren. So könnt ihr herauszufinden, welche Dosis dir noch genug Stabilität für deinen Alltag gibt und dir hilft, besser zu schlafen oder weniger Halluzinationen zu erleben."
+        },
+        {
+          "Text": "Elias und seine Medikamente"
         },
         {
           "Text": "Auch der Betroffene Elias nimmt Medikamente. In der Vergangenheit hatte er starke Nebenwirkungen. Nach 10 Monaten hat er sein Medikament abgesetzt und hatte “Glück im Unglück”."
@@ -1239,6 +1335,9 @@
           "Text": "Was glaubst du: Was ist der Unterschied zwischen **Gefühl** und **Stimmung**? Schau dir die Beispiele auf den nächsten Seiten an und versuche zu entscheiden."
         },
         {
+          "Text": "Gefühl oder Stimmung?"
+        },
+        {
           "Question": "Lisa bekommt eine Nachricht, dass ihre beste Freundin sie spontan besucht. Sie freut sich.",
           "AnswerOptions": [
             "Gefühl",
@@ -1250,6 +1349,9 @@
           "Text": "Lisas Freude ist ein **Gefühl**. Es gibt einen klaren Auslöser: Sie freut sich über die Nachricht ihrer Freundin."
         },
         {
+          "Text": "Gefühl oder Stimmung?"
+        },
+        {
           "Question": "Trotz der Nachricht fühlt Lisa sich an diesem Sonntag, wie auch die letzten Tage, irgendwie niedergeschlagen. Sie hat schlecht geschlafen, der Himmel ist grau und sie hat gar keine große Lust, sich mit jemandem zu unterhalten.",
           "AnswerOptions": [
             "Gefühl",
@@ -1259,6 +1361,9 @@
         },
         {
           "Text": "Lisas Niedergeschlagenheit ist eine **Stimmung**. Es gibt keinen richtigen Auslöser. Außerdem zieht sich ihre Niedergeschlagenheit schon über ein paar Tage."
+        },
+        {
+          "Text": "Gefühl oder Stimmung?"
         },
         {
           "Question": "Abends wartet Lisa auf den Bus. Laut Anzeigetafel sollte er schon da sein, ist aber weit und breit nicht zu sehen. Lisa ärgert sich.",
@@ -1484,6 +1589,9 @@
           "Text": "Nach dem Reiseziel oder der -dauer zu fragen ist nicht falsch und ein schöner Einstieg in eine Unterhaltung. Um mehr Verbindung im Gespräch zu schaffen, kann es aber helfen, nach Gefühlen, Hoffnungen oder auch Sorgen rund um den anstehenden Urlaub zu fragen. Es kann helfen, nicht nur _über_ Urlaub zu reden, sondern über das, was er _innerlich_ auslöst."
         },
         {
+          "Text": "Beispiele für tiefergehende Fragen"
+        },
+        {
           "Question": "Welche dieser Fragen möchtest du in einem Gespräch mit Freunden oder Bekannten gerne einmal stellen?",
           "AnswerOptions": [
             "Als Erwachsene sprechen wir oft über unseren Beruf, aber selten über unsere Hobbies. Gibt es etwas, das du gerne machst oder dir in deiner Freizeit wichtig ist?",
@@ -1545,6 +1653,9 @@
           "Text": "Eine Arbeit kann Halt geben und den Alltag strukturieren. Sie sorgt für ein geregeltes Einkommen und ermöglicht Austausch mit anderen Menschen. Für einige Betroffene kommt Arbeiten aufgrund der Schwere der Erkrankung und dem Mangel an passenden Angeboten nicht in Frage. Andere Betroffene, die (wieder) arbeiten gehen, fragen sich: Wie gehe ich mit meiner Diagnose am Arbeitsplatz um?"
         },
         {
+          "Text": "Hilfreiche Fragen"
+        },
+        {
           "Text": "Diese Fragen können dir bei deiner Entscheidung helfen, ob du deine Diagnose am Arbeitsplatz ansprichst oder nicht."
         },
         {
@@ -1565,6 +1676,9 @@
           "Text": "Es ist ein großer Schritt mit der Diagnose Schizophrenie an die Öffentlichkeit zu gehen. Ob Betroffene diesen Schritt gehen möchten, ist eine sehr persönliche Entscheidung."
         },
         {
+          "Text": "Gab es einen bestimmten Moment, in dem du gemerkt hast: Ich kann gut mit meiner Diagnose umgehen?"
+        },
+        {
           "Text": "Diese Frage haben wir Joke gestellt. Im Video erzählt sie von der Entscheidung, mit ihrer Diagnose an die Öffentlichkeit zu gehen."
         },
         {
@@ -1573,10 +1687,16 @@
       ],
       "Stärkende Sätze": [
         {
+          "Text": "Gibt es etwas, das du früher gerne gewusst oder gehört hättest?"
+        },
+        {
           "Text": "Diese Frage haben wir dem Betroffenen Elias gestellt. Er erzählt davon, dass er sich mehr Selbstbewusstsein gewünscht hätte. Außerdem hätte es ihm gut getan zu hören: Schizophrenie ist eine Krankheit."
         },
         {
           "Text": "Manchmal sind Gedanken sehr streng oder negativ. Und sie zu ändern, ist nicht so einfach möglich. **Stärkende Sätze** können trotzdem dabei helfen, dich freundlicher zu sehen. Sie können dein Selbstbewusstsein langsam wachsen lassen. Beispiele: - \"Ich darf Fehler machen.\" - \"Meine Meinung zählt.\" - \"Ich habe Gutes verdient.\" - \"Ich bin wertvoll, auch wenn ich gerade nicht arbeite.\" - \"Ich darf sagen, was ich brauche.\""
+        },
+        {
+          "Text": "Mein stärkender Satz"
         },
         {
           "Text": "- Suche dir einen Satz, der dich beruhigt oder dir Mut macht - Der Satz sollte mit \"Ich…\" starten - Der Satz sollte sich auf Dinge beziehen, auf die du Einfluss hast - Der Satz sollte so formuliert sein, als wäre er jetzt schon wahr - Du solltest dich wohl mit dem Satz fühlen"
@@ -1597,6 +1717,9 @@
           "Text": "Viele Menschen denken nach der Diagnose Schizophrenie, dass sie nie wieder ein \"normales\" Leben führen können. Der Arzt Marco erzählt, dass diese Angst nicht berechtigt ist - und ein aktives Leben auch mit Psychosen möglich ist."
         },
         {
+          "Text": "Welchen Vorurteilen bist du schon begegnet?"
+        },
+        {
           "Text": "Menschen mit Psychose sind gefährlich: Wenn Menschen mit Psychose andere Menschen attackieren, dann berichten Zeitungen häufig darüber. Menschen mit Psychose sind aber häufiger Opfer als Täter von Gewalt."
         },
         {
@@ -1612,12 +1735,18 @@
           "Text": "Im Zusammenhang mit Schizophrenie fällt oft das Wort **Stigmatisierung**. Stigmatisierung bedeutet, dass einer Gruppe von Menschen schlechte Eigenschaften zugeschrieben werden, ohne dass diese kritisch geprüft und hinterfragt werden. Wenn Menschen wegen einer psychischen Erkrankung ausgegrenzt, als schwach oder verrückt abgewertet oder schlecht behandelt werden, dann ist das Stigmatisierung."
         },
         {
+          "Text": "Wie gehst du mit Stigmatisierung oder Unverständnis von anderen um?"
+        },
+        {
           "Text": "Elias teilt seine Erfahrungen, wie er mit Stigmatisierung und Vorurteilen im Alltag umgeht."
         }
       ],
       "Sich anvertrauen": [
         {
           "Text": "Über Psychose zu sprechen ist schwer. Manchmal erkennt man als Betroffene(r) nicht, dass etwas nicht stimmt. Oder man zögert, sich Familie und Freunden anzuvertrauen. Mit Vertrauenspersonen über deine Erkrankung zu sprechen, kann jedoch wichtig sein, denn andere Menschen erkennen oft eher die Frühwarnzeichen einer beginnenden Psychose als man selbst."
+        },
+        {
+          "Text": "Kannst du uns erzählen, wann und wie du gemerkt hast, dass etwas nicht stimmt?"
         },
         {
           "Text": "Diese Frage haben wir Joke gestellt. Im Video erzählt sie von ihrer ersten psychotischen Episode und wie sie ein Jahr mit ihrer Erfahrung \"in zwei Welten\" gelebt hat, ohne jemandem davon zu erzählen."
@@ -1631,6 +1760,9 @@
             "Ich möchte (noch) nicht darüber sprechen."
           ],
           "AllowMultiple": false
+        },
+        {
+          "Text": "Warum fällt es vielen Betroffenen schwer, über ihre Erkrankung zu sprechen?"
         },
         {
           "Text": "Diese Frage haben wir dem Arzt Marco gestellt. Warum es dennoch wichtig ist, über die Erkrankung zu sprechen, erzählt er im Video."
@@ -1659,6 +1791,9 @@
               "könnte ich Unterstützung bekommen": "Beziehungen - Anvertrauen - Option A: Bestärken"
             }
           ]
+        },
+        {
+          "Text": "Was sagst du Menschen, die sich für ihre Symptome schämen oder Angst vor Stigmatisierung haben?"
         },
         {
           "Text": "Es gibt viele Menschen, die Verständnis haben und Unterstützung bieten können. Davon spricht Marco im nächsten Video."
@@ -1740,6 +1875,9 @@
           "Text": "Soziale Beziehungen ermöglichen es uns, uns gehört, unterstützt und verstanden zu fühlen. Wir können für andere da sein, wichtig sein für andere und haben das Gefühl, dass wir nicht allein in der Welt sind. Damit sind Beziehungen eine wichtige Quelle für unser Selbstwertgefühl."
         },
         {
+          "Text": "Elias erzählt"
+        },
+        {
           "Text": "Wie sehr Selbstwertgefühl und Beziehungen zusammenhängen, hat auch der Betroffene Elias erfahren."
         },
         {
@@ -1767,6 +1905,9 @@
         {
           "Question": "Was könnte ein guter Freund oder eine gute Freundin noch an dir schätzen?",
           "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Welche Strategien nutzt du im Alltag, um dich besser zu fühlen?"
         },
         {
           "Text": "Diese Frage haben wir Elias gestellt. Er erzählt davon, was ihm für seinen Selbstwert und beim Thema Beziehungen hilft."
@@ -1851,10 +1992,16 @@
     "Soziale Beziehungen": {
       "Warum sind Beziehungen wichtig?": [
         {
+          "Text": "Was würdest du jemandem sagen, der gerade frisch die Diagnose bekommen hat?"
+        },
+        {
           "Text": "Diese Frage haben wir der Betroffenen Joke gestellt. Im Video gibt sie den Rat, sich ein gutes Netzwerk zu schaffen, um stabil bleiben zu können."
         },
         {
           "Text": "Soziale Beziehungen sind wichtig für unser Glück und unsere Gesundheit. Sie geben Halt in schweren Zeiten und Freude in guten Momenten. Wenn wir Freunde haben, denen wir vertrauen können, und eine Familie, die uns unterstützt, fühlen wir uns sicherer und stabiler."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
         },
         {
           "Question": "Beziehungen sind auch wichtig für unsere körperliche Gesundheit.",
@@ -1868,6 +2015,9 @@
           "Text": "**Dieser Satz ist wahr.** Viele Menschen sind davon überzeugt, dass Bewegung und die richtige Ernährung zu einem gesunden Leben führen. Das ist richtig, aber auch soziale Beziehungen gehören zu einem gesunden Leben dazu. Sie helfen bei Stress und können uns dazu motivieren, besser auf uns zu achten."
         },
         {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
           "Question": "Einsamkeit kann das Immunsystem schwächen.",
           "AnswerOptions": [
             "Wahr",
@@ -1877,6 +2027,9 @@
         },
         {
           "Text": "**Dieser Satz ist wahr.** Einsamkeit kann zu mehr Stresshormonen im Körper führen. Das kann das Immunsystem belasten und macht anfälliger für Krankheiten. Man sagt, dass Einsamkeit genauso schädlich sein kann wie Rauchen oder starkes Übergewicht."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
         },
         {
           "Question": "Beziehungen haben keinen Einfluss auf das Selbstwertgefühl, also darauf, wie man sich selbst sieht und wie sehr man sich selbst schätzt.",
@@ -1927,12 +2080,18 @@
           "Text": "**So funktioniert's:** 1. Nimm dir ein Blatt Papier und Stifte oder etwas Digitales zum Malen oder Zeichnen 2. Setze dich selbst in das Zentrum deines sozialen Netzwerkes 3. Teile dein Netzwerk in die Bereiche deines Lebens, in denen du soziale Kontakte hast (z.B. Familie, Freunde, Liebe, Arbeit oder Ausbildung, Nachbarn, Verein, Selbsthilfegruppe...) 4. Trage Personen in die jeweiligen Bereiche ein. Platziere Personen, die dir näher stehen, mittiger und Personen, die dir nicht so nahe stehen, weiter am Rand Viel Spaß beim Zeichnen deines sozialen Netzwerkes!"
         },
         {
+          "Text": "Übrigens..."
+        },
+        {
           "Text": "Die Anzahl der sozialen Kontakte, die ein Mensch braucht, ist unterschiedlich. Einige Menschen fühlen sich mit einer kleinen, engen Gruppe von Freunden und Familie am wohlsten, während andere gerne viele Bekanntschaften haben. Es ist wichtig, Menschen im Leben zu haben, mit denen man sich verbunden fühlt und die einem guttun. Lass dich nicht unter Druck setzen, viele Kontakte zu haben, wenn du dich damit nicht wohl fühlst. Es ist dann besser, wenige, aber dafür wertvolle Beziehungen zu pflegen, als oberflächliche Bekanntschaften zu haben, die nicht glücklich machen."
         }
       ],
       "Familienbeziehungen": [
         {
           "Text": "In der Familie haben wir Kontakt zu Eltern, Geschwistern oder Großeltern und anderen Verwandten wie Tanten oder Cousinen. Diese Beziehungen begleiten uns oft lange und können uns stark prägen. Wir schauen uns oft viel von unseren Familienmitgliedern ab und übernehmen ihre Werte, Verhaltensweisen und Traditionen."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
         },
         {
           "Question": "Die Art und Weise, wie wir in unserer Familie miteinander umgehen, beeinflusst unsere späteren Beziehungen zu Freunden, Partnern und Kollegen.",
@@ -1946,6 +2105,9 @@
           "Text": "**Dieser Satz ist wahr.** Unsere Familienbeziehungen sind nicht nur die längsten, sondern auch diejenigen, die uns am stärksten formen und prägen."
         },
         {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
           "Question": "Der Kontakt zur Familie ist für alle Menschen mit Schizophrenie immer hilfreich und entlastend.",
           "AnswerOptions": [
             "Wahr",
@@ -1955,6 +2117,9 @@
         },
         {
           "Text": "**Dieser Satz ist falsch.** Nicht für alle ist der Kontakt mit der Familie entlastend. Manchmal kann er auch belastend sein. Es ist wichtig, Vertrauenspersonen im Leben zu haben. Das können aber auch Menschen außerhalb der eigenen Familie sein."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
         },
         {
           "Question": "Bei schwierigen Familienbeziehungen sollte man sich immer anpassen, um Streit zu vermeiden.",
@@ -2487,6 +2652,9 @@
     "Grenzen setzen": {
       "Kritik oder Angriff?": [
         {
+          "Text": "Kritik oder Angriff?"
+        },
+        {
           "Text": "Überlege dir bei den Aussagen auf den nächsten Seiten, ob es sich um eine Kritik oder um einen Angriff handelt. Lass uns loslegen!"
         },
         {
@@ -2605,6 +2773,9 @@
         }
       ],
       "Kritik äußern": [
+        {
+          "Text": "Kritik äußern - aber wie?"
+        },
         {
           "Text": "Jemandem zu sagen, dass uns etwas stört, ist oft gar nicht so einfach. Viele Menschen haben Angst, andere zu verletzen, einen Streit auszulösen oder unangenehm aufzufallen. Deshalb schlucken sie Kritik lieber herunter – auch wenn sie innerlich unzufrieden sind. Doch Kritik muss nicht verletzend oder laut sein. Im Gegenteil: Wenn wir lernen, Kritik klar, ehrlich und respektvoll zu äußern, kann das Beziehungen stärken und zu echten Veränderungen führen."
         },
@@ -2915,6 +3086,9 @@
           "Text": "**Beharrlichkeit** kann bedeuten, dass man an einem Ziel oder einer Aufgabe dranbleibt, auch wenn es schwierig wird. Das ist eine Stärke. **Zu viel Beharrlichkeit** kann aber auch zu Konflikten und Problemen führen. Das passiert meistens, wenn Menschen so sehr an ihren Meinungen festhalten, dass sie nicht mehr offen für andere Informationen sind. Ihre eigene Meinung ist dann nicht mehr korrigierbar."
         },
         {
+          "Text": "Beharrliche Vorurteile"
+        },
+        {
           "Text": "Es gibt einige Vorurteile, die sich beharrlich bei vielen Menschen halten, auch wenn sie längst widerlegt sind."
         },
         {
@@ -2967,6 +3141,9 @@
           "AnswerOptions": "free_text"
         },
         {
+          "Text": "Wie kannst du die Idee prüfen?"
+        },
+        {
           "Question": "Was spricht für diese Idee?",
           "AnswerOptions": "free_text"
         },
@@ -2979,6 +3156,9 @@
           "AnswerOptions": "free_text"
         },
         {
+          "Text": "Was sind mögliche Folgen?"
+        },
+        {
           "Question": "Was sind Konsequenzen, wenn du an der Idee festhältst?",
           "AnswerOptions": "free_text"
         },
@@ -2989,6 +3169,9 @@
       ],
       "Brilleneinstellung: Korrigierbarkeit": [
         {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
           "Question": "Korrigierbarkeit bedeutet, dass man seine Meinung oder Entscheidung ändern kann, wenn man neue oder bessere Informationen bekommt.",
           "AnswerOptions": [
             "Wahr",
@@ -2998,6 +3181,9 @@
         },
         {
           "Text": "**Dieser Satz ist wahr.** Korrigierbarkeit bedeutet, dass man bereit ist, die eigene Meinung oder Sichtweise zu ändern, wenn man merkt, dass etwas nicht stimmt oder wenn man neue Informationen bekommt."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
         },
         {
           "Question": "Beharrlichkeit kann hilfreich sein.",
@@ -3011,6 +3197,9 @@
           "Text": "**Dieser Satz ist wahr.** Beharrlichkeit kann hilfreich sein, um Ziele zu erreichen. Zu viel Beharrlichkeit kann aber auch zu Konflikten mit Freunden, Verwandten oder anderen Menschen führen. Studien zeigen, dass viele Menschen mit Psychosen dazu neigen, an einem einmal gefassten Urteil festzuhalten. Das ist menschlich, kann aber falsche Entscheidungen nach sich ziehen."
         },
         {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
           "Question": "Manchmal sieht man nur, was man sehen möchte.",
           "AnswerOptions": [
             "Wahr",
@@ -3020,6 +3209,9 @@
         },
         {
           "Text": "**Dieser Satz ist wahr.** Menschen nehmen die Welt oft so wahr, wie es zu ihren Gedanken und Erwartungen passt. Wir suchen unbewusst nach Informationen, die unsere Meinung bestätigen – und ignorieren oft das, was dagegen spricht."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
         },
         {
           "Question": "Beharrlichkeit ist immer unangemessen.",
@@ -3095,6 +3287,9 @@
           "Text": "**So funktioniert’s** 1. Atme durch die Nase tief in den Bauch ein 2. Atme noch einmal kurz ein, um die Lungen vollständig mit Luft zu füllen 3. Atme ganz langsam durch den Mund wieder aus Wiederhole die Übung für etwa 3 bis 5 Minuten."
         },
         {
+          "Text": "Übrigens..."
+        },
+        {
           "Text": "Wusstest du, dass Kinder die Seufzeratmung ganz unbewusst machen, also doppelt Einatmen und dann Ausatmen? Sie tun das, wenn sie schluchzen. So kann sich ihr Körper beruhigen."
         }
       ],
@@ -3132,6 +3327,9 @@
           "AnswerOptions": "free_text"
         },
         {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
           "Question": "Menschen reagieren unterschiedlich auf Stress.",
           "AnswerOptions": [
             "Wahr",
@@ -3143,6 +3341,9 @@
           "Text": "**Dieser Satz ist wahr.** Am Beispiel von Max können wir sehen, wie unterschiedlich Menschen auf Stress reagieren. Menschen mit einer Brilleneinstellung wie \"ich hatte nur gute Erfahrungen mit unseren Nachbarn\" können sehr viel mehr Stress erfahren, bevor sie besondere Überzeugungen zu ihren Nachbarn entwickeln."
         },
         {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
           "Question": "Wie wir die Welt heute sehen, hat nichts mit unseren vergangenen Erfahrungen zu tun.",
           "AnswerOptions": [
             "Wahr",
@@ -3152,6 +3353,9 @@
         },
         {
           "Text": "**Dieser Satz ist falsch.** Unsere eigenen Erfahrungen im Leben beeinflussen, wie wir die Welt um uns herum wahrnehmen. Unsere persönliche Geschichte, Familie, Kultur und Erziehung prägen unsere Denkweise."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
         },
         {
           "Question": "Stress kann dazu führen, dass besondere Überzeugungen entstehen.",
@@ -3183,6 +3387,9 @@
         {
           "Question": "Hast du selbst auch Wahngedanken oder besondere Überzeugungen erlebt?",
           "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Veränderungen im Denken"
         },
         {
           "Text": "Veränderungen im Denken und in der Wahrnehmung der Welt sind ein Merkmal von Schizophrenie. Meistens ändert sich das Denken nicht plötzlich, sondern nach und nach."
@@ -3496,7 +3703,13 @@
       ],
       "Zuschreibungen im Alltag": [
         {
+          "Text": "Jetzt bist du gefragt!"
+        },
+        {
           "Text": "Wie erklärst du dir Ereignisse, die in den letzten Tagen oder Wochen passiert sind? Denke einmal an ein eher schönes und ein eher stressiges oder trauriges Ereignis."
+        },
+        {
+          "Text": "Wie erklärst du dir ein negatives Ereignis (Stress, Streit, Trauer, Enttäuschung) aus der letzten Zeit?"
         },
         {
           "Question": "Was ist passiert? (z.B. eine Freundin kam nicht zur Verabredung)",
@@ -3509,6 +3722,9 @@
         {
           "Question": "Welche Konsequenzen hatte deine Erklärung? (z.B. Ich war traurig)",
           "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Wie könntest du das Ereignis anders bewerten?"
         },
         {
           "Text": "Beziehe die eigene Person, andere Personen und die Umstände gleichermaßen mit ein. Beispiel: Ihr ist etwas dazwischen gekommen. Ich war ziemlich schroff, sodass sie eventuell noch beleidigt ist."
@@ -3526,6 +3742,9 @@
           "AnswerOptions": "free_text"
         },
         {
+          "Text": "Wie erklärst du dir ein positives Ereignis (Kompliment, Bekanntschaft, Einladung) aus der letzten Zeit?"
+        },
+        {
           "Question": "Was ist passiert? (z.B. Ich habe einen schönen Spaziergang mit einem Freund gemacht, und wir haben uns dabei gut unterhalten)",
           "AnswerOptions": "free_text"
         },
@@ -3536,6 +3755,9 @@
         {
           "Question": "Welche Konsequenzen hatte deine Erklärung? (z.B. Ich fühlte mich unsicher. Ich weiß nicht, ob mein Freund nur wegen des tollen Wetters oder wegen des Gesprächs so aufgeschlossen war.)",
           "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Wie könntest du das Ereignis anders bewerten?"
         },
         {
           "Text": "Beziehe die eigene Person, andere Personen und die Umstände gleichermaßen mit ein. Beispiel: Ich habe die Idee gehabt, spazieren zu gehen, und mein Freund hat gleich \"ja\" gesagt; wir haben uns wirklich angeregt unterhalten, daran hätte auch schlechteres Wetter nichts geändert. Aber es hat dazu beigetragen."
@@ -3557,6 +3779,9 @@
         }
       ],
       "Brilleneinstellung: Zuschreibungsstil": [
+        {
+          "Text": "Brilleneinstellungen"
+        },
         {
           "Text": "Wenn du z.B. darüber nachdenkst, **warum** eine Person lacht, machst du eine Zuschreibung. Das bedeutet, dass du versuchst, herauszufinden, **warum** etwas passiert."
         },
@@ -3629,6 +3854,9 @@
           "Text": "Manchmal neigen wir unter Stress dazu, zu schnell von etwas überzeugt zu sein. Das kann z.B. dazu führen, dass wir uns ängstlich fühlen, obwohl es eigentlich gar keinen wirklichen Grund dafür gibt. Lass uns gemeinsam einen Gedanken überprüfen, der dir Angst macht."
         },
         {
+          "Text": "Welchen Gedanken, der dir Angst macht, möchtest du überprüfen?"
+        },
+        {
           "Text": "Denke daran, was dich öfter beschäftigt, was du vielleicht mit deinem Arzt oder in einer Therapie besprochen hast. Es gibt kein richtig oder falsch."
         },
         {
@@ -3658,6 +3886,9 @@
             "minText": "0",
             "maxText": "100"
           }
+        },
+        {
+          "Text": "Gibt es auch andere mögliche Erklärungen?"
         },
         {
           "Text": "Eine andere Erklärung könnte z.B. sein: _Die Menschen in der Bahn lachen, weil einer von Ihnen einen Witz erzählt hat, das hat gar nichts mit mir zu tun._"
@@ -3709,6 +3940,9 @@
         }
       ],
       "Selbstwirksamkeit": [
+        {
+          "Text": "Was ist deine wichtigste Botschaft an Menschen, die das Gefühl haben, keinen Einfluss auf ihre Erkrankung zu haben?"
+        },
         {
           "Text": "Diese Frage haben wir dem Arzt Marco gestellt. Im Video erzählt er von seiner Rolle als Arzt und welchen wichtigen Beitrag Betroffene zu ihrer eigenen Genesung leisten."
         },
@@ -3799,6 +4033,9 @@
           "Text": "Die Neigung, mehr auf Dinge zu achten, die unsere Meinung bestätigen, nennt man **Bestätigungstendenz**. Beispiel: Wenn du glaubst, beobachtet zu werden, fällt dir jedes zufällige Schauen sofort auf. Du siehst dann schnell nur noch Beweise, dass du tatsächlich beobachtet wirst. Zeichen, dass andere nicht auf dich achten, gehen unter. Versuche, auch wenn du Angst hast und es dir schwer fällt, offen für verschiedene Hinweise zu bleiben. Halte einen Moment inne und überlege, ob es auch Gegenbeweise gibt."
         },
         {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
           "Question": "Wenn man sich mit den Seheinstellungen der eigenen Lebensbrille beschäftigt, kann man leichter Abstand von ungewöhnlichen oder belastenden Gedanken gewinnen.",
           "AnswerOptions": [
             "Wahr",
@@ -3820,6 +4057,9 @@
         },
         {
           "Text": "Bei Angst oder bedrohlichen Gedanken kann es helfen, den Körper mit **Atemübungen** zu entspannen. Das verschafft auch den Gedanken eine Ruhepause. Du kannst dich auch mit Übungen wie der 5-4-3-2-1-Übung **auf das Hier und Jetzt konzentrieren**. Zu Hause zu bleiben mag sich kurz sicher anfühlen. Wenn du dich von deiner Angst zu Hause halten lässt, verpasst du aber langfristig auch viel Schönes vom Leben."
+        },
+        {
+          "Text": "Lebensbrilleneinstellungen"
         },
         {
           "Text": "Hier siehst du die Lebensbrilleneinstellungen, die du in den letzten Übungen kennengelernt hast. Kannst du dich noch erinnern, was sie bedeuten?"
@@ -3961,6 +4201,9 @@
           "Text": "**Hier die Auflösung! Lagst du richtig?** Oft ziehen wir Schlüsse, ohne die \"ganze Wahrheit\" zu kennen. Gerade unter Stress oder bei einer Psychose neigen Menschen dazu, voreilige Schlüsse zu ziehen."
         },
         {
+          "Text": "Was ist deine Erklärung dafür?"
+        },
+        {
           "Text": "Hier siehst du eine Reihe von Situationen. Was könnten Erklärungen dafür sein? Und welche Erklärungen könnte es noch geben? Überlege selbst, bevor du mögliche Erklärungen durchliest."
         },
         {
@@ -4071,10 +4314,19 @@
       ],
       "Tipps bei visuellen Halluzinationen": [
         {
+          "Text": "Aufmerksamkeit lenken"
+        },
+        {
           "Text": "Wenn Halluzinationen auftauchen, kann es helfen, dich bewusst auf etwas anderes zu konzentrieren, z.B. auf den Haushalt oder Musik. Du kannst dich auch mit einem Gespräch oder Bewegung ablenken. Versuche dich auf andere Menschen, eine Tätigkeit oder echte Gegenstände zu konzentrieren. So rücken die Halluzinationen in den Hintergrund und dein Alltag gewinnt wieder mehr Platz."
         },
         {
+          "Text": "Umgebung verändern"
+        },
+        {
           "Text": "Manchmal kann es auch helfen, die Beleuchtung im Raum zu verändern. Mache das Licht an oder ziehe einen Vorhang weiter auf."
+        },
+        {
+          "Text": "Ruhig bleiben"
         },
         {
           "Text": "Erinnere dich daran: Halluzinationen sind ein Symptom von Psychosen, nicht die Realität. _Du bist in Sicherheit._ Atme ruhig ein und langsam wieder aus."
@@ -4106,6 +4358,9 @@
           "Text": "Wir gehen oft auf zwei Weisen mit dem um, was in uns und um uns herum passiert. Manchmal nehmen wir Dinge kaum wahr. Die Gedanken sind woanders. Das ist eine **unachtsame Haltung**. Manchmal sind wir aufmerksam, aber wir bewerten sofort. Wir wollen etwas ändern oder handeln gleich. Das ist eine **bewertende Haltung**. Die **achtsame Haltung** liegt dazwischen. Wir nehmen bewusst wahr, ohne zu urteilen, einfach im Moment."
         },
         {
+          "Text": "Achtsam, unachtsam oder bewertend?"
+        },
+        {
           "Question": "Du machst einen Spaziergang im Wald. Es ist ein angenehmer Herbsttag, die Blätter färben sich nach und nach braun. Deine Gedanken sind aber bei einem alten Streit.",
           "AnswerOptions": [
             "achtsam",
@@ -4113,6 +4368,9 @@
             "bewertend"
           ],
           "AllowMultiple": false
+        },
+        {
+          "Text": "Achtsam, unachtsam oder bewertend?"
         },
         {
           "Question": "Du sitzt im Auto. Du stehst an der Ampel und denkst: \"Immer diese langen Rotphasen!\"",
@@ -4124,6 +4382,9 @@
           "AllowMultiple": false
         },
         {
+          "Text": "Achtsam, unachtsam oder bewertend?"
+        },
+        {
           "Question": "Du sitzt an deinem Schreibtisch in deinem Zimmer. Du siehst einen Schatten neben der Zimmertür, der sich leicht hin und her bewegt. Du beobachtest ihn still.",
           "AnswerOptions": [
             "achtsam",
@@ -4131,6 +4392,9 @@
             "bewertend"
           ],
           "AllowMultiple": false
+        },
+        {
+          "Text": "Achtsam, unachtsam oder bewertend?"
         },
         {
           "Question": "Du hörst plötzlich eine Stimme, die deinen Namen ruft. Du denkst sofort: \"Das ist gefährlich, sie will mir bestimmt etwas Böses. Ich muss mich verstecken.\"",
@@ -4251,13 +4515,25 @@
           "Text": "Wenn du Stimmen hörst oder andere Geräusche wahrnimmst, die dich belasten, kann es helfen, dich bewusst mit anderen Klängen abzulenken. Zum Beispiel mit - Musik, - Naturgeräuschen, - einem Hörbuch - oder deiner eigenen Stimme. So kannst du deine Aufmerksamkeit auf etwas anderes richten und dir eine kleine Pause verschaffen."
         },
         {
+          "Text": "Zählstrategie"
+        },
+        {
           "Text": "Versuche, von 100 runter zu zählen, bis du bei Null angekommen bist. Auf diese Weise lässt sich der Einfluss der Stimmen kurz unterbrechen und deine Aufmerksamkeit umlenken."
+        },
+        {
+          "Text": "Laut Lesen"
         },
         {
           "Text": "Nimm dir dein Lieblingsbuch zur Hand und suche dir die schönste Stelle raus. Lese sie laut vor. Wiederhole das ruhig noch mit weiteren Abschnitten. Das kann dir helfen, die Stimmen für eine Weile in den Hintergrund treten zu lassen."
         },
         {
+          "Text": "Laut Singen"
+        },
+        {
           "Text": "Was ist dein Lieblingslied? Singe einmal laut den Text von deinem Lieblingslied. Dadurch können wir uns für einen Moment von unseren Gedanken lösen und uns auf etwas anderes konzentrieren."
+        },
+        {
+          "Text": "Klingeln"
         },
         {
           "Text": "Lausche einer Klingel oder einem Gong. Konzentriere dich darauf, den Ton so lange wie möglich zu hören, bis er ganz verklungen ist."
@@ -4288,10 +4564,16 @@
           "AllowMultiple": false
         },
         {
+          "Text": "Eine Vase, zwei Gesichter - oder doch beides?"
+        },
+        {
           "Text": "Unser Gehirn entscheidet, was wir sehen - entweder die Vase oder die Gesichter. Beides gleichzeitig geht nicht. Das Bild zeigt: Wir nehmen die Welt nicht einfach so wahr, wie sie ist. Unsere Aufmerksamkeit und Gedanken bestimmen, was wir sehen."
         },
         {
           "Text": "Ähnlich ist es bei Halluzinationen: Das Gehirn \"füllt Lücken\" oder deutet Reize so, dass etwas entsteht, das zwar real wirkt, aber nicht mit der äußeren Wirklichkeit übereinstimmt."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
         },
         {
           "Question": "Optische Täuschungen und Halluzinationen können auch bei gesunden Menschen auftreten.",
@@ -4305,6 +4587,9 @@
           "Text": "**Das stimmt.** Fehlwahrnehmungen wie optische Täuschungen oder das Hören des eigenen Namens in einer Menschenmenge sind ganz normal. Sie entstehen, weil unser Gehirn Informationen schnell verarbeiten und einordnen will. Dabei kann es zu Irrtümern kommen. Auch Erfahrungen wie das Hören von Stimmen – also Halluzinationen – sind nicht ungewöhnlich und kommen auch bei Menschen ohne psychische Erkrankung vor."
         },
         {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
           "Question": "Optische Täuschungen und Halluzinationen entstehen auf unterschiedliche Weise.",
           "AnswerOptions": [
             "Wahr",
@@ -4316,6 +4601,9 @@
           "Text": "**Dieser Satz ist wahr.** Beide Erfahrungen sind Teil des menschlichen Erlebens – unterscheiden sich jedoch in ihrer Entstehung und Wirkung. _Optische Täuschungen_ beruhen auf _realen Reizen_, die das Gehirn falsch interpretiert. _Halluzinationen_ entstehen _ohne äußere Reize_ – das Gehirn erzeugt sie selbst. Zudem können Halluzinationen sehr belastend sein, weil sie oft als beängstigend erlebt werden und nicht mit anderen geteilt werden können."
         },
         {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
           "Question": "Alle Halluzinationen betreffen nur den Sehsinn.",
           "AnswerOptions": [
             "Wahr",
@@ -4325,6 +4613,9 @@
         },
         {
           "Text": "**Dieser Satz stimmt nicht.** Halluzinationen können alle Sinne betreffen – z. B. Hören, Riechen, Schmecken oder Tasten. Die häufigsten Halluzinationen bei Schizophrenie sind akustische Halluzinationen, also zum Beispiel das Hören von Stimmen."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
         },
         {
           "Question": "Wer im Dunkeln denkt, eine Gestalt zu sehen, die sich bei näherem Hinsehen als Kleiderhaufen entpuppt, erlebt eine Halluzination.",
@@ -4339,6 +4630,9 @@
         }
       ],
       "Wie fühlen sich Halluzinationen an?": [
+        {
+          "Question": "Wie gut kannst du unterscheiden, ob eine Wahrnehmung echt ist oder vielleicht eine Halluzination?"
+        },
         {
           "Branch": [
             {
@@ -4431,6 +4725,9 @@
       ],
       "Wer erlebt Halluzinationen?": [
         {
+          "Text": "Was glaubst du…"
+        },
+        {
           "Question": "wie viele Menschen in der Allgemeinbevölkerung erleben im Laufe ihres Lebens das Hören von Stimmen?",
           "AnswerOptions": [
             "5%",
@@ -4458,6 +4755,9 @@
     },
     "Umgang mit Stimmen": {
       "Wohlfühlort": [
+        {
+          "Text": "Wohlfühlort"
+        },
         {
           "Text": "Vielleicht fällt dir ein positives Vorstellungsbild ein, z.B. eine Erinnerung an einen schönen Ort, an dem du dich wohl fühlst? Das kann die Stimmung verbessern und dazu führen, dass du dich durch die Stimmen weniger beeinträchtigt fühlst."
         },
@@ -4499,6 +4799,9 @@
       ],
       "Körperliche Ablenkung": [
         {
+          "Text": "Körperliche Ablenkung"
+        },
+        {
           "Text": "Körperliche Aktivitäten oder Übungen können dabei helfen, sich von lästigen Stimmen abzulenken. Hier ein paar Beispiele für Körperübungen: - Aufstehen - Linke Hand auf rechte Schulter legen - Rechte auf die linke Schulter legen - Ein Bein anheben - Bein kreisen lassen"
         },
         {
@@ -4507,6 +4810,9 @@
         }
       ],
       "Feste Zeiten": [
+        {
+          "Text": "Stimmen durch feste Zeiten begrenzen"
+        },
         {
           "Text": "Eine Möglichkeit, deine Stimmen zu begrenzen ist, nur zu einer bestimmten Zeit auf die Stimmen zu reagieren."
         },
@@ -4524,6 +4830,9 @@
       ],
       "Die Stimmen in die Schranken weisen": [
         {
+          "Text": "Stimmen in die Schranken weisen"
+        },
+        {
           "Text": "Wenn eine oder mehrere Stimmen zu laut und beängstigend werden, kann es helfen, sie in die Schranken zu weisen."
         },
         {
@@ -4535,6 +4844,9 @@
         }
       ],
       "Positives sagen": [
+        {
+          "Text": "Positives sagen"
+        },
         {
           "Text": "Es kann auch hilfreich sein, der Stimme etwas Positives entgegenzusetzen, gerade wenn diese negativ ist."
         },
@@ -4753,6 +5065,9 @@
           "Text": "**Einschlafhilfen** können das Einschlafen verbessern. Dazu zählen beispielsweise: - ein fester Schlafrhythmus - kein Koffein mehr ab dem Nachmittag - Entspannungstechniken (z.B. Atemübungen) - eine dunkle, ruhige und kühle Schlafumgebung"
         },
         {
+          "Text": "Audios als Einschlafhilfe"
+        },
+        {
           "Text": "Außerdem kann es entspannend wirken, zum Einschlafen etwas anzuhören. Ruhige und unaufgeregte Audios können Gedankenkreisen mindern, die Entspannung fördern und schaffen anders als Bildschirmmedien (wie z.B. ein Fernseher oder Smartphone) einen sanften Übergang in den Schlaf. Wir laden Dich ein, in den nächsten Übungen vier verschiedene Audios zum Einschlafen auszuprobieren."
         }
       ],
@@ -4830,10 +5145,16 @@
           "Text": "Guter Schlaf beginnt oft schon am Tag. Unsere Gewohnheiten beeinflussen, wie leicht wir abends zur Ruhe kommen und durchschlafen können."
         },
         {
+          "Text": "Elias Tipps für guten Schlaf"
+        },
+        {
           "Text": "Lerne Elias kennen. Elias ist von Schizophrenie betroffen und teilt seine Tipps für guten Schlaf."
         },
         {
           "Text": "Seine Schlafgewohnheiten zu ändern, kann helfen, wenn man Probleme mit dem Schlafen hat. Sieh dir an, was du **tagsüber** tun kannst, um abends gut zu schlafen."
+        },
+        {
+          "Text": "Nachmittags kein Koffein, keinen Alkohol und keine schweren Mahlzeiten mehr"
         },
         {
           "Question": "Vermeide Kaffee, Tee oder andere koffeinhaltige Getränke und schwere Mahlzeiten nach dem Mittag. Koffein kann deinen Schlaf stören und dich nachts wach halten.",
@@ -4844,6 +5165,9 @@
           "AllowMultiple": false
         },
         {
+          "Text": "Regelmäßige Aktivität am Tag"
+        },
+        {
           "Question": "Regelmäßige körperliche Aktivität ist wichtig für deine Gesundheit, aber versuche, intensive Übungen am Abend zu vermeiden. Leichte Bewegung wie ein entspannter Spaziergang kann jedoch helfen, dich zu entspannen.",
           "AnswerOptions": [
             "Darauf gebe ich schon acht",
@@ -4852,12 +5176,18 @@
           "AllowMultiple": false
         },
         {
+          "Text": "Kein Nickerchen am Tag"
+        },
+        {
           "Question": "Auch wenn wir manchmal tagsüber richtig müde sind, weil wir schlecht geschlafen haben, ist es wichtig, keinen Mittagsschlaf zu machen. Das signalisiert dem Körper: _Tagsüber bin ich wach, abends wird geschlafen_. Falls du so erschöpft bist, dass du kaum wach bleiben kannst, kannst du zur Not einen kurzen Powernap machen, also ein maximal 15 bis 20 Minuten langes Nickerchen. Stell dir dann unbedingt einen Wecker und steh nach spätestens 20 Minuten auf.",
           "AnswerOptions": [
             "Darauf gebe ich schon acht",
             "Das würde ich gerne verändern"
           ],
           "AllowMultiple": false
+        },
+        {
+          "Text": "Nüsse"
         },
         {
           "Question": "Nüsse und Mandeln sind gut für das Gehirn. Sie liefern ihm wichtige Nährstoffe. Diese Nährstoffe helfen dem Körper, tagsüber den Botenstoff Serotonin zu bilden. Wenn es dunkel wird, verwandelt der Körper Serotonin in Melatonin – ein Stoff, der dir beim Einschlafen hilft. Mehr Serotonin bedeutet, dass dein Körper abends mehr Melatonin bilden kann. So können Nüsse und Mandeln den Schlaf unterstützen.",
@@ -4873,12 +5203,18 @@
           "Text": "Seine Schlafgewohnheiten zu ändern, kann helfen, wenn man Probleme mit dem Schlafen hat. Sieh dir an, was du **abends und nachts** tun kannst, um gut zu schlafen."
         },
         {
+          "Text": "Essen und Trinken"
+        },
+        {
           "Question": "Trinke möglichst drei Stunden vor dem Zubettgehen keinen Alkohol, keinen Kaffee und rauche keine Zigaretten mehr. Auch große und schwere Mahlzeiten sollten das letzte Mal drei Stunden vor dem Zubettgehen gegessen werden. So kann der Körper viel schneller herunterfahren.",
           "AnswerOptions": [
             "Darauf gebe ich schon acht",
             "Das würde ich gerne verändern"
           ],
           "AllowMultiple": false
+        },
+        {
+          "Text": "Entspannung"
         },
         {
           "Question": "Versuche, dir abends vor dem Zubettgehen eine Pufferzone zu schaffen und zwei Stunden vor dem Zubettgehen nichts Aufregendes mehr zu tun. Du solltest möglichst keine Problemgespräche mehr führen, sondern dich erholen.",
@@ -4889,12 +5225,18 @@
           "AllowMultiple": false
         },
         {
+          "Text": "Körperliche Ruhe vor dem Schlafengehen"
+        },
+        {
           "Question": "Regelmäßige Bewegung ist wichtig, aber möglichst nicht direkt vor dem Schlafengehen. Abends kannst du eher entspannende Übungen machen, wie z. B. Yoga.",
           "AnswerOptions": [
             "Darauf gebe ich schon acht",
             "Das würde ich gerne verändern"
           ],
           "AllowMultiple": false
+        },
+        {
+          "Text": "Regelmäßige Aufsteh- und Schlafenszeiten"
         },
         {
           "Question": "Du solltest jeden Abend zur gleichen Zeit ins Bett gehen und jeden Morgen zur gleichen Zeit aufstehen, egal wie gut du geschlafen hast und wie gerne du liegen bleiben würdest. Dein Körper gewöhnt sich mit der Zeit an einen festen Rhythmus. Selbst am Wochenende sollten wir zur gleichen Zeit schlafen und aufstehen.",
@@ -4905,6 +5247,9 @@
           "AllowMultiple": false
         },
         {
+          "Text": "Das Bett ist nur zum Schlafen da"
+        },
+        {
           "Question": "Nutze das Bett nur zum Schlafen, nicht zum Essen, Grübeln, Fernsehen oder Arbeiten. Sexuelle Aktivitäten sind natürlich die Ausnahme. Auf diese Weise sorgst du dafür, dass sich dein Körper, sobald du im Bett liegst, auf das Schlafen einstellt.",
           "AnswerOptions": [
             "Darauf gebe ich schon acht",
@@ -4913,12 +5258,18 @@
           "AllowMultiple": false
         },
         {
+          "Text": "Uhrzeit ignorieren"
+        },
+        {
           "Question": "Schau nachts nicht auf die Uhr. Dann kannst du auch nicht ausrechnen, wie wenige Stunden du jetzt noch schlafen kannst. Denn das führt nur dazu, dass du noch schlechter einschlafen kannst!",
           "AnswerOptions": [
             "Darauf gebe ich schon acht",
             "Das würde ich gerne verändern"
           ],
           "AllowMultiple": false
+        },
+        {
+          "Text": "Einschlafritual"
         },
         {
           "Question": "Ein Einschlafritual kann uns helfen, schneller zur Ruhe zu finden und einzuschlafen. In der nächsten Übung findest du Tipps für dein Einschlafritual und kannst dir ein eigenes Einschlafritual überlegen.",
@@ -4931,6 +5282,9 @@
       ],
       "Schlafzimmer": [
         {
+          "Text": "Wie wird mein Schlafzimmer zu einem ruhigen und gemütlichen Ort?"
+        },
+        {
           "Text": "Eine gute und schöne Atmosphäre im Schlafzimmer ist eine Grundvoraussetzung für einen erholsamen Schlaf. Denn wenn wir uns wohl fühlen, dann können wir uns besser entspannen und in den Schlaf finden."
         },
         {
@@ -4941,12 +5295,18 @@
           "AnswerOptions": "free_text"
         },
         {
+          "Text": "Eine kleine Lampe"
+        },
+        {
           "Question": "Versuche, kleine Lampen in dein Schlafzimmer zu stellen, sodass du abends kein großes und helles Licht anmachen musst. Der Vorteil ist, dass kleine Lampen für eine gemütliche Atmosphäre sorgen und dämmriges Licht uns besser zur Ruhe kommen lässt. Du kannst dir z.B. auch eine schöne Lichterkette aufhängen.",
           "AnswerOptions": [
             "Das habe ich schon",
             "Das möchte ich ändern"
           ],
           "AllowMultiple": false
+        },
+        {
+          "Text": "Dunkle Vorhänge"
         },
         {
           "Question": "Diese sorgen ebenfalls für eine gute Schlafatmosphäre, denn zu viel Licht hält unseren Körper wach. Wenn du keine dunklen Vorhänge hast, kannst du z.B. auch abends eine dunkle Decke vor die Fenster hängen oder dir eine Schlafmaske besorgen.",
@@ -4957,12 +5317,18 @@
           "AllowMultiple": false
         },
         {
+          "Text": "Schöne Fotos und Bilder"
+        },
+        {
           "Question": "Um eine angenehme Atmosphäre in deinem Schlafzimmer zu schaffen, kannst du schöne Fotos (vielleicht von Freunden oder einem schönen Spaziergang) oder Bilder aufhängen, die du gerne magst.",
           "AnswerOptions": [
             "Das habe ich schon",
             "Das möchte ich ändern"
           ],
           "AllowMultiple": false
+        },
+        {
+          "Text": "Angenehme Raumtemperatur"
         },
         {
           "Question": "Bei 17 Grad fällt es dem Körper besonders leicht, herunterzufahren und zu schlafen. Versuche daher, abends die Heizung auszustellen und vor dem Schlafengehen das Schlafzimmer gut durchzulüften.",
@@ -4987,10 +5353,19 @@
           "Text": "Ein Einschlafritual kann uns helfen, schneller zur Ruhe zu finden und einzuschlafen. Auf den folgenden Seiten findest du Ideen für dein Einschlafritual."
         },
         {
+          "Text": "Entspannungsbad"
+        },
+        {
           "Text": "Ein warmes Bad kann helfen, deine Muskeln zu entspannen und deinen Kopf von Stress und Spannungen zu befreien. Das erleichtert das Einschlafen."
         },
         {
+          "Text": "Warme Dusche"
+        },
+        {
           "Text": "Eine warme Dusche kann ähnlich wie ein Entspannungsbad dazu beitragen, deinen Kopf zu beruhigen und eine entspannte Stimmung zu schaffen, die beim Einschlafen hilft."
+        },
+        {
+          "Text": "Schlaftee"
         },
         {
           "Text": "Ein Schlaftee kann beruhigende Kräuter enthalten, die deinen Kopf entspannen und zur Vorbereitung auf den Schlaf beitragen. Zum Beispiel kann Baldrian-Tee unseren Schlaf fördern."
@@ -5070,6 +5445,9 @@
       "Abstand zum Grübeln": [
         {
           "Text": "Lass uns ein Experiment machen: Denke in der nächsten Minute auf keinen Fall an die Zahl 8! Du darfst nicht daran denken! Die Zeit läuft!"
+        },
+        {
+          "Text": "Gedankenwolken"
         },
         {
           "Text": "- Betrachte dein inneres Geschehen, ohne einzugreifen oder dich dafür abzuwerten - Beobachte die Gedanken, wie sie wie Wolken am Himmel vorbeiziehen"
@@ -5173,6 +5551,9 @@
           "Text": "Schlaf ist lebenswichtig für uns alle. In diesem Video lernst du die verschiedenen Schlafphasen kennen."
         },
         {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
           "Question": "Schlaf besteht aus mehreren Phasen, die sich mehrmals pro Nacht wiederholen.",
           "AnswerOptions": [
             "Wahr",
@@ -5184,6 +5565,9 @@
           "Text": "**Der Satz ist wahr.** Unser Schlaf ist in Phasen unterteilt: Einschlafen, Leichtschlaf, Tiefschlaf und REM-Schlaf (Traumschlaf). Diese Phasen bilden zusammen einen Zyklus, der sich etwa vier bis sieben Mal pro Nacht wiederholt."
         },
         {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
           "Question": "Das Einschlafen dauert immer weniger als 15 Minuten",
           "AnswerOptions": [
             "Wahr",
@@ -5193,6 +5577,9 @@
         },
         {
           "Text": "**Der Satz ist falsch.** Die Einschlafphase dauert meistens etwa 15 Minuten. Bei manchen Menschen etwas mehr, bei manchen etwas weniger. In dieser Zeit wird der Körper ruhiger und wir gleiten langsam in den Schlaf. Wenn es etwas länger dauert, ist das auch okay."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
         },
         {
           "Question": "Man schläft jede Nacht gleich – immer mit den gleichen Phasen in gleicher Länge.",
@@ -5449,6 +5836,9 @@
           "Text": "Selbstwert zeigt sich oft daran, dass jemand präsent, offen und ruhig wirkt – nicht übertrieben, sondern ausgeglichen. Eine **stabile Körpersprache**, eine **aufrechte Haltung** oder ein **fester Händedruck** können daher sichtbare Merkmale von Selbstwert sein. Nervöse Hände oder hängende Schultern deuten eher auf Anspannung oder Unsicherheit hin. Wer sich klein macht, zeigt oft unbewusst: \"Ich fühle mich nicht stark oder wichtig.\""
         },
         {
+          "Text": "Wie ist deine Einschätzung?"
+        },
+        {
           "Question": "Wie ist die Stimme?",
           "AnswerOptions": [
             "Leise",
@@ -5492,6 +5882,9 @@
           "Text": "Manchmal fühlen wir uns unsicher oder nicht gut genug. Es gibt aber kleine Dinge, die du im Alltag tun kannst, damit du dich wieder wohler mit dir selbst fühlst. Die folgende Idee hilft dir dabei, dein Selbstwertgefühl zu stärken und gut für dich zu sorgen."
         },
         {
+          "Text": "Körperliche Aktivität"
+        },
+        {
           "Text": "Bewegung und Sport tun nicht nur dem Körper gut. Sie helfen uns auch dabei, uns besser zu fühlen und mehr an uns zu glauben. Das liegt daran, dass beim Sport sogenannte Endorphine im Körper freigesetzt werden. Endorphine sind Stoffe, die dein Körper selbst herstellt. Sie wirken wie kleine Glückshelfer: Sie machen dich fröhlicher und helfen, Stress besser auszuhalten."
         },
         {
@@ -5505,6 +5898,9 @@
       "Me-Time": [
         {
           "Text": "Manchmal fühlen wir uns unsicher oder nicht gut genug. Es gibt aber kleine Dinge, die du im Alltag tun kannst, damit du dich wieder wohler mit dir selbst fühlst. Die folgende Idee hilft dir dabei, dein Selbstwertgefühl zu stärken und gut für dich zu sorgen."
+        },
+        {
+          "Text": "Me-Time"
         },
         {
           "Text": "Nimm dir Zeit für Selbstpflegeaktivitäten, die dir Freude bereiten und dir ein Gefühl der Wertschätzung für dich selbst vermitteln, wie zum Beispiel ein warmes Bad, ein Spaziergang in der Natur oder ein Buch lesen, das du magst. Was könnte dir noch gut tun?"
@@ -5616,7 +6012,13 @@
           "Text": "Die Übung besteht aus zwei Teilen. Zuerst, frage deine Familie oder Freunde nach deinen Stärken. Dann überlege selbst, was du in letzter Zeit richtig gut gemeistert hast. Das kann auch etwas Kleines sein, wie ein Einkauf im Supermarkt, der dir lange Zeit schwer gefallen ist."
         },
         {
+          "Text": "Frage deine Freunde und Familie, was sie an dir schätzen"
+        },
+        {
           "Text": "Stelle ihnen zum Beispiel diese Fragen: - Was schätzt du an mir? - Was findest du gut an mir? - Wobei habe ich dir schon einmal geholfen? - Wie bin ich, wenn es mir gut geht?"
+        },
+        {
+          "Text": "Überlege selbst, welche Stärken du hast"
         },
         {
           "Text": "Stelle dir dafür folgende Fragen: - Welche Situationen hast du selbst in letzter Zeit richtig gut gemeistert? - Was hast du gut hinbekommen? - Hast du vielleicht sogar ein Kompliment für etwas bekommen?"
@@ -5626,6 +6028,9 @@
         }
       ],
       "Kreativ werden": [
+        {
+          "Text": "Kreativ werden"
+        },
         {
           "Text": "Entfalte deine Kreativität durch Malen, Schreiben, Singen oder Tanzen. Das Ausdrücken deiner Gedanken und Gefühle auf kreative Weise kann dazu beitragen, dein Selbstbewusstsein zu stärken. Mache zum Beispiel einen Themen-Spaziergang und fotografiere nur Dinge, die rund, rot oder alt sind. Oder reiße Bilder oder Wörter aus alten Zeitschriften und klebe sie zu einer Collage neu zusammen. Dabei geht es nicht um das Ergebnis, sondern um den Spaß am kreativen Ausdrücken und Ausprobieren."
         },
@@ -5655,6 +6060,9 @@
       ],
       "Hilfe leisten": [
         {
+          "Text": "Hilfe leisten"
+        },
+        {
           "Text": "Oft kann es uns Stabilität geben, anderen zu helfen. Engagiere dich in freiwilliger Arbeit oder unterstütze andere Menschen auf andere Weise. Das Gefühl, anderen zu helfen und einen positiven Einfluss zu haben, kann dein Selbstwertgefühl stärken."
         },
         {
@@ -5673,27 +6081,48 @@
           "Text": "In dieser Übung geht es darum, dir bewusst zu machen, was dich als Person ausmacht, was dir im Leben wichtig ist und was du gut kannst. Wenn du deine Stärken kennst, fällt es oft leichter, auch mit schwierigen Zeiten oder Selbstzweifeln umzugehen."
         },
         {
+          "Text": "Das Regal"
+        },
+        {
           "Text": "Stell dir vor, dein Leben ist wie ein Regal mit vielen Fächern. Manche Fächer sind mehr und andere weniger gut gefüllt. In jedem Fach liegt etwas, das dich als Mensch ausmacht – Eigenschaften, Fähigkeiten, Erfahrungen oder Werte. Lass uns einmal gemeinsam in die Fächer deines Regals schauen."
+        },
+        {
+          "Text": "Hobbys"
         },
         {
           "Question": "Hast du Hobbys und Leidenschaften, die dir wichtig sind? Das könnten Dinge sein wie Malen, Musik spielen, Kochen oder Lesen.",
           "Answer": "free_text"
         },
         {
+          "Text": "Beruf oder Ausbildung"
+        },
+        {
           "Question": "Was sind deine Stärken im beruflichen Bereich? Wenn du gerade nicht berufstätig bist, fallen dir vielleicht Stärken aus deiner letzten Tätigkeit ein. Oder aus einer Aus- oder Weiterbildung. Beispiele sind Pünktlichkeit, Teamfähigkeit oder Zuverlässigkeit.",
           "Answer": "free_text"
+        },
+        {
+          "Text": "Bewegung oder Sport"
         },
         {
           "Question": "Welche Art von Bewegung tut dir gut? Gibt es vielleicht einen Sport, den du besonders gut kannst oder magst? Zum Beispiel Schwimmen, Yoga, Boxen oder Tanzen. Vielleicht gibt es auch Dinge, die du früher gern gemacht hast.",
           "Answer": "free_text"
         },
         {
+          "Text": "Aussehen"
+        },
+        {
           "Question": "Gibt es etwas, das dir an deinem Aussehen gefällt? Zum Beispiel dein Lächeln, deine Haarfarbe, deine Hände oder Augen. Oder vielleicht auch dein Lieblingspullover, in dem du dich wohl fühlst.",
           "Answer": "free_text"
         },
         {
+          "Text": "Beziehungen"
+        },
+        {
           "Question": "Was sind deine Stärken im Umgang mit anderen? Zum Beispiel Empathie oder Verlässlichkeit. Vielleicht bist du gut darin, Konflikte zu lösen, Dinge mit anderen zu organisieren oder andere zum Lachen zu bringen?",
           "Answer": "free_text"
+        },
+        {
+          "Text": "Fähigkeiten"
         },
         {
           "Question": "Schreibe hier deine Fähigkeiten und Talente auf. Zum Beispiel Sprachen sprechen oder Handwerken. Vielleicht hast du einen grünen Daumen? Wenn du an eine vertraute Person denkst, zum Beispiel einen guten Freund, welche Fähigkeiten würde er oder sie für dich aufschreiben?",
@@ -5708,13 +6137,25 @@
       ],
       "Stabilität finden": [
         {
+          "Text": "Welche Dinge oder Menschen haben dir geholfen, Stabilität zu finden?"
+        },
+        {
           "Text": "Die Antworten auf diese Frage können ganz unterschiedlich aussehen. Auf den nächsten Seiten erzählen Joke und Elias, die beide von Schizophrenie betroffen sind, was ihnen im Alltag Stabilität und Halt gibt."
+        },
+        {
+          "Text": "Stabilität für Joke"
         },
         {
           "Text": "Welche Dinge oder Menschen haben dir geholfen, Stabilität zu finden? Für Joke ist das ihre Familie, eine feste Tagesstruktur und die Neugier, jede Woche etwas Neues zu erleben."
         },
         {
+          "Text": "Stabilität für Elias"
+        },
+        {
           "Text": "Stabilität geben Elias vor allem seine Familie und die Musik."
+        },
+        {
+          "Text": "Welche Dinge oder Menschen helfen dir dabei, Stabilität zu finden?"
         },
         {
           "Question": "Wie schaffst du es, Tag für Tag weiter zu machen? Wer oder was gibt dir Kraft?",
@@ -5726,6 +6167,9 @@
       "Perfektes Leben?": [
         {
           "Text": "Wenn unser Selbstwert gerade niedrig ist, glauben wir oft, andere Menschen hätten überhaupt keine Probleme. Besonders bei bekannten und berühmten Personen denken wir vielleicht manchmal: \"Die haben bestimmt keine schlechten Tage.\" Aber gibt es wirklich das perfekte Leben?"
+        },
+        {
+          "Text": "Das perfekte Leben?"
         },
         {
           "Text": "Selena Gomez: Die Schauspielerin und Sängerin Selena Gomez ist an einer bipolaren Störung erkrankt. Dafür schämt sie sich aber nicht und spricht in ihrer Dokumentation \"My Mind and Me\" darüber. In ihrer Dokumentation erklärt sie, dass die Möglichkeit, offen über das \"chemische Ungleichgewicht\" in ihrem Gehirn zu sprechen, ihr das Gefühl gegeben habe \"freier\", nachdem sie ihre Diagnose entdeckt hatte."
@@ -5749,6 +6193,9 @@
           "Text": "Viele Menschen wirken nach außen gesund oder erfolgreich, aber innerlich kann es ganz anders aussehen. Vielleicht kämpfen sie mit Ängsten, Druck oder gesundheitlichen Schwierigkeiten. Du siehst nur einen kleinen Ausschnitt."
         },
         {
+          "Text": "Übrigens..."
+        },
+        {
           "Text": "Es besteht oft ein Unterschied zwischen unserer Selbstsicht und der Art und Weise, wie andere uns wahrnehmen. Wenn wir uns selbst z.B. für langweilig halten, müssen andere das nicht genauso sehen. Es gibt ganz verschiedene Ansichten! Viele Menschen betrachten sich selbst überkritisch."
         }
       ],
@@ -5757,12 +6204,21 @@
           "Text": "In dieser Übung lernst du einen Selbstwertbooster kennen: Die 7-2-1-Regel. Lobe dich an 7 Tagen die Woche. Gönn dir an 2 Tagen pro Woche etwas Schönes. Stelle dich 1 Tag die Woche einer Herausforderung."
         },
         {
+          "Text": "Lobe dich an 7 Tagen die Woche."
+        },
+        {
           "Question": "Worauf bist du heute stolz?",
           "AnswerOptions": "free_text"
         },
         {
+          "Text": "Gönn dir an 2 Tagen pro Woche etwas Schönes."
+        },
+        {
           "Question": "Welche zwei Dinge könntest du dir diese Woche gönnen?",
           "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Stelle dich 1 Tag die Woche einer Herausforderung."
         },
         {
           "Question": "Welcher Herausforderung möchtest du dich diese Woche stellen?",
@@ -5775,6 +6231,9 @@
       "Unfaire Vergleiche": [
         {
           "Text": "Wir vergleichen uns häufig schnell und unbewusst mit anderen Menschen. Das ist normal. Mit wem und worin wir uns vergleichen, kann allerdings unseren Selbstwert beeinflussen. Menschen mit einem niedrigeren Selbstwert wählen häufig unfaire Vergleiche."
+        },
+        {
+          "Text": "Beispiele für unfaire Vergleiche"
         },
         {
           "Text": "Hier siehst du einige Beispiele für unfaire Vergleiche. Kannst du dir vorstellen, weshalb sie unfair sind?"
@@ -5813,6 +6272,9 @@
           "AllowMultiple": false
         },
         {
+          "Text": "Einschränkungen akzeptieren"
+        },
+        {
           "Text": "Es kann schwer fallen, eine Einschränkung im Leben zu akzeptieren. Warum kann ich nicht so viel schaffen wie früher oder wie andere? Solche Fragen beschäftigen auch Joke."
         },
         {
@@ -5833,6 +6295,9 @@
         }
       ],
       "Psychose und Selbstwertgefühl": [
+        {
+          "Text": "Wie hängen Psychose und Selbstwertgefühl zusammen?"
+        },
         {
           "Text": "Unser Selbstwertgefühl ist nicht immer gleich – auch während einer akuten Psychose kann es schwanken und sich verändern. Vielleicht kennst du das Gefühl, dass du in einer Phase sehr stark an dich glaubst und dich dann in einer anderen wieder extrem unsicher fühlst."
         },
@@ -5873,10 +6338,16 @@
       ],
       "Kleine Erfolge feiern": [
         {
+          "Text": "Kleine Erfolge feiern"
+        },
+        {
           "Text": "Feiere auch kleine Erfolge und Fortschritte, anstatt nur auf große Meilensteine zu warten. Belohne dich selbst für deine Bemühungen und Leistungen, egal wie klein sie erscheinen mögen. Das hilft dir dabei, dein Selbstwertgefühl zu stärken."
         },
         {
           "Text": "_\"Wenn wir kleine Ziele verfolgen, dann schaffen wir alles!\"_ Joke lebt seit 2012 mit Schizophrenie. Im Video spricht sie davon, wie wichtig es für sie ist, kleine Schritte zu gehen und auch kleine Erfolge zu feiern."
+        },
+        {
+          "Text": "To-Do-Listen erstellen"
         },
         {
           "Text": "Erstelle täglich eine Liste mit Aufgaben und Zielen, die du erreichen möchtest. Das Abhaken erledigter Aufgaben kann ein Gefühl der Erfüllung und Zufriedenheit vermitteln. Achte darauf, dir kleine und realistische Ziele zu setzen. Starte direkt: Was hast du heute geschafft? Was ist heute noch zu erledigen?"
@@ -5909,16 +6380,25 @@
           "AllowMultiple": true
         },
         {
+          "Text": "Wenn du Betroffenen eine einzige Botschaft mit auf den Weg geben könntest – was wäre das?"
+        },
+        {
           "Text": "Diese Frage haben wir Marco gestellt. Im Video erzählt der Arzt und Spezialist für Psychosen, dass Schizophrenie nur _ein_ Teil des Lebens ist - und es noch viele Dinge mehr gibt, die eine Person ausmachen."
         }
       ],
       "Positive Erinnerungen sammeln": [
+        {
+          "Text": "Erinnerungen sammeln"
+        },
         {
           "Text": "Führe eine Liste mit positiven Erinnerungen und schönen Erlebnissen und schaue sie regelmäßig durch, um dein Selbstwertgefühl zu stärken. Was ist die erste positive Erinnerung, die dir einfällt? Ein Urlaub vielleicht? Eine Geburtstagsfeier? Ein Treffen mit Freunden?"
         },
         {
           "Question": "Eine schöne Erinnerung:",
           "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Erfahrungen sammeln"
         },
         {
           "Text": "Führe eine Liste mit positiven Erfahrungen, Erfolgen und Komplimenten, die du erhalten hast, und schaue sie regelmäßig durch, um dein Selbstwertgefühl zu stärken. Was war das letzte Kompliment, das du bekommen hast? Und wem könntest du z. B. heute ein Kompliment machen?"
@@ -5965,13 +6445,25 @@
     "Ankommen": {
       "Gutes Leben": [
         {
+          "Text": "Elyn Saks"
+        },
+        {
           "Text": "Elyn Saks ist Professorin für Recht an der University of Southern California. Sie lebt mit Schizophrenie und hat ein Buch über ihr Leben geschrieben: *Die Mitte hält nicht mehr*. Elyn setzt sich stark gegen Vorurteile gegenüber psychischen Erkrankungen ein. Ihr Leben zeigt: Auch mit Psychosen kann man studieren, arbeiten und glücklich sein. Viele bekannte Menschen der Weltgeschichte hatten psychische Störungen - und haben trotzdem Großes erreicht."
+        },
+        {
+          "Text": "Marco"
         },
         {
           "Text": "Lerne Marco kennen. Marco ist Arzt und behandelt Menschen mit Psychosen."
         },
         {
+          "Text": "Ein \"normales\" Leben"
+        },
+        {
           "Text": "Viele Menschen denken nach der Diagnose Schizophrenie, dass sie nie wieder ein \"normales\" Leben führen können. Marco hat viele Patientinnen und Patienten erlebt, die durch eine gute Behandlung, Therapie und eigene Strategien gelernt haben, mit ihrer Erkrankung umzugehen."
+        },
+        {
+          "Text": "Psychosen schließen ein gutes Leben nicht aus"
         },
         {
           "Text": "Viele Menschen mit psychischen Erkrankungen führen ein erfülltes, sicheres und aktives Leben. Es gibt Therapien und Medikamente, die helfen. Aber auch außerhalb der Behandlung kann man selbst etwas tun. Schon kleine Schritte im Alltag können helfen: - jeden Tag zur gleichen Zeit aufstehen - sich etwas Leckeres kochen - eigene Strategien bei Stimmen oder anderen Halluzinationen entwickeln Was aber bedeutet eigentlich *ein gutes Leben*?"
@@ -6036,7 +6528,13 @@
           "Text": "Stell dir vor, dein Atem ist wie ein Ballon in deinem Bauch. Atme tief ein und spür, wie sich dein Bauchraum mit Luft füllt, genauso wie ein Ballon, der sich langsam aufbläht. Halte den Atem kurz an und spür, wie sich die Luft in deinem Inneren ausdehnt. Dann lass die Luft langsam wieder heraus, während sich der Ballon zusammenzieht."
         },
         {
+          "Text": "Joke"
+        },
+        {
           "Text": "Lerne Joke kennen. Joke lebt seit 2012 mit Schizophrenie und macht Aufklärungsarbeit. Du erfährst, wie sie ihr Leben trotz und mit der Diagnose Schizophrenie aktiv gestaltet. Joke begleitet dich, gemeinsam mit weiteren Betroffenen, durch die Kiso Mind App."
+        },
+        {
+          "Text": "Mister Schi"
         },
         {
           "Text": "Joke erzählt davon, wie sie gelernt hat, mit ihrer Diagnose Schizophrenie zu leben, ohne dass sie ihr Leben bestimmt. Ihr hilft es, sich die Schizophrenie bildlich, als Person *Mister Schi*, vorzustellen. *Mister Schi* ist Teil ihres Lebens. Sie entscheidet aber selbst, wann sie ihn in ihr Leben lässt, damit sie am Leben teilnehmen kann."

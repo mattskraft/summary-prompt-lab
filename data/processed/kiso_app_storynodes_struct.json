@@ -137,6 +137,9 @@
   ],
   "Willkommen - Beziehungen": [
     {
+      "Text": "Beziehungen"
+    },
+    {
       "Text": "Offene Gespräche und kleine Begegnungen tun gut. Auch wenn es schwerfällt: Beziehungen zu pflegen ist gut für die Gesundheit."
     }
   ],
@@ -146,6 +149,9 @@
     }
   ],
   "Willkommen - Wahngedanken": [
+    {
+      "Text": "Umgang mit Wahngedanken"
+    },
     {
       "Text": "Manche Gedanken fühlen sich sehr real an, auch wenn andere sie nicht teilen. Es kann helfen, sie zu hinterfragen und neue Sichtweisen zu entdecken."
     }
@@ -356,6 +362,9 @@
   ],
   "Willkommen - Schlaf": [
     {
+      "Text": "Schlaf"
+    },
+    {
       "Text": "Guter Schlaf gibt Kraft und hilft dem Gehirn, sich zu erholen. Feste Schlafzeiten und abends zur Ruhe kommen sind kleine Schritte mit großer Wirkung."
     }
   ],
@@ -444,6 +453,9 @@
   ],
   "Willkommen - Selbstwert": [
     {
+      "Text": "Selbstwert"
+    },
+    {
       "Text": "Jeder Mensch ist wertvoll – auch mit psychischen Belastungen. Es hilft, sich an eigene Stärken zu erinnern und kleine Erfolge bewusst wahrzunehmen."
     }
   ],
@@ -470,6 +482,9 @@
   ],
   "Willkommen - Halluzinationen": [
     {
+      "Text": "Umgang mit Halluzinationen"
+    },
+    {
       "Text": "Halluzinationen, wie das Hören von Stimmen, können beängstigend sein. Aber man kann lernen, besser mit ihnen umzugehen. Es hilft, sich bewusst zu machen: _Ich habe Stimmen, aber sie bestimmen nicht über mich_."
     }
   ],
@@ -489,6 +504,9 @@
     }
   ],
   "Willkommen - Stimmungskrisen": [
+    {
+      "Text": "Stimmungskrisen"
+    },
     {
       "Text": "Manche Tage sind schwer. Sich bewegen, etwas Schönes planen oder mit jemandem reden – das sind erste Schritte aus Stimmungskrisen."
     }
