@@ -378,7 +378,23 @@
   "Angenehme Aktivitäten 1": {
     "enabled": true,
     "comment": "",
-    "segment_toggles": []
+    "segment_toggles": [
+      true,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   },
   "Äußere Merkmale von Selbstwert": {
     "enabled": true,
