@@ -634,7 +634,11 @@
   "Atem und Entspannung": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": []
+    "segment_toggles": [
+      true,
+      true,
+      true
+    ]
   },
   "Ungewöhnliches erklären": {
     "enabled": true,
