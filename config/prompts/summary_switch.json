@@ -1133,5 +1133,44 @@
       true,
       true
     ]
+  },
+  "Zuschreibungen im Alltag": {
+    "enabled": false,
+    "comment": "TODO\nZu viele Anworten für eine knappe Mistral Zusammenfassung?",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
