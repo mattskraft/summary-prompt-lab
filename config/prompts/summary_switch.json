@@ -751,5 +751,14 @@
     "segment_toggles": [
       true
     ]
+  },
+  "Seufzeratmung": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true,
+      true
+    ]
   }
 }
