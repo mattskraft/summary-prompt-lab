@@ -151,8 +151,22 @@
   },
   "Was sind Stimmungskrisen?": {
     "enabled": true,
-    "comment": "",
-    "segment_toggles": []
+    "comment": "TODO\nAnweisungen angepasst",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   },
   "Berühmte Stimmenhörer": {
     "enabled": true,
