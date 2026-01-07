@@ -1431,8 +1431,23 @@
   },
   "Kopfkino": {
     "enabled": true,
-    "comment": "",
-    "segment_toggles": []
+    "comment": "TODO\nZusammenfassung erst nach story node",
+    "segment_toggles": [
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   },
   "Bodyscan: Körperwahrnehmung": {
     "enabled": false,
