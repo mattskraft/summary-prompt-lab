@@ -690,5 +690,27 @@
       true,
       true
     ]
+  },
+  "Gedanken und Stress": {
+    "enabled": true,
+    "comment": "TODO\nNur die 1 Frage?",
+    "segment_toggles": [
+      true,
+      true,
+      false,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
   }
 }
