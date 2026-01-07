@@ -1638,5 +1638,13 @@
       true,
       true
     ]
+  },
+  "Blätter im Fluss": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true
+    ]
   }
 }
