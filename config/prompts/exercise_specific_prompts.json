@@ -102,7 +102,7 @@
     "example2": ""
   },
   "Selbstwirksamkeit": {
-    "anweisungen": "# Anweisungen\n- Formuliere eine zusammenhängende Zusammenfassung der ANTWORT\n- Nutze TEXT und FRAGE nur als Kontext\n- Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n- Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider",
+    "anweisungen": "# Anweisungen\n- Formuliere eine zusammenhängende Zusammenfassung der ANTWORT\n- Nutze TEXT und FRAGE nur als Kontext\n- Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n- Gebe keine expliziten Ratschläge\n- Spiegele keine potenziell bedrohlichen oder depressiven Gedanken in den Antworten wider",
     "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
     "example1": "",
     "example2": ""
