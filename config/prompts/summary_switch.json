@@ -1458,5 +1458,29 @@
     "enabled": true,
     "comment": "",
     "segment_toggles": []
+  },
+  "4-7-8-Atmung": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": []
+  },
+  "Die Macht der Stimmung": {
+    "enabled": false,
+    "comment": "TODO\nKeine Zusammenfassung, da nur Reflationsfragen",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
