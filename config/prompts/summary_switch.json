@@ -1470,7 +1470,9 @@
   "4-7-8-Atmung": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": []
+    "segment_toggles": [
+      true
+    ]
   },
   "Die Macht der Stimmung": {
     "enabled": false,
