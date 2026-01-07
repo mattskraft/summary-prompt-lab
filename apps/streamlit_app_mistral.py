@@ -1310,6 +1310,14 @@ if sel_uebung:
         f"{session_key}_generated" if has_generated else f"{session_key}_original"
     )
     
+    # If segment count changed, reset toggles to all True (avoids applying stale toggles to wrong segments)
+    if saved_segment_toggles and len(saved_segment_toggles) != len(segments_to_display):
+        st.warning(
+            f"⚠️ Anzahl der Segmente hat sich geändert ({len(saved_segment_toggles)} → {len(segments_to_display)}). "
+            "Segment-Toggles wurden zurückgesetzt."
+        )
+        saved_segment_toggles = []
+    
     st.markdown("---")
     st.subheader("Übung")
     filled_segments, current_toggles = render_segments_ui(
