@@ -1660,5 +1660,38 @@
       true,
       true
     ]
+  },
+  "Genießen lernen": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Morgenroutine": {
+    "enabled": true,
+    "comment": "TODO",
+    "segment_toggles": [
+      true,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
