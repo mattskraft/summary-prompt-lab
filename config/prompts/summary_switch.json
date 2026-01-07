@@ -1482,5 +1482,15 @@
       true,
       true
     ]
+  },
+  "Eine kleine Sache": {
+    "enabled": false,
+    "comment": "TODO\nZusammenfassung lohnt nicht wirklich?",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
