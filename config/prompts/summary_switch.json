@@ -1321,5 +1321,28 @@
       true,
       true
     ]
+  },
+  "Warum ist Aktivität wichtig?": {
+    "enabled": false,
+    "comment": "TODO\nNur Intro-Fragen",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
