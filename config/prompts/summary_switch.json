@@ -1224,5 +1224,26 @@
       true,
       true
     ]
+  },
+  "Angenehme Aktivitäten 3": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": [
+      true,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
   }
 }
