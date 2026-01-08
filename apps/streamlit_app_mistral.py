@@ -474,6 +474,37 @@ def build_hierarchy(ex_struct: Any) -> Dict[str, Dict[str, List[str]]]:
     return hierarchy
 
 
+def calculate_text_area_height(text: str, min_height: int = 100, max_height: int = 1200, line_height: int = 24) -> int:
+    """Calculate appropriate text area height based on content.
+    
+    Args:
+        text: The text content
+        min_height: Minimum height in pixels
+        max_height: Maximum height in pixels  
+        line_height: Approximate pixels per line
+        
+    Returns:
+        Height in pixels that fits the content
+    """
+    if not text:
+        return min_height
+    
+    # Count lines (including wrapped lines for very long lines)
+    lines = text.split('\n')
+    total_lines = 0
+    chars_per_line = 80  # Approximate characters that fit in one line
+    
+    for line in lines:
+        # Account for line wrapping on long lines
+        wrapped_lines = max(1, (len(line) // chars_per_line) + 1)
+        total_lines += wrapped_lines
+    
+    # Calculate height with some padding
+    calculated_height = (total_lines * line_height) + 40  # 40px padding
+    
+    return max(min_height, min(calculated_height, max_height))
+
+
 def render_segment_header(label: str, color: str, with_background: bool = False) -> None:
     """Render a consistently styled segment header."""
     styles = [
@@ -1460,10 +1491,11 @@ if sel_uebung:
         st.session_state[gp_state_key] = gp_pending_value
     
     with st.expander("Globaler System-Prompt", expanded=False):
+        gp_current_value = st.session_state.get(gp_state_key, "")
         st.text_area(
             "Globaler System-Prompt",
             key=gp_state_key,
-            height=250,
+            height=calculate_text_area_height(gp_current_value),
             label_visibility="collapsed",
         )
         gp_button_cols = st.columns(2)
@@ -1878,7 +1910,7 @@ if sel_uebung:
             st.text_area(
                 "Letzter an Mistral gesendeter Prompt",
                 value=last_prompt,
-                height=400,
+                height=calculate_text_area_height(last_prompt),
                 label_visibility="collapsed",
                 disabled=True
             )
