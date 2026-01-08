@@ -1,6 +1,5 @@
 import json
 import os
-import random
 import re
 import sys
 import time
@@ -356,8 +355,20 @@ def get_all_exercises_with_paths(hierarchy: Dict[str, Dict[str, List[str]]]) -> 
     return exercises
 
 
-def get_next_exercise(hierarchy: Dict[str, Dict[str, List[str]]], current_uebung: Optional[str]) -> Optional[Tuple[str, str, str]]:
-    """Get the next exercise after the current one, wrapping around if at the end."""
+def get_next_exercise(
+    hierarchy: Dict[str, Dict[str, List[str]]], 
+    current_uebung: Optional[str],
+    skip_completed: bool = False,
+    segment_switch_config: Optional[Dict[str, Any]] = None,
+) -> Optional[Tuple[str, str, str]]:
+    """Get the next exercise after the current one, wrapping around if at the end.
+    
+    Args:
+        hierarchy: Exercise hierarchy
+        current_uebung: Current exercise name
+        skip_completed: If True, skip exercises marked as "config_complete"
+        segment_switch_config: Config dict to check for completed exercises
+    """
     all_exercises = get_all_exercises_with_paths(hierarchy)
     if not all_exercises:
         return None
@@ -375,13 +386,36 @@ def get_next_exercise(hierarchy: Dict[str, Dict[str, List[str]]], current_uebung
     if current_idx is None:
         return all_exercises[0]
     
-    # Get next exercise (wrap around)
-    next_idx = (current_idx + 1) % len(all_exercises)
+    # Get next exercise (wrap around), skipping completed if requested
+    num_exercises = len(all_exercises)
+    for offset in range(1, num_exercises + 1):
+        next_idx = (current_idx + offset) % num_exercises
+        candidate = all_exercises[next_idx]
+        if skip_completed and segment_switch_config:
+            exercise_config = segment_switch_config.get(candidate[2], {})
+            if exercise_config.get("config_complete", False):
+                continue  # Skip this exercise
+        return candidate
+    
+    # All exercises are completed, return next anyway
+    next_idx = (current_idx + 1) % num_exercises
     return all_exercises[next_idx]
 
 
-def get_previous_exercise(hierarchy: Dict[str, Dict[str, List[str]]], current_uebung: Optional[str]) -> Optional[Tuple[str, str, str]]:
-    """Get the previous exercise before the current one, wrapping around if at the beginning."""
+def get_previous_exercise(
+    hierarchy: Dict[str, Dict[str, List[str]]], 
+    current_uebung: Optional[str],
+    skip_completed: bool = False,
+    segment_switch_config: Optional[Dict[str, Any]] = None,
+) -> Optional[Tuple[str, str, str]]:
+    """Get the previous exercise before the current one, wrapping around if at the beginning.
+    
+    Args:
+        hierarchy: Exercise hierarchy
+        current_uebung: Current exercise name
+        skip_completed: If True, skip exercises marked as "config_complete"
+        segment_switch_config: Config dict to check for completed exercises
+    """
     all_exercises = get_all_exercises_with_paths(hierarchy)
     if not all_exercises:
         return None
@@ -399,8 +433,19 @@ def get_previous_exercise(hierarchy: Dict[str, Dict[str, List[str]]], current_ue
     if current_idx is None:
         return all_exercises[-1]
     
-    # Get previous exercise (wrap around)
-    prev_idx = (current_idx - 1) % len(all_exercises)
+    # Get previous exercise (wrap around), skipping completed if requested
+    num_exercises = len(all_exercises)
+    for offset in range(1, num_exercises + 1):
+        prev_idx = (current_idx - offset) % num_exercises
+        candidate = all_exercises[prev_idx]
+        if skip_completed and segment_switch_config:
+            exercise_config = segment_switch_config.get(candidate[2], {})
+            if exercise_config.get("config_complete", False):
+                continue  # Skip this exercise
+        return candidate
+    
+    # All exercises are completed, return previous anyway
+    prev_idx = (current_idx - 1) % num_exercises
     return all_exercises[prev_idx]
 
 
@@ -941,41 +986,35 @@ with st.sidebar:
     
     themen = sorted(hier.keys())
     
-    # Navigation buttons in two columns
-    nav_button_cols = st.columns(3)
+    # Load segment switch config for navigation (to skip completed exercises)
+    nav_segment_switch_config = load_segment_switch_config()
+    
+    # Navigation buttons
+    nav_button_cols = st.columns(2)
     
     with nav_button_cols[0]:
         current_uebung = st.session_state.get(uebung_key)
         if st.button("⬅️ Previous", use_container_width=True, disabled=not hier):
-            previous_exercise = get_previous_exercise(hier, current_uebung)
+            previous_exercise = get_previous_exercise(
+                hier, current_uebung,
+                skip_completed=True,
+                segment_switch_config=nav_segment_switch_config,
+            )
             if previous_exercise:
                 previous_thema, previous_path, previous_uebung = previous_exercise
                 st.session_state[thema_key] = previous_thema
                 st.session_state[path_key] = previous_path
                 st.session_state[uebung_key] = previous_uebung
                 st.rerun()
-
-    with nav_button_cols[1]:
-        if st.button("🎲 Random", use_container_width=True, disabled=not hier):
-            if themen:
-                zufalls_thema = random.choice(themen)
-                available_paths = sorted(hier.get(zufalls_thema, {}).keys())
-                if available_paths:
-                    zufalls_path = random.choice(available_paths)
-                    available_uebungen = sorted(
-                        hier.get(zufalls_thema, {}).get(zufalls_path, [])
-                    )
-                    if available_uebungen:
-                        zufalls_uebung = random.choice(available_uebungen)
-                        st.session_state[thema_key] = zufalls_thema
-                        st.session_state[path_key] = zufalls_path
-                        st.session_state[uebung_key] = zufalls_uebung
-                        st.rerun()
     
-    with nav_button_cols[2]:
+    with nav_button_cols[1]:
         current_uebung = st.session_state.get(uebung_key)
         if st.button("➡️ Next", use_container_width=True, disabled=not hier):
-            next_exercise = get_next_exercise(hier, current_uebung)
+            next_exercise = get_next_exercise(
+                hier, current_uebung,
+                skip_completed=True,
+                segment_switch_config=nav_segment_switch_config,
+            )
             if next_exercise:
                 next_thema, next_path, next_uebung = next_exercise
                 st.session_state[thema_key] = next_thema
@@ -1312,27 +1351,38 @@ if sel_uebung:
         st.session_state[mainrecap_inhalt_key] = inhalt
         st.session_state[f"{sel_uebung}_transfer_main_clicked"] = False
 
-    st.subheader("Segment Switch")
+    st.subheader("Summary Switch")
     
     # Extract current values from config
     switch_enabled = segment_switch_value.get("enabled", False) if isinstance(segment_switch_value, dict) else False
     switch_comment = segment_switch_value.get("comment", "") if isinstance(segment_switch_value, dict) else ""
+    config_complete = segment_switch_value.get("config_complete", False) if isinstance(segment_switch_value, dict) else False
     
     # Session state keys
     switch_checkbox_key = f"{session_key}_segment_switch_enabled"
     switch_comment_key = f"{session_key}_segment_switch_comment"
+    config_complete_key = f"{session_key}_config_complete"
     
     # Initialize session state if needed
     if switch_checkbox_key not in st.session_state:
         st.session_state[switch_checkbox_key] = switch_enabled
     if switch_comment_key not in st.session_state:
         st.session_state[switch_comment_key] = switch_comment
+    if config_complete_key not in st.session_state:
+        st.session_state[config_complete_key] = config_complete
     
-    # Checkbox
-    st.checkbox(
-       "Summary aktiviert",
-       key=switch_checkbox_key,
-    )
+    # Checkboxes in two columns
+    switch_cols = st.columns(2)
+    with switch_cols[0]:
+        st.checkbox(
+           "Summary aktiviert",
+           key=switch_checkbox_key,
+        )
+    with switch_cols[1]:
+        st.checkbox(
+           "Konfiguration abgeschlossen",
+           key=config_complete_key,
+        )
 
     # Comment
     st.text_area(
@@ -1353,10 +1403,12 @@ if sel_uebung:
     if segment_switch_save_clicked:
         new_enabled = st.session_state.get(switch_checkbox_key, False)
         new_comment = st.session_state.get(switch_comment_key, "").strip()
+        new_config_complete = st.session_state.get(config_complete_key, False)
         segment_switch_value = {
             "enabled": new_enabled, 
             "comment": new_comment,
             "segment_toggles": current_toggles,
+            "config_complete": new_config_complete,
         }
         segment_switch_config[sel_uebung] = segment_switch_value
         save_segment_switch_config(segment_switch_config)
