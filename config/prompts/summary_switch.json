@@ -344,7 +344,9 @@
   "Einschlafen mit Musik": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": []
+    "segment_toggles": [
+      true
+    ]
   },
   "Einschlafen mit Naturgeräuschen": {
     "enabled": false,
