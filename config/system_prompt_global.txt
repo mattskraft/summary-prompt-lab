@@ -21,4 +21,4 @@ Der INHALT besteht aus:
 
 # Ausgabeformat
 - Sprache: Deutsch
-- Format: Fließtext, keine Aufzählungen
+- Format: Fließtext, keine Aufzählungen, 1 Absatz
