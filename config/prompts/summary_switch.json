@@ -1547,7 +1547,7 @@
   },
   "Eine kleine Sache": {
     "enabled": false,
-    "comment": "TODO\nZusammenfassung lohnt nicht wirklich?",
+    "comment": "TODO\nZusammenfassung lohnt nicht wirklich? -> sehe ich auch so",
     "segment_toggles": [
       true,
       true,
