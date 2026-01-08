@@ -577,10 +577,13 @@
     "enabled": true,
     "comment": "",
     "segment_toggles": [
+      true,
       false,
+      true,
       false,
+      true,
       false,
-      false,
+      true,
       true,
       true,
       true
