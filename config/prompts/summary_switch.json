@@ -745,7 +745,9 @@
   "Beine an die Wand": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": []
+    "segment_toggles": [
+      true
+    ]
   },
   "Bodyscan: Anspannen & Entspannen": {
     "enabled": false,
