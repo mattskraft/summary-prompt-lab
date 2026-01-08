@@ -755,7 +755,9 @@
   "Ruheort": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": []
+    "segment_toggles": [
+      true
+    ]
   },
   "5-4-3-2-1-Übung": {
     "enabled": false,
