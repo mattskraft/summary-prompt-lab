@@ -151,22 +151,8 @@
   },
   "Was sind Stimmungskrisen?": {
     "enabled": true,
-    "comment": "TODO\nAnweisungen angepasst",
-    "segment_toggles": [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
+    "comment": "",
+    "segment_toggles": []
   },
   "Berühmte Stimmenhörer": {
     "enabled": true,
@@ -317,22 +303,17 @@
   "Gedanken aufschreiben": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": [
-      true
-    ]
+    "segment_toggles": []
   },
   "Die Märchentante": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": [
-      true
-    ]
+    "segment_toggles": []
   },
   "Einschlafen": {
     "enabled": false,
     "comment": "keine Summary nötig, nur eine Frage",
     "segment_toggles": [
-      true,
       true,
       true,
       true,
@@ -344,23 +325,17 @@
   "Einschlafen mit Musik": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": [
-      true
-    ]
+    "segment_toggles": []
   },
   "Einschlafen mit Naturgeräuschen": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": [
-      true
-    ]
+    "segment_toggles": []
   },
   "Einschlafen mit Wikipedia": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": [
-      true
-    ]
+    "segment_toggles": []
   },
   "Ankerübung": {
     "enabled": false,
@@ -382,44 +357,13 @@
   },
   "Aktivitäten planen": {
     "enabled": true,
-    "comment": "TODO\nUnabhängig von der story node Entscheidung, können die zwei darauffolgenden Frage-Antworten zusammengefasst werden.",
-    "segment_toggles": [
-      false,
-      false,
-      false,
-      false,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      false,
-      true,
-      false,
-      true
-    ]
+    "comment": "",
+    "segment_toggles": []
   },
   "Angenehme Aktivitäten 1": {
     "enabled": true,
-    "comment": "TODO\nAnweisungen angepasst",
-    "segment_toggles": [
-      true,
-      false,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
+    "comment": "",
+    "segment_toggles": []
   },
   "Äußere Merkmale von Selbstwert": {
     "enabled": true,
@@ -434,15 +378,7 @@
   "Stimmung und Medikamente": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
+    "segment_toggles": []
   },
   "Gutes Leben": {
     "enabled": false,
@@ -471,9 +407,7 @@
   "Knie-Umarmung": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": [
-      true
-    ]
+    "segment_toggles": []
   },
   "Ankommen": {
     "enabled": false,
@@ -493,9 +427,6 @@
     "enabled": false,
     "comment": "kein Summary notwendig, nur Quiz-Fragen mit Auflösung",
     "segment_toggles": [
-      true,
-      true,
-      true,
       true,
       true,
       true,
@@ -577,13 +508,10 @@
     "enabled": true,
     "comment": "",
     "segment_toggles": [
-      true,
       false,
-      true,
       false,
-      true,
       false,
-      true,
+      false,
       true,
       true,
       true
@@ -686,20 +614,8 @@
   },
   "Der innere Kritiker": {
     "enabled": true,
-    "comment": "TODO\nBei mehreren Tests ist Mistral zu freizügig mit der Zusammenfassung. Eigentlich ist ja - unabhängig von den Antworten des Users - der letzte Textblock ein gutes Schlusswort. Eventuell integrieren?",
-    "segment_toggles": [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
+    "comment": "",
+    "segment_toggles": []
   },
   "Der wohlwollende Begleiter": {
     "enabled": true,
@@ -774,24 +690,17 @@
   "Beine an die Wand": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": [
-      true
-    ]
+    "segment_toggles": []
   },
   "Bodyscan: Anspannen & Entspannen": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": [
-      true,
-      true
-    ]
+    "segment_toggles": []
   },
   "Ruheort": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": [
-      true
-    ]
+    "segment_toggles": []
   },
   "5-4-3-2-1-Übung": {
     "enabled": false,
@@ -1225,540 +1134,9 @@
       true
     ]
   },
-  "Zuschreibungen im Alltag": {
-    "enabled": false,
-    "comment": "TODO\nZu viele Anworten für eine knappe Mistral Zusammenfassung?",
-    "segment_toggles": [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  "Angenehme Aktivitäten 2": {
-    "enabled": true,
-    "comment": "TODO\nAnweisungen angepasst",
-    "segment_toggles": [
-      true,
-      false,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  "Angenehme Aktivitäten 3": {
-    "enabled": true,
-    "comment": "TODO\nAnweisungen angepasst",
-    "segment_toggles": [
-      true,
-      false,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  "Angenehme Aktivitäten 4": {
-    "enabled": true,
-    "comment": "TODO\nAnweisungen angepasst",
-    "segment_toggles": [
-      true,
-      false,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  "Anrufen": {
-    "enabled": true,
-    "comment": "TODO\nAnweisungen angepasst",
-    "segment_toggles": [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  "Meine Woche planen": {
-    "enabled": true,
-    "comment": "TODO\nZusammenfassung erst nach (und unabhängig von) story node.\nAnweisungen angepasst: Explizit keine Details, damit Zusammenfassung nicht zu lang wird.",
-    "segment_toggles": [
-      false,
-      false,
-      false,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  "Warum ist Aktivität wichtig?": {
-    "enabled": false,
-    "comment": "TODO\nNur Intro-Fragen",
-    "segment_toggles": [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  "Ziele setzen": {
-    "enabled": false,
-    "comment": "TODO\nEher Quiz Fragen",
-    "segment_toggles": [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  "Alles oder Nichts": {
-    "enabled": false,
-    "comment": "TODO\nDer letzte Text hilft schon beim Reflektieren, Zusammenfassung unnötig",
-    "segment_toggles": [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  "Experimente": {
-    "enabled": false,
-    "comment": "TODO\nKeine Zusammenfassung, die \"richtigen\" Antworten werden schon geliefert",
-    "segment_toggles": [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  "Ich sollte": {
-    "enabled": true,
-    "comment": "TODO\nAnweisungen angepasst",
-    "segment_toggles": [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  "Kopfkino": {
-    "enabled": true,
-    "comment": "TODO\nZusammenfassung erst nach story node",
-    "segment_toggles": [
-      false,
-      false,
-      false,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  "Bodyscan: Körperwahrnehmung": {
-    "enabled": false,
-    "comment": "Übung enthält keine Fragen",
-    "segment_toggles": []
-  },
-  "Ablenken mit Geräuschen": {
-    "enabled": true,
-    "comment": "",
-    "segment_toggles": []
-  },
-  "4-7-8-Atmung": {
-    "enabled": false,
-    "comment": "Übung enthält keine Fragen",
-    "segment_toggles": [
-      true
-    ]
-  },
-  "Die Macht der Stimmung": {
-    "enabled": false,
-    "comment": "TODO\nKeine Zusammenfassung, da nur Reflationsfragen",
-    "segment_toggles": [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  "Eine kleine Sache": {
-    "enabled": false,
-    "comment": "TODO\nZusammenfassung lohnt nicht wirklich? -> sehe ich auch so",
-    "segment_toggles": [
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  "Stimmung und Psychose": {
-    "enabled": false,
-    "comment": "Übung enthält keine Fragen",
-    "segment_toggles": []
-  },
-  "Was sind Gefühle?": {
-    "enabled": false,
-    "comment": "Nur Quiz-Fragen",
-    "segment_toggles": [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  "Was sind Stimmungen?": {
-    "enabled": false,
-    "comment": "TODO\nKeine Zusammenfassung, (korrekte) Antworten werden schon besprochen",
-    "segment_toggles": [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  "Glücksglas": {
-    "enabled": false,
-    "comment": "Übung enthält keine Fragen",
-    "segment_toggles": [
-      true,
-      true,
-      true
-    ]
-  },
-  "Hoffnung finden": {
-    "enabled": true,
-    "comment": "TODO\nAnweisungen angepasst -> testen",
-    "segment_toggles": [
-      true,
-      true,
-      true,
-      true,
-      false,
-      true,
-      true
-    ]
-  },
-  "Rückblick: Stimmung": {
-    "enabled": true,
-    "comment": "TODO\nZusammenfassung nur der nicht-quiz-fragen?",
-    "segment_toggles": [
-      true,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  "Mein Experiment": {
-    "enabled": true,
-    "comment": "",
-    "segment_toggles": []
-  },
-  "Am Fenster": {
-    "enabled": false,
-    "comment": "Übung enthält keine Fragen",
-    "segment_toggles": [
-      true,
-      true,
-      true
-    ]
-  },
-  "Blätter im Fluss": {
-    "enabled": false,
-    "comment": "Übung enthält keine Fragen",
-    "segment_toggles": [
-      true,
-      true
-    ]
-  },
-  "Spaziergang": {
-    "enabled": false,
-    "comment": "TODO\nZusammenfassung lohn nicht? -> sehe ich auch so",
-    "segment_toggles": [
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
   "Genießen lernen": {
     "enabled": true,
     "comment": "",
     "segment_toggles": []
-  },
-  "Morgenroutine": {
-    "enabled": true,
-    "comment": "TODO",
-    "segment_toggles": [
-      true,
-      false,
-      false,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true,
-      true
-    ]
-  },
-  "Ruhig atmen": {
-    "enabled": false,
-    "comment": "Übung enthält keine Fragen",
-    "segment_toggles": [
-      true
-    ]
-  },
-  "Wie entstehen Stimmungskrisen?": {
-    "enabled": false,
-    "comment": "Übung enthält keine Fragen",
-    "segment_toggles": [
-      true,
-      true
-    ]
   }
 }

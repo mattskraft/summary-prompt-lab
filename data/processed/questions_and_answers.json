@@ -40,24 +40,29 @@
     "Antworten": "free_text"
   },
   {
-    "Einheit": "Was tun bei Stimmungskrisen?",
-    "Frage": "Was macht einen guten Tag für dich aus?",
+    "Einheit": "Gutes Leben",
+    "Frage": "Was bedeutet ein gutes Leben für dich?",
+    "Antworten": "Gesundheit; Liebe; Freundschaft; Familie; Sinn; Zufriedenheit; Wachstum; Freude; Selbstfürsorge; Struktur; Anerkennung"
+  },
+  {
+    "Einheit": "Gutes Leben",
+    "Frage": "Was gehört für dich noch zu einem guten Leben dazu?",
     "Antworten": "free_text"
   },
   {
-    "Einheit": "Simon: Bedrohung oder Einbildung?",
-    "Frage": "Wie könnte Simon seinen Gedanken überprüfen?",
+    "Einheit": "Hilfreiche Sätze",
+    "Frage": "Wenn du möchtest, kannst du den Satz hier festhalten:",
     "Antworten": "free_text"
   },
   {
-    "Einheit": "Simon: Bedrohung oder Einbildung?",
-    "Frage": "Was könnte die Folge davon sein, dass Simon seinen Gedanken hinterfragt und seine Meinung ändert?",
-    "Antworten": "Er ist enttäuscht; Er spart das Geld für den Flug; Er schämt sich"
+    "Einheit": "Hilfreiche Schlafgedanken",
+    "Frage": "Welche hilfreichen Gedanken möchtest du für dich mitnehmen?",
+    "Antworten": "Nicht jeder Mensch braucht gleich viel Schlaf.; Ich hatte schon öfter schlechte Nächte und habe trotzdem den Tag gut geschafft.; Ich werde gleich zur Ruhe finden und einschlafen. Der Schlaf kommt schon noch."
   },
   {
-    "Einheit": "Einschlafen",
-    "Frage": "Wie lange brauchst du durchschnittlich zum Einschlafen?",
-    "Antworten": "weniger als 5 Minuten; zwischen 10 und 20 Minuten; länger als 30 Minuten"
+    "Einheit": "Hilfreiche Schlafgedanken",
+    "Frage": "Fällt dir noch ein Gedanke ein, der dir beim Einschlafen helfen kann?",
+    "Antworten": "free_text"
   },
   {
     "Einheit": "Einen Anfang finden",
@@ -280,11 +285,6 @@
     "Antworten": "Darauf gebe ich schon acht; Das würde ich gerne verändern"
   },
   {
-    "Einheit": "Leben mit Wahngedanken",
-    "Frage": "Hast du selbst auch Wahngedanken oder besondere Überzeugungen erlebt?",
-    "Antworten": "free_text"
-  },
-  {
     "Einheit": "Die Mischung macht's",
     "Frage": "Wem schreibt Herr Müller den Grund für die Kündigung zu?",
     "Antworten": "sich selbst; anderen Personen; der Situation"
@@ -312,21 +312,6 @@
   {
     "Einheit": "Die Mischung macht's",
     "Frage": "Wie könnte eine ausgewogene Zuschreibung aussehen?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Der innere Kritiker",
-    "Frage": "Was sagt dein innerer Kritiker zu dir?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Der innere Kritiker",
-    "Frage": "Mein innerer Kritiker ist oft vor allem...",
-    "Antworten": "ein Besserwisser; ein Nörgler; ein Antreiber; ein Rechthaber; ein Perfektionist; ein Angstmacher; ein Pessimist"
-  },
-  {
-    "Einheit": "Der innere Kritiker",
-    "Frage": "Was glaubst du, welche Funktion der innere Kritiker hat?",
     "Antworten": "free_text"
   },
   {
@@ -380,16 +365,6 @@
     "Antworten": "Blinzeln oder kurz wegschauen. Ist das Bild noch da?; Langsam den Kopf drehen. Verändert es sich?; Vorsichtig tasten. Kannst du etwas ertasten?; Foto machen. Ist das Bild auf dem Foto zu sehen?; Vertrauensperson fragen: \"Siehst du das auch?\""
   },
   {
-    "Einheit": "Gutes Leben",
-    "Frage": "Was bedeutet ein gutes Leben für dich?",
-    "Antworten": "Gesundheit; Liebe; Freundschaft; Familie; Sinn; Zufriedenheit; Wachstum; Freude; Selbstfürsorge; Struktur; Anerkennung"
-  },
-  {
-    "Einheit": "Gutes Leben",
-    "Frage": "Was gehört für dich noch zu einem guten Leben dazu?",
-    "Antworten": "free_text"
-  },
-  {
     "Einheit": "Beharrlichkeit",
     "Frage": "Was bedeutet Beharrlichkeit für dich?",
     "Antworten": "free_text"
@@ -398,11 +373,6 @@
     "Einheit": "Beharrlichkeit",
     "Frage": "Fallen dir noch Beispiele für beharrliche Vorurteile oder schwer korrigierbare Ansichten ein?",
     "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Brilleneinstellungen",
-    "Frage": "Erinnerst du dich daran, wie besondere Überzeugungen entstehen können?",
-    "Antworten": "Aktuelle Umstände; Persönliche Erfahrungen; Beides"
   },
   {
     "Einheit": "Gedankenstuhl",
@@ -433,6 +403,11 @@
     "Einheit": "Warum sind Beziehungen wichtig?",
     "Frage": "Warum sind soziale Beziehungen für dich noch wichtig?",
     "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Wetter des Tages",
+    "Frage": "... war es sonnig, wolkig oder regnerisch?",
+    "Antworten": "eher sonnig; eher wolkig; eher regnerisch"
   },
   {
     "Einheit": "Austausch mit anderen",
@@ -470,53 +445,18 @@
     "Antworten": "Weniger Selbstvorwürfe; Besseres Selbstwertgefühl; Weniger Grübeln; Mehr Ruhe"
   },
   {
-    "Einheit": "Morgenroutine",
-    "Frage": "Wann hattest du in letzter Zeit einen guten Morgen oder einen Morgen, der zumindest etwas besser war, als sonst?",
+    "Einheit": "Gedankenstopp",
+    "Frage": "Wenn du möchtest, kannst du einen hilfreichen Gedanken hier eintragen:",
     "Antworten": "free_text"
   },
   {
-    "Einheit": "Morgenroutine",
-    "Frage": "Was hast du an diesem Morgen gedacht?",
-    "Antworten": "free_text"
+    "Einheit": "Freundlich zu dir",
+    "Frage": "Mit welchem Gedanken fühlst du dich wahrscheinlich besser?",
+    "Antworten": "Immer passiert mir sowas. Ich bin ein schlechter Bruder / eine schlechte Schwester.; Ich habe dieses Jahr den Geburtstag vergessen. Das ist unangenehm, ich kann ihr aber auch verspätet gratulieren."
   },
   {
-    "Einheit": "Morgenroutine",
-    "Frage": "Was hast du an diesem Morgen gemacht?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Morgenroutine",
-    "Frage": "Welche Dinge am Morgen tun dir gut oder haben dir früher gut getan?",
-    "Antworten": "Strecken; Gesicht waschen; Bett machen; Arme kreisen; Kaffee kochen; Zähne putzen; Tagesplanung; Frisches Obst essen; Vorhänge aufziehen; Atemübung; Yoga; Musik hören; Kalt duschen; Jemandem “Guten Morgen” sagen oder schreiben; Pflanzen gießen; Wasser trinken"
-  },
-  {
-    "Einheit": "Morgenroutine",
-    "Frage": "Überlege dafür zuerst: Zu welcher Uhrzeit stehst du auf?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Morgenroutine",
-    "Frage": "Was machst du direkt nach dem Aufstehen?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Morgenroutine",
-    "Frage": "Was tust du als nächstes?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Morgenroutine",
-    "Frage": "Was machst du danach?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Genießen lernen",
-    "Frage": "Welche kleinen Dinge im Alltag genießt du gerne? Was empfindest du als angenehm?",
-    "Antworten": "Warmer Kaffee am Morgen; Musik mit Kopfhörern hören; Kuschelige Decke auf dem Sofa; Vogelstimmen im Park; Duft einer Bäckerei; Fotos an der Wand; Duft von frischer Wäsche; Farbe von Blumen oder Pflanzen"
-  },
-  {
-    "Einheit": "Genießen lernen",
-    "Frage": "Fällt dich noch etwas ein?",
+    "Einheit": "Freundlich zu dir",
+    "Frage": "Was würdest du einem guten Freund sagen?",
     "Antworten": "free_text"
   },
   {
@@ -620,41 +560,6 @@
     "Antworten": "Ich kämpfe gegen die Stimme an, bis sie verschwindet.; Ich bemerke die Stimme, ohne sie zu bewerten.; Ich bemerke, dass ich etwas wahrnehme, was andere nicht erleben, und richte meine Aufmerksamkeit auf meinen Atem."
   },
   {
-    "Einheit": "Ich sollte",
-    "Frage": "Welche dieser Gedanken kommen wir bekannt vor?",
-    "Antworten": "Ich sollte das alleine schaffen; Man sollte seine Wohnung immer sauber halten; Ich sollte nicht so denken; Man sollte immer gepflegt aussehen; Ich sollte normal sein; Keiner sollte mich komisch finden; Man sollte Aufgaben immer perfekt erledigen"
-  },
-  {
-    "Einheit": "Ich sollte",
-    "Frage": "Fallen wir noch weitere Beispiele für Sollte-Aussagen ein? Welche hast du manchmal im Kopf?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Ich sollte",
-    "Frage": "Was könnte ein nachsichtiger Umgang sein?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Ich sollte",
-    "Frage": "Was könnte ein nachsichtiger Umgang sein?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Ich sollte",
-    "Frage": "Welche Sollte-Aussage begegnet dir besonders oft?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Ich sollte",
-    "Frage": "Was könnte ein nachsichtiger Umgang sein?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Hoffnung finden",
-    "Frage": "Was gibt dir Hoffnung?",
-    "Antworten": "free_text"
-  },
-  {
     "Einheit": "Strategien beim Stimmenhören",
     "Frage": "Welche Strategien haben dir im Umgang mit Halluzinationen bisher geholfen?",
     "Antworten": "free_text"
@@ -705,11 +610,6 @@
     "Antworten": "free_text"
   },
   {
-    "Einheit": "Ankommen",
-    "Frage": "Wenn du deiner Diagnose ein Bild geben müsstest, welches wäre das? Hast du eine Idee?",
-    "Antworten": "free_text"
-  },
-  {
     "Einheit": "Kreativ werden",
     "Frage": "Was macht dir Spaß oder möchtest du ausprobieren?",
     "Antworten": "Basteln; Musizieren; Bauen; Schreiben; Schmücken; Tanzen; Verkleiden; Malen; Töpfern; Fotografieren"
@@ -717,16 +617,6 @@
   {
     "Einheit": "Kreativ werden",
     "Frage": "Fällt dir noch etwas ein?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Brilleneinstellung: Voreiliges Schlussfolgern",
-    "Frage": "Vorteile:",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Brilleneinstellung: Voreiliges Schlussfolgern",
-    "Frage": "Nachteile:",
     "Antworten": "free_text"
   },
   {
@@ -960,76 +850,6 @@
     "Antworten": "free_text"
   },
   {
-    "Einheit": "Gedanken hinterfragen",
-    "Frage": "Welchen Gedanken, der dir vielleicht Angst, dich traurig oder wütend macht, möchtest du hinterfragen?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Gedanken hinterfragen",
-    "Frage": "Ist der Gedanke richtig?",
-    "Antworten": "eher ja; nicht sicher; eher nein"
-  },
-  {
-    "Einheit": "Gedanken hinterfragen",
-    "Frage": "Ist der Gedanke hilfreich?",
-    "Antworten": "ja; eher ja; eher nein; nein"
-  },
-  {
-    "Einheit": "Gedanken hinterfragen",
-    "Frage": "Hat der Gedanke mit einer dieser Seheinstellungen zu tun?",
-    "Antworten": "Voreiliges Schlussfolgern; Unausgewogene Zuschreibung; Beharrliches Festhalten"
-  },
-  {
-    "Einheit": "Gedanken hinterfragen",
-    "Frage": "Gibt es andere mögliche Erklärungen, die sich weniger bedrohlich anfühlen?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Gedanken hinterfragen",
-    "Frage": "Gibt es Informationen, die gegen den Gedanken sprechen?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Gedanken hinterfragen",
-    "Frage": "Mit wem könnte ich über diesen Gedanken sprechen? ",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Gedanken hinterfragen",
-    "Frage": "Was würde diese Person zu meinem Gedanken sagen?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Ideen hinterfragen",
-    "Frage": "Überlege dir ein eigenes Beispiel: Gibt es eine Idee, die du hinterfragen möchtest?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Ideen hinterfragen",
-    "Frage": "Was spricht für diese Idee?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Ideen hinterfragen",
-    "Frage": "Was spricht gegen diese Idee?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Ideen hinterfragen",
-    "Frage": "Welche Möglichkeiten hast du, diese Idee zu überprüfen? Freunde? Experten? ",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Ideen hinterfragen",
-    "Frage": "Was sind Konsequenzen, wenn du an der Idee festhältst?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Ideen hinterfragen",
-    "Frage": "Was sind Konsequenzen, wenn du diese Idee verwirft?",
-    "Antworten": "free_text"
-  },
-  {
     "Einheit": "Stärkende Sätze",
     "Frage": "Mein stärkender Satz:",
     "Antworten": "free_text"
@@ -1063,6 +883,11 @@
     "Einheit": "Automatische Gedanken erkennen",
     "Frage": "An welchen Formulierungen kannst du nicht hilfreiche automatische Gedanken erkennen?",
     "Antworten": "muss; sollte; möchte; alle; nie; furchtbar; manchmal"
+  },
+  {
+    "Einheit": "Hoffnung finden",
+    "Frage": "Was gibt dir Hoffnung?",
+    "Antworten": "free_text"
   },
   {
     "Einheit": "Was ist Schlaf?",
@@ -1158,6 +983,11 @@
     "Einheit": "Freundschaftliche Beziehungen",
     "Frage": "Stimmst du dieser Aussage zu? „Je mehr Freunde man hat, desto besser ist das für die mentale Gesundheit?“",
     "Antworten": "Ja; Nein"
+  },
+  {
+    "Einheit": "Ankommen",
+    "Frage": "Wenn du deiner Diagnose ein Bild geben müsstest, welches wäre das? Hast du eine Idee?",
+    "Antworten": "free_text"
   },
   {
     "Einheit": "Wie sicher bist du dir?",
@@ -1400,26 +1230,6 @@
     "Antworten": "free_text"
   },
   {
-    "Einheit": "Was sind soziale Beziehungen?",
-    "Frage": "Was machen gute soziale Beziehungen für dich aus? Was können gute Beziehungen dir geben?",
-    "Antworten": "Sicherheit und Geborgenheit; Gefühl von Zugehörigkeit; Neue Perspektiven einnehmen; Freude und schöne Erlebnisse; Unterstützung im Alltag; Vertrauen und Verlässlichkeit; Emotionale Unterstützung in Krisenzeiten; Offene Kommunikation und Ehrlichkeit"
-  },
-  {
-    "Einheit": "Was sind soziale Beziehungen?",
-    "Frage": "Was machen gute Beziehungen noch für dich aus?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Was sind soziale Beziehungen?",
-    "Frage": "Kennst du das auch von dir? Wann hast du dich das letzte mal sozial zurückgezogen?",
-    "Antworten": "free_text"
-  },
-  {
-    "Einheit": "Was sind soziale Beziehungen?",
-    "Frage": "Hast du Veränderungen in deinen Beziehungen wegen der Psychose erfahren?",
-    "Antworten": "Nein, meine Beziehungen sind gleich geblieben; Ja, ich habe Beziehungen abgebrochen, weil ich Angst vor meiner Familie oder Freunden hatte; Ja, ich habe Beziehungen abgebrochen, weil ich auf Unverständnis gestoßen bin; Mir fehlt gerade die Energie, meine Beziehungen zu pflegen; Ich habe Menschen in meinem Leben, denen ich vertraue und die von meiner Diagnose wissen"
-  },
-  {
     "Einheit": "Hilfreiche Gedanken entwickeln",
     "Frage": "Welchen hilfreichen alternativen Gedanken könntest du für dich formulieren, wenn diese Stimme auftaucht?",
     "Antworten": "free_text"
@@ -1627,6 +1437,21 @@
   {
     "Einheit": "Wie fühlen sich Halluzinationen an?",
     "Frage": "Wie fühlen sich Halluzinationen für dich an?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Was sind soziale Beziehungen?",
+    "Frage": "Was machen gute soziale Beziehungen für dich aus? Was können gute Beziehungen dir geben?",
+    "Antworten": "Sicherheit und Geborgenheit; Gefühl von Zugehörigkeit; Neue Perspektiven einnehmen; Freude und schöne Erlebnisse; Unterstützung im Alltag; Vertrauen und Verlässlichkeit; Emotionale Unterstützung in Krisenzeiten; Offene Kommunikation und Ehrlichkeit"
+  },
+  {
+    "Einheit": "Was sind soziale Beziehungen?",
+    "Frage": "Was machen gute Beziehungen noch für dich aus?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Was sind soziale Beziehungen?",
+    "Frage": "Kennst du das auch von dir? Wann hast du dich das letzte mal sozial zurückgezogen?",
     "Antworten": "free_text"
   },
   {
@@ -1955,11 +1780,6 @@
     "Antworten": "Atemübung; Ablenken mit Musik; Gedanken hinterfragen; Gefühle verdrängen; Sich mit Alkohol beruhigen; Gefühl in Worte fassen (z.B. \"Ich bin wütend\"); Über Wochen kleine Aktivitäten einplanen"
   },
   {
-    "Einheit": "Eine kleine Sache",
-    "Frage": "Wähle eine kleine Sache, die du heute umsetzen kannst:",
-    "Antworten": "Fenster öffnen; Kurz strecken; Gesicht waschen; Lieblingsmusik anmachen; Kurz zur Musik bewegen; Sonne auf der Haut spüren (z.B. am Fenster); Eine Seite in einem Buch oder Magazin lesen; Spaziergang; Müll rausbringen; Bett machen; Pflanzen gießen; Foto machen; Etwas zeichnen; An etwas Riechen (z.B. Kaffee, Seife, Pflanze)"
-  },
-  {
     "Einheit": "Gefühle entdecken",
     "Frage": "Welche angenehmen Gefühle kommen dir aus der letzten Woche bekannt vor?",
     "Antworten": "Freude; Zufriedenheit; Stolz; Hoffnung; Neugier; Selbstsicherheit; Dankbarkeit; Erleichterung; Gelassenheit; Vertrauen; Zuneigung; Verbundenheit"
@@ -2025,16 +1845,6 @@
     "Antworten": "free_text"
   },
   {
-    "Einheit": "Hilfreiche Schlafgedanken",
-    "Frage": "Welche hilfreichen Gedanken möchtest du für dich mitnehmen?",
-    "Antworten": "Nicht jeder Mensch braucht gleich viel Schlaf.; Ich hatte schon öfter schlechte Nächte und habe trotzdem den Tag gut geschafft.; Ich werde gleich zur Ruhe finden und einschlafen. Der Schlaf kommt schon noch."
-  },
-  {
-    "Einheit": "Hilfreiche Schlafgedanken",
-    "Frage": "Fällt dir noch ein Gedanke ein, der dir beim Einschlafen helfen kann?",
-    "Antworten": "free_text"
-  },
-  {
     "Einheit": "Was ist Grübeln?",
     "Frage": "Kennst du selbst solche Grübeleien? Worüber hast du zuletzt gegrübelt?",
     "Antworten": "free_text"
@@ -2043,11 +1853,6 @@
     "Einheit": "Was ist Grübeln?",
     "Frage": "Was ist für Grübeln typisch?",
     "Antworten": "Grübeln hilft dabei, Probleme zu lösen; Beim Grübeln springt man oft von einem Problem zum nächsten; Probleme werden beim Grübeln präsenter, ohne gelöst zu werden; Beim Grübeln fühlt man sich schlechter, weil hilfreiche und schöne Gedanken unbeachtet bleiben"
-  },
-  {
-    "Einheit": "Gedankenstopp",
-    "Frage": "Wenn du möchtest, kannst du einen hilfreichen Gedanken hier eintragen:",
-    "Antworten": "free_text"
   },
   {
     "Einheit": "Bewegung",
@@ -2107,6 +1912,256 @@
   {
     "Einheit": "Aktivitäten planen",
     "Frage": "Und was machst du in welcher Reihenfolge?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Ideen hinterfragen",
+    "Frage": "Überlege dir ein eigenes Beispiel: Gibt es eine Idee, die du hinterfragen möchtest?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Ideen hinterfragen",
+    "Frage": "Was spricht für diese Idee?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Ideen hinterfragen",
+    "Frage": "Was spricht gegen diese Idee?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Ideen hinterfragen",
+    "Frage": "Welche Möglichkeiten hast du, diese Idee zu überprüfen? Freunde? Experten? ",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Ideen hinterfragen",
+    "Frage": "Was sind Konsequenzen, wenn du an der Idee festhältst?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Ideen hinterfragen",
+    "Frage": "Was sind Konsequenzen, wenn du diese Idee verwirfst?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Brilleneinstellungen",
+    "Frage": "Erinnerst du dich daran, wie besondere Überzeugungen entstehen können?",
+    "Antworten": "Aktuelle Umstände; Persönliche Erfahrungen"
+  },
+  {
+    "Einheit": "Einschlafen",
+    "Frage": "Wie lange brauchst du durchschnittlich zum Einschlafen?",
+    "Antworten": "weniger als 5 Minuten; zwischen 10 und 20 Minuten; länger als 30 Minuten"
+  },
+  {
+    "Einheit": "Eine kleine Sache",
+    "Frage": "Wähle eine kleine Sache, die du heute umsetzen kannst:",
+    "Antworten": "Fenster öffnen; Kurz strecken; Gesicht waschen; Lieblingsmusik anmachen; Kurz zur Musik bewegen; Sonne auf der Haut spüren (z.B. am Fenster); Eine Seite in einem Buch oder Magazin lesen; Spaziergang; Müll rausbringen; Bett machen; Pflanzen gießen; Foto machen; Etwas zeichnen; An etwas Riechen (z.B. Kaffee, Seife, Pflanze)"
+  },
+  {
+    "Einheit": "Ich sollte",
+    "Frage": "Welche dieser Gedanken kommen wir bekannt vor?",
+    "Antworten": "Ich sollte das alleine schaffen; Man sollte seine Wohnung immer sauber halten; Ich sollte nicht so denken; Man sollte immer gepflegt aussehen; Ich sollte normal sein; Keiner sollte mich komisch finden; Man sollte Aufgaben immer perfekt erledigen"
+  },
+  {
+    "Einheit": "Ich sollte",
+    "Frage": "Fallen dir noch weitere Beispiele für Sollte-Aussagen ein? Welche hast du manchmal im Kopf?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Ich sollte",
+    "Frage": "Was könnte ein nachsichtiger Umgang sein?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Ich sollte",
+    "Frage": "Was könnte ein nachsichtiger Umgang sein?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Ich sollte",
+    "Frage": "Welche Sollte-Aussage begegnet dir besonders oft?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Ich sollte",
+    "Frage": "Was könnte ein nachsichtiger Umgang sein?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Leben mit Wahngedanken",
+    "Frage": "Hast du selbst auch Wahngedanken oder besondere Überzeugungen erlebt?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Der innere Kritiker",
+    "Frage": "Was sagt dein innerer Kritiker zu dir?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Der innere Kritiker",
+    "Frage": "Dein innerer Kritiker ist oft vor allem...",
+    "Antworten": "ein Besserwisser; ein Nörgler; ein Antreiber; ein Rechthaber; ein Perfektionist; ein Angstmacher; ein Pessimist"
+  },
+  {
+    "Einheit": "Der innere Kritiker",
+    "Frage": "Was glaubst du, welche Funktion der innere Kritiker hat?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Schlussfolgern im Alltag",
+    "Frage": "Was könnte ein voreiliger Schluss sein?",
+    "Antworten": "Sie haben bestimmt über mich gelästert; Ihr Gespräch war vielleicht gerade zu Ende; Sie haben über etwas Privates gesprochen"
+  },
+  {
+    "Einheit": "Schlussfolgern im Alltag",
+    "Frage": "Was könnte ein voreiliger Schluss sein?",
+    "Antworten": "Er fährt wahrscheinlich zur Arbeit; Er hat auf mich gewartet und will mich verfolgen"
+  },
+  {
+    "Einheit": "Schlussfolgern im Alltag",
+    "Frage": "Was könnte ein voreiliger Schluss sein?",
+    "Antworten": "Er hat vielleicht etwas von zu Hause mitgebracht; Er mag mich nicht und will mich aus der Firma drängen; Er ist vielleicht gerade knapp bei Kasse"
+  },
+  {
+    "Einheit": "Gedanken hinterfragen",
+    "Frage": "Welchen Gedanken, der dir vielleicht Angst, dich traurig oder wütend macht, möchtest du hinterfragen?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Gedanken hinterfragen",
+    "Frage": "Ist der Gedanke richtig?",
+    "Antworten": "eher ja; nicht sicher; eher nein"
+  },
+  {
+    "Einheit": "Gedanken hinterfragen",
+    "Frage": "Ist der Gedanke hilfreich?",
+    "Antworten": "ja; eher ja; eher nein; nein"
+  },
+  {
+    "Einheit": "Gedanken hinterfragen",
+    "Frage": "Hat der Gedanke mit einer dieser Seheinstellungen zu tun?",
+    "Antworten": "Voreiliges Schlussfolgern; Unausgewogene Zuschreibung; Beharrliches Festhalten"
+  },
+  {
+    "Einheit": "Gedanken hinterfragen",
+    "Frage": "Gibt es andere mögliche Erklärungen, die sich weniger bedrohlich anfühlen?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Gedanken hinterfragen",
+    "Frage": "Gibt es Informationen, die gegen den Gedanken sprechen?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Gedanken hinterfragen",
+    "Frage": "Mit wem könnte ich über diesen Gedanken sprechen? ",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Gedanken hinterfragen",
+    "Frage": "Was würde diese Person zu meinem Gedanken sagen?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Brilleneinstellung: Voreiliges Schlussfolgern",
+    "Frage": "Vorteile:",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Brilleneinstellung: Voreiliges Schlussfolgern",
+    "Frage": "Nachteile:",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Simon: Bedrohung oder Einbildung?",
+    "Frage": "Wie könnte Simon seinen Gedanken überprüfen?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Simon: Bedrohung oder Einbildung?",
+    "Frage": "Was könnte die Folge davon sein, dass Simon seinen Gedanken hinterfragt und seine Meinung ändert?",
+    "Antworten": "Er ist enttäuscht; Er spart das Geld für den Flug; Er schämt sich"
+  },
+  {
+    "Einheit": "Fünf Dinge in der Natur",
+    "Frage": "Wenn du möchtest, kannst du festhalten, was du siehst:",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Fünf Dinge in der Natur",
+    "Frage": "Wenn du möchtest, kannst du festhalten, was du hörst:",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Fünf Dinge in der Natur",
+    "Frage": "Wenn du möchtest, kannst du festhalten, was du spürst:",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Fünf Dinge in der Natur",
+    "Frage": "Wenn du möchtest, kannst du festhalten, was du riechst:",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Fünf Dinge in der Natur",
+    "Frage": "Wenn du möchtest, kannst du diese Sache festhalten:",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Genießen lernen",
+    "Frage": "Welche kleinen Dinge im Alltag genießt du gerne? Was empfindest du als angenehm?",
+    "Antworten": "Warmer Kaffee am Morgen; Musik mit Kopfhörern hören; Kuschelige Decke auf dem Sofa; Vogelstimmen im Park; Duft einer Bäckerei; Fotos an der Wand; Duft von frischer Wäsche; Farbe von Blumen oder Pflanzen"
+  },
+  {
+    "Einheit": "Genießen lernen",
+    "Frage": "Fällt dich noch etwas ein?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Was tun bei Stimmungskrisen?",
+    "Frage": "Was macht einen guten Tag für dich aus?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Morgenroutine",
+    "Frage": "Wann hattest du in letzter Zeit einen guten Morgen oder einen Morgen, der zumindest etwas besser war, als sonst?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Morgenroutine",
+    "Frage": "Was hast du an diesem Morgen gedacht?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Morgenroutine",
+    "Frage": "Was hast du an diesem Morgen gemacht?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Morgenroutine",
+    "Frage": "Welche Dinge am Morgen tun dir gut oder haben dir früher gut getan?",
+    "Antworten": "Strecken; Gesicht waschen; Bett machen; Arme kreisen; Kaffee kochen; Zähne putzen; Tagesplanung; Frisches Obst essen; Vorhänge aufziehen; Atemübung; Yoga; Musik hören; Kalt duschen; Jemandem “Guten Morgen” sagen oder schreiben; Pflanzen gießen; Wasser trinken"
+  },
+  {
+    "Einheit": "Morgenroutine",
+    "Frage": "Überlege dafür zuerst: Zu welcher Uhrzeit stehst du auf?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Morgenroutine",
+    "Frage": "Was machst du direkt nach dem Aufwachen?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Morgenroutine",
+    "Frage": "Was tust du als nächstes?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Morgenroutine",
+    "Frage": "Was machst du danach?",
     "Antworten": "free_text"
   }
 ]

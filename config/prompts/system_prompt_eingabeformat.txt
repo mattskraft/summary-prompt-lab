@@ -1,5 +1,0 @@
-# Eingabeformat
-Der INHALT besteht aus:
-- TEXT-Blöcke: Kontext und Lehrmaterial
-- FRAGE-Blöcke: Gestellte Fragen
-- ANTWORT-Blöcke: Antworten der Person (Fokus der Zusammenfassung)

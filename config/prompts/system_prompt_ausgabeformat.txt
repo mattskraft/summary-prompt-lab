@@ -1,5 +1,0 @@
-# Ausgabeformat
-- Sprache: Deutsch
-- Format: Fließtext, keine Aufzählungen
-- Struktur: 1 Absatz
-- Länge: Maximal xxx Wörter

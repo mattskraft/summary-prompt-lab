@@ -171,29 +171,6 @@
       "Text": "**Ich kann nicht wissen, worüber sie lachen. Vielleicht hatte jemand gerade eine lustige Idee.**\n\nKim schafft es, bei sich zu bleiben, auch wenn sie unsicher ist. Die Anspannung lässt etwas nach. Sie setzt ihre Kopfhörer auf und hört Musik. Das lenkt sie ab. Nach ein paar Stationen steigen die Jugendlichen aus."
     }
   ],
-  "Gesundheit - Gemeinsam entscheiden - C: Nachteile": [
-    {
-      "Text": "**Du hast das Gefühl, dass dir die Medikamente im Moment eher schaden oder dich zu sehr belasten.**\n\nWenn du deine Medikamente absetzen möchtest, sprich mit deinem Arzt oder deiner Ärztin darüber. Teile deine Nebenwirkungen, Sorgen oder Fragen. Die Entscheidung für oder gegen ein Medikament trefft ihr **gemeinsam**."
-    },
-    {
-      "Question": "Was würdest du gerne verändern, ausprobieren oder besser verstehen?",
-      "AnswerOptions": "free_text"
-    },
-    {
-      "Question": "Schreibe dir auf, was du beim nächsten Arzt- oder Therapiegespräch ansprechen möchtest, zum Beispiel:",
-      "AnswerOptions": [
-        "Ich möchte über eine kleinere Dosis sprechen.",
-        "Ich möchte verstehen, was genau mein Medikament bewirkt.",
-        "Ich wünsche mir Unterstützung bei Nebenwirkungen.",
-        "Ich möchte überlegen, wie lange ich das Medikament noch brauche."
-      ],
-      "AllowMultiple": true
-    },
-    {
-      "Question": "Etwas anderes, und zwar:",
-      "AnswerOptions": "free_text"
-    }
-  ],
   "Die Lebensbrille - Bahn Option A": [
     {
       "Text": "\"Die Frau lacht mich bestimmt aus, weil ich mit meinem Rad in die Bahn möchte. So wie die Kinder früher in meiner Schulklasse.\"\n\nDu weichst dem Blick der Frau aus, schaust auf deine Füße. Vielleicht fühlst dich ängstlich oder wütend."
@@ -377,6 +354,16 @@
       "AnswerOptions": "free_text"
     }
   ],
+  "Beziehungen - Veränderungen - Option B": [
+    {
+      "Text": "Es ist verständlich, dass du Abstand genommen hast, wenn du Angst hattest. Vielleicht gibt es heute jemanden, bei dem du dich wieder sicher fühlst?\n\nMach dir keine Sorgen, wenn du dich lange nicht gemeldet hast. Menschen, denen du wichtig bist, haben oft mehr Verständnis, als du manchmal glaubst."
+    }
+  ],
+  "Beziehungen - Veränderungen - Option D": [
+    {
+      "Text": "An manchen Tagen fehlt die Energie, um sich bei Familie oder Freuden zu melden.\n\nAber manchmal reichen auch schon kleine Dinge, um eine Beziehung zu pflegen, wie eine kurze Textnachricht. Oder sogar ein Anruf? \n\nMach dir keine Sorgen, wenn du dich lange nicht gemeldet hast. Das geht vielen Menschen so, egal ob mit oder ohne Psychosen. Menschen, denen du wichtig bist, freuen sich über eine Nachricht von dir, auch wenn sie selbst manchmal länger brauchen, um zu antworten."
+    }
+  ],
   "Beziehungen - Anvertrauen - Option A: Bestärken": [
     {
       "Text": "Das klingt nach einem stärkenden Gedanken.\n\nEs braucht oft Mut, sich zu öffnen – aber es kann entlasten und dir den Weg zu Unterstützung erleichtern. Gut, dass du diese Möglichkeit für dich siehst.\n\nDenke daran: Du entscheidest, wann und wie viel du teilst."
@@ -536,6 +523,79 @@
     {
       "Question": "Etwas anderes, und zwar:",
       "AnswerOptions": "free_text"
+    }
+  ],
+  "Beziehungen - Veränderungen - Option A": [
+    {
+      "Text": "Wenn deine Beziehungen trotz deiner Psychose gleich geblieben sind, hast du ein starkes Netz an Familie, Freunden oder Bekannten, das dich durchs Leben trägt. Das ist eine Stärke!\n\nVielleicht möchtest du dich bei jemandem bedanken, der dir immer zur Seite steht?"
+    }
+  ],
+  "Beziehungen - Veränderungen - Option E": [
+    {
+      "Text": "Es ist etwas Besonderes, Menschen zu haben, denen du vertraust und die über deine Diagnose Bescheid wissen. Das zeigt, wie stark manche Beziehungen in deinem Leben sind.\n\nVielleicht gibt es jemanden, der dir in letzter Zeit besonders gutgetan hat? Solche Menschen können viel Halt geben. Und es tut gut, einfach mal Danke zu sagen."
+    }
+  ],
+  "Beziehungen - Veränderungen - Option C": [
+    {
+      "Text": "Es tut weh, wenn man nicht verstanden wird. Dass du dich damals zurückgezogen hast, zeigt, dass du deine Grenzen kennst und dich schützt.\n\nDu verdienst Menschen, die dir zuhören und dich ernst nehmen.\n\nVielleicht hast du noch jemanden in deinem Leben, der dich versteht? Oder vielleicht triffst du jemanden, der dir dieses Verständnis geben kann, zum Beispiel, wenn du dich mit anderen Betroffenen austauscht."
+    }
+  ],
+  "Stimmungskrisen - Farbe": [
+    {
+      "Text": "Was du spürst, ist eher eine **Farbe**, also eine **Stimmung**.\n\nVielleicht fühlt sich der Tag heute grau für dich an. Die Farbe des Tages kannst du nicht sofort ändern. Aber du kannst dem Tag kleine Farbtupfer geben.\n\n**Was könntest du jetzt Kleines tun, um dem grauen Tag einen kleinen Farbtupfer zu geben?**\n\n<u>Zum Beispiel:</u>\n\n- Ein Stück Obst essen\n- Jemandem eine kurze Nachricht schreiben\n- Etwas aufräumen oder ordnen\n\nWichtig ist: Nicht alle Tage sind grau. Mit kleinen Dingen im Alltag, die dir gut tun, kannst du nach und nach wieder mehr Farbe in dein Leben bringen."
+    }
+  ],
+  "Stimmungskrisen - Besuch": [
+    {
+      "Text": "Was du spürst, ist eher ein **Besuch**, also ein **Gefühl**.\n\nManchmal hilft es schon, das Gefühl zu benennen. Sage dir zum Beispiel: Ich bin gerade sauer. Oder: Ich habe gerade Angst. Und das ist okay. Dieses Gefühl ist gerade zu Besuch, aber es wird auch wieder gehen.\n\nWenn du dich plötzlich ängstlich oder wütend fühlst, kann zum Beispiel eine Atemübung helfen, dich wieder zu beruhigen. Eine solche Atemübung, die 4-7-8-Atmung, findest du gleich im Anschluss an diese Übung."
+    }
+  ],
+  "Gesundheit - Frühwarnzeichen - Strategie A": [
+    {
+      "Text": "Dinge zu tun, die dir Freude bereiten, klingt nach einer guten und hilfreichen Strategie.\n\nZeit mit lieben Menschen verbringen, einem Hobby nachgehen, bewegen - all das können Dinge sein, die gut tun.\n\nWichtig ist, dass du gleichzeitig auf dein Energielevel achtest und dir nicht zu viel vornimmst. Auch Auszeiten und Pausen sind wichtig."
+    }
+  ],
+  "Gesundheit - Frühwarnzeichen - Strategie B": [
+    {
+      "Text": "Familie oder Freunde nach Unterstützung zu fragen, klingt nach einer guten und hilfreichen Strategie.\n\nLass dir von Bekannten oder Freunden unter die Arme greifen. Sprich mit Vertrauenspersonen, wenn du Frühwarnzeichen bemerkst. So könnt ihr gemeinsam überlegen, was dir hilft."
+    }
+  ],
+  "Gesundheit - Frühwarnzeichen - Strategie C": [
+    {
+      "Text": "Auszeiten und Pausen gönnen, klingt nach einer guten und hilfreichen Strategie.\n\nEs kann helfen, auch einmal weniger Aufgaben zu übernehmen und Nein zu sagen, wenn dir etwas zu viel wird.\n\nStattdessen kannst du dich auf einen gesunden Tagesablauf konzentrieren, mit ausreichend Schlaf, regelmäßigen Mahlzeiten und Dingen, die dir gut tun."
+    }
+  ],
+  "Gesundheit - Gemeinsam entscheiden - C: Nachteile": [
+    {
+      "Text": "**Du hast das Gefühl, dass dich die Medikamente im Moment belasten.**\n\nWenn du dein Medikament wechseln oder die Dosis verringern möchtest, sprich mit deinem Arzt oder deiner Ärztin darüber.\n\nTeile deine Nebenwirkungen, Sorgen oder Fragen.\n\nDie Entscheidung für oder gegen ein Medikament trefft ihr **gemeinsam**."
+    },
+    {
+      "Question": "Woran würdest du bemerken, dass dich ein neues Medikament oder eine geringere Dosis weniger belasten? Was wäre dann anders?",
+      "AnswerOptions": "free_text"
+    },
+    {
+      "Question": "Schreibe dir auf, was du beim nächsten Arzt- oder Therapiegespräch ansprechen möchtest, zum Beispiel:",
+      "AnswerOptions": [
+        "Ich möchte über eine kleinere Dosis sprechen.",
+        "Ich möchte verstehen, was genau mein Medikament bewirkt.",
+        "Ich wünsche mir Unterstützung bei Nebenwirkungen.",
+        "Ich möchte überlegen, wie lange ich das Medikament noch brauche."
+      ],
+      "AllowMultiple": true
+    },
+    {
+      "Question": "Etwas anderes, und zwar:",
+      "AnswerOptions": "free_text"
+    }
+  ],
+  "Wahngedanken - A: Misstrauen": [
+    {
+      "Text": "Anna könnte das Verhalten das Nachbarn auf sich beziehen.\n\n\"Er mag mich nicht mehr. Er ignoriert mich extra.\"\n\nAnna ärgert sich. Dann wird sie unsicher und fragt sich, ob sie etwas falsch gemacht hat."
+    }
+  ],
+  "Wahngedanken - B: Neutral": [
+    {
+      "Text": "“Er war vielleicht abgelenkt und hat mich nicht bemerkt.“\n\nAnna überlegt zwar, ob sie etwas falsch gemacht hat und der Nachbar ihr deswegen aus dem Weg geht. Genauso gut, denkt sie, könnte es aber sein, dass er abgelenkt war. Sie bleibt ruhig, zuckt mit den Schultern und geht zurück in die Wohnung."
     }
   ]
 }

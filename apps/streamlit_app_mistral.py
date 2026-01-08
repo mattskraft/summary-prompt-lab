@@ -106,14 +106,10 @@ try:
     )
     from kiso_input.processing.recap_sections import (  # type: ignore
         assemble_system_prompt,
-        choose_max_words,
         get_exercise_sections,
-        load_global_section,
-        load_global_sections,
-        load_word_limit_config,
+        load_global_prompt,
         save_exercise_sections,
-        save_global_section,
-        save_word_limit_config,
+        save_global_prompt,
     )
 except ImportError as e:
     st.error(f"""
@@ -138,26 +134,11 @@ def load_json(path: str) -> Any:
         return json.load(f)
 
 
-PROMPTS_DIR = PROJECT_ROOT / "config" / "prompts"
-EXERCISE_PROMPTS_STORE = PROMPTS_DIR / "exercise_specific_prompts.json"
-SUMMARY_SWITCH_PATH = PROMPTS_DIR / "summary_switch.json"
-WORD_LIMITS_PATH = PROMPTS_DIR / "recap_word_limits.json"
-GLOBAL_SECTION_FILE_MAP = {
-    "rolle": PROMPTS_DIR / "system_prompt_rolle.txt",
-    "eingabeformat": PROMPTS_DIR / "system_prompt_eingabeformat.txt",
-    "stil": PROMPTS_DIR / "system_prompt_stil.txt",
-}
-SECTION_UI_CONFIG = [
-    {"key": "rolle", "label": "Rolle & Aufgabe (global)", "scope": "global"},
-    {"key": "eingabeformat", "label": "Eingabeformat (global)", "scope": "global"},
-    {"key": "anweisungen", "label": "Anweisungen (exercise)", "scope": "exercise"},
-    {"key": "stil", "label": "Stil & Ton (global)", "scope": "global"},
-    {"key": "ausgabeformat", "label": "Ausgabeformat (exercise)", "scope": "exercise"},
-]
-GLOBAL_SECTION_KEYS = [cfg["key"] for cfg in SECTION_UI_CONFIG if cfg["scope"] == "global"]
-EXERCISE_SECTION_EDITOR_KEYS = ["anweisungen", "ausgabeformat"]
-WORD_LIMIT_COLUMNS = 3
-WORD_LIMIT_SESSION_PREFIX = "recap_word_limits"
+CONFIG_DIR = PROJECT_ROOT / "config"
+PROMPTS_DIR = CONFIG_DIR / "prompts"  # For synth_answers_prompt.txt only
+EXERCISE_PROMPTS_STORE = CONFIG_DIR / "exercise_specific_prompts.json"
+SEGMENT_SWITCH_PATH = CONFIG_DIR / "segment_switches.json"
+GLOBAL_PROMPT_PATH = CONFIG_DIR / "system_prompt_global.txt"
 MISTRAL_MAX_TOKENS = 120
 MISTRAL_MODEL_OPTIONS = [
     "mistral-small-latest",
@@ -174,11 +155,11 @@ def ensure_exercise_prompt_store() -> Path:
     return EXERCISE_PROMPTS_STORE
 
 
-def ensure_summary_switch_store() -> Path:
-    SUMMARY_SWITCH_PATH.parent.mkdir(parents=True, exist_ok=True)
-    if not SUMMARY_SWITCH_PATH.exists():
-        SUMMARY_SWITCH_PATH.write_text("{}", encoding="utf-8")
-    return SUMMARY_SWITCH_PATH
+def ensure_segment_switch_store() -> Path:
+    SEGMENT_SWITCH_PATH.parent.mkdir(parents=True, exist_ok=True)
+    if not SEGMENT_SWITCH_PATH.exists():
+        SEGMENT_SWITCH_PATH.write_text("{}", encoding="utf-8")
+    return SEGMENT_SWITCH_PATH
 
 
 def get_github_settings() -> Dict[str, Optional[str]]:
@@ -233,11 +214,11 @@ def commit_prompt_file(file_path: Path, message: str) -> bool:
         return False
 
 
-def load_summary_switch_config() -> Dict[str, Any]:
-    """Load summary switch config. Each exercise entry is {"enabled": bool, "comment": str}."""
-    ensure_summary_switch_store()
+def load_segment_switch_config() -> Dict[str, Any]:
+    """Load segment switch config. Each exercise entry is {"enabled": bool, "comment": str, "segment_toggles": [...]}."""
+    ensure_segment_switch_store()
     try:
-        raw = SUMMARY_SWITCH_PATH.read_text(encoding="utf-8").strip() or "{}"
+        raw = SEGMENT_SWITCH_PATH.read_text(encoding="utf-8").strip() or "{}"
         config = json.loads(raw)
         # Migrate old string format to new dict format
         for key, value in list(config.items()):
@@ -247,13 +228,13 @@ def load_summary_switch_config() -> Dict[str, Any]:
                 config[key] = {"enabled": enabled, "comment": "" if enabled else value}
         return config
     except json.JSONDecodeError as exc:
-        st.warning(f"Ungültige summary_switch.json: {exc}")
+        st.warning(f"Ungültige segment_switches.json: {exc}")
         return {}
 
 
-def save_summary_switch_config(config: Dict[str, Any]) -> None:
-    ensure_summary_switch_store()
-    SUMMARY_SWITCH_PATH.write_text(
+def save_segment_switch_config(config: Dict[str, Any]) -> None:
+    ensure_segment_switch_store()
+    SEGMENT_SWITCH_PATH.write_text(
         json.dumps(config, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
@@ -292,36 +273,12 @@ def confirm_action(dialog_key: str, message: str, on_confirm) -> None:
                 st.rerun()
 
 
-def section_state_key(section_key: str, scope: str, session_key: str) -> str:
-    if scope == "global":
-        return f"global_section_{section_key}"
-    return f"{session_key}_{section_key}_section"
+def global_prompt_state_key() -> str:
+    return "global_system_prompt"
 
 
-def section_exercise_tracker_key(section_state: str) -> str:
-    return f"{section_state}_exercise"
-
-
-def initialize_word_limit_inputs(config: Dict[str, List[int]]) -> None:
-    answers = config["answer_counts"]
-    words = config["max_words"]
-    for idx in range(WORD_LIMIT_COLUMNS):
-        ans_key = f"{WORD_LIMIT_SESSION_PREFIX}_answers_{idx}"
-        words_key = f"{WORD_LIMIT_SESSION_PREFIX}_words_{idx}"
-        if ans_key not in st.session_state:
-            st.session_state[ans_key] = int(answers[idx])
-        if words_key not in st.session_state:
-            st.session_state[words_key] = int(words[idx])
-
-
-def current_word_limit_config() -> Dict[str, List[int]]:
-    answers = [int(st.session_state[f"{WORD_LIMIT_SESSION_PREFIX}_answers_{idx}"]) for idx in range(WORD_LIMIT_COLUMNS)]
-    words = [int(st.session_state[f"{WORD_LIMIT_SESSION_PREFIX}_words_{idx}"]) for idx in range(WORD_LIMIT_COLUMNS)]
-    pairs = sorted(zip(answers, words), key=lambda item: item[0])
-    return {
-        "answer_counts": [pair[0] for pair in pairs],
-        "max_words": [pair[1] for pair in pairs],
-    }
+def exercise_prompt_state_key(session_key: str) -> str:
+    return f"{session_key}_exercise_prompt"
 
 
 def save_exercise_payload(exercise_name: str, payload: Dict[str, str]) -> bool:
@@ -345,49 +302,40 @@ def save_exercise_payload(exercise_name: str, payload: Dict[str, str]) -> bool:
         return False
 
 
-def collect_global_section_values(session_key: str) -> Dict[str, str]:
-    values: Dict[str, str] = {}
-    for cfg in SECTION_UI_CONFIG:
-        if cfg["scope"] != "global":
-            continue
-        key = section_state_key(cfg["key"], "global", session_key)
-        values[cfg["key"]] = st.session_state.get(key, "")
-    return values
+def get_current_global_prompt(session_key: str) -> str:
+    """Get global prompt from session state."""
+    return st.session_state.get(global_prompt_state_key(), "")
 
 
-def collect_exercise_section_values(session_key: str) -> Dict[str, str]:
-    values: Dict[str, str] = {}
-    for section_key in EXERCISE_SECTION_EDITOR_KEYS:
-        key = section_state_key(section_key, "exercise", session_key)
-        values[section_key] = st.session_state.get(key, "")
-    return values
+def get_current_exercise_prompt(session_key: str) -> str:
+    """Get exercise-specific prompt from session state."""
+    return st.session_state.get(exercise_prompt_state_key(session_key), "")
 
 
 def print_params_debug(context: str, params: Dict[str, Any]) -> None:
     print(f"[Recap:{context}] Params: {params}")  # noqa: T201
 
 
-
-
-def initialize_section_states(
+def initialize_prompt_states(
     sel_uebung: str,
     session_key: str,
-    global_defaults: Dict[str, str],
+    global_prompt_default: str,
     exercise_sections: Dict[str, str],
 ) -> None:
-    for cfg in SECTION_UI_CONFIG:
-        state_key = section_state_key(cfg["key"], cfg["scope"], session_key)
-        if cfg["scope"] == "global":
-            if state_key not in st.session_state:
-                st.session_state[state_key] = global_defaults.get(cfg["key"], "")
-            continue
-        tracker_key = section_exercise_tracker_key(state_key)
-        # Populate if exercise changed OR if state key was never set
-        exercise_changed = st.session_state.get(tracker_key) != sel_uebung
-        state_never_set = state_key not in st.session_state
-        if exercise_changed or state_never_set:
-            st.session_state[state_key] = exercise_sections.get(cfg["key"], "")
-            st.session_state[tracker_key] = sel_uebung
+    """Initialize session state for global and exercise prompts."""
+    # Global prompt - initialize once
+    gp_key = global_prompt_state_key()
+    if gp_key not in st.session_state:
+        st.session_state[gp_key] = global_prompt_default
+
+    # Exercise-specific prompt - update when exercise changes
+    ep_key = exercise_prompt_state_key(session_key)
+    tracker_key = f"{ep_key}_exercise"
+    exercise_changed = st.session_state.get(tracker_key) != sel_uebung
+    state_never_set = ep_key not in st.session_state
+    if exercise_changed or state_never_set:
+        st.session_state[ep_key] = exercise_sections.get("prompt", "")
+        st.session_state[tracker_key] = sel_uebung
 
 
 def get_all_exercise_names(hierarchy: Dict[str, Dict[str, List[str]]]) -> List[str]:
@@ -983,7 +931,7 @@ if not hier:
 all_exercise_names = get_all_exercise_names(hier) if hier else []
 if all_exercise_names:
     ensure_exercise_prompt_store()
-    ensure_summary_switch_store()
+    ensure_segment_switch_store()
 
 with st.sidebar:
     st.header("Navigation")
@@ -1274,21 +1222,21 @@ if sel_uebung:
         st.stop()
 
     has_questions = exercise_has_questions(segments)
-    summary_switch_config = load_summary_switch_config()
-    summary_switch_value = summary_switch_config.get(sel_uebung)
+    segment_switch_config = load_segment_switch_config()
+    segment_switch_value = segment_switch_config.get(sel_uebung)
 
-    if summary_switch_value is None:
+    if segment_switch_value is None:
         # Default: enabled if has questions, disabled with comment if no questions
-        summary_switch_value = {
+        segment_switch_value = {
             "enabled": has_questions,
             "comment": "" if has_questions else "Übung enthält keine Fragen",
             "segment_toggles": [],  # Will be populated when segments are rendered
         }
-        summary_switch_config[sel_uebung] = summary_switch_value
-        save_summary_switch_config(summary_switch_config)
+        segment_switch_config[sel_uebung] = segment_switch_value
+        save_segment_switch_config(segment_switch_config)
     
     # Get segment toggles from config (default all True)
-    saved_segment_toggles = summary_switch_value.get("segment_toggles", [])
+    saved_segment_toggles = segment_switch_value.get("segment_toggles", [])
     
     # Choose which segments to display
     has_generated = st.session_state.get(session_key) is not None
@@ -1365,15 +1313,15 @@ if sel_uebung:
         st.session_state[mainrecap_inhalt_key] = inhalt
         st.session_state[f"{sel_uebung}_transfer_main_clicked"] = False
 
-    st.subheader("Summary Switch")
+    st.subheader("Segment Switch")
     
     # Extract current values from config
-    switch_enabled = summary_switch_value.get("enabled", False) if isinstance(summary_switch_value, dict) else False
-    switch_comment = summary_switch_value.get("comment", "") if isinstance(summary_switch_value, dict) else ""
+    switch_enabled = segment_switch_value.get("enabled", False) if isinstance(segment_switch_value, dict) else False
+    switch_comment = segment_switch_value.get("comment", "") if isinstance(segment_switch_value, dict) else ""
     
     # Session state keys
-    switch_checkbox_key = f"{session_key}_summary_switch_enabled"
-    switch_comment_key = f"{session_key}_summary_switch_comment"
+    switch_checkbox_key = f"{session_key}_segment_switch_enabled"
+    switch_comment_key = f"{session_key}_segment_switch_comment"
     
     # Initialize session state if needed
     if switch_checkbox_key not in st.session_state:
@@ -1397,25 +1345,25 @@ if sel_uebung:
     )
 
     # Save button
-    summary_switch_save_clicked = st.button(
+    segment_switch_save_clicked = st.button(
         "💾 Speichern",
-        key=f"{session_key}_summary_switch_save",
+        key=f"{session_key}_segment_switch_save",
         use_container_width=True,
     )
     
-    if summary_switch_save_clicked:
+    if segment_switch_save_clicked:
         new_enabled = st.session_state.get(switch_checkbox_key, False)
         new_comment = st.session_state.get(switch_comment_key, "").strip()
-        summary_switch_value = {
+        segment_switch_value = {
             "enabled": new_enabled, 
             "comment": new_comment,
             "segment_toggles": current_toggles,
         }
-        summary_switch_config[sel_uebung] = summary_switch_value
-        save_summary_switch_config(summary_switch_config)
+        segment_switch_config[sel_uebung] = segment_switch_value
+        save_segment_switch_config(segment_switch_config)
         github_success = commit_prompt_file(
-            SUMMARY_SWITCH_PATH,
-            f"Update summary switch for {sel_uebung}",
+            SEGMENT_SWITCH_PATH,
+            f"Update segment switch for {sel_uebung}",
         )
         if github_success:
             st.success("✅ Einstellungen gespeichert")
@@ -1430,130 +1378,105 @@ if sel_uebung:
 
     if not summary_mode_active:
         st.info(
-            "Diese Übung ist deaktiviert. Aktiviere den Summary Switch, "
+            "Diese Übung ist deaktiviert. Aktiviere den Segment Switch, "
             "um die nachfolgenden Bereiche zu verwenden."
         )
         st.stop()
     
-    word_limit_file_config = load_word_limit_config()
-    initialize_word_limit_inputs(word_limit_file_config)
-    active_word_limit_config = current_word_limit_config()
+    # Load exercise sections
     forced_sections = st.session_state.pop(f"{session_key}_force_reload_sections", None)
-    exercise_sections = forced_sections or get_exercise_sections(sel_uebung, word_limit_file_config)
+    exercise_sections = forced_sections or get_exercise_sections(sel_uebung)
     if forced_sections:
-        for exercise_key in EXERCISE_SECTION_EDITOR_KEYS:
-            section_state = section_state_key(exercise_key, "exercise", session_key)
-            st.session_state[section_state] = forced_sections.get(exercise_key, "")
-            st.session_state[section_exercise_tracker_key(section_state)] = sel_uebung
-    global_section_defaults = load_global_sections()
-    initialize_section_states(sel_uebung, session_key, global_section_defaults, exercise_sections)
+        ep_key = exercise_prompt_state_key(session_key)
+        st.session_state[ep_key] = forced_sections.get("prompt", "")
+        st.session_state[f"{ep_key}_exercise"] = sel_uebung
+    global_prompt_default = load_global_prompt()
+    initialize_prompt_states(sel_uebung, session_key, global_prompt_default, exercise_sections)
     
     # Only use saved values, start empty otherwise (transfer buttons populate)
     default_example1 = exercise_sections.get("example1", "")
     default_example2 = exercise_sections.get("example2", "")
     
-    # System Prompt Section
+    # System Prompt Section - Simplified 2-section structure
     st.markdown("---")
     st.subheader("System-Prompt")
-    for cfg in SECTION_UI_CONFIG:
-        scope = cfg["scope"]
-        key = cfg["key"]
-        state_key = section_state_key(key, scope, session_key)
-        # Apply any pending load value BEFORE the widget renders
-        pending_load_key = f"{state_key}_pending_load"
-        pending_value = st.session_state.pop(pending_load_key, None)
-        if pending_value is not None:
-            st.session_state[state_key] = pending_value
-        with st.expander(cfg["label"], expanded=False):
-            st.text_area(
-                cfg["label"],
-                key=state_key,
-                height=180,
-                label_visibility="collapsed",
-            )
-            button_cols = st.columns(2)
-            with button_cols[0]:
-                load_key = f"{state_key}_load"
-                if st.button("📥 Laden", key=load_key, use_container_width=True):
-                    if scope == "global":
-                        st.session_state[pending_load_key] = load_global_section(key)
-                    else:
-                        fresh_sections = get_exercise_sections(sel_uebung, active_word_limit_config)
-                        st.session_state[pending_load_key] = fresh_sections.get(key, "")
-                        st.session_state[section_exercise_tracker_key(state_key)] = sel_uebung
-                    st.rerun()
-            with button_cols[1]:
-                save_button_key = f"{state_key}_save"
-                if st.button("💾 Speichern", key=save_button_key, use_container_width=True):
-                    st.session_state[f"{save_button_key}_dialog"] = True
-                dialog_message = (
-                    f"Möchten Sie den globalen Abschnitt '{cfg['label']}' wirklich überschreiben?"
-                    if scope == "global"
-                    else f"Möchten Sie den Abschnitt '{cfg['label']}' für '{sel_uebung}' wirklich speichern?"
-                )
-                def _save_section(scope=scope, section_key=key, value_key=state_key) -> None:
-                    if scope == "global":
-                        save_global_section(section_key, st.session_state.get(value_key, ""))
-                        file_path = GLOBAL_SECTION_FILE_MAP.get(section_key)
-                        github_success = False
-                        if file_path:
-                            github_success = commit_prompt_file(
-                                file_path,
-                                f"Update global prompt section '{section_key}'",
-                            )
-                        if github_success:
-                            st.session_state["pending_toast"] = "✅ Globaler Abschnitt gespeichert."
-                        else:
-                            st.session_state["pending_toast"] = (
-                                "⚠️ Globaler Abschnitt lokal gespeichert, aber GitHub-Sync fehlgeschlagen! "
-                                "Daten gehen beim Neustart verloren."
-                            )
-                    else:
-                        save_exercise_payload(sel_uebung, {section_key: st.session_state.get(value_key, "")})
-                        refreshed_sections = get_exercise_sections(sel_uebung, active_word_limit_config)
-                        st.session_state[f"{session_key}_force_reload_sections"] = refreshed_sections
-                confirm_action(f"{save_button_key}_dialog", dialog_message, _save_section)
     
-    st.markdown("---")
-    st.subheader("Wortlimits")
-    st.caption("Ordne den Anzahl-Antworten-Schwellen entsprechende Wortlimits zu.")
-    limit_cols = st.columns(WORD_LIMIT_COLUMNS)
-    for idx, col in enumerate(limit_cols):
-        with col:
-            st.number_input(
-                "Anzahl Antworten",
-                min_value=0,
-                step=1,
-                key=f"{WORD_LIMIT_SESSION_PREFIX}_answers_{idx}",
-            )
-            st.number_input(
-                "Max. Wörter",
-                min_value=1,
-                step=1,
-                key=f"{WORD_LIMIT_SESSION_PREFIX}_words_{idx}",
-            )
-    save_limits_key = f"{session_key}_save_word_limits"
-    if st.button("💾 Wortlimits speichern", key=save_limits_key, use_container_width=True):
-        st.session_state[f"{save_limits_key}_dialog"] = True
-    def _save_word_limits() -> None:
-        config = current_word_limit_config()
-        save_word_limit_config(config["answer_counts"], config["max_words"])
-        github_success = commit_prompt_file(
-            WORD_LIMITS_PATH,
-            "Update recap word limit presets",
+    # Global Prompt
+    gp_state_key = global_prompt_state_key()
+    gp_pending_load_key = f"{gp_state_key}_pending_load"
+    gp_pending_value = st.session_state.pop(gp_pending_load_key, None)
+    if gp_pending_value is not None:
+        st.session_state[gp_state_key] = gp_pending_value
+    
+    with st.expander("Globaler System-Prompt", expanded=False):
+        st.text_area(
+            "Globaler System-Prompt",
+            key=gp_state_key,
+            height=250,
+            label_visibility="collapsed",
         )
-        if github_success:
-            st.session_state["pending_toast"] = "✅ Wortlimits gespeichert."
-        else:
-            st.session_state["pending_toast"] = (
-                "⚠️ Wortlimits lokal gespeichert, aber GitHub-Sync fehlgeschlagen! "
-                "Daten gehen beim Neustart verloren."
+        gp_button_cols = st.columns(2)
+        with gp_button_cols[0]:
+            if st.button("📥 Laden", key=f"{gp_state_key}_load", use_container_width=True):
+                st.session_state[gp_pending_load_key] = load_global_prompt()
+                st.rerun()
+        with gp_button_cols[1]:
+            gp_save_key = f"{gp_state_key}_save"
+            if st.button("💾 Speichern", key=gp_save_key, use_container_width=True):
+                st.session_state[f"{gp_save_key}_dialog"] = True
+            def _save_global_prompt() -> None:
+                save_global_prompt(st.session_state.get(gp_state_key, ""))
+                github_success = commit_prompt_file(
+                    GLOBAL_PROMPT_PATH,
+                    "Update global system prompt",
+                )
+                if github_success:
+                    st.session_state["pending_toast"] = "✅ Globaler Prompt gespeichert."
+                else:
+                    st.session_state["pending_toast"] = (
+                        "⚠️ Globaler Prompt lokal gespeichert, aber GitHub-Sync fehlgeschlagen! "
+                        "Daten gehen beim Neustart verloren."
+                    )
+            confirm_action(
+                f"{gp_save_key}_dialog",
+                "Möchten Sie den globalen System-Prompt wirklich überschreiben?",
+                _save_global_prompt,
             )
-    confirm_action(
-        f"{save_limits_key}_dialog",
-        "Aktuelle Wortlimits dauerhaft speichern?",
-        _save_word_limits,
-    )
+    
+    # Exercise-Specific Prompt
+    ep_state_key = exercise_prompt_state_key(session_key)
+    ep_pending_load_key = f"{ep_state_key}_pending_load"
+    ep_pending_value = st.session_state.pop(ep_pending_load_key, None)
+    if ep_pending_value is not None:
+        st.session_state[ep_state_key] = ep_pending_value
+    
+    with st.expander(f"Übungsspezifischer Prompt ({sel_uebung})", expanded=False):
+        st.text_area(
+            f"Übungsspezifischer Prompt",
+            key=ep_state_key,
+            height=250,
+            label_visibility="collapsed",
+        )
+        ep_button_cols = st.columns(2)
+        with ep_button_cols[0]:
+            if st.button("📥 Laden", key=f"{ep_state_key}_load", use_container_width=True):
+                fresh_sections = get_exercise_sections(sel_uebung)
+                st.session_state[ep_pending_load_key] = fresh_sections.get("prompt", "")
+                st.session_state[f"{ep_state_key}_exercise"] = sel_uebung
+                st.rerun()
+        with ep_button_cols[1]:
+            ep_save_key = f"{ep_state_key}_save"
+            if st.button("💾 Speichern", key=ep_save_key, use_container_width=True):
+                st.session_state[f"{ep_save_key}_dialog"] = True
+            def _save_exercise_prompt() -> None:
+                save_exercise_payload(sel_uebung, {"prompt": st.session_state.get(ep_state_key, "")})
+                refreshed_sections = get_exercise_sections(sel_uebung)
+                st.session_state[f"{session_key}_force_reload_sections"] = refreshed_sections
+            confirm_action(
+                f"{ep_save_key}_dialog",
+                f"Möchten Sie den Prompt für '{sel_uebung}' wirklich speichern?",
+                _save_exercise_prompt,
+            )
     
     # Beispiel 1 Section
     st.markdown("---")
@@ -1630,22 +1553,16 @@ if sel_uebung:
                         preserved_main = st.session_state[mainrecap_inhalt_key]
                         st.session_state[f"{mainrecap_inhalt_key}_preserve"] = preserved_main
                     
-                    answer_count = count_answer_lines(example1_text)
-                    max_words_value = choose_max_words(answer_count, active_word_limit_config)
-                    global_section_values = collect_global_section_values(session_key)
-                    exercise_section_values = collect_exercise_section_values(session_key)
-                    system_prompt_for_ex1 = assemble_system_prompt(
-                        global_section_values,
-                        exercise_section_values,
-                        max_words_value,
-                    )
+                    global_prompt = get_current_global_prompt(session_key)
+                    exercise_prompt = get_current_exercise_prompt(session_key)
+                    system_prompt_for_ex1 = assemble_system_prompt(global_prompt, exercise_prompt)
                     
                     # Build prompt: system prompt + INHALT
                     prompt = f"{system_prompt_for_ex1}\n\n# INHALT\n{example1_text}"
                     selected_model_ex1 = st.session_state.get(ex1_model_key, MISTRAL_DEFAULT_MODEL)
                     print_params_debug(
                         "beispiel1",
-                        {"model": selected_model_ex1, "max_tokens": MISTRAL_MAX_TOKENS, "max_words": max_words_value},
+                        {"model": selected_model_ex1, "max_tokens": MISTRAL_MAX_TOKENS},
                     )
                     
                     with st.spinner("Generiere Recap..."):
@@ -1772,20 +1689,14 @@ if sel_uebung:
                         preserved_main = st.session_state[mainrecap_inhalt_key]
                         st.session_state[f"{mainrecap_inhalt_key}_preserve"] = preserved_main
                     
-                    answer_count = count_answer_lines(example2_text)
-                    max_words_value = choose_max_words(answer_count, active_word_limit_config)
-                    global_section_values = collect_global_section_values(session_key)
-                    exercise_section_values = collect_exercise_section_values(session_key)
-                    system_prompt_for_ex2 = assemble_system_prompt(
-                        global_section_values,
-                        exercise_section_values,
-                        max_words_value,
-                    )
+                    global_prompt = get_current_global_prompt(session_key)
+                    exercise_prompt = get_current_exercise_prompt(session_key)
+                    system_prompt_for_ex2 = assemble_system_prompt(global_prompt, exercise_prompt)
                     prompt = f"{system_prompt_for_ex2}\n\n# INHALT\n{example2_text}"
                     selected_model_ex2 = st.session_state.get(ex2_model_key, MISTRAL_DEFAULT_MODEL)
                     print_params_debug(
                         "beispiel2",
-                        {"model": selected_model_ex2, "max_tokens": MISTRAL_MAX_TOKENS, "max_words": max_words_value},
+                        {"model": selected_model_ex2, "max_tokens": MISTRAL_MAX_TOKENS},
                     )
                     
                     with st.spinner("Generiere Recap..."):
@@ -1942,13 +1853,9 @@ if sel_uebung:
                     preserved_ex2 = st.session_state[example2_state_key]
                     st.session_state[f"{example2_state_key}_preserve"] = preserved_ex2
                 
-                answer_count = count_answer_lines(mainrecap_inhalt_text)
-                max_words_value = choose_max_words(answer_count, active_word_limit_config)
-                system_prompt_for_main = assemble_system_prompt(
-                    collect_global_section_values(session_key),
-                    collect_exercise_section_values(session_key),
-                    max_words_value,
-                )
+                global_prompt = get_current_global_prompt(session_key)
+                exercise_prompt = get_current_exercise_prompt(session_key)
+                system_prompt_for_main = assemble_system_prompt(global_prompt, exercise_prompt)
                 
                 # Get the current text area values (including any generated recaps)
                 example1_final = st.session_state.get(example1_state_key, exercise_sections.get("example1", "")).strip()
@@ -1976,7 +1883,6 @@ if sel_uebung:
                         "max_tokens": MISTRAL_MAX_TOKENS,
                         "temperature": main_mistral_temperature,
                         "top_p": main_mistral_top_p,
-                        "max_words": max_words_value,
                     },
                 )
                 

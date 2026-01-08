@@ -1,42 +1,19 @@
-"""Shared helpers for recap prompt sections and word-limit management."""
+"""Shared helpers for recap prompt sections."""
 
 from __future__ import annotations
 
 import json
-import re
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional
+from typing import Dict, Optional
 
 from ..config import PROJECT_ROOT
 
 CONFIG_DIR = PROJECT_ROOT / "config"
-PROMPTS_DIR = CONFIG_DIR / "prompts"
-GLOBAL_SECTION_FILES: Dict[str, Path] = {
-    "rolle": PROMPTS_DIR / "system_prompt_rolle.txt",
-    "eingabeformat": PROMPTS_DIR / "system_prompt_eingabeformat.txt",
-    "stil": PROMPTS_DIR / "system_prompt_stil.txt",
-}
-EXERCISE_SECTION_TEMPLATES: Dict[str, Path] = {
-    "anweisungen": PROMPTS_DIR / "system_prompt_anweisungen.txt",
-    "ausgabeformat": PROMPTS_DIR / "system_prompt_ausgabeformat.txt",
-}
-EXERCISE_SPECIFIC_PATH = PROMPTS_DIR / "exercise_specific_prompts.json"
-WORD_LIMITS_PATH = PROMPTS_DIR / "recap_word_limits.json"
+GLOBAL_PROMPT_PATH = CONFIG_DIR / "system_prompt_global.txt"
+EXERCISE_SPECIFIC_PATH = CONFIG_DIR / "exercise_specific_prompts.json"
 
-DEFAULT_WORD_LIMITS = {
-    "answer_counts": [1, 2, 3],
-    "max_words": [15, 30, 50],
-}
-WORD_LIMIT_COLUMNS = 3
-SECTION_ORDER = ["rolle", "eingabeformat", "anweisungen", "stil", "ausgabeformat"]
-EXERCISE_SECTION_KEYS = ["anweisungen", "ausgabeformat", "example1", "example2"]
-SECTION_HEADER_MAP = {
-    "rolle und aufgabe": "rolle",
-    "eingabeformat": "eingabeformat",
-    "anweisungen": "anweisungen",
-    "stil und ton": "stil",
-    "ausgabeformat": "ausgabeformat",
-}
+# Keys for exercise-specific data
+EXERCISE_SECTION_KEYS = ["prompt", "example1", "example2"]
 
 
 def _read_json(path: Path, fallback):
@@ -55,62 +32,16 @@ def _write_json(path: Path, data) -> None:
         json.dump(data, handle, ensure_ascii=False, indent=2)
 
 
-def load_word_limit_config() -> Dict[str, List[int]]:
-    data = _read_json(WORD_LIMITS_PATH, DEFAULT_WORD_LIMITS)
-    if not isinstance(data, dict):
-        data = DEFAULT_WORD_LIMITS.copy()
-    counts = data.get("answer_counts", DEFAULT_WORD_LIMITS["answer_counts"])
-    words = data.get("max_words", DEFAULT_WORD_LIMITS["max_words"])
-    if len(counts) != WORD_LIMIT_COLUMNS or len(words) != WORD_LIMIT_COLUMNS:
-        counts = DEFAULT_WORD_LIMITS["answer_counts"]
-        words = DEFAULT_WORD_LIMITS["max_words"]
-    pairs = sorted(zip(counts, words), key=lambda item: int(item[0]))
-    return {
-        "answer_counts": [int(pair[0]) for pair in pairs],
-        "max_words": [int(pair[1]) for pair in pairs],
-    }
-
-
-def save_word_limit_config(answer_counts: List[int], max_words: List[int]) -> None:
-    if len(answer_counts) != WORD_LIMIT_COLUMNS or len(max_words) != WORD_LIMIT_COLUMNS:
-        raise ValueError(f"Es werden genau {WORD_LIMIT_COLUMNS} Werte benötigt.")
-    pairs = sorted(zip(answer_counts, max_words), key=lambda item: int(item[0]))
-    payload = {
-        "answer_counts": [int(pair[0]) for pair in pairs],
-        "max_words": [int(pair[1]) for pair in pairs],
-    }
-    _write_json(WORD_LIMITS_PATH, payload)
-
-
-def choose_max_words(num_answers: int, config: Optional[Dict[str, List[int]]] = None) -> int:
-    cfg = config or load_word_limit_config()
-    for threshold, words in zip(cfg["answer_counts"], cfg["max_words"]):
-        if num_answers <= threshold:
-            return words
-    return cfg["max_words"][-1]
-
-
-def max_words_default(config: Optional[Dict[str, List[int]]] = None) -> int:
-    cfg = config or load_word_limit_config()
-    return cfg["max_words"][-1]
-
-
-def load_global_section(section_key: str) -> str:
-    path = GLOBAL_SECTION_FILES.get(section_key)
-    if not path or not path.exists():
+def load_global_prompt() -> str:
+    """Load the global system prompt from file."""
+    if not GLOBAL_PROMPT_PATH.exists():
         return ""
-    return path.read_text(encoding="utf-8").strip()
+    return GLOBAL_PROMPT_PATH.read_text(encoding="utf-8").strip()
 
 
-def save_global_section(section_key: str, content: str) -> None:
-    path = GLOBAL_SECTION_FILES.get(section_key)
-    if not path:
-        raise KeyError(f"Unbekannter Abschnitt: {section_key}")
-    path.write_text(content.strip(), encoding="utf-8")
-
-
-def load_global_sections() -> Dict[str, str]:
-    return {key: load_global_section(key) for key in GLOBAL_SECTION_FILES}
+def save_global_prompt(content: str) -> None:
+    """Save the global system prompt to file."""
+    GLOBAL_PROMPT_PATH.write_text(content.strip(), encoding="utf-8")
 
 
 def _empty_exercise_entry() -> Dict[str, str]:
@@ -126,56 +57,23 @@ def _save_exercise_store(store: Dict[str, Dict[str, str]]) -> None:
     _write_json(EXERCISE_SPECIFIC_PATH, store)
 
 
-def _extract_sections_from_text(text: str) -> Dict[str, str]:
-    sections: Dict[str, str] = {}
-    matches = list(re.finditer(r"(?mi)^#{1,2}\s+([^\n]+)\s*$", text))
-    for idx, match in enumerate(matches):
-        start = match.end()
-        end = matches[idx + 1].start() if idx + 1 < len(matches) else len(text)
-        header = match.group(1).strip().lower()
-        key = SECTION_HEADER_MAP.get(header)
-        if not key:
-            continue
-        body = text[start:end].strip()
-        title = match.group(1).strip()
-        sections[key] = f"## {title}\n{body}"
-    return sections
-
-
-def _default_exercise_section(section_key: str, config: Optional[Dict[str, List[int]]] = None) -> str:
-    template_path = EXERCISE_SECTION_TEMPLATES.get(section_key)
-    if not template_path or not template_path.exists():
-        return ""
-    return template_path.read_text(encoding="utf-8").strip()
-
-
 def get_exercise_sections(
     exercise_name: Optional[str],
-    word_limit_config: Optional[Dict[str, List[int]]] = None,
-    auto_create: bool = True,
 ) -> Dict[str, str]:
+    """Get exercise-specific sections (prompt, example1, example2)."""
     if not exercise_name:
-        entry = _empty_exercise_entry()
-        entry["anweisungen"] = _default_exercise_section("anweisungen", word_limit_config)
-        entry["ausgabeformat"] = _default_exercise_section("ausgabeformat", word_limit_config)
-        return entry
+        return _empty_exercise_entry()
     store = _load_exercise_store()
     entry = store.get(exercise_name, {}).copy()
-    changed = False
+    # Ensure all keys exist
     for key in EXERCISE_SECTION_KEYS:
         if key not in entry or not isinstance(entry[key], str):
             entry[key] = ""
-    for section_key in ("anweisungen", "ausgabeformat"):
-        if not entry[section_key] and auto_create:
-            entry[section_key] = _default_exercise_section(section_key, word_limit_config)
-            changed = True
-    if changed:
-        store[exercise_name] = entry
-        _save_exercise_store(store)
     return entry
 
 
 def save_exercise_sections(exercise_name: str, updates: Dict[str, str]) -> None:
+    """Save updates to exercise-specific sections."""
     store = _load_exercise_store()
     entry = store.get(exercise_name, _empty_exercise_entry())
     for key, value in updates.items():
@@ -185,51 +83,26 @@ def save_exercise_sections(exercise_name: str, updates: Dict[str, str]) -> None:
     _save_exercise_store(store)
 
 
-def apply_max_words_to_ausgabeformat(text: str, max_words: int) -> str:
-    if not text:
-        return text
-    if "xxx" not in text.lower():
-        return text
-    return re.sub(r"xxx", str(max_words), text, flags=re.IGNORECASE)
-
-
 def assemble_system_prompt(
-    global_sections: Dict[str, str],
-    exercise_sections: Dict[str, str],
-    max_words: int,
+    global_prompt: str,
+    exercise_prompt: str,
 ) -> str:
-    parts: List[str] = []
-    for key in SECTION_ORDER:
-        if key in GLOBAL_SECTION_FILES:
-            text = global_sections.get(key, "")
-        elif key == "ausgabeformat":
-            text = apply_max_words_to_ausgabeformat(exercise_sections.get("ausgabeformat", ""), max_words)
-        else:
-            text = exercise_sections.get(key, "")
-        text = text.strip()
-        if text:
-            parts.append(text)
+    """Assemble the complete system prompt from global and exercise-specific parts."""
+    parts = []
+    if global_prompt.strip():
+        parts.append(global_prompt.strip())
+    if exercise_prompt.strip():
+        parts.append(exercise_prompt.strip())
     return "\n\n".join(parts).strip()
 
 
 def assembled_prompt_for_exercise(
     exercise_name: Optional[str],
-    num_answers: int,
-    word_limit_config: Optional[Dict[str, List[int]]] = None,
+    global_prompt_override: Optional[str] = None,
     exercise_sections_override: Optional[Dict[str, str]] = None,
-    global_sections_override: Optional[Dict[str, str]] = None,
 ) -> str:
-    config = word_limit_config or load_word_limit_config()
-    max_words = choose_max_words(num_answers, config)
-    global_sections = global_sections_override or load_global_sections()
-    exercise_sections = exercise_sections_override or get_exercise_sections(exercise_name, config)
-    return assemble_system_prompt(global_sections, exercise_sections, max_words)
-
-
-def iter_section_keys(scope: str) -> Iterable[str]:
-    if scope == "global":
-        return GLOBAL_SECTION_FILES.keys()
-    if scope == "exercise":
-        return EXERCISE_SECTION_KEYS
-    raise ValueError(f"Unbekannter Scope: {scope}")
-
+    """Build the complete system prompt for an exercise."""
+    global_prompt = global_prompt_override if global_prompt_override is not None else load_global_prompt()
+    exercise_sections = exercise_sections_override or get_exercise_sections(exercise_name)
+    exercise_prompt = exercise_sections.get("prompt", "")
+    return assemble_system_prompt(global_prompt, exercise_prompt)

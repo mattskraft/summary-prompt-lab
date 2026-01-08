@@ -106,8 +106,7 @@ def build_summary_prompt(segments: List[Dict[str, Any]], exercise_name: Optional
         segments: List of segment dictionaries
         exercise_name: Optional exercise name to load exercise-specific system prompt
     """
-    answer_count = sum(1 for segment in segments if "Answer" in segment)
-    system_prompt = assembled_prompt_for_exercise(exercise_name, answer_count)
+    system_prompt = assembled_prompt_for_exercise(exercise_name)
 
     content_lines: List[str] = []
 
