@@ -84,7 +84,7 @@
     "example2": ""
   },
   "Was sind Stimmungskrisen?": {
-    "anweisungen": "# Anweisungen\n- Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n- Nutze TEXT und FRAGE nur als Kontext\n- Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n- Gehe nicht auf bedrohliche oder depressive Antworten ein\n- Fasse ausgewählte oder angegebene Gefühle während einer Stimmungskrise emphatisch zusammen, stärke aber gleichzeitig auch den Blick für Ressourcen, die Kraft geben und in der letzten Frage genannt werden",
+    "anweisungen": "# Anweisungen\n- Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n- Nutze TEXT und FRAGE nur als Kontext\n- Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n- Gehe nicht auf bedrohliche oder depressive Antworten ein\n- Fasse ausgewählte oder angegebene Gefühle während einer Stimmungskrise emphatisch zusammen, stärke aber gleichzeitig auch den Blick für Ressourcen, die Kraft geben und in der letzten Frage genannt werden\n- Sprich in der Zusammenfassung nicht in der ersten Person, also nicht von \"ich\" oder \"mir\", z.B. \"Es tut mir leid\"",
     "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 2 Absätze\n- Länge: Maximal 50 Wörter",
     "example1": "",
     "example2": ""
