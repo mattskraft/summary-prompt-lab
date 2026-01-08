@@ -687,7 +687,19 @@
   "Der innere Kritiker": {
     "enabled": true,
     "comment": "",
-    "segment_toggles": []
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false
+    ]
   },
   "Der wohlwollende Begleiter": {
     "enabled": true,
