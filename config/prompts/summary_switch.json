@@ -351,7 +351,9 @@
   "Einschlafen mit Naturgeräuschen": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": []
+    "segment_toggles": [
+      true
+    ]
   },
   "Einschlafen mit Wikipedia": {
     "enabled": false,
