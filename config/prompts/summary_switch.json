@@ -1701,7 +1701,7 @@
   },
   "Spaziergang": {
     "enabled": false,
-    "comment": "TODO\nZusammenfassung lohn nicht?",
+    "comment": "TODO\nZusammenfassung lohn nicht? -> sehe ich auch so",
     "segment_toggles": [
       true,
       true,
