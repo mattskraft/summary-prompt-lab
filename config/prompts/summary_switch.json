@@ -686,7 +686,7 @@
   },
   "Der innere Kritiker": {
     "enabled": true,
-    "comment": "",
+    "comment": "TODO\nBei mehreren Tests ist Mistral zu freizügig mit der Zusammenfassung. Eigentlich ist ja - unabhängig von den Antworten des Users - der letzte Textblock ein gutes Schlusswort. Eventuell integrieren?",
     "segment_toggles": [
       true,
       true,
@@ -698,7 +698,7 @@
       true,
       true,
       true,
-      false
+      true
     ]
   },
   "Der wohlwollende Begleiter": {
