@@ -94,5 +94,11 @@
     "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
     "example1": "",
     "example2": ""
+  },
+  "Einschlafritual": {
+    "anweisungen": "# Anweisungen\n- Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n- Nutze TEXT und FRAGE nur als Kontext\n- Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n- Gehe nicht auf suizidale Antworten ein",
+    "ausgabeformat": "# Ausgabeformat\n- Sprache: Deutsch\n- Format: Fließtext, keine Aufzählungen\n- Struktur: 1 Absatz\n- Länge: Maximal xxx Wörter",
+    "example1": "",
+    "example2": ""
   }
 }
