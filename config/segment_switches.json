@@ -798,7 +798,8 @@
     "comment": "Übung enthält keine Fragen",
     "segment_toggles": [
       true
-    ]
+    ],
+    "config_complete": true
   },
   "Seufzeratmung": {
     "enabled": false,
