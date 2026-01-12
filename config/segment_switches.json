@@ -880,13 +880,15 @@
   },
   "Selbstwirksamkeit": {
     "enabled": true,
-    "comment": "Anweisungen angepasst",
+    "comment": "TODO\nLohnt Zusammenfassung überhaupt?",
     "segment_toggles": [
+      false,
       false,
       true,
       true,
       true
-    ]
+    ],
+    "config_complete": false
   },
   "Beharrlichkeit": {
     "enabled": false,
