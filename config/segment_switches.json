@@ -639,8 +639,12 @@
       true,
       true,
       true,
+      true,
+      true,
+      true,
       true
-    ]
+    ],
+    "config_complete": true
   },
   "Inneren Abstand suchen": {
     "enabled": true,
