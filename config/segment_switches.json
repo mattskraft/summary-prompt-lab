@@ -402,7 +402,12 @@
   "Die gelbe Karte": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": []
+    "segment_toggles": [
+      true,
+      true,
+      true
+    ],
+    "config_complete": true
   },
   "Stimmung und Medikamente": {
     "enabled": false,
