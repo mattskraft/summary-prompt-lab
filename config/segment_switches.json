@@ -807,8 +807,10 @@
     "segment_toggles": [
       true,
       true,
+      true,
       true
-    ]
+    ],
+    "config_complete": true
   },
   "Austausch mit anderen": {
     "enabled": true,
