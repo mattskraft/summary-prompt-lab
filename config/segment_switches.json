@@ -542,20 +542,26 @@
   },
   "Schlafgewohnheiten 1": {
     "enabled": true,
-    "comment": "hier sind die Headlines nicht mit aufgeführt, ich versuche sie daher in den Prompt mit aufzunehmen",
+    "comment": "kann nochmal stressgetestet werden",
     "segment_toggles": [
       false,
       false,
       false,
+      false,
+      false,
       true,
       true,
+      false,
       true,
       true,
+      false,
       true,
       true,
+      false,
       true,
       true
-    ]
+    ],
+    "config_complete": false
   },
   "Schlafgewohnheiten 2": {
     "enabled": true,
