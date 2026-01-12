@@ -663,7 +663,8 @@
       true,
       true,
       true
-    ]
+    ],
+    "config_complete": true
   },
   "Ungewöhnliches erklären": {
     "enabled": true,
