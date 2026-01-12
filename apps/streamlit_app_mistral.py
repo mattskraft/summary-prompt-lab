@@ -1131,14 +1131,28 @@ if sel_uebung:
                     
                     # Build fresh segments for this exercise
                     try:
+                        # Debug: Show what we're searching for
+                        st.info(f"🔍 Suche Übung: '{sel_uebung}'\nSTRUCT: {STRUCT_JSON_PATH}\nSN: {SN_JSON_PATH}")
+                        
                         current_segments = get_prompt_segments_from_exercise(
                             exercise_name=sel_uebung,
                             json_struct_path=STRUCT_JSON_PATH,
                             json_sn_struct_path=SN_JSON_PATH,
                             seed=None,
                         )
+                        st.info(f"📊 Segmente gefunden: {len(current_segments)}")
+                        
+                        # Debug: show segment count right away
+                        if not current_segments:
+                            st.warning(f"⚠️ Keine Segmente für '{sel_uebung}' gefunden!")
+                            # Check if files exist
+                            import os
+                            st.text(f"STRUCT exists: {os.path.exists(STRUCT_JSON_PATH) if STRUCT_JSON_PATH else 'None'}")
+                            st.text(f"SN exists: {os.path.exists(SN_JSON_PATH) if SN_JSON_PATH else 'None'}")
                     except Exception as e:
                         st.error(f"Fehler bei der Segment-Generierung: {e}")
+                        import traceback
+                        st.code(traceback.format_exc())
                         st.stop()
                     
                     # Create system prompt with max words
