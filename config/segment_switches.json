@@ -524,7 +524,7 @@
   },
   "Einschlafritual": {
     "enabled": true,
-    "comment": "",
+    "comment": "kann nochmal stressgetestet werden",
     "segment_toggles": [
       false,
       false,
