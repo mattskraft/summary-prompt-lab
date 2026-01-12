@@ -1446,5 +1446,13 @@
     "enabled": true,
     "comment": "",
     "segment_toggles": []
+  },
+  "Ruhig atmen": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true
+    ],
+    "config_complete": true
   }
 }
