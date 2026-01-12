@@ -151,7 +151,7 @@
   },
   "Was sind Stimmungskrisen?": {
     "enabled": true,
-    "comment": "",
+    "comment": "stresstesten, evt. nochmal Antworten kürzen",
     "segment_toggles": [
       true,
       false,
@@ -167,7 +167,7 @@
       true,
       true
     ],
-    "config_complete": false
+    "config_complete": true
   },
   "Berühmte Stimmenhörer": {
     "enabled": true,
