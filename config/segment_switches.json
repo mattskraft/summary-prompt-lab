@@ -1536,5 +1536,25 @@
       true
     ],
     "config_complete": false
+  },
+  "Hilfreiche Gedanken entwickeln": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Meine hilfreichen Gedanken": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Achtsames Beobachten": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true,
+      true
+    ],
+    "config_complete": true
   }
 }
