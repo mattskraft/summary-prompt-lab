@@ -18,23 +18,42 @@ def _load_yaml() -> Any:
     return yaml
 
 
+# Default header when prompts.yaml is not available
+DEFAULT_GEMINI_ANSWER_HEADER = """Du bist ein Nutzer einer therapeutischen App für Menschen mit psychischen Belastungen.
+Du beantwortest die folgende Frage basierend auf dem Kontext.
+Antworte kurz und authentisch, wie ein echter Nutzer es tun würde.
+Halte deine Antwort unter 30 Wörtern.
+
+KONTEXT:"""
+
+
 @lru_cache(maxsize=1)
 def _get_prompt_templates() -> Dict[str, str]:
+    # Return defaults if no config path
     if not PROMPTS_CONFIG_PATH:
-        raise ValueError("PROMPTS_CONFIG_PATH ist nicht konfiguriert.")
+        return {"gemini_answer_header": DEFAULT_GEMINI_ANSWER_HEADER}
+    
     path = Path(PROMPTS_CONFIG_PATH)
     if not path.exists():
-        raise FileNotFoundError(f"Prompt-Konfigurationsdatei nicht gefunden: {path}")
-    yaml = _load_yaml()
-    with path.open("r", encoding="utf-8") as handle:
-        data = yaml.safe_load(handle)
-    if not isinstance(data, dict):
-        raise ValueError(f"Prompt-Konfiguration muss ein Mapping enthalten: {path}")
-    templates: Dict[str, str] = {}
-    for key, value in data.items():
-        if isinstance(value, str):
-            templates[str(key)] = value
-    return templates
+        # Return defaults if file doesn't exist
+        return {"gemini_answer_header": DEFAULT_GEMINI_ANSWER_HEADER}
+    
+    try:
+        yaml = _load_yaml()
+        with path.open("r", encoding="utf-8") as handle:
+            data = yaml.safe_load(handle)
+        if not isinstance(data, dict):
+            return {"gemini_answer_header": DEFAULT_GEMINI_ANSWER_HEADER}
+        templates: Dict[str, str] = {}
+        for key, value in data.items():
+            if isinstance(value, str):
+                templates[str(key)] = value
+        # Ensure we have the required key
+        if "gemini_answer_header" not in templates:
+            templates["gemini_answer_header"] = DEFAULT_GEMINI_ANSWER_HEADER
+        return templates
+    except Exception:
+        return {"gemini_answer_header": DEFAULT_GEMINI_ANSWER_HEADER}
 
 
 def build_gemini_prompt_up_to_question(

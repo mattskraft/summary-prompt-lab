@@ -4,7 +4,7 @@
 #
 #    pip-compile --output-file=requirements.txt pyproject.toml
 #
-# Cache bust: 2026-01-12-v2
+# Cache bust: 2026-01-12-v3
 altair==5.5.0
     # via streamlit
 annotated-types==0.7.0
