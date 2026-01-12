@@ -1601,5 +1601,21 @@
       true
     ],
     "config_complete": true
+  },
+  "Die Stimmen in die Schranken weisen": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Feste Zeiten": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "config_complete": true
   }
 }
