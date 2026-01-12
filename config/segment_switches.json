@@ -1593,5 +1593,13 @@
       true
     ],
     "config_complete": true
+  },
+  "Bodyscan: Körperwahrnehmung": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true
+    ],
+    "config_complete": true
   }
 }
