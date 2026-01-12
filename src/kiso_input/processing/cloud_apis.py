@@ -242,17 +242,15 @@ def generate_answers_with_mistral(
     if model is None:
         model = MISTRAL_MODEL_ANSWERS
     
-    # Log input info
-    print(f"\n{'='*60}")
-    print(f"🤖 [Mistral Answers] Starting answer generation")
-    print(f"   Model: {model}")
-    print(f"   Total segments: {len(segments)}")
-    answer_segments = [s for s in segments if "Answer" in s]
-    question_segments = [s for s in segments if "Question" in s]
-    print(f"   Answer segments: {len(answer_segments)}")
-    print(f"   Question segments: {len(question_segments)}")
+    # Collect diagnostic info for UI display
+    diagnostics: Dict[str, Any] = {
+        "model": model,
+        "total_segments": len(segments),
+        "answer_types": [],
+        "errors": [],
+    }
     
-    # Show answer types
+    # Categorize answer types
     for i, seg in enumerate(segments):
         if "Answer" in seg:
             answer_val = seg.get("Answer")
@@ -265,9 +263,8 @@ def generate_answers_with_mistral(
             elif isinstance(answer_val, str) and answer_val.strip().lower() in {"free_text", "freetext", "free text"}:
                 answer_type = "free_text"
             elif isinstance(answer_val, str):
-                answer_type = f"text ({answer_val[:30]}...)" if len(str(answer_val)) > 30 else f"text ({answer_val})"
-            print(f"   Segment {i}: {answer_type}")
-    print(f"{'='*60}")
+                answer_type = f"other_text"
+            diagnostics["answer_types"].append({"segment": i, "type": answer_type})
         
     try:
         from mistralai import Mistral  # type: ignore
@@ -350,10 +347,6 @@ def generate_answers_with_mistral(
                         if debug:
                             print(f"⚠️ Slider config invalid at index {index}: {slider_config}")
 
-    # Always log diagnostic info for debugging
-    print(f"\n📊 [Mistral Answers] MC questions found: {len(mc_answers)}")
-    print(f"📊 [Mistral Answers] Slider questions found: {len(slider_answers)}")
-
     # For free text questions, we'll use Mistral to generate answers
     free_text_answers: Dict[str, str] = {}
     free_text_question_indices = []
@@ -372,10 +365,6 @@ def generate_answers_with_mistral(
                         if question_text:
                             free_text_question_indices.append((back_index, question_text))
                         break
-
-    print(f"📊 [Mistral Answers] Free text questions found: {len(free_text_question_indices)}")
-    if not free_text_question_indices:
-        print("⚠️ [Mistral Answers] No free text questions to generate - Mistral will not be called")
 
     # Generate free text answers using Mistral with full context
     free_text_answers_by_text: Dict[str, str] = {}
@@ -451,17 +440,14 @@ def generate_answers_with_mistral(
                             print(f"   Answer: {answer}")
                     
             except Exception as e:
-                # Always log the error to console so it's visible
-                print(f"❌ MISTRAL API ERROR: {e}")
-                print(f"   Question: {question_text[:60]}...")
-                print(f"   Model: {model}")
-                if debug:
-                    print(f"\n{'─'*40}")
-                    print(f"Full error details:")
-                    print(f"{'─'*40}")
-                    import traceback
-                    traceback.print_exc()
-                    print(f"{'='*80}\n")
+                # Capture error for UI display
+                error_info = {
+                    "question": question_text[:60] if question_text else "unknown",
+                    "error": str(e),
+                    "model": model,
+                }
+                diagnostics["errors"].append(error_info)
+                
                 # Use a fallback answer with error info
                 error_msg = f"Fehler: {str(e)[:100]}"
                 free_text_answers_by_index[question_idx] = error_msg
@@ -501,23 +487,19 @@ def generate_answers_with_mistral(
         else:
             merged_segments.append(new_segment)
 
+    # Build comprehensive debug info including diagnostics
     debug_info = {
-        "mc_questions": len(mc_answers),
-        "slider_questions": len(slider_answers),
-        "free_text_questions": len(free_text_answers_by_index),
         "model_used": model,
         "temperature": temperature,
         "top_p": top_p,
+        "total_segments": len(segments),
+        "mc_questions_generated": len(mc_answers),
+        "slider_questions_generated": len(slider_answers),
+        "free_text_questions_found": len(free_text_question_indices),
+        "free_text_answers_generated": len(free_text_answers_by_index),
+        "answer_types": diagnostics.get("answer_types", []),
+        "errors": diagnostics.get("errors", []),
     }
-
-    # Log summary
-    print(f"\n{'='*60}")
-    print(f"✅ [Mistral Answers] Generation complete")
-    print(f"   MC answers generated: {len(mc_answers)}")
-    print(f"   Slider answers generated: {len(slider_answers)}")
-    print(f"   Free text answers generated: {len(free_text_answers_by_index)}")
-    print(f"   Total merged segments: {len(merged_segments)}")
-    print(f"{'='*60}\n")
 
     if return_debug_info:
         return merged_segments, debug_info

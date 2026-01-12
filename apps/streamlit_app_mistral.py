@@ -1161,6 +1161,9 @@ if sel_uebung:
                         # Store in session state
                         st.session_state[session_key] = generated_segments
                         
+                        # Store debug info for display
+                        st.session_state[f"{session_key}_debug_info"] = debug_info
+                        
                         # Set flag to indicate fresh generation occurred
                         st.session_state[f"{session_key}_fresh_generated"] = True
                         
@@ -1203,7 +1206,10 @@ if sel_uebung:
                                     st.session_state[widget_key] = answer_val
                                 else:
                                     st.session_state[widget_key] = answer_val
+                    # Show debug info before rerun
                     st.success("✅ Antworten generiert")
+                    with st.expander("🔍 Debug-Info", expanded=True):
+                        st.json(debug_info)
                     st.rerun()
                 except Exception as e:
                     st.error(f"❌ Fehler bei der Antwort-Generierung: {e}")
@@ -1273,6 +1279,35 @@ if sel_uebung:
         if st.session_state.get(f"{sel_uebung}_transfer_main_success", False):
             st.success("✅ Antworten zu TEST übertragen")
             st.session_state[f"{sel_uebung}_transfer_main_success"] = False
+        
+        # Show debug info from last answer generation
+        debug_info_key = f"{session_key}_debug_info"
+        if debug_info_key in st.session_state and st.session_state[debug_info_key]:
+            with st.expander("🔍 Letzte Generierung - Debug Info", expanded=False):
+                debug_info = st.session_state[debug_info_key]
+                st.markdown(f"""
+**Modell:** {debug_info.get('model_used', 'N/A')}  
+**Segmente gesamt:** {debug_info.get('total_segments', 0)}  
+**MC-Antworten:** {debug_info.get('mc_questions_generated', 0)}  
+**Slider-Antworten:** {debug_info.get('slider_questions_generated', 0)}  
+**Freitext gefunden:** {debug_info.get('free_text_questions_found', 0)}  
+**Freitext generiert:** {debug_info.get('free_text_answers_generated', 0)}
+                """)
+                
+                # Show answer types
+                answer_types = debug_info.get('answer_types', [])
+                if answer_types:
+                    st.markdown("**Antwort-Typen:**")
+                    for at in answer_types:
+                        st.text(f"  Segment {at['segment']}: {at['type']}")
+                
+                # Show errors if any
+                errors = debug_info.get('errors', [])
+                if errors:
+                    st.error(f"**{len(errors)} Fehler aufgetreten:**")
+                    for err in errors:
+                        st.text(f"  Frage: {err.get('question', 'N/A')}")
+                        st.text(f"  Fehler: {err.get('error', 'N/A')}")
     
     
     # Initialize session_key if it doesn't exist (don't overwrite existing generated segments)
