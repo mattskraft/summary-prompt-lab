@@ -1488,5 +1488,28 @@
       true
     ],
     "config_complete": true
+  },
+  "Automatische Gedanken": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Automatische Gedanken erkennen": {
+    "enabled": false,
+    "comment": "TODO\nStory node & kommentierte MC Antworten",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "config_complete": false
   }
 }
