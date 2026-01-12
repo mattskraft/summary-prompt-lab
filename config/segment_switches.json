@@ -1220,7 +1220,11 @@
   "Wie entstehen Stimmungskrisen?": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": []
+    "segment_toggles": [
+      true,
+      true
+    ],
+    "config_complete": true
   },
   "Drei Fragen": {
     "enabled": false,
