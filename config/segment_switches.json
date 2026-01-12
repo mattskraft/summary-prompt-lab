@@ -1280,5 +1280,23 @@
       true
     ],
     "config_complete": true
+  },
+  "Stimmung und Psychose": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "config_complete": true
   }
 }
