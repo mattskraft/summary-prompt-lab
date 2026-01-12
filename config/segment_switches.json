@@ -313,8 +313,20 @@
   },
   "Rosinenübung": {
     "enabled": true,
-    "comment": "",
-    "segment_toggles": []
+    "comment": "TODO\nDa letzte Frage ein story node ist und die App entsprechend schon reagiert, macht eine Zusammenfassung der vorigen Frage keinen Sinn oder?",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "config_complete": false
   },
   "Gedanken aufschreiben": {
     "enabled": false,
