@@ -460,7 +460,7 @@
   },
   "Was sind Schlafstörungen?": {
     "enabled": true,
-    "comment": "",
+    "comment": "stresstesten, evt. nochmal Antworten/Beispielantworten kürzen",
     "segment_toggles": [
       false,
       true,
@@ -471,7 +471,8 @@
       true,
       true,
       true
-    ]
+    ],
+    "config_complete": true
   },
   "Wie viel Schlaf brauchen wir?": {
     "enabled": false,
