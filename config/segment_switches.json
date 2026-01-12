@@ -1149,5 +1149,10 @@
     "enabled": true,
     "comment": "",
     "segment_toggles": []
+  },
+  "Wie entstehen Stimmungskrisen?": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": []
   }
 }
