@@ -242,33 +242,8 @@ def generate_answers_with_mistral(
     if model is None:
         model = MISTRAL_MODEL_ANSWERS
     
-    # Collect diagnostic info for UI display
-    # VERSION MARKER: v2025-01-12-fix - verify correct code is deployed
-    diagnostics: Dict[str, Any] = {
-        "model": model,
-        "total_segments": len(segments),
-        "segments_received_type": type(segments).__name__,
-        "segments_repr": repr(segments)[:200] if segments else "EMPTY",
-        "code_version": "v2025-01-12-fix",
-        "answer_types": [],
-        "errors": [],
-    }
-    
-    # Categorize answer types
-    for i, seg in enumerate(segments):
-        if "Answer" in seg:
-            answer_val = seg.get("Answer")
-            options = seg.get("AnswerOptions")
-            answer_type = "unknown"
-            if isinstance(options, list):
-                answer_type = "MC"
-            elif isinstance(options, dict) or isinstance(answer_val, dict):
-                answer_type = "slider"
-            elif isinstance(answer_val, str) and answer_val.strip().lower() in {"free_text", "freetext", "free text"}:
-                answer_type = "free_text"
-            elif isinstance(answer_val, str):
-                answer_type = f"other_text"
-            diagnostics["answer_types"].append({"segment": i, "type": answer_type})
+    # Track errors during generation
+    generation_errors: List[Dict[str, str]] = []
         
     try:
         from mistralai import Mistral  # type: ignore
@@ -444,13 +419,11 @@ def generate_answers_with_mistral(
                             print(f"   Answer: {answer}")
                     
             except Exception as e:
-                # Capture error for UI display
-                error_info = {
+                # Capture error for reporting
+                generation_errors.append({
                     "question": question_text[:60] if question_text else "unknown",
                     "error": str(e),
-                    "model": model,
-                }
-                diagnostics["errors"].append(error_info)
+                })
                 
                 # Use a fallback answer with error info
                 error_msg = f"Fehler: {str(e)[:100]}"
@@ -491,7 +464,6 @@ def generate_answers_with_mistral(
         else:
             merged_segments.append(new_segment)
 
-    # Build comprehensive debug info including diagnostics
     debug_info = {
         "model_used": model,
         "temperature": temperature,
@@ -501,8 +473,7 @@ def generate_answers_with_mistral(
         "slider_questions_generated": len(slider_answers),
         "free_text_questions_found": len(free_text_question_indices),
         "free_text_answers_generated": len(free_text_answers_by_index),
-        "answer_types": diagnostics.get("answer_types", []),
-        "errors": diagnostics.get("errors", []),
+        "errors": generation_errors,
     }
 
     if return_debug_info:

@@ -1137,32 +1137,12 @@ if sel_uebung:
                             json_sn_struct_path=SN_JSON_PATH,
                             seed=None,
                         )
-                        
-                        # Store segment loading diagnostics in session state
-                        st.session_state[f"{session_key}_segment_diag"] = {
-                            "exercise_name": sel_uebung,
-                            "struct_path": STRUCT_JSON_PATH,
-                            "sn_path": SN_JSON_PATH,
-                            "segments_loaded": len(current_segments),
-                            "struct_exists": os.path.exists(STRUCT_JSON_PATH) if STRUCT_JSON_PATH else False,
-                            "sn_exists": os.path.exists(SN_JSON_PATH) if SN_JSON_PATH else False,
-                        }
-                        
                     except Exception as e:
                         st.error(f"Fehler bei der Segment-Generierung: {e}")
-                        import traceback
-                        st.code(traceback.format_exc())
                         st.stop()
                     
                     # Create system prompt with max words
                     system_prompt_with_words = SYNTH_ANSWERS_PROMPT.replace("xxx", str(gemini_max_words))
-                    
-                    # Debug: verify segments right before calling Mistral
-                    st.session_state[f"{session_key}_pre_mistral_count"] = len(current_segments)
-                    st.session_state[f"{session_key}_pre_mistral_types"] = [
-                        {"idx": i, "keys": list(seg.keys())} 
-                        for i, seg in enumerate(current_segments[:5])  # First 5 only
-                    ]
                     
                     with st.spinner("Generiere Antworten..."):
                         result = generate_answers_with_mistral(
@@ -1174,62 +1154,25 @@ if sel_uebung:
                             seed=None,
                             max_words=gemini_max_words,
                         )
-                        generated_segments, debug_info = result
+                        generated_segments, _ = result
                         generated_segments = enrich_segments_with_answer_metadata(
                             current_segments, generated_segments
                         )
                         # Store in session state
                         st.session_state[session_key] = generated_segments
                         
-                        # Store debug info for display
-                        st.session_state[f"{session_key}_debug_info"] = debug_info
-                        
                         # Set flag to indicate fresh generation occurred
                         st.session_state[f"{session_key}_fresh_generated"] = True
                         
-                        # Clear old widget inputs and pre-populate new ones with generated answers
-                        keys_to_remove = []
-                        for state_key in list(st.session_state.keys()):
-                            # Clear old widget keys
-                            if (state_key.startswith(f"{session_key}_original_ans_") or 
-                                state_key.startswith(f"{session_key}_generated_ans_")):
-                                keys_to_remove.append(state_key)
-                        
+                        # Clear old widget keys so new ones use segment data
+                        keys_to_remove = [
+                            k for k in st.session_state.keys()
+                            if k.startswith(f"{session_key}_original_ans_") or 
+                               k.startswith(f"{session_key}_generated_ans_")
+                        ]
                         for key in keys_to_remove:
                             del st.session_state[key]
-                        
-                        # Pre-populate new widget keys with generated answers
-                        for idx, seg in enumerate(generated_segments):
-                            if "Answer" in seg:
-                                widget_key = f"{session_key}_generated_ans_{idx}"
-                                answer_val = seg["Answer"]
-                                
-                                # Set the widget value in session state
-                                if isinstance(answer_val, list):
-                                    # Check if this is a single-choice MC question
-                                    if ("AnswerOptions" in seg and 
-                                        isinstance(seg["AnswerOptions"], list) and
-                                        not seg.get("AllowMultiple", True)):
-                                        # Single-choice MC: store first item as string
-                                        st.session_state[widget_key] = answer_val[0] if answer_val else ""
-                                    else:
-                                        # Multi-choice MC: store as list
-                                        st.session_state[widget_key] = answer_val
-                                elif isinstance(answer_val, (int, float)):
-                                    # For sliders, also set the slider-specific key
-                                    st.session_state[widget_key] = int(answer_val)
-                                    if "AnswerOptions" in seg and isinstance(seg["AnswerOptions"], dict):
-                                        # This is a slider - also set the slider key
-                                        slider_key = f"{widget_key}_slider"
-                                        st.session_state[slider_key] = int(answer_val)
-                                elif isinstance(answer_val, str):
-                                    st.session_state[widget_key] = answer_val
-                                else:
-                                    st.session_state[widget_key] = answer_val
-                    # Show debug info before rerun
                     st.success("✅ Antworten generiert")
-                    with st.expander("🔍 Debug-Info", expanded=True):
-                        st.json(debug_info)
                     st.rerun()
                 except Exception as e:
                     st.error(f"❌ Fehler bei der Antwort-Generierung: {e}")
@@ -1299,65 +1242,6 @@ if sel_uebung:
         if st.session_state.get(f"{sel_uebung}_transfer_main_success", False):
             st.success("✅ Antworten zu TEST übertragen")
             st.session_state[f"{sel_uebung}_transfer_main_success"] = False
-        
-        # Show debug info from last answer generation
-        debug_info_key = f"{session_key}_debug_info"
-        segment_diag_key = f"{session_key}_segment_diag"
-        
-        if debug_info_key in st.session_state or segment_diag_key in st.session_state:
-            with st.expander("🔍 Letzte Generierung - Debug Info", expanded=True):
-                # Show segment loading diagnostics first
-                if segment_diag_key in st.session_state:
-                    seg_diag = st.session_state[segment_diag_key]
-                    st.markdown("**📂 Segment-Laden:**")
-                    st.text(f"  Übung: {seg_diag.get('exercise_name', 'N/A')}")
-                    st.text(f"  STRUCT-Datei: {seg_diag.get('struct_path', 'N/A')}")
-                    st.text(f"  STRUCT existiert: {seg_diag.get('struct_exists', False)}")
-                    st.text(f"  SN-Datei: {seg_diag.get('sn_path', 'N/A')}")
-                    st.text(f"  SN existiert: {seg_diag.get('sn_exists', False)}")
-                    st.text(f"  ➡️ Segmente geladen: {seg_diag.get('segments_loaded', 0)}")
-                
-                # Show pre-Mistral segment count
-                pre_mistral_key = f"{session_key}_pre_mistral_count"
-                pre_mistral_types_key = f"{session_key}_pre_mistral_types"
-                if pre_mistral_key in st.session_state:
-                    st.text(f"  ➡️ Vor Mistral-Aufruf: {st.session_state[pre_mistral_key]}")
-                if pre_mistral_types_key in st.session_state:
-                    st.text(f"  Erste Segmente: {st.session_state[pre_mistral_types_key]}")
-                
-                st.markdown("---")
-                
-                if debug_info_key in st.session_state and st.session_state[debug_info_key]:
-                    debug_info = st.session_state[debug_info_key]
-                    st.markdown(f"""
-**Code-Version:** {debug_info.get('code_version', 'UNKNOWN - OLD CODE!')}  
-**Modell:** {debug_info.get('model_used', 'N/A')}  
-**Segmente an Mistral:** {debug_info.get('total_segments', 0)}  
-**Segment-Typ:** {debug_info.get('segments_received_type', 'N/A')}  
-**MC-Antworten:** {debug_info.get('mc_questions_generated', 0)}  
-**Slider-Antworten:** {debug_info.get('slider_questions_generated', 0)}  
-**Freitext gefunden:** {debug_info.get('free_text_questions_found', 0)}  
-**Freitext generiert:** {debug_info.get('free_text_answers_generated', 0)}
-                    """)
-                    # Show segments repr if available
-                    segments_repr = debug_info.get('segments_repr')
-                    if segments_repr:
-                        st.text(f"Segments data: {segments_repr}")
-                    
-                    # Show answer types
-                    answer_types = debug_info.get('answer_types', [])
-                    if answer_types:
-                        st.markdown("**Antwort-Typen:**")
-                        for at in answer_types:
-                            st.text(f"  Segment {at['segment']}: {at['type']}")
-                    
-                    # Show errors if any
-                    errors = debug_info.get('errors', [])
-                    if errors:
-                        st.error(f"**{len(errors)} Fehler aufgetreten:**")
-                        for err in errors:
-                            st.text(f"  Frage: {err.get('question', 'N/A')}")
-                            st.text(f"  Fehler: {err.get('error', 'N/A')}")
     
     
     # Initialize session_key if it doesn't exist (don't overwrite existing generated segments)
