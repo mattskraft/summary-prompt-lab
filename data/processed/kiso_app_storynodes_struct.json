@@ -1,41 +1,66 @@
 {
   "Beziehungen - Kritik - Aussage 1 - Richtig": [
     {
+      "StorynodeId": 210
+    },
+    {
       "Text": "Richtig! Bei dieser Formulierung handelt es sich nicht um konstruktive Kritik, sondern um einen Angriff:\n\nDiese Aussage greift die Person direkt an, ist pauschal und lässt keinen Raum für ein Gespräch.\n\nBesser wäre: \"Ich habe das Gefühl, dass du bei Entscheidungen oft nur an deine eigenen Wünsche denkst. Das verletzt mich.\""
     }
   ],
   "Beziehungen - Anvertrauen - Option C: Hinterfragen": [
+    {
+      "StorynodeId": 216
+    },
     {
       "Text": "Schamgefühle sind oft sehr stark.\n\nDoch dass du dich schämst, bedeutet nicht, dass du etwas falsch gemacht hast.\n\nEs zeigt nur, wie sehr du dazugehören und akzeptiert sein möchtest.\n\n**Wenn eine Person die du magst, Ähnliches erlebt hätte wie du: Würdest du sie auch für \"peinlich\" halten?**\n\nDu bist nicht deine Diagnose. Du bist ein Mensch mit Erfahrungen – schwierigen, aber auch wertvollen. Das kannst du auch in Gesprächen mit Vertrauenspersonen nutzen: Statt \"Ich bin schizophren\" sage lieber: \"Ich habe psychotische Erfahrungen gemacht\"."
     }
   ],
   "Halluzinationen - Unterscheiden - Option A": [
     {
+      "StorynodeId": 219
+    },
+    {
       "Text": "Das ist toll!\n\nViele Betroffene entwickeln mit der Zeit ein gutes Gespür für die eigene Wahrnehmung. Dieses Vertrauen in die eigene Wahrnehmung ist hilfreich."
     }
   ],
   "Halluzinationen - Rosinen - C": [
+    {
+      "StorynodeId": 226
+    },
     {
       "Text": "Achtsamkeit kann anstrengend sein. Das ist normal. Mit der Zeit wird es einfacher.\n\nAuch deine Anstrengung wahrzunehmen, ist achtsam."
     }
   ],
   "Halluzinationen - Umgang mit Bildern - B": [
     {
+      "StorynodeId": 247
+    },
+    {
       "Text": "Wie man sich mit Halluzinationen fühlt, hängt nicht nur davon ab, was man sieht. Entscheidend ist auch, wie man die Halluzinationen bewertet und damit umgeht.\n\nOft sind die ersten Gedanken zu den Bildern sehr beunruhigend. Du kannst üben, andere Gedankenwege zu gehen. Das verändert, wie stark dich die Halluzinationen belasten.\n\nWenn du denkst \"Das ist gefährlich\", versuche dich daran zu erinnern: \"Ich spüre Angst. Aber es ist nur ein Bild, es kann mir nichts tun.\""
     }
   ],
   "Stimmung - Aktivität 1 - Nein": [
+    {
+      "StorynodeId": 230
+    },
     {
       "Text": "Nicht immer klappen Dinge, die wir uns vornehmen, beim ersten Mal.\n\nManchmal setzen wir uns Ziele, die wir _noch_ nicht erreichen können.\n\nWichtig ist, dass du dich deswegen nicht verurteilst oder fertig machst.\n\nVielleicht war die Aktivität zu groß für einen ersten Schritt?"
     }
   ],
   "Ungewöhnliche Gedanken - Tag mit Kim - Bahn A": [
     {
+      "StorynodeId": 181
+    },
+    {
       "Text": "**Ich bin mir sicher, sie kennen mich und sprechen schlecht über mich!**\n\nKim wird unruhig, beobachtet sie weiter und fühlt sich bedroht. Als ihre Angst mehr und mehr steigt und ihr Herz so laut klopft, dass sie glaubt, die anderen könnten es hören, verlässt sie vorzeitig die Bahn. Dort wartet sie auf den nächsten Zug."
     }
   ],
   "Recht durchsetzen - JA - Ich habe auf mein Recht bestanden.": [
     {
+      "StorynodeId": 161
+    },
+    {
+      "id": 2363,
       "Question": "Was hast du gesagt, um dein Recht durchzusetzen?",
       "AnswerOptions": "free_text"
     },
@@ -55,21 +80,34 @@
   ],
   "Stimmung - Aktivität 3 - Nein": [
     {
+      "StorynodeId": 233
+    },
+    {
       "Text": "Nicht immer klappen Dinge, die wir uns vornehmen, beim ersten Mal.\n\nErinnere dich daran, dass Fehler wichtig sind - daraus kannst du lernen. Vielleicht solltest du beim nächsten Mal eine etwas einfachere Version der Aktivität planen, zum Beispiel nur den ersten Schritt durchführen und dann in der nächsten Woche ein größeres Ziel anstreben.\n\nLass dich nicht entmutigen!"
     }
   ],
   "Konnte überzeugen (Recht)": [
+    {
+      "StorynodeId": 162
+    },
     {
       "Text": "Sehr gut! Wenn dir in nächster Zeit nochmal eine ähnliche Situation begegnet, versuche gerne an die Tipps zu denken und dein Recht respektvoll und klar durchzusetzen."
     }
   ],
   "Schlaf - Gedankenstopp - Nein": [
     {
+      "StorynodeId": 256
+    },
+    {
       "Text": "Stell dir deinen Gedanken noch einmal vor und sage ganz laut “STOPP”. Übe das 5-10 Mal und stell dir dabei ein rotes Stoppschild vor deinem inneren Auge vor.\n\nWenn du diese Übung mehrmals wiederholt und geübt hast, kannst du dir nochmal deinen Gedanken vorstellen und dieses Mal “STOPP” lautlos denken."
     }
   ],
   "Konnte nicht überzeugen (Recht)": [
     {
+      "StorynodeId": 163
+    },
+    {
+      "id": 2366,
       "Question": "Das ist nicht schlimm! Worauf könntest du beim nächsten mal achten?",
       "AnswerOptions": [
         "klar und deutlich sprechen",
@@ -83,6 +121,7 @@
       "AllowMultiple": false
     },
     {
+      "id": 2365,
       "Question": "Was könntest du das nächste mal sagen, um dein Gegenüber zu überzeugen?",
       "AnswerOptions": "free_text"
     },
@@ -92,21 +131,34 @@
   ],
   "Beziehungen - Nachbarschaft - Situation 2 - Option B": [
     {
+      "StorynodeId": 252
+    },
+    {
       "Text": "**Ich klingle bei meinen Nachbarn und erzähle ihnen von meiner Feier. Sie werden bestimmt nichts dagegen haben.**\n\nDu hast dich dafür entschieden, den persönlichen Kontakt zu deinen Nachbarn zu suchen und sie über die Party zu informieren.\n\nDas deutet darauf hin, dass du und deine Nachbarn ein gutes Verhältnis habt und du befürchtest nicht, dass es mit einem der Nachbarn zu einem Konflikt kommt."
     }
   ],
   "Beziehungen - Nachbarschaft - Situation 3 - Option A": [
+    {
+      "StorynodeId": 253
+    },
     {
       "Text": "**Ich fahre in den nächsten Baumarkt und kaufe einen Hammer. Ich will meine Nachbarn nicht stören.**\n\nDu vermeidest es, deinen Nachbarn um Hilfe zu bitten und gibst lieber selbst Geld für einen Hammer aus. Das könnte darauf hinweisen, dass du befürchtest, keine Hilfe von dem Nachbarn zu bekommen und deutet auf ein weniger gutes nachbarschaftliches Verhältnis hin.\n\nIn diesem Fall könnte die nachbarschaftliche Beziehung noch verbessert werden."
     }
   ],
   "Stimmung - Aktivität 2 - Ja": [
     {
+      "StorynodeId": 141
+    },
+    {
       "Text": "Zeit, dir auf die Schulter zu klopfen! Auch kleine Schritte im Alltag darfst du feiern. Hast du dich für deinen Erfolg belohnt?\n\nFalls du das Gefühl hast, dich nicht richtig freuen zu können, überprüfe, ob bestimmte Gedanken dich davon abhalten, Freude zu empfinden (zum Beispiel \"Das war doch gar nichts\" oder \"Andere machen viel mehr\"). Wir alle haben solche Gedanken - gerade unangenehme automatische Gedanken halten uns oft davon ab, Erfolge zu genießen.\n\nIm Anschluss kannst du dir noch weitere Tipps zur Planung von Aktivitäten ansehen."
     }
   ],
   "Recht durchsetzen - Situation erlebt JA": [
     {
+      "StorynodeId": 159
+    },
+    {
+      "id": 2361,
       "Question": "Was für eine Situation war das?",
       "AnswerOptions": "free_text"
     },
@@ -126,16 +178,26 @@
   ],
   "Recht durchsetzen - JA - Ich habe es nicht angesprochen": [
     {
+      "StorynodeId": 160
+    },
+    {
+      "id": 2362,
       "Question": "Überlege dir mit Hilfe der Tipps, wie du dein Recht hättest durchsetzen können:",
       "AnswerOptions": "free_text"
     }
   ],
   "Halluzinationen - Umgang mit Bildern - A": [
     {
+      "StorynodeId": 245
+    },
+    {
       "Text": "Ähnlich wie beim Stimmenhören kannst du auch visuelle Halluzinationen achtsam beobachten.\n\nAchtsamkeit bedeutet, die Bilder wahrzunehmen, ohne gegen sie anzukämpfen. Wenn du sie einfach beobachtest und wieder ziehen lässt, verlieren sie an Macht und du kannst ruhiger bleiben."
     }
   ],
   "Willkommen - Beziehungen": [
+    {
+      "StorynodeId": 266
+    },
     {
       "Text": "Beziehungen"
     },
@@ -145,10 +207,16 @@
   ],
   "Ungewöhnliche Gedanken - Tag mit Kim - Handy B": [
     {
+      "StorynodeId": 186
+    },
+    {
       "Text": "**Vielleicht ist sie beschäftigt oder hat die Nachricht gelesen und dann vergessen zu antworten.**\n\nKim fühlt sich zwar noch unsicher, aber der Gedanke beruhigt sie etwas. Sie beschließt, bei Ayla nochmal nachzuhaken, ob alles in Ordnung ist."
     }
   ],
   "Willkommen - Wahngedanken": [
+    {
+      "StorynodeId": 264
+    },
     {
       "Text": "Umgang mit Wahngedanken"
     },
@@ -158,50 +226,79 @@
   ],
   "Ungewöhnliche Gedanken - Tag mit Kim - Handy A": [
     {
+      "StorynodeId": 189
+    },
+    {
       "Text": "**Sie ignoriert mich bestimmt absichtlich und will nichts mehr mit mir zu tun haben.**\n\nKim fühlt sich verletzt. Sie schaltet ihr Handy stumm. Niemand soll sie mehr erreichen, wenn sich eh niemand für sie interessiert."
     }
   ],
   "Ungewöhnliche Gedanken - Tag mit Kim - Büro A": [
+    {
+      "StorynodeId": 183
+    },
     {
       "Text": "**Er denkt bestimmt, ich bin unfähig oder komisch, weil ich nicht mehr arbeite.**\n\nKim grübelt lange und arbeitet unsicher weiter. Hat sie vielleicht sogar einen Fehler gemacht, von dem sie nichts weiß? Sie traut sich nicht, bei ihrem Chef nachzufragen und geht mit einem grummelnden Magen später nach Hause."
     }
   ],
   "Ungewöhnliche Gedanken - Tag mit Kim - Bahn B": [
     {
+      "StorynodeId": 187
+    },
+    {
       "Text": "**Ich kann nicht wissen, worüber sie lachen. Vielleicht hatte jemand gerade eine lustige Idee.**\n\nKim schafft es, bei sich zu bleiben, auch wenn sie unsicher ist. Die Anspannung lässt etwas nach. Sie setzt ihre Kopfhörer auf und hört Musik. Das lenkt sie ab. Nach ein paar Stationen steigen die Jugendlichen aus."
     }
   ],
   "Die Lebensbrille - Bahn Option A": [
+    {
+      "StorynodeId": 234
+    },
     {
       "Text": "\"Die Frau lacht mich bestimmt aus, weil ich mit meinem Rad in die Bahn möchte. So wie die Kinder früher in meiner Schulklasse.\"\n\nDu weichst dem Blick der Frau aus, schaust auf deine Füße. Vielleicht fühlst dich ängstlich oder wütend."
     }
   ],
   "Beziehungen - Kritik - Aussage 2 - Richtig": [
     {
+      "StorynodeId": 89
+    },
+    {
       "Text": "Richtig! Bei dieser Aussage handelt es sich um konstruktive Kritik:\n\nDie Aussage beschreibt das eigene Erleben und bleibt bei den eigenen Gefühlen. Man greift damit nicht direkt die andere Person an."
     }
   ],
   "Beziehungen - Kritik - Aussage 2 - Falsch": [
+    {
+      "StorynodeId": 91
+    },
     {
       "Text": "Nicht ganz! Bei dieser Aussage handelt es sich nicht um einen Angriff auf die andere Person, sondern um Kritik:\n\nDie Aussage beschreibt das eigene Erleben und bleibt bei den eigenen Gefühlen. Man greift damit nicht direkt die andere Person an."
     }
   ],
   "Beziehungen - Kritik - Aussage 3 - Richtig": [
     {
+      "StorynodeId": 93
+    },
+    {
       "Text": "Richtig! Bei dieser Aussage handelt es sich um einen Angriff, der sich gegen die andere Person richtet und diese verletzen könnte.\n\nBesser wäre konstruktive Kritik: „Mir ist aufgefallen, dass du beim letzten Mal Schwierigkeiten mit der Aufgabe hattest – brauchst du Unterstützung?“"
     }
   ],
   "Beziehungen - Kritik - Aussage 3 - Falsch": [
+    {
+      "StorynodeId": 95
+    },
     {
       "Text": "Nicht ganz! In dieser Aussage wird die Person angegriffen und könnte sich dadurch verletzt fühlen.\n\nBesser wäre konstruktive Kritik: „Mir ist aufgefallen, dass du beim letzten Mal Schwierigkeiten mit der Aufgabe hattest – brauchst du Unterstützung?“"
     }
   ],
   "Recht durchsetzen - Situation erlebt - NEIN": [
     {
+      "StorynodeId": 211
+    },
+    {
+      "id": 3061,
       "Question": "Gibt es eine Situation, in der du zukünftig mehr für dich und deine Rechte einstehen willst?",
       "AnswerOptions": "free_text"
     },
     {
+      "id": 3062,
       "Question": "Worauf möchtest du besonders achten, wenn du das nächste mal auf dein Recht bestehst?",
       "AnswerOptions": [
         "klar und deutlich sprechen",
@@ -217,63 +314,98 @@
   ],
   "Stimmung - Bewertung - Option A": [
     {
+      "StorynodeId": 217
+    },
+    {
       "Text": "Vielleicht bist du gerade in einer guten Stimmung und neugierig.\n\nWürdest du genauso empfinden, wenn du traurig oder misstrauisch wärst?"
     }
   ],
   "Die Lebensbrille - Bahn Option B": [
+    {
+      "StorynodeId": 235
+    },
     {
       "Text": "\"Die Frau lächelt mich bestimmt an, weil sie selbst gerne Rad fährt. So wie unsere nette Nachbarin früher.\"\n\nDu fühlst dich ruhig und entspannt. Vielleicht lächelst du sogar zurück."
     }
   ],
   "Halluzinationen - Unterscheiden - Option B": [
     {
+      "StorynodeId": 220
+    },
+    {
       "Text": "Wenn du dir oft noch unsicher bist, was real ist und was nicht, bist du damit nicht alleine.\n\nWichtig ist nicht, ob man es sofort erkennt – sondern, wie man damit umgeht."
     }
   ],
   "Halluzinationen - Automatische Gedanken - A: Negativ": [
+    {
+      "StorynodeId": 227
+    },
     {
       "Text": "**Sowas passiert auch immer nur mir. Ich bin einfach unfähig.**\n\nIrina ärgert sich nicht nur über ihren Patzer, den Anhang vergessen zu haben, sondern fühlt sich auch noch traurig. Sie hat das Gefühl, dass ihr nichts gelingt."
     }
   ],
   "Halluzinationen - Automatische Gedanken - B: Positiv": [
     {
+      "StorynodeId": 228
+    },
+    {
       "Text": "**Halb so wild. Das passiert vielen. Ich schicke ihn gleich hinterher.**\n\nIrina ärgert sich kurz über ihren Patzer, schickt aber gleich eine Mail hinterher, dieses mal mit Anhang. Danach macht sie ruhig mit der nächsten Aufgabe weiter."
     }
   ],
   "Beziehungen - Liebesbeziehungen Option B": [
     {
+      "StorynodeId": 248
+    },
+    {
       "Text": "Liebesbeziehungen sind _eine_ Form von Verbindung. Sie können bereichernd sein, sind aber keine Voraussetzung für ein erfülltes oder glückliches Leben. \n\nEs ist völlig in Ordnung, wenn du gerade keine Liebesbeziehung hast oder dir auch gar keine wünschst. Beziehungen können viele Formen haben."
     },
     {
+      "id": 4018,
       "Question": "Vielleicht möchtest du trotzdem überlegen: Was wünschst du dir für deine Zukunft in Bezug auf Nähe oder Partnerschaft, ganz unabhängig davon, was gerade möglich ist?",
       "AnswerOptions": "free_text"
     }
   ],
   "Beziehungen - Nachbarschaft - Situation 3 - Option B": [
     {
+      "StorynodeId": 254
+    },
+    {
       "Text": "**Ich klingle bei meinem Nachbarn und frage, ob ich mir seinen Hammer ausleihen könnte. Das macht er bestimmt gerne.**\n\nAnstatt selbst Geld für einen Hammer auszugeben, gehst du davon aus, dass dein Nachbar hilfsbereit ist und dir sein Werkzeug ausleiht.\n\nWahrscheinlich herrscht in der Nachbarschaft ein unterstützendes Klima und man kann auf gegenseitige Hilfe vertrauen."
     }
   ],
   "Stimmung - Aktivität 2 - Nein": [
+    {
+      "StorynodeId": 231
+    },
     {
       "Text": "Nicht immer klappen Dinge, die wir uns vornehmen, beim ersten Mal.\n\nWichtig ist, dass du dich deswegen nicht verurteilst.\n\nVielleicht war die Aktivität zu groß für einen ersten Schritt?\n\nVielleicht gab es Umstände, wie starken Regen bei einem Spaziergang, die dir in die Quere gekommen sind?\n\nVielleicht helfen dir die Tipps in dieser Übung beim nächsten Versuch."
     }
   ],
   "Stimmung - Kopfkino - A Negativ": [
     {
+      "StorynodeId": 144
+    },
+    {
       "Text": "Lisa schämt sich und fühlt sich niedergeschlagen.\n\nSie zieht sich zurück und hat keine Lust darauf, weitere Bewerbungen zu verschicken.\n\n_Ich werde sowieso nie irgendwo genommen_, denkt sie sich. _Ich werde nie Erfolg haben._"
     }
   ],
   "Stimmung - Kopfkino - B Positiv": [
+    {
+      "StorynodeId": 146
+    },
     {
       "Text": "Lisa ist zwar etwas nervös, aber sie versucht, geduldig und gut zu sich selbst zu sein.\n\nSie fragt freundlich per Mail nach einer Rückmeldung und versucht es mit anderen Bewerbungen.\n\n_Absagen gehören dazu_, denkt sie sich. _Ich habe mein Bestes gegeben und wenn es dieses mal nicht reicht, mache ich trotzdem weiter._"
     }
   ],
   "Beziehungen - Kontakte pflegen - B: Nein": [
     {
+      "StorynodeId": 152
+    },
+    {
       "Text": "Das ist toll! Kontakte zu halten und Beziehungen zu pflegen ist eine Stärke."
     },
     {
+      "id": 2228,
       "Question": "Vielleicht fällt dir trotzdem eine Person ein, bei der du dich in den nächsten Tagen gerne melden möchtest? Wie könntest du der Person zeigen, dass du sie magst?",
       "AnswerOptions": "free_text"
     },
@@ -283,19 +415,28 @@
   ],
   "Ungewöhnliche Gedanken - Tag mit Max - Waschen A": [
     {
+      "StorynodeId": 195
+    },
+    {
       "Text": "**Die Nachbarn wollen mich hier nicht haben. Die behandeln mich wie einen Störenfried. Sie sind gegen mich.**\n\nMax fühlt sich angegriffen. Er überlegt, in Zukunft einfach zu einem Waschsalon zu gehen. Der ist aber ein ganzes Stück weit weg."
     }
   ],
   "Beziehungen - Kontakte pflegen - A: Ja": [
     {
+      "StorynodeId": 164
+    },
+    {
+      "id": 2385,
       "Question": "Wann war euer letzter Kontakt?",
       "AnswerOptions": "free_text"
     },
     {
+      "id": 2386,
       "Question": "Falls du dich erinnerst: Was war damals euer letztes Gesprächsthema?",
       "AnswerOptions": "free_text"
     },
     {
+      "id": 2387,
       "Question": "Überlege dir einmal drei ganz einfache Möglichkeiten, wie du dich bei dieser Person wieder melden könntest:",
       "AnswerOptions": "free_text"
     },
@@ -303,41 +444,63 @@
       "Text": "Beispiele:\n\n- Anrufen\n- Nachricht schreiben\n- Sprachnachricht schicken\n- Foto einer schönen gemeinsamen Erinnerung schicken\n- Ein gemeinsames Thema aufgreifen (z.B. Ich hab das Buch wieder gesehen, das wir damals gelesen haben)\n- Zu einem Treffen einladen"
     },
     {
+      "id": 2388,
       "Question": "Was davon möchtest du in den nächsten Tagen umsetzen?",
       "AnswerOptions": "free_text"
     }
   ],
   "Ungewöhnliche Gedanken - Tag mit Max - Cafe A": [
     {
+      "StorynodeId": 191
+    },
+    {
       "Text": "**Ich habe bestimmt Bauchschmerzen, weil mich jemand vergiftet hat!**\n\nMax bekommt große Angst. Er fühlt sich bedroht. Kurz ist er davor, den Kellner zu beschuldigen, der gerade den Nachbartisch abwischt. Stattdessen wartet er, bis der Kellner weg ist, steht schnell auf und verlässt das Café."
     }
   ],
   "Ungewöhnliche Gedanken - Tag mit Max - Waschen B": [
+    {
+      "StorynodeId": 197
+    },
     {
       "Text": "**Ich sehe nur einen Zettel. Ich weiß nicht, von wem er kommt und ob es wirklich gegen mich persönlich gemeint war. Vielleicht war jemand einfach genervt, weil er warten musste.**\n\nMax ärgert sich zwar, kann den Ärger aber einordnen. Er atmet einmal tief durch. Er nimmt sich vor, beim nächsten Mal einen Wecker zu stellen."
     }
   ],
   "Gute Gespräche - Situation 1: Musik - Option A": [
     {
+      "StorynodeId": 204
+    },
+    {
       "Text": "**So ein bisschen von allem.**\n\nLena weiß nicht recht, wie und worauf sie reagieren soll. Soll sie vielleicht das Thema wechseln oder möchte Malik sich gar nicht unterhalten? Das Gespräch verläuft im Sande."
     }
   ],
   "Gute Gespräche - Situation 1: Musik - Option B": [
+    {
+      "StorynodeId": 205
+    },
     {
       "Text": "**Ich mache vor allem elektronische Musik, aber ich baue viele Elemente aus dem Jazz ein. Ich habe früher einmal Saxophon gespielt.**\n\nLena wird neugierig und fragt nach. Malik und Lena unterhalten sich über Musik, unterschiedliche Einflüsse und welche Musikrichtungen ihnen gefallen."
     }
   ],
   "Gute Gespräche - Situation 2: Uni - Option B": [
     {
+      "StorynodeId": 207
+    },
+    {
       "Text": "**Klingt richtig anstrengend. Was genau sagt sie denn immer zu deinen Abgaben?**\n\nSofia fühlt sich gesehen. Sie spürt, dass Mila zuhört. Sie fühlt sich ernst genommen und erzählt weiter."
     }
   ],
   "Gute Gespräche - Situation 3: Beruf - Option A": [
     {
+      "StorynodeId": 208
+    },
+    {
       "Text": "**Oh, das klingt nach viel Verantwortung. Was sind denn so die schönsten und die schwierigsten Momente in deinem Job?**\n\nDie Person merkt, dass du neugierig bist. Sie spürt Wertschätzung für ihre Arbeit, fühlt sich gesehen und erzählt von ihrer letzten Stunde Kunstunterricht."
     }
   ],
   "Willkommen - Schlaf": [
+    {
+      "StorynodeId": 258
+    },
     {
       "Text": "Schlaf"
     },
@@ -347,29 +510,45 @@
   ],
   "Gesundheit - Gemeinsam entscheiden - A: Vorteile": [
     {
+      "StorynodeId": 280
+    },
+    {
       "Text": "**Für dich überwiegt der Nutzen der Medikamente in deinem Alltag. Deine Medikamente helfen dir spürbar.**\n\nÜberlege gerne einmal für dich:\n\n- Was genau hilft dir am meisten?\n- Gibt es etwas, das du deiner Ärztin oder deinem Arzt sagen möchtest, weil es gut funktioniert?"
     },
     {
+      "id": 4382,
       "Question": "Wenn du möchtest, kannst du deine Gedanken hier festhalten:",
       "AnswerOptions": "free_text"
     }
   ],
   "Beziehungen - Veränderungen - Option B": [
     {
+      "StorynodeId": 291
+    },
+    {
       "Text": "Es ist verständlich, dass du Abstand genommen hast, wenn du Angst hattest. Vielleicht gibt es heute jemanden, bei dem du dich wieder sicher fühlst?\n\nMach dir keine Sorgen, wenn du dich lange nicht gemeldet hast. Menschen, denen du wichtig bist, haben oft mehr Verständnis, als du manchmal glaubst."
     }
   ],
   "Beziehungen - Veränderungen - Option D": [
+    {
+      "StorynodeId": 295
+    },
     {
       "Text": "An manchen Tagen fehlt die Energie, um sich bei Familie oder Freuden zu melden.\n\nAber manchmal reichen auch schon kleine Dinge, um eine Beziehung zu pflegen, wie eine kurze Textnachricht. Oder sogar ein Anruf? \n\nMach dir keine Sorgen, wenn du dich lange nicht gemeldet hast. Das geht vielen Menschen so, egal ob mit oder ohne Psychosen. Menschen, denen du wichtig bist, freuen sich über eine Nachricht von dir, auch wenn sie selbst manchmal länger brauchen, um zu antworten."
     }
   ],
   "Beziehungen - Anvertrauen - Option A: Bestärken": [
     {
+      "StorynodeId": 212
+    },
+    {
       "Text": "Das klingt nach einem stärkenden Gedanken.\n\nEs braucht oft Mut, sich zu öffnen – aber es kann entlasten und dir den Weg zu Unterstützung erleichtern. Gut, dass du diese Möglichkeit für dich siehst.\n\nDenke daran: Du entscheidest, wann und wie viel du teilst."
     }
   ],
   "Beziehungen - Anvertrauen - Option B: Hinterfragen": [
+    {
+      "StorynodeId": 215
+    },
     {
       "Text": "Es ist verständlich, dass dir solche Gedanken durch den Kopf gehen. Viele Betroffene haben ähnliche Sorgen.\n\nManchmal unterschätzen wir jedoch, wie viel Verständnis andere tatsächlich aufbringen können."
     },
@@ -379,66 +558,105 @@
   ],
   "Halluzinationen - Rosinen - B": [
     {
+      "StorynodeId": 224
+    },
+    {
       "Text": "Das ist toll!\n\nDu warst achtsam und im Moment.\n\nAchtsam essen heißt: jede Kleinigkeit bewusst erleben."
     }
   ],
   "Stimmung - Bewertung - Option B": [
+    {
+      "StorynodeId": 218
+    },
     {
       "Text": "Vielleicht bist du gerade in einer weniger guten Stimmung, traurig oder misstrauisch.\n\nWürdest du genauso empfinden, wenn du fröhlich wärst?"
     }
   ],
   "Halluzinationen - Rosinen - A": [
     {
+      "StorynodeId": 222
+    },
+    {
       "Text": "Du warst bereits achtsam: Du hast bemerkt, dass deine Gedanken dich immer wieder abgelenkt haben.\n\nVielleicht gelingt es dir noch nicht immer, wieder ins Hier und Jetzt zurück zu kommen. Das kommt aber mit der Zeit."
     }
   ],
   "Ungewöhnliche Gedanken - Tag mit Kim - Büro B": [
+    {
+      "StorynodeId": 236
+    },
     {
       "Text": "**Vielleicht ist irgendetwas vorgefallen oder er hat Stress.**\n\nKim fragt nach der Mittagspause bei ihrem Chef nach, ob alles in Ordnung ist.\n\nIhr Chef sagt: \"Alles gut, ich hatte nur einen anstrengenden Morgen mit den Kindern.\"\n\nSie ist zwar immer noch etwas angespannt, aber gleichzeitig beruhigt, dass sein ernstes Gesicht nichts mit ihr zu tun hatte. Sie geht mit einem besseren Gefühl nach Hause."
     }
   ],
   "Beziehungen - Kritik - Antwort NEIN": [
     {
+      "StorynodeId": 99
+    },
+    {
+      "id": 1332,
       "Question": "Überlege, wie du der Person sagen würdest, was du dir in Zukunft von ihr wünschst.",
       "AnswerOptions": "free_text"
     }
   ],
   "Stimmung - Aktivität 1 - Ja": [
     {
+      "StorynodeId": 229
+    },
+    {
       "Text": "**Zeit, dir auf die Schulter zu klopfen!**\n\nAuch kleine Schritte im Alltag darfst du feiern. Vielleicht möchtest du überlegen, was dir dabei geholfen hat, die Aktivität in deinen Alltag einzubauen?\n\nFalls du die Aktivität geschafft hast, aber dich nicht richtig darüber freuen kannst, sei freundlich zu dir und bleibe geduldig.\n\nManchmal braucht es mehrere Anläufe, bis eine Aktivität wieder Spaß macht, besonders wenn du sie lange nicht mehr gemacht hast."
     }
   ],
   "Halluzinationen - Umgang mit Bildern - C": [
+    {
+      "StorynodeId": 244
+    },
     {
       "Text": "Langsames, bewusstes Atmen bringt Ruhe in deinen Körper. So entsteht Abstand zu den Bildern.\n\n**Probiere es einmal aus:**\n\n* Atme vier Sekunden lang ein\n* Halte den Atem für vier Sekunden an\n* Atme vier Sekunden lang aus\n* Halte den Atem für vier Sekunden an"
     }
   ],
   "Beziehungen - Kritik - Antwort JA": [
     {
+      "StorynodeId": 100
+    },
+    {
+      "id": 1333,
       "Question": "Wie hast du die Kritik formuliert?",
       "AnswerOptions": "free_text"
     },
     {
+      "id": 1334,
       "Question": "Wie hat die andere Person auf deine Kritik reagiert?",
       "AnswerOptions": "free_text"
     }
   ],
   "Beziehungen - Kritik - Aussage 1 - Falsch": [
     {
+      "StorynodeId": 155
+    },
+    {
       "Text": "Nicht ganz! Bei dieser Aussage handelt es sich nicht um konstruktive Kritik, sondern um einen Angriff:\n\nDie Aussage greift die Person direkt an, ist pauschal und lässt keinen Raum für ein Gespräch.\n\nBesser wäre: \"Ich habe das Gefühl, dass du bei Entscheidungen oft nur an deine eigenen Wünsche denkst. Das verletzt mich.\""
     }
   ],
   "Stimmung - Aktivität 3 - Ja": [
+    {
+      "StorynodeId": 232
+    },
     {
       "Text": "Du hast es geschafft, deine geplante Aktivität umzusetzen. Glückwunsch!\n\nWenn du es geschafft hast, aber dich nicht richtig freuen kannst, sei geduldig. \n\nManchmal braucht es mehrere Anläufe, bis eine Aktivität wieder Spaß macht, besonders wenn du sie lange nicht mehr gemacht hast.\n\nBetrachte es als Experiment, um herauszufinden, wann du wieder Freude empfinden wirst."
     }
   ],
   "Beziehungen - Nachbarschaft - Situation 2 - Option A": [
     {
+      "StorynodeId": 251
+    },
+    {
       "Text": "**Ich hänge einen Zettel in den Hauseingang und hoffe, dass keiner der Nachbarn sich beschwert.**\n\nDu hast dich dagegen entschieden, persönlich das Gespräch zu deinen Nachbarn zu suchen und ihnen von der anstehenden Party zu erzählen. Vielleicht befürchtest du, deine Nachbarn könnten ein Problem mit der Party haben oder ihr habt kein gutes Verhältnis zueinander.\n\nIn diesem Fall könnte die nachbarschaftliche Beziehung noch verbessert werden."
     }
   ],
   "Willkommen - Selbstwert": [
+    {
+      "StorynodeId": 260
+    },
     {
       "Text": "Selbstwert"
     },
@@ -448,26 +666,42 @@
   ],
   "Beziehungen - Nachbarschaft - Situation 1 - Option A": [
     {
+      "StorynodeId": 249
+    },
+    {
       "Text": "**Ich gehe zu meiner Nachbarin und frage sie, ob sie mir Mehl für meinen Kuchen geben kann.**\n\nDiese Entscheidung legt nahe, dass das Verhältnis zu deiner Nachbarin gut ist und du davon ausgehst, dass sie dir helfen wird.\n\nWahrscheinlich würdest du der Nachbarin auch gerne Mehl geben, wenn ihr etwas fehlt!"
     }
   ],
   "Schlaf - Gedankenstopp - Ja": [
+    {
+      "StorynodeId": 127
+    },
     {
       "Text": "Verlasse das Zimmer und setze dich auf deinen Grübelstuhl. Das ist der Ort, an dem du grübeln darfst - nur nicht in deinem Bett."
     }
   ],
   "Beziehungen - Nachbarschaft - Situation 1 - Option B": [
     {
+      "StorynodeId": 250
+    },
+    {
       "Text": "**Ich sage meiner Freundin morgen, dass ich es leider nicht geschafft habe, einen Kuchen zu backen.**\n\nDu hast dich dazu entschieden, nicht bei deiner Nachbarin zu klingeln. Vielleicht befürchtest du, dass sie dir nicht helfen würde oder du hast kein gutes Verhältnis zu ihr.\n\nDie nachbarschaftliche Beziehung könnte hier noch verbessert werden."
     }
   ],
   "Beziehungen - Liebesbeziehungen Option A": [
     {
+      "StorynodeId": 147
+    },
+    {
+      "id": 2200,
       "Question": "Was schätzt du besonders an der Person?",
       "AnswerOptions": "free_text"
     }
   ],
   "Willkommen - Halluzinationen": [
+    {
+      "StorynodeId": 262
+    },
     {
       "Text": "Umgang mit Halluzinationen"
     },
@@ -477,20 +711,32 @@
   ],
   "Gute Gespräche - Situation 2: Uni - Option A": [
     {
+      "StorynodeId": 206
+    },
+    {
       "Text": "**Oh Mann, das kenne ich. Kannst du dich noch an Statistik letztes Semester erinnern? Da ging mir das genauso.**\n\nSofia fühlt sich nicht wirklich gehört. Sie spürt, dass das Gespräch plötzlich nicht mehr bei ihr ist."
     }
   ],
   "Gute Gespräche - Situation 3: Beruf - Option B": [
+    {
+      "StorynodeId": 209
+    },
     {
       "Text": "**Puh, ich könnte das ja nie. Mit Kindern arbeiten wäre für mich der Horror.**\n\nDie Person fühlt sich missverstanden oder abgewertet. Sie fühlt sich nicht wohl und beendet euer Gespräch schnell."
     }
   ],
   "Ungewöhnliche Gedanken - Tag mit Max - Cafe B": [
     {
+      "StorynodeId": 255
+    },
+    {
       "Text": "**Könnte es vielleicht eine Magen-Darm-Grippe sein?**\n\nMax atmet einmal tief durch. Er hat zwar immer noch ein ungutes Gefühl im Magen, aber er versucht, ruhig zu bleiben.\n\nEr erinnert sich daran, dass seine Mutter, die vor ein paar Tagen zu Besuch war, auch Bauchschmerzen hatte. Und er erinnert sich daran, dass er schon seit gestern Abend ein leichtes Grummeln im Magen spürt.\n\nEr beschließt, abzuwarten und wenn es nicht besser wird, zu seinem Hausarzt zu gehen."
     }
   ],
   "Willkommen - Stimmungskrisen": [
+    {
+      "StorynodeId": 269
+    },
     {
       "Text": "Stimmungskrisen"
     },
@@ -500,17 +746,23 @@
   ],
   "Gesundheit - Gemeinsam entscheiden - B: Ausgeglichen": [
     {
+      "StorynodeId": 281
+    },
+    {
       "Text": "**Du siehst Vorteile und Nachteile. Die Medikamente helfen teilweise, aber es gibt Dinge, die dich stören oder unsicher machen.**\n\nÜberlege gerne einmal für dich:\n\n- Was genau hilft dir am meisten? Was möchtest du beibehalten?\n- Welche Nachteile möchtest du verändern?"
     },
     {
+      "id": 4383,
       "Question": "Vorteile der Medikamente:",
       "AnswerOptions": "free_text"
     },
     {
+      "id": 4384,
       "Question": "Nachteile der Medikamente:",
       "AnswerOptions": "free_text"
     },
     {
+      "id": 4386,
       "Question": "Schreibe dir auf, was du beim nächsten Arzt- oder Therapiegespräch ansprechen möchtest, zum Beispiel:",
       "AnswerOptions": [
         "Ich möchte über eine kleinere Dosis sprechen.",
@@ -521,59 +773,89 @@
       "AllowMultiple": true
     },
     {
+      "id": 4385,
       "Question": "Etwas anderes, und zwar:",
       "AnswerOptions": "free_text"
     }
   ],
   "Beziehungen - Veränderungen - Option A": [
     {
+      "StorynodeId": 289
+    },
+    {
       "Text": "Wenn deine Beziehungen trotz deiner Psychose gleich geblieben sind, hast du ein starkes Netz an Familie, Freunden oder Bekannten, das dich durchs Leben trägt. Das ist eine Stärke!\n\nVielleicht möchtest du dich bei jemandem bedanken, der dir immer zur Seite steht?"
     }
   ],
   "Beziehungen - Veränderungen - Option E": [
+    {
+      "StorynodeId": 297
+    },
     {
       "Text": "Es ist etwas Besonderes, Menschen zu haben, denen du vertraust und die über deine Diagnose Bescheid wissen. Das zeigt, wie stark manche Beziehungen in deinem Leben sind.\n\nVielleicht gibt es jemanden, der dir in letzter Zeit besonders gutgetan hat? Solche Menschen können viel Halt geben. Und es tut gut, einfach mal Danke zu sagen."
     }
   ],
   "Beziehungen - Veränderungen - Option C": [
     {
+      "StorynodeId": 298
+    },
+    {
       "Text": "Es tut weh, wenn man nicht verstanden wird. Dass du dich damals zurückgezogen hast, zeigt, dass du deine Grenzen kennst und dich schützt.\n\nDu verdienst Menschen, die dir zuhören und dich ernst nehmen.\n\nVielleicht hast du noch jemanden in deinem Leben, der dich versteht? Oder vielleicht triffst du jemanden, der dir dieses Verständnis geben kann, zum Beispiel, wenn du dich mit anderen Betroffenen austauscht."
     }
   ],
   "Stimmungskrisen - Farbe": [
+    {
+      "StorynodeId": 305
+    },
     {
       "Text": "Was du spürst, ist eher eine **Farbe**, also eine **Stimmung**.\n\nVielleicht fühlt sich der Tag heute grau für dich an. Die Farbe des Tages kannst du nicht sofort ändern. Aber du kannst dem Tag kleine Farbtupfer geben.\n\n**Was könntest du jetzt Kleines tun, um dem grauen Tag einen kleinen Farbtupfer zu geben?**\n\n<u>Zum Beispiel:</u>\n\n- Ein Stück Obst essen\n- Jemandem eine kurze Nachricht schreiben\n- Etwas aufräumen oder ordnen\n\nWichtig ist: Nicht alle Tage sind grau. Mit kleinen Dingen im Alltag, die dir gut tun, kannst du nach und nach wieder mehr Farbe in dein Leben bringen."
     }
   ],
   "Stimmungskrisen - Besuch": [
     {
+      "StorynodeId": 306
+    },
+    {
       "Text": "Was du spürst, ist eher ein **Besuch**, also ein **Gefühl**.\n\nManchmal hilft es schon, das Gefühl zu benennen. Sage dir zum Beispiel: Ich bin gerade sauer. Oder: Ich habe gerade Angst. Und das ist okay. Dieses Gefühl ist gerade zu Besuch, aber es wird auch wieder gehen.\n\nWenn du dich plötzlich ängstlich oder wütend fühlst, kann zum Beispiel eine Atemübung helfen, dich wieder zu beruhigen. Eine solche Atemübung, die 4-7-8-Atmung, findest du gleich im Anschluss an diese Übung."
     }
   ],
   "Gesundheit - Frühwarnzeichen - Strategie A": [
+    {
+      "StorynodeId": 307
+    },
     {
       "Text": "Dinge zu tun, die dir Freude bereiten, klingt nach einer guten und hilfreichen Strategie.\n\nZeit mit lieben Menschen verbringen, einem Hobby nachgehen, bewegen - all das können Dinge sein, die gut tun.\n\nWichtig ist, dass du gleichzeitig auf dein Energielevel achtest und dir nicht zu viel vornimmst. Auch Auszeiten und Pausen sind wichtig."
     }
   ],
   "Gesundheit - Frühwarnzeichen - Strategie B": [
     {
+      "StorynodeId": 308
+    },
+    {
       "Text": "Familie oder Freunde nach Unterstützung zu fragen, klingt nach einer guten und hilfreichen Strategie.\n\nLass dir von Bekannten oder Freunden unter die Arme greifen. Sprich mit Vertrauenspersonen, wenn du Frühwarnzeichen bemerkst. So könnt ihr gemeinsam überlegen, was dir hilft."
     }
   ],
   "Gesundheit - Frühwarnzeichen - Strategie C": [
+    {
+      "StorynodeId": 309
+    },
     {
       "Text": "Auszeiten und Pausen gönnen, klingt nach einer guten und hilfreichen Strategie.\n\nEs kann helfen, auch einmal weniger Aufgaben zu übernehmen und Nein zu sagen, wenn dir etwas zu viel wird.\n\nStattdessen kannst du dich auf einen gesunden Tagesablauf konzentrieren, mit ausreichend Schlaf, regelmäßigen Mahlzeiten und Dingen, die dir gut tun."
     }
   ],
   "Gesundheit - Gemeinsam entscheiden - C: Nachteile": [
     {
+      "StorynodeId": 310
+    },
+    {
       "Text": "**Du hast das Gefühl, dass dich die Medikamente im Moment belasten.**\n\nWenn du dein Medikament wechseln oder die Dosis verringern möchtest, sprich mit deinem Arzt oder deiner Ärztin darüber.\n\nTeile deine Nebenwirkungen, Sorgen oder Fragen.\n\nDie Entscheidung für oder gegen ein Medikament trefft ihr **gemeinsam**."
     },
     {
+      "id": 4456,
       "Question": "Woran würdest du bemerken, dass dich ein neues Medikament oder eine geringere Dosis weniger belasten? Was wäre dann anders?",
       "AnswerOptions": "free_text"
     },
     {
+      "id": 4458,
       "Question": "Schreibe dir auf, was du beim nächsten Arzt- oder Therapiegespräch ansprechen möchtest, zum Beispiel:",
       "AnswerOptions": [
         "Ich möchte über eine kleinere Dosis sprechen.",
@@ -584,16 +866,23 @@
       "AllowMultiple": true
     },
     {
+      "id": 4457,
       "Question": "Etwas anderes, und zwar:",
       "AnswerOptions": "free_text"
     }
   ],
   "Wahngedanken - A: Misstrauen": [
     {
+      "StorynodeId": 312
+    },
+    {
       "Text": "Anna könnte das Verhalten das Nachbarn auf sich beziehen.\n\n\"Er mag mich nicht mehr. Er ignoriert mich extra.\"\n\nAnna ärgert sich. Dann wird sie unsicher und fragt sich, ob sie etwas falsch gemacht hat."
     }
   ],
   "Wahngedanken - B: Neutral": [
+    {
+      "StorynodeId": 315
+    },
     {
       "Text": "“Er war vielleicht abgelenkt und hat mich nicht bemerkt.“\n\nAnna überlegt zwar, ob sie etwas falsch gemacht hat und der Nachbar ihr deswegen aus dem Weg geht. Genauso gut, denkt sie, könnte es aber sein, dass er abgelenkt war. Sie bleibt ruhig, zuckt mit den Schultern und geht zurück in die Wohnung."
     }
