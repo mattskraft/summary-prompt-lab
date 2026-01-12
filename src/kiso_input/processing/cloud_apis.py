@@ -352,32 +352,15 @@ def generate_answers_with_mistral(
     if free_text_question_indices:
         for idx, (question_idx, question_text) in enumerate(free_text_question_indices, start=1):
             try:
-                # Build complete context prompt (same as Gemini approach)
+                # Build context prompt with custom header if provided
                 context_prompt = build_gemini_prompt_up_to_question(
                     segments,
                     question_idx,
                     mc_answers,
                     is_target_question=True,
                     free_text_answers=free_text_answers_by_text,
+                    header=system_prompt,
                 )
-                
-                # Replace system prompt if custom one is provided
-                if system_prompt:
-                    # Find where the actual content starts (after the header)
-                    lines = context_prompt.split('\n')
-                    content_start = 0
-                    for i, line in enumerate(lines):
-                        if line.startswith('TEXT:') or line.startswith('FRAGE:'):
-                            content_start = i
-                            break
-                    
-                    # Replace everything before content with our custom system prompt
-                    if content_start > 0:
-                        content_lines = lines[content_start:]
-                        context_prompt = system_prompt + '\n\n' + '\n'.join(content_lines)
-                    else:
-                        # Fallback: just prepend the system prompt
-                        context_prompt = system_prompt + '\n\n' + context_prompt
                 
                 if debug:
                     print(f"\n{'='*80}")
@@ -650,22 +633,8 @@ def generate_answers_with_gemini(
                 mc_answers,
                 is_target_question=True,
                 free_text_answers=free_text_answers_by_text,
+                header=system_prompt,
             )
-            
-            # Replace system prompt if custom one is provided
-            if system_prompt:
-                # Split prompt into header and content
-                lines = prompt.split('\n')
-                # Find where the content starts (after the header)
-                content_start = 0
-                for i, line in enumerate(lines):
-                    if line.startswith('TEXT:') or line.startswith('FRAGE:') or line.startswith('ANTWORT:'):
-                        content_start = i
-                        break
-                
-                # Replace header with custom system prompt
-                content_lines = lines[content_start:]
-                prompt = system_prompt + '\n' + '\n'.join(content_lines)
 
             if debug:
                 print(f"\n{'=' * 80}")

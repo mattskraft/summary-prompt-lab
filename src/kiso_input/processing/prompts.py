@@ -62,15 +62,26 @@ def build_gemini_prompt_up_to_question(
     mc_answers: Dict[str, List[str]],
     is_target_question: bool = False,
     free_text_answers: Optional[Dict[str, str]] = None,
+    header: Optional[str] = None,
 ) -> str:
-    """Create a prompt containing all segments up to a specific question."""
+    """Create a prompt containing all segments up to a specific question.
+    
+    Args:
+        segments: List of segment dictionaries
+        question_index: Index of the question to build prompt up to
+        mc_answers: Dictionary of MC answers by question text
+        is_target_question: Whether this is the target question being answered
+        free_text_answers: Dictionary of already-generated free text answers
+        header: Optional header text. If not provided, uses default from config.
+    """
     if free_text_answers is None:
         free_text_answers = {}
 
-    templates = _get_prompt_templates()
-    header = templates.get("gemini_answer_header")
+    # Use provided header or fall back to config
     if header is None:
-        raise KeyError("Schlüssel 'gemini_answer_header' fehlt in der Prompt-Konfiguration.")
+        templates = _get_prompt_templates()
+        header = templates.get("gemini_answer_header", "")
+    
     lines: List[str] = []
 
     for i in range(question_index + 1):
