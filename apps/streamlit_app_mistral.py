@@ -1330,13 +1330,19 @@ if sel_uebung:
                 if debug_info_key in st.session_state and st.session_state[debug_info_key]:
                     debug_info = st.session_state[debug_info_key]
                     st.markdown(f"""
+**Code-Version:** {debug_info.get('code_version', 'UNKNOWN - OLD CODE!')}  
 **Modell:** {debug_info.get('model_used', 'N/A')}  
 **Segmente an Mistral:** {debug_info.get('total_segments', 0)}  
+**Segment-Typ:** {debug_info.get('segments_received_type', 'N/A')}  
 **MC-Antworten:** {debug_info.get('mc_questions_generated', 0)}  
 **Slider-Antworten:** {debug_info.get('slider_questions_generated', 0)}  
 **Freitext gefunden:** {debug_info.get('free_text_questions_found', 0)}  
 **Freitext generiert:** {debug_info.get('free_text_answers_generated', 0)}
                     """)
+                    # Show segments repr if available
+                    segments_repr = debug_info.get('segments_repr')
+                    if segments_repr:
+                        st.text(f"Segments data: {segments_repr}")
                     
                     # Show answer types
                     answer_types = debug_info.get('answer_types', [])

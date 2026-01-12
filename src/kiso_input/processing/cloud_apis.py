@@ -243,9 +243,13 @@ def generate_answers_with_mistral(
         model = MISTRAL_MODEL_ANSWERS
     
     # Collect diagnostic info for UI display
+    # VERSION MARKER: v2025-01-12-fix - verify correct code is deployed
     diagnostics: Dict[str, Any] = {
         "model": model,
         "total_segments": len(segments),
+        "segments_received_type": type(segments).__name__,
+        "segments_repr": repr(segments)[:200] if segments else "EMPTY",
+        "code_version": "v2025-01-12-fix",
         "answer_types": [],
         "errors": [],
     }
