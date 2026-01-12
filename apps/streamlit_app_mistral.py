@@ -1131,24 +1131,23 @@ if sel_uebung:
                     
                     # Build fresh segments for this exercise
                     try:
-                        # Debug: Show what we're searching for
-                        st.info(f"🔍 Suche Übung: '{sel_uebung}'\nSTRUCT: {STRUCT_JSON_PATH}\nSN: {SN_JSON_PATH}")
-                        
                         current_segments = get_prompt_segments_from_exercise(
                             exercise_name=sel_uebung,
                             json_struct_path=STRUCT_JSON_PATH,
                             json_sn_struct_path=SN_JSON_PATH,
                             seed=None,
                         )
-                        st.info(f"📊 Segmente gefunden: {len(current_segments)}")
                         
-                        # Debug: show segment count right away
-                        if not current_segments:
-                            st.warning(f"⚠️ Keine Segmente für '{sel_uebung}' gefunden!")
-                            # Check if files exist
-                            import os
-                            st.text(f"STRUCT exists: {os.path.exists(STRUCT_JSON_PATH) if STRUCT_JSON_PATH else 'None'}")
-                            st.text(f"SN exists: {os.path.exists(SN_JSON_PATH) if SN_JSON_PATH else 'None'}")
+                        # Store segment loading diagnostics in session state
+                        st.session_state[f"{session_key}_segment_diag"] = {
+                            "exercise_name": sel_uebung,
+                            "struct_path": STRUCT_JSON_PATH,
+                            "sn_path": SN_JSON_PATH,
+                            "segments_loaded": len(current_segments),
+                            "struct_exists": os.path.exists(STRUCT_JSON_PATH) if STRUCT_JSON_PATH else False,
+                            "sn_exists": os.path.exists(SN_JSON_PATH) if SN_JSON_PATH else False,
+                        }
+                        
                     except Exception as e:
                         st.error(f"Fehler bei der Segment-Generierung: {e}")
                         import traceback
@@ -1296,32 +1295,47 @@ if sel_uebung:
         
         # Show debug info from last answer generation
         debug_info_key = f"{session_key}_debug_info"
-        if debug_info_key in st.session_state and st.session_state[debug_info_key]:
-            with st.expander("🔍 Letzte Generierung - Debug Info", expanded=False):
-                debug_info = st.session_state[debug_info_key]
-                st.markdown(f"""
+        segment_diag_key = f"{session_key}_segment_diag"
+        
+        if debug_info_key in st.session_state or segment_diag_key in st.session_state:
+            with st.expander("🔍 Letzte Generierung - Debug Info", expanded=True):
+                # Show segment loading diagnostics first
+                if segment_diag_key in st.session_state:
+                    seg_diag = st.session_state[segment_diag_key]
+                    st.markdown("**📂 Segment-Laden:**")
+                    st.text(f"  Übung: {seg_diag.get('exercise_name', 'N/A')}")
+                    st.text(f"  STRUCT-Datei: {seg_diag.get('struct_path', 'N/A')}")
+                    st.text(f"  STRUCT existiert: {seg_diag.get('struct_exists', False)}")
+                    st.text(f"  SN-Datei: {seg_diag.get('sn_path', 'N/A')}")
+                    st.text(f"  SN existiert: {seg_diag.get('sn_exists', False)}")
+                    st.text(f"  ➡️ Segmente geladen: {seg_diag.get('segments_loaded', 0)}")
+                    st.markdown("---")
+                
+                if debug_info_key in st.session_state and st.session_state[debug_info_key]:
+                    debug_info = st.session_state[debug_info_key]
+                    st.markdown(f"""
 **Modell:** {debug_info.get('model_used', 'N/A')}  
-**Segmente gesamt:** {debug_info.get('total_segments', 0)}  
+**Segmente an Mistral:** {debug_info.get('total_segments', 0)}  
 **MC-Antworten:** {debug_info.get('mc_questions_generated', 0)}  
 **Slider-Antworten:** {debug_info.get('slider_questions_generated', 0)}  
 **Freitext gefunden:** {debug_info.get('free_text_questions_found', 0)}  
 **Freitext generiert:** {debug_info.get('free_text_answers_generated', 0)}
-                """)
-                
-                # Show answer types
-                answer_types = debug_info.get('answer_types', [])
-                if answer_types:
-                    st.markdown("**Antwort-Typen:**")
-                    for at in answer_types:
-                        st.text(f"  Segment {at['segment']}: {at['type']}")
-                
-                # Show errors if any
-                errors = debug_info.get('errors', [])
-                if errors:
-                    st.error(f"**{len(errors)} Fehler aufgetreten:**")
-                    for err in errors:
-                        st.text(f"  Frage: {err.get('question', 'N/A')}")
-                        st.text(f"  Fehler: {err.get('error', 'N/A')}")
+                    """)
+                    
+                    # Show answer types
+                    answer_types = debug_info.get('answer_types', [])
+                    if answer_types:
+                        st.markdown("**Antwort-Typen:**")
+                        for at in answer_types:
+                            st.text(f"  Segment {at['segment']}: {at['type']}")
+                    
+                    # Show errors if any
+                    errors = debug_info.get('errors', [])
+                    if errors:
+                        st.error(f"**{len(errors)} Fehler aufgetreten:**")
+                        for err in errors:
+                            st.text(f"  Frage: {err.get('question', 'N/A')}")
+                            st.text(f"  Fehler: {err.get('error', 'N/A')}")
     
     
     # Initialize session_key if it doesn't exist (don't overwrite existing generated segments)
