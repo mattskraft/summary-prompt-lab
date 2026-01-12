@@ -715,8 +715,10 @@
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
     "segment_toggles": [
+      true,
       true
-    ]
+    ],
+    "config_complete": true
   },
   "Die Lebensbrille": {
     "enabled": true,
