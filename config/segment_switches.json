@@ -488,7 +488,8 @@
       true,
       true,
       true
-    ]
+    ],
+    "config_complete": false
   },
   "Gedanken und Gefühle": {
     "enabled": false,
