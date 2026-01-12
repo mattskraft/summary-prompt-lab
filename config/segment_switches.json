@@ -562,21 +562,29 @@
     "comment": "",
     "segment_toggles": [
       false,
+      false,
       true,
       true,
+      false,
       true,
       true,
+      false,
       true,
       true,
+      false,
       true,
       true,
+      false,
       true,
       true,
+      false,
       true,
       true,
+      false,
       true,
       true
-    ]
+    ],
+    "config_complete": false
   },
   "Schlafzimmer": {
     "enabled": true,
