@@ -1157,6 +1157,13 @@ if sel_uebung:
                     # Create system prompt with max words
                     system_prompt_with_words = SYNTH_ANSWERS_PROMPT.replace("xxx", str(gemini_max_words))
                     
+                    # Debug: verify segments right before calling Mistral
+                    st.session_state[f"{session_key}_pre_mistral_count"] = len(current_segments)
+                    st.session_state[f"{session_key}_pre_mistral_types"] = [
+                        {"idx": i, "keys": list(seg.keys())} 
+                        for i, seg in enumerate(current_segments[:5])  # First 5 only
+                    ]
+                    
                     with st.spinner("Generiere Antworten..."):
                         result = generate_answers_with_mistral(
                             segments=current_segments,
@@ -1309,7 +1316,16 @@ if sel_uebung:
                     st.text(f"  SN-Datei: {seg_diag.get('sn_path', 'N/A')}")
                     st.text(f"  SN existiert: {seg_diag.get('sn_exists', False)}")
                     st.text(f"  ➡️ Segmente geladen: {seg_diag.get('segments_loaded', 0)}")
-                    st.markdown("---")
+                
+                # Show pre-Mistral segment count
+                pre_mistral_key = f"{session_key}_pre_mistral_count"
+                pre_mistral_types_key = f"{session_key}_pre_mistral_types"
+                if pre_mistral_key in st.session_state:
+                    st.text(f"  ➡️ Vor Mistral-Aufruf: {st.session_state[pre_mistral_key]}")
+                if pre_mistral_types_key in st.session_state:
+                    st.text(f"  Erste Segmente: {st.session_state[pre_mistral_types_key]}")
+                
+                st.markdown("---")
                 
                 if debug_info_key in st.session_state and st.session_state[debug_info_key]:
                     debug_info = st.session_state[debug_info_key]
