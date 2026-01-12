@@ -1368,5 +1368,15 @@
       true
     ],
     "config_complete": true
+  },
+  "Am Fenster": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true,
+      true
+    ],
+    "config_complete": true
   }
 }
