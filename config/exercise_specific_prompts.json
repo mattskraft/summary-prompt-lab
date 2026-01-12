@@ -65,7 +65,7 @@
     "example2": ""
   },
   "Genießen lernen": {
-    "prompt": "# Anweisungen\n- Formuliere eine zusammenhängende Zusammenfassung der ANTWORT-Blöcke\n- Nutze TEXT und FRAGE nur als Kontext\n- Verwende ausschließlich vorhandene Inhalte - keine Erfindungen\n- Spiegele bedrohliche oder depressive Gedanken in den Antworten nicht wider",
+    "prompt": "# Anweisungen\n\n- Fasse die Angaben zu Dingen, die im Alltag als angenehm empfunden werden, aus den ANTWORT-Blöcken in einem Absatz zusammen (maximal 2 Sätze). Schließe mit dem Satz: Achte in den kommenden Tagen bewusst auf diese Dinge.\n- Sollte im 2. ANTWORT-Block nichts genannt werden, gib im zweiten Absatz aus: Wenn dir gerade keine weiteren angenehmen Dinge im Alltag einfallen, ist das in Ordnung. Speichere dir diese Übung in deinen Favoriten, um an einem anderen Tag nochmal über diese Frage nachzudenken.\n- Sollte insgesamt oder im 2. ANTWORT-Block nichts genannt werden, gib den Satz aus: Wenn dir gerade nichts einfällt, ist das in Ordnung. Vielleicht gibt es etwas, das dir früher einmal gut getan hat und du wieder ausprobieren möchtest? Tausche dich gerne mit einem Angehörigen oder Freund dazu aus.",
     "example1": "",
     "example2": ""
   },
