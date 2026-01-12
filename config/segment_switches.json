@@ -530,10 +530,14 @@
       false,
       false,
       false,
+      false,
+      false,
+      false,
       true,
       true,
       true
-    ]
+    ],
+    "config_complete": true
   },
   "Katzenbuckel": {
     "enabled": false,
