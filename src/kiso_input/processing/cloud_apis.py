@@ -420,20 +420,22 @@ def generate_answers_with_mistral(
                             print(f"   Answer: {answer}")
                     
             except Exception as e:
+                # Always log the error to console so it's visible
+                print(f"❌ MISTRAL API ERROR: {e}")
+                print(f"   Question: {question_text[:60]}...")
+                print(f"   Model: {model}")
                 if debug:
-                    print(f"\n❌ MISTRAL API ERROR")
+                    print(f"\n{'─'*40}")
+                    print(f"Full error details:")
                     print(f"{'─'*40}")
-                    print(f"Question: {question_text}")
-                    print(f"Error: {e}")
-                    print(f"{'─'*40}")
-                    print(f"Using fallback answer")
+                    import traceback
+                    traceback.print_exc()
                     print(f"{'='*80}\n")
-                    print(f"❌ Error generating answer for question: {question_text[:60]}...")
-                    print(f"   Error: {e}")
-                # Use a fallback answer
-                free_text_answers_by_index[question_idx] = "Keine Antwort generiert."
+                # Use a fallback answer with error info
+                error_msg = f"Fehler: {str(e)[:100]}"
+                free_text_answers_by_index[question_idx] = error_msg
                 if question_text not in free_text_answers_by_text:
-                    free_text_answers_by_text[question_text] = "Keine Antwort generiert."
+                    free_text_answers_by_text[question_text] = error_msg
 
     # Merge answers into segments (same logic as Gemini version)
     merged_segments = []

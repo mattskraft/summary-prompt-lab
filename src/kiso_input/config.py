@@ -168,6 +168,7 @@ if not PROMPTS_CONFIG_PATH and DEFAULT_PROMPTS_CONFIG.exists():
 # Model configurations
 GEMINI_MODEL_SUMMARY = os.getenv("GEMINI_MODEL_SUMMARY", "gemini-2.5-flash-lite")
 GEMINI_MODEL_ANSWERS = os.getenv("GEMINI_MODEL_ANSWERS", "gemini-2.5-flash")
-MISTRAL_MODEL_SUMMARY = os.getenv("MISTRAL_MODEL_SUMMARY", "mistral-medium-latest")
-MISTRAL_MODEL_ANSWERS = os.getenv("MISTRAL_MODEL_ANSWERS", "mistral-medium-latest")
+# Note: mistral-medium-latest was deprecated in 2024, use mistral-small-latest instead
+MISTRAL_MODEL_SUMMARY = os.getenv("MISTRAL_MODEL_SUMMARY", "mistral-small-latest")
+MISTRAL_MODEL_ANSWERS = os.getenv("MISTRAL_MODEL_ANSWERS", "mistral-small-latest")
 

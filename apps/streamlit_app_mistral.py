@@ -138,9 +138,9 @@ EXERCISE_PROMPTS_STORE = CONFIG_DIR / "exercise_specific_prompts.json"
 SEGMENT_SWITCH_PATH = CONFIG_DIR / "segment_switches.json"
 GLOBAL_PROMPT_PATH = CONFIG_DIR / "system_prompt_global.txt"
 MISTRAL_MAX_TOKENS = 120
+# Note: mistral-medium-latest was deprecated in 2024
 MISTRAL_MODEL_OPTIONS = [
     "mistral-small-latest",
-    "mistral-medium-latest",
     "mistral-large-latest",
 ]
 MISTRAL_DEFAULT_MODEL = "mistral-small-latest"
