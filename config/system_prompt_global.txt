@@ -20,5 +20,5 @@ Der INHALT besteht aus:
 - Fokus auf die Perspektive und Gefühle der Person
 
 # Ausgabeformat
-- Sprache: Deutsch
+- Sprache: Deutsch, einfache Sprache, keine Fremdwörter
 - Format: Fließtext, keine Aufzählungen, 1 Absatz, wenn nicht anders angegeben
