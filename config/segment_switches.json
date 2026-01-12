@@ -1032,7 +1032,7 @@
   },
   "Schlüsse ziehen: Ein Tag mit Max": {
     "enabled": false,
-    "comment": "TODO\nKeine Zusammenfassung da nur story node antworten?",
+    "comment": "Keine Zusammenfassung da nur story node antworten",
     "segment_toggles": [
       true,
       true,
@@ -1042,7 +1042,8 @@
       true,
       true,
       true
-    ]
+    ],
+    "config_complete": true
   },
   "Wie sicher bist du dir?": {
     "enabled": false,
@@ -1185,5 +1186,10 @@
       true
     ],
     "config_complete": true
+  },
+  "Schlussfolgern im Alltag": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
   }
 }
