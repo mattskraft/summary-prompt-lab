@@ -1378,5 +1378,14 @@
       true
     ],
     "config_complete": true
+  },
+  "Blätter im Fluss": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true
+    ],
+    "config_complete": true
   }
 }
