@@ -561,7 +561,7 @@
       true,
       true
     ],
-    "config_complete": false
+    "config_complete": true
   },
   "Schlafgewohnheiten 2": {
     "enabled": true,
