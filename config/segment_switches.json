@@ -522,7 +522,8 @@
       true,
       true,
       false
-    ]
+    ],
+    "config_complete": false
   },
   "Einschlafritual": {
     "enabled": true,
