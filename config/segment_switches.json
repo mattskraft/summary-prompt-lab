@@ -921,8 +921,13 @@
       true,
       true,
       true,
+      true,
+      true,
+      true,
+      true,
       true
-    ]
+    ],
+    "config_complete": true
   },
   "Dana: Bedrohung oder Einbildung?": {
     "enabled": false,
