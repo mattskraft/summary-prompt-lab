@@ -967,7 +967,8 @@
     "segment_toggles": [
       true,
       true
-    ]
+    ],
+    "config_complete": true
   },
   "Sehen was man sehen will": {
     "enabled": true,
