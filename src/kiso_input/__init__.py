@@ -7,10 +7,9 @@ from .processing.classification import (
     load_self_harm_lexicon,
 )
 from .processing.cloud_apis import (
-    extract_json_array_from_gemini_output,
-    generate_answers_with_gemini,
     generate_answers_with_mistral,
-    generate_summary_with_gemini,
+    generate_summary_with_mistral,
+    stream_summary_with_mistral,
 )
 from .processing.formatting import (
     format_answer_for_text,
@@ -30,14 +29,11 @@ __all__ = [
     "build_summary_prompt",
     "classify_self_harm",
     "extract_free_text_answers",
-    "extract_json_array_from_gemini_output",
     "format_answer_for_text",
-    "generate_answers_with_gemini",
     "generate_answers_with_mistral",
-    "generate_summary_with_gemini",
+    "generate_summary_with_mistral",
     "get_prompt_segments_from_exercise",
     "load_self_harm_lexicon",
     "prompt_segments_to_text",
+    "stream_summary_with_mistral",
 ]
-
-

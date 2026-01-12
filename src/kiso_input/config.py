@@ -23,13 +23,13 @@ def get_project_root() -> Path:
     # config.py is at: project_root/src/kiso_input/config.py
     config_file = Path(__file__).resolve()
     root_from_config = config_file.parents[2]
-    if (root_from_config / "apps" / "streamlit_app.py").exists():
+    if (root_from_config / "apps" / "streamlit_app_mistral.py").exists():
         return root_from_config
     
     # Strategy 3: Try to find project root from current working directory
     cwd = Path.cwd()
     for parent in [cwd] + list(cwd.parents):
-        if (parent / "apps" / "streamlit_app.py").exists():
+        if (parent / "apps" / "streamlit_app_mistral.py").exists():
             return parent
     
     # Fallback: use config.py location
@@ -51,8 +51,6 @@ else:
 _struct_path_raw = os.getenv("KISO_STRUCT_JSON") or os.getenv("STRUCT_JSON_PATH")
 _sn_path_raw = os.getenv("KISO_SN_JSON") or os.getenv("SN_JSON_PATH")
 _lexicon_path_raw = os.getenv("KISO_SAFETY_LEXICON") or os.getenv("SAFETY_LEXICON_PATH")
-_prompts_path_raw = os.getenv("KISO_PROMPTS_CONFIG") or os.getenv("PROMPTS_CONFIG_PATH")
-GEMINI_API_KEY: Optional[str] = os.getenv("GEMINI_API_KEY")
 MISTRAL_API_KEY: Optional[str] = os.getenv("MISTRAL_API_KEY")
 APP_PASSWORD: Optional[str] = os.getenv("APP_PASSWORD")
 
@@ -149,26 +147,6 @@ if not SAFETY_LEXICON_PATH:
                 SAFETY_LEXICON_PATH = str(candidate.resolve())
                 break
 
-PROMPTS_CONFIG_PATH: Optional[str] = None
-DEFAULT_PROMPTS_CONFIG = PROJECT_ROOT / "config" / "prompts.yaml"
-if _prompts_path_raw:
-    prompts_path = Path(_prompts_path_raw)
-    if prompts_path.is_absolute():
-        PROMPTS_CONFIG_PATH = str(prompts_path) if prompts_path.exists() else None
-    else:
-        for base in [PROJECT_ROOT, Path.cwd()]:
-            full_path = base / prompts_path
-            if full_path.exists():
-                PROMPTS_CONFIG_PATH = str(full_path.resolve())
-                break
-
-if not PROMPTS_CONFIG_PATH and DEFAULT_PROMPTS_CONFIG.exists():
-    PROMPTS_CONFIG_PATH = str(DEFAULT_PROMPTS_CONFIG.resolve())
-
-# Model configurations
-GEMINI_MODEL_SUMMARY = os.getenv("GEMINI_MODEL_SUMMARY", "gemini-2.5-flash-lite")
-GEMINI_MODEL_ANSWERS = os.getenv("GEMINI_MODEL_ANSWERS", "gemini-2.5-flash")
-# Note: mistral-medium-latest was deprecated in 2024, use mistral-small-latest instead
+# Model configurations (Mistral only)
 MISTRAL_MODEL_SUMMARY = os.getenv("MISTRAL_MODEL_SUMMARY", "mistral-small-latest")
 MISTRAL_MODEL_ANSWERS = os.getenv("MISTRAL_MODEL_ANSWERS", "mistral-small-latest")
-

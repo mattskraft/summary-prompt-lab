@@ -1,59 +1,19 @@
-"""Prompt construction helpers for Gemini interactions."""
+"""Prompt construction helpers for LLM interactions."""
 
 from __future__ import annotations
 
-from functools import lru_cache
-from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from ..config import PROMPTS_CONFIG_PATH
 from .recap_sections import assembled_prompt_for_exercise
 
 
-def _load_yaml() -> Any:
-    try:
-        import yaml  # type: ignore
-    except ImportError as exc:  # pragma: no cover - dependency guard
-        raise ImportError("PyYAML wird benötigt. Installiere es mit: pip install pyyaml") from exc
-    return yaml
-
-
-# Default header when prompts.yaml is not available
-DEFAULT_GEMINI_ANSWER_HEADER = """Du bist ein Nutzer einer therapeutischen App für Menschen mit psychischen Belastungen.
+# Default header when none is provided
+DEFAULT_ANSWER_HEADER = """Du bist ein Nutzer einer therapeutischen App für Menschen mit psychischen Belastungen.
 Du beantwortest die folgende Frage basierend auf dem Kontext.
 Antworte kurz und authentisch, wie ein echter Nutzer es tun würde.
 Halte deine Antwort unter 30 Wörtern.
 
 KONTEXT:"""
-
-
-@lru_cache(maxsize=1)
-def _get_prompt_templates() -> Dict[str, str]:
-    # Return defaults if no config path
-    if not PROMPTS_CONFIG_PATH:
-        return {"gemini_answer_header": DEFAULT_GEMINI_ANSWER_HEADER}
-    
-    path = Path(PROMPTS_CONFIG_PATH)
-    if not path.exists():
-        # Return defaults if file doesn't exist
-        return {"gemini_answer_header": DEFAULT_GEMINI_ANSWER_HEADER}
-    
-    try:
-        yaml = _load_yaml()
-        with path.open("r", encoding="utf-8") as handle:
-            data = yaml.safe_load(handle)
-        if not isinstance(data, dict):
-            return {"gemini_answer_header": DEFAULT_GEMINI_ANSWER_HEADER}
-        templates: Dict[str, str] = {}
-        for key, value in data.items():
-            if isinstance(value, str):
-                templates[str(key)] = value
-        # Ensure we have the required key
-        if "gemini_answer_header" not in templates:
-            templates["gemini_answer_header"] = DEFAULT_GEMINI_ANSWER_HEADER
-        return templates
-    except Exception:
-        return {"gemini_answer_header": DEFAULT_GEMINI_ANSWER_HEADER}
 
 
 def build_gemini_prompt_up_to_question(
@@ -72,15 +32,14 @@ def build_gemini_prompt_up_to_question(
         mc_answers: Dictionary of MC answers by question text
         is_target_question: Whether this is the target question being answered
         free_text_answers: Dictionary of already-generated free text answers
-        header: Optional header text. If not provided, uses default from config.
+        header: Optional header text. If not provided, uses default.
     """
     if free_text_answers is None:
         free_text_answers = {}
 
-    # Use provided header or fall back to config
+    # Use provided header or fall back to default
     if header is None:
-        templates = _get_prompt_templates()
-        header = templates.get("gemini_answer_header", "")
+        header = DEFAULT_ANSWER_HEADER
     
     lines: List[str] = []
 
@@ -189,5 +148,3 @@ __all__ = [
     "build_gemini_prompt_up_to_question",
     "build_summary_prompt",
 ]
-
-
