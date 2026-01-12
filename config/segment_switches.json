@@ -787,8 +787,10 @@
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
     "segment_toggles": [
+      true,
       true
-    ]
+    ],
+    "config_complete": true
   },
   "Bauchatmung": {
     "enabled": false,
