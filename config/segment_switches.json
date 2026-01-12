@@ -1228,5 +1228,14 @@
     "enabled": true,
     "comment": "",
     "segment_toggles": []
+  },
+  "4-7-8-Atmung": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true
+    ],
+    "config_complete": true
   }
 }
