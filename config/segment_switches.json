@@ -430,8 +430,11 @@
       true,
       true,
       true,
+      true,
+      true,
       true
-    ]
+    ],
+    "config_complete": true
   },
   "Was ist Schlaf?": {
     "enabled": false,
@@ -1191,6 +1194,11 @@
     "config_complete": true
   },
   "Schlussfolgern im Alltag": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Zuschreibungen im Alltag": {
     "enabled": true,
     "comment": "",
     "segment_toggles": []
