@@ -1269,5 +1269,16 @@
       true
     ],
     "config_complete": true
+  },
+  "Eine kleine Sache": {
+    "enabled": false,
+    "comment": "",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "config_complete": true
   }
 }
