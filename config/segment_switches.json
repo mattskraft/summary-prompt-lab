@@ -1556,5 +1556,16 @@
       true
     ],
     "config_complete": true
+  },
+  "Prüfen was man sieht": {
+    "enabled": false,
+    "comment": "Keine eigentlich Frage",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "config_complete": false
   }
 }
