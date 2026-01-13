@@ -135,4 +135,3 @@ gpu="A10G"  # or "H100" for better performance
 ```
 
 Note: Different GPU types have different costs and availability.
-
