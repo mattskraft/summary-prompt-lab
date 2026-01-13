@@ -1225,7 +1225,7 @@
     "config_complete": false
   },
   "Ideen hinterfragen": {
-    "enabled": true,
+    "enabled": false,
     "comment": "Hier fehlt der Inhalt der vorherigen Übungen als Kontext, damit Mistral eine gute Zusammenfassung machen kann. Könnte man aber irgendwie manuell in den Prompt einfügen, falls Zusammenfassung wichtig ist.",
     "segment_toggles": [
       true,
