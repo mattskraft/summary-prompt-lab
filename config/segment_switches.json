@@ -2263,5 +2263,19 @@
       true
     ],
     "config_complete": true
+  },
+  "Me-Time": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Was ist Selbstwert?": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true
+    ],
+    "config_complete": true
   }
 }
