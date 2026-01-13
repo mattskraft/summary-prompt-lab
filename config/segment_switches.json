@@ -2277,5 +2277,60 @@
       true
     ],
     "config_complete": true
+  },
+  "Warum ist Aktivität wichtig?": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Ziele setzen": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Alles oder Nichts": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Experimente": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Freundlich zu dir": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Hilfreiche Sätze": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Ich sollte": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Kopfkino": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Mein Experiment": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Glücksglas": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true,
+      true
+    ],
+    "config_complete": true
   }
 }
