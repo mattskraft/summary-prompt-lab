@@ -516,7 +516,8 @@
     "comment": "Übung enthält keine Fragen",
     "segment_toggles": [
       true
-    ]
+    ],
+    "config_complete": true
   },
   "Warum schlafen wir?": {
     "enabled": true,
