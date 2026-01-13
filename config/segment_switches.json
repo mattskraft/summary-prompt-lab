@@ -1937,7 +1937,7 @@
     "segment_toggles": []
   },
   "Strategien bei Frühwarnzeichen": {
-    "enabled": true,
+    "enabled": false,
     "comment": "Zusammenfassung macht hier eigentlich keinen Sinn oder?",
     "segment_toggles": [
       true,
