@@ -140,7 +140,7 @@
     "example2": ""
   },
   "Stärkende Sätze": {
-    "prompt": "# Anweisungen\n- Formuliere eine knappe (maximal 30 Wörter) und empathische Bewertung des vorgeschlagenen Satzes.",
+    "prompt": "# Anweisungen\n- Formuliere eine knappe und empathische Bewertung des vorgeschlagenen Satzes. Maximal 30 Wörter.",
     "example1": "",
     "example2": ""
   }
