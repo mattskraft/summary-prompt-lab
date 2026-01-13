@@ -672,7 +672,8 @@
       true,
       true,
       true
-    ]
+    ],
+    "config_complete": true
   },
   "Hilfreiche Schlafgedanken": {
     "enabled": true,
