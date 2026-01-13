@@ -1226,7 +1226,7 @@
   },
   "Ideen hinterfragen": {
     "enabled": true,
-    "comment": "TODO\nHier fehlt der Inhalt der vorherigen Übungen als Kontext, damit Mistral eine gute Zusammenfassung machen kann. Könnte man aber irgendwie manuell in den Prompt einfügen, falls Zusammenfassung wichtig wäre.",
+    "comment": "Hier fehlt der Inhalt der vorherigen Übungen als Kontext, damit Mistral eine gute Zusammenfassung machen kann. Könnte man aber irgendwie manuell in den Prompt einfügen, falls Zusammenfassung wichtig ist.",
     "segment_toggles": [
       true,
       true,
@@ -1240,8 +1240,11 @@
       true,
       true,
       true,
+      true,
+      true,
       true
-    ]
+    ],
+    "config_complete": false
   },
   "Quadratatmung": {
     "enabled": false,
