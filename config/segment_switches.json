@@ -2332,5 +2332,27 @@
       true
     ],
     "config_complete": true
+  },
+  "Hoffnung finden": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Rückblick: Stimmung": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Wetter des Tages": {
+    "enabled": false,
+    "comment": "Eher Selbstreflexion, daher keine Zusammenfassung",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "config_complete": false
   }
 }
