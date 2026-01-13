@@ -29,7 +29,12 @@
   },
   "Postkartenübung": {
     "enabled": false,
-    "comment": "no questions"
+    "comment": "no questions",
+    "segment_toggles": [
+      true,
+      true
+    ],
+    "config_complete": true
   },
   "Wünsche äußern": {
     "enabled": true,
