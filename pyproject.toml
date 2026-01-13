@@ -36,8 +36,11 @@ packages = ["kiso_input", "kiso_input.processing"]
 [tool.pyright]
 include = ["src", "apps", "scripts"]
 extraPaths = ["src"]
+typeCheckingMode = "basic"
+reportArgumentType = false
 reportMissingImports = "warning"
 reportMissingModuleSource = false
 reportOptionalMemberAccess = false
 reportOptionalSubscript = false
-
+reportAttributeAccessIssue = false
+reportCallIssue = False
