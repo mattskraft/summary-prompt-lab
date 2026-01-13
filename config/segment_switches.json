@@ -1402,10 +1402,10 @@
   },
   "4-7-8-Atmung": {
     "enabled": false,
-    "comment": "Übung enthält keine Fragen",
+    "comment": "",
     "segment_toggles": [
-      true,
-      true
+      false,
+      false
     ],
     "config_complete": true
   },
