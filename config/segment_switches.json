@@ -1305,7 +1305,7 @@
   },
   "Brilleneinstellung: Voreiliges Schlussfolgern": {
     "enabled": false,
-    "comment": "TODO\nKeine Zusammenfassung weil eher Intro-Fragen?",
+    "comment": "Keine Zusammenfassung weil eher Intro-Fragen",
     "segment_toggles": [
       true,
       true,
@@ -1315,7 +1315,8 @@
       true,
       true,
       true
-    ]
+    ],
+    "config_complete": false
   },
   "Schlüsse ziehen: Ein Tag mit Max": {
     "enabled": false,
