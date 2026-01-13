@@ -150,3 +150,13 @@ if not SAFETY_LEXICON_PATH:
 # Model configurations (Mistral only)
 MISTRAL_MODEL_SUMMARY = os.getenv("MISTRAL_MODEL_SUMMARY", "mistral-small-latest")
 MISTRAL_MODEL_ANSWERS = os.getenv("MISTRAL_MODEL_ANSWERS", "mistral-small-latest")
+
+# Summary generation parameters
+MISTRAL_SUMMARY_MAX_TOKENS = int(os.getenv("MISTRAL_SUMMARY_MAX_TOKENS", "250"))
+MISTRAL_SUMMARY_TEMPERATURE = float(os.getenv("MISTRAL_SUMMARY_TEMPERATURE", "0.7"))
+MISTRAL_SUMMARY_TOP_P = float(os.getenv("MISTRAL_SUMMARY_TOP_P", "0.9"))
+
+# Answer generation parameters
+MISTRAL_ANSWERS_TEMPERATURE = float(os.getenv("MISTRAL_ANSWERS_TEMPERATURE", "0.9"))
+MISTRAL_ANSWERS_TOP_P = float(os.getenv("MISTRAL_ANSWERS_TOP_P", "0.8"))
+MISTRAL_ANSWERS_MAX_TOKENS = int(os.getenv("MISTRAL_ANSWERS_MAX_TOKENS", "100"))

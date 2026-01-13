@@ -6,16 +6,25 @@ import random
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 from .prompts import build_gemini_prompt_up_to_question
-from ..config import MISTRAL_MODEL_SUMMARY, MISTRAL_MODEL_ANSWERS
+from ..config import (
+    MISTRAL_MODEL_SUMMARY,
+    MISTRAL_MODEL_ANSWERS,
+    MISTRAL_SUMMARY_MAX_TOKENS,
+    MISTRAL_SUMMARY_TEMPERATURE,
+    MISTRAL_SUMMARY_TOP_P,
+    MISTRAL_ANSWERS_TEMPERATURE,
+    MISTRAL_ANSWERS_TOP_P,
+    MISTRAL_ANSWERS_MAX_TOKENS,
+)
 
 
 def generate_summary_with_mistral(
     prompt: str,
     api_key: str,
     model: str = None,
-    max_tokens: int = 200,
-    temperature: float = 0.7,
-    top_p: float = 0.9,
+    max_tokens: int = None,
+    temperature: float = None,
+    top_p: float = None,
 ) -> str:
     """Generate a summary using the Mistral API from a prompt string.
     
@@ -32,6 +41,12 @@ def generate_summary_with_mistral(
     """
     if model is None:
         model = MISTRAL_MODEL_SUMMARY
+    if max_tokens is None:
+        max_tokens = MISTRAL_SUMMARY_MAX_TOKENS
+    if temperature is None:
+        temperature = MISTRAL_SUMMARY_TEMPERATURE
+    if top_p is None:
+        top_p = MISTRAL_SUMMARY_TOP_P
         
     try:
         from mistralai import Mistral  # type: ignore
@@ -67,9 +82,9 @@ def stream_summary_with_mistral(
     prompt: str,
     api_key: str,
     model: str = None,
-    max_tokens: int = 200,
-    temperature: float = 0.7,
-    top_p: float = 0.9,
+    max_tokens: int = None,
+    temperature: float = None,
+    top_p: float = None,
 ):
     """Stream a summary using the Mistral API from a prompt string.
     
@@ -89,6 +104,12 @@ def stream_summary_with_mistral(
     """
     if model is None:
         model = MISTRAL_MODEL_SUMMARY
+    if max_tokens is None:
+        max_tokens = MISTRAL_SUMMARY_MAX_TOKENS
+    if temperature is None:
+        temperature = MISTRAL_SUMMARY_TEMPERATURE
+    if top_p is None:
+        top_p = MISTRAL_SUMMARY_TOP_P
         
     try:
         from mistralai import Mistral  # type: ignore
@@ -125,8 +146,8 @@ def generate_answers_with_mistral(
     segments: List[Dict[str, Any]],
     api_key: str,
     model: str = None,
-    temperature: float = 0.9,
-    top_p: float = 0.8,
+    temperature: float = None,
+    top_p: float = None,
     debug: bool = False,
     return_debug_info: bool = False,
     seed: Optional[int] = None,
@@ -153,6 +174,10 @@ def generate_answers_with_mistral(
     """
     if model is None:
         model = MISTRAL_MODEL_ANSWERS
+    if temperature is None:
+        temperature = MISTRAL_ANSWERS_TEMPERATURE
+    if top_p is None:
+        top_p = MISTRAL_ANSWERS_TOP_P
     
     # Track errors during generation
     generation_errors: List[Dict[str, str]] = []
@@ -292,7 +317,7 @@ def generate_answers_with_mistral(
                         messages=[{"role": "user", "content": context_prompt}],
                         temperature=temperature,
                         top_p=top_p,
-                        max_tokens=100,  # Keep answers short
+                        max_tokens=MISTRAL_ANSWERS_MAX_TOKENS,
                     )
                     
                     if res.choices and res.choices[0].message:
