@@ -94,7 +94,6 @@ try:
     
     from kiso_input import (  # type: ignore
         assess_free_text_answers,
-        generate_answers_with_gemini,
         generate_answers_with_mistral,
         get_prompt_segments_from_exercise,
         load_self_harm_lexicon,
