@@ -1661,7 +1661,7 @@
   },
   "Fünf Dinge in der Natur": {
     "enabled": true,
-    "comment": "Beispiele fehlen",
+    "comment": "Stresstesten",
     "segment_toggles": [
       true,
       true,
@@ -1681,7 +1681,7 @@
       true,
       true
     ],
-    "config_complete": false
+    "config_complete": true
   },
   "Spaziergang": {
     "enabled": false,
