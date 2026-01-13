@@ -1785,5 +1785,33 @@
       true
     ],
     "config_complete": true
+  },
+  "Warum Medikamente?": {
+    "enabled": false,
+    "comment": "Quiz-Frage",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "config_complete": true
   }
 }
