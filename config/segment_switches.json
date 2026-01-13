@@ -388,7 +388,7 @@
   },
   "Nachbarschaftliche Beziehungen": {
     "enabled": false,
-    "comment": "Die ersten drei Fragen sind Story Nodes. Zusammenfassung von nur der letzten Antwort eher unnötig oder?",
+    "comment": "Die ersten drei Fragen sind Story Nodes, die letzte eher Outro. Zusammenfassung unnötig.",
     "segment_toggles": [
       true,
       true,
