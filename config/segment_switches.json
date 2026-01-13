@@ -2241,5 +2241,14 @@
     "enabled": true,
     "comment": "",
     "segment_toggles": []
+  },
+  "Achtsam sitzen": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true
+    ],
+    "config_complete": true
   }
 }
