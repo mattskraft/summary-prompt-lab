@@ -53,8 +53,18 @@
     "comment": ""
   },
   "Warum ist Gefühle zeigen wichtig?": {
-    "enabled": true,
-    "comment": ""
+    "enabled": false,
+    "comment": "Intro-Frage",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "config_complete": false
   },
   "Wie Gefühle entstehen": {
     "enabled": true,
