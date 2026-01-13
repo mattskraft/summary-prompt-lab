@@ -1158,8 +1158,8 @@
     ]
   },
   "Selbstwirksamkeit": {
-    "enabled": true,
-    "comment": "TODO\nLohnt Zusammenfassung überhaupt?",
+    "enabled": false,
+    "comment": "Lohnt Zusammenfassung überhaupt?",
     "segment_toggles": [
       false,
       false,
