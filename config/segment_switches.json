@@ -458,7 +458,10 @@
   "Gedanken aufschreiben": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": []
+    "segment_toggles": [
+      true
+    ],
+    "config_complete": true
   },
   "Die Märchentante": {
     "enabled": false,
@@ -2146,5 +2149,15 @@
       true
     ],
     "config_complete": true
+  },
+  "Krisenplan": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Meine Frühwarnzeichen": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
   }
 }
