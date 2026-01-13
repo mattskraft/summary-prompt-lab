@@ -1106,7 +1106,7 @@
   },
   "Gedanken hinterfragen": {
     "enabled": true,
-    "comment": "TODO\nSehr viele mögliche Antworten. Wenn alle beantwortet werden, wird Mistral's Zusammenfassung sehr lang. Eventuell nur bestimmte Antworten selecten?",
+    "comment": "Sehr viele mögliche Antworten. Wenn alle beantwortet werden, wird Mistral's Zusammenfassung sehr lang. Eventuell nur bestimmte Antworten selecten?",
     "segment_toggles": [
       true,
       true,
@@ -1127,7 +1127,8 @@
       true,
       true,
       true
-    ]
+    ],
+    "config_complete": false
   },
   "Rückblick: Wahngedanken": {
     "enabled": true,
