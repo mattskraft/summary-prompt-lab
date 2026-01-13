@@ -1926,5 +1926,21 @@
       true
     ],
     "config_complete": true
+  },
+  "Körperliche Ablenkung": {
+    "enabled": true,
+    "comment": "Übungsspezifischer Prompt formuliert",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "config_complete": false
+  },
+  "Positives sagen": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
   }
 }
