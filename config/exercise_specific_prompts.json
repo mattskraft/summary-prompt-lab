@@ -123,5 +123,10 @@
     "prompt": "# Anweisungen\n- Formuliere in nur einem Satz eine empathische Bewertung der vorgeschlagenen Antwort.",
     "example1": "",
     "example2": ""
+  },
+  "Körperliche Ablenkung": {
+    "prompt": "# Anweisungen\n- Formuliere in nur einem Satz eine empathische Bewertung der vorgeschlagenen Antwort.",
+    "example1": "",
+    "example2": ""
   }
 }
