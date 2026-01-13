@@ -2250,5 +2250,18 @@
       true
     ],
     "config_complete": true
+  },
+  "Bewegung": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Haltung spüren": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true
+    ],
+    "config_complete": true
   }
 }
