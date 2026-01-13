@@ -1733,8 +1733,8 @@
     "config_complete": true
   },
   "Der Tiger": {
-    "enabled": true,
-    "comment": "TODO\nEher keine Zusammenfassung oder?",
+    "enabled": false,
+    "comment": "Zusammenfassung macht nicht wirklich Sinn.",
     "segment_toggles": [
       true,
       true,
