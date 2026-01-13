@@ -390,7 +390,13 @@
   "In der Öffentlichkeit": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": []
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "config_complete": true
   },
   "Sich anvertrauen": {
     "enabled": true,
