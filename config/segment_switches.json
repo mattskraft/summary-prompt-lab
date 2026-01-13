@@ -1212,7 +1212,7 @@
   },
   "Dana: Bedrohung oder Einbildung?": {
     "enabled": false,
-    "comment": "TODO\nSchwer umsetzbar, da wichtiger Kontext nur als Audio verfügbar ist",
+    "comment": "Schwer umsetzbar, da wichtiger Kontext nur als Audio verfügbar ist",
     "segment_toggles": [
       true,
       true,
@@ -1221,7 +1221,8 @@
       true,
       true,
       true
-    ]
+    ],
+    "config_complete": false
   },
   "Ideen hinterfragen": {
     "enabled": true,
