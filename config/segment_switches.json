@@ -5,7 +5,23 @@
   },
   "Beziehungen und Selbstwert": {
     "enabled": true,
-    "comment": ""
+    "comment": "",
+    "segment_toggles": [
+      true,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false
+    ],
+    "config_complete": false
   },
   "Kontakte pflegen": {
     "enabled": true,
@@ -1974,5 +1990,15 @@
       true
     ],
     "config_complete": true
+  },
+  "Was sind Halluzinationen?": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Wie fühlen sich Halluzinationen an?": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
   }
 }
