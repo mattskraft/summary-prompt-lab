@@ -196,8 +196,15 @@
     "comment": ""
   },
   "Tipps für deinen Selbstwert": {
-    "enabled": true,
-    "comment": ""
+    "enabled": false,
+    "comment": "Zusammenfassung unnötig",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "config_complete": false
   },
   "Das Regal": {
     "enabled": true,
@@ -2429,5 +2436,10 @@
       true
     ],
     "config_complete": true
+  },
+  "Woher kommen Halluzinationen?": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
   }
 }
