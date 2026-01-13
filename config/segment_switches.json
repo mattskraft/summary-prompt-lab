@@ -1566,7 +1566,7 @@
       true,
       true
     ],
-    "config_complete": false
+    "config_complete": true
   },
   "Strategien beim Bildersehen": {
     "enabled": true,
