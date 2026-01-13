@@ -235,7 +235,21 @@
   },
   "Perfektes Leben?": {
     "enabled": false,
-    "comment": "Übung enthält keine Fragen"
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "config_complete": true
   },
   "Unfaire Vergleiche": {
     "enabled": true,
