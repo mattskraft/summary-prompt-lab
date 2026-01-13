@@ -1761,7 +1761,7 @@
   },
   "Automatische Gedanken erkennen": {
     "enabled": false,
-    "comment": "TODO\nStory node & kommentierte MC Antworten",
+    "comment": "Storynode & kommentierte MC Antworten",
     "segment_toggles": [
       true,
       true,
