@@ -1968,7 +1968,6 @@ if sel_uebung:
     
     st.text_area(
         "Generierte Zusammenfassung",
-        value=st.session_state[r2_state_key],
         key=r2_state_key,
         height=200,
         label_visibility="collapsed",
