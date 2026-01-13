@@ -466,7 +466,10 @@
   "Die Märchentante": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": []
+    "segment_toggles": [
+      true
+    ],
+    "config_complete": true
   },
   "Einschlafen": {
     "enabled": false,
