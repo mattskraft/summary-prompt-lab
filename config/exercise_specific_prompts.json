@@ -120,7 +120,7 @@
     "example2": ""
   },
   "Die Stimmen in die Schranken weisen": {
-    "prompt": "- Formuliere eine kurze, empathische Bewertung des vorgeschlagenen Satzes.",
+    "prompt": "# Anweisungen\n- Formuliere eine empathische Bewertung des vorgeschlagenen Satzes in nur einem Satz.",
     "example1": "",
     "example2": ""
   }
