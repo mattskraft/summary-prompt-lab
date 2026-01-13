@@ -1909,7 +1909,7 @@
   },
   "Warum Bewegung?": {
     "enabled": true,
-    "comment": "TODO\nZusammenfassung? Der letzte Textbaustein ist schon sehr schön. Eine darauffolgende Mistral Zusammenfassung würde eventuell wiederholen.",
+    "comment": "Zusammenfassung? Der letzte Textbaustein ist schon sehr schön. Eine darauffolgende Mistral Zusammenfassung würde eventuell wiederholen.",
     "segment_toggles": [
       true,
       true,
