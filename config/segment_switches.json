@@ -1604,8 +1604,15 @@
   },
   "Die Stimmen in die Schranken weisen": {
     "enabled": true,
-    "comment": "",
-    "segment_toggles": []
+    "comment": "Übungsspezifischer Prompt formuliert.",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "config_complete": false
   },
   "Feste Zeiten": {
     "enabled": false,
