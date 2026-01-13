@@ -833,7 +833,8 @@
       true,
       true,
       true
-    ]
+    ],
+    "config_complete": true
   },
   "Was ist Grübeln?": {
     "enabled": false,
