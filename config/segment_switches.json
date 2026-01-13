@@ -1617,5 +1617,19 @@
       true
     ],
     "config_complete": true
+  },
+  "Achtsame Schritte": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Blickkontakt": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true
+    ],
+    "config_complete": true
   }
 }
