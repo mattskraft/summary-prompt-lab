@@ -135,7 +135,7 @@
     "example2": ""
   },
   "(K)eine einfache Sache": {
-    "prompt": "# Anweisungen\nFormuliere zwei kurze Absätze: eines zu den Dingen, die dem User leicht fallen, und eines zu den Dingen, die dem User schwer fallen.",
+    "prompt": "# Anweisungen\nFormuliere zwei kurze Absätze: einer zu den Dingen, die dem User leicht fallen, und einer zu den Dingen, die dem User schwer fallen.",
     "example1": "",
     "example2": ""
   }
