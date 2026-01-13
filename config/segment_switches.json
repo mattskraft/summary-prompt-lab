@@ -1041,7 +1041,7 @@
   },
   "Leben mit Wahngedanken": {
     "enabled": false,
-    "comment": "Ohnehin schon eine lange Übung, Zusammenfassung einer Frage unnötig?",
+    "comment": "Ohnehin schon eine lange Übung, Zusammenfassung einer Frage unnötig",
     "segment_toggles": [
       true,
       true,
@@ -1055,8 +1055,12 @@
       true,
       true,
       true,
+      true,
+      true,
+      true,
       true
-    ]
+    ],
+    "config_complete": false
   },
   "Schulteratmung": {
     "enabled": false,
