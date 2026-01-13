@@ -138,5 +138,10 @@
     "prompt": "# Anweisungen\nFormuliere zwei kurze Absätze: einer zu den Dingen, die dem User leicht fallen, und einer zu den Dingen, die dem User schwer fallen. In der Summe maximal 60 Wörter.",
     "example1": "",
     "example2": ""
+  },
+  "Stärkende Sätze": {
+    "prompt": "# Anweisungen\n- Formuliere eine knappe (maximal 30 Wörter) und empathische Bewertung des vorgeschlagenen Satzes.",
+    "example1": "",
+    "example2": ""
   }
 }
