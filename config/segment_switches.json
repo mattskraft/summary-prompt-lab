@@ -371,7 +371,16 @@
   "Am Arbeitsplatz": {
     "enabled": false,
     "comment": "Übung enthält keine Fragen",
-    "segment_toggles": []
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "config_complete": true
   },
   "Einen Anfang finden": {
     "enabled": true,
