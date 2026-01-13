@@ -676,7 +676,7 @@
       true,
       true
     ],
-    "config_complete": false
+    "config_complete": true
   },
   "Gedanken und Gefühle": {
     "enabled": false,
