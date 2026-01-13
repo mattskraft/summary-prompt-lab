@@ -1815,26 +1815,6 @@
     "Antworten": "free_text"
   },
   {
-    "Einheit": "Psychische Gesundheit",
-    "Frage": "Gesundheit heißt für mich …",
-    "Antworten": "keine Krankheit haben; sich lebendig fühlen; den Alltag bewältigen können"
-  },
-  {
-    "Einheit": "Psychische Gesundheit",
-    "Frage": "Was könnten gesunde Gewohnheiten sein?",
-    "Antworten": "morgens das Bett machen; Pausen machen; eine Mahlzeit in Ruhe essen; Gefühle verstecken"
-  },
-  {
-    "Einheit": "Psychische Gesundheit",
-    "Frage": "Was könnten weitere gesunde Gewohnheiten sein?",
-    "Antworten": "einmal am Tag vor die Tür gehen; am Ende des Tages kurz aufschreiben, was heute gut war; jeden Tag Nachrichten lesen; abends das Handy weglegen"
-  },
-  {
-    "Einheit": "Psychische Gesundheit",
-    "Frage": "Fallen dir noch weitere gesunde Gewohnheiten ein?",
-    "Antworten": "free_text"
-  },
-  {
     "Einheit": "Einschlafen",
     "Frage": "Wie lange brauchst du durchschnittlich zum Einschlafen?",
     "Antworten": "weniger als 5 Minuten; zwischen 10 und 20 Minuten; länger als 30 Minuten"
@@ -2180,6 +2160,36 @@
     "Antworten": "Wahr; Falsch"
   },
   {
+    "Einheit": "Gutes Leben",
+    "Frage": "Was bedeutet ein gutes Leben für dich?",
+    "Antworten": "Gesundheit; Liebe; Freundschaft; Familie; Sinn; Zufriedenheit; Wachstum; Freude; Selbstfürsorge; Struktur; Anerkennung"
+  },
+  {
+    "Einheit": "Gutes Leben",
+    "Frage": "Was gehört für dich noch zu einem guten Leben dazu?",
+    "Antworten": "free_text"
+  },
+  {
+    "Einheit": "Psychische Gesundheit",
+    "Frage": "Gesundheit heißt für mich …",
+    "Antworten": "keine Krankheit haben; sich lebendig fühlen; den Alltag bewältigen können"
+  },
+  {
+    "Einheit": "Psychische Gesundheit",
+    "Frage": "Was könnten gesunde Gewohnheiten sein?",
+    "Antworten": "morgens das Bett machen; Pausen machen; eine Mahlzeit in Ruhe essen; Gefühle verstecken"
+  },
+  {
+    "Einheit": "Psychische Gesundheit",
+    "Frage": "Was könnten weitere gesunde Gewohnheiten sein?",
+    "Antworten": "einmal am Tag vor die Tür gehen; am Ende des Tages kurz aufschreiben, was heute gut war; jeden Tag Nachrichten lesen; abends das Handy weglegen"
+  },
+  {
+    "Einheit": "Psychische Gesundheit",
+    "Frage": "Fallen dir noch weitere gesunde Gewohnheiten ein?",
+    "Antworten": "free_text"
+  },
+  {
     "Einheit": "Psychische Störungen",
     "Frage": "Psychische Erkrankungen sind häufig",
     "Antworten": "Wahr; Falsch"
@@ -2208,6 +2218,36 @@
     "Einheit": "Unterstützung suchen",
     "Frage": "Welcher dieser guten Gründe spricht dich am meisten an?",
     "Antworten": "Ich bin nicht allein mit meinen Gedanken; Hilfe holen ist ein Zeichen von Stärke – nicht von Schwäche; Andere sehen Dinge, die ich gerade nicht sehen kann; Probleme werden kleiner, wenn man sie früh teilt; Ich entlaste mich und gewinne Energie zurück"
+  },
+  {
+    "Einheit": "Warum Medikamente?",
+    "Frage": "Medikamente wirken sofort.",
+    "Antworten": "Wahr; Falsch"
+  },
+  {
+    "Einheit": "Warum Medikamente?",
+    "Frage": "Nebenwirkungen sind möglich, aber oft behandelbar.",
+    "Antworten": "Wahr; Falsch"
+  },
+  {
+    "Einheit": "Warum Medikamente?",
+    "Frage": "Medikamente absetzen ohne Absprache kann riskant sein.",
+    "Antworten": "Wahr; Falsch"
+  },
+  {
+    "Einheit": "Warum Medikamente?",
+    "Frage": "Medikamente helfen nicht gegen Halluzinationen.",
+    "Antworten": "Wahr; Falsch"
+  },
+  {
+    "Einheit": "Wie helfen Medikamente?",
+    "Frage": "Wobei können Medikamente helfen?",
+    "Antworten": "Ängste verringern; Rückfälle verhindern; Weniger Stimmenhören; Abnehmen"
+  },
+  {
+    "Einheit": "Nebenwirkungen",
+    "Frage": "Was glaubst du: Wie findet man das passende Medikament?",
+    "Antworten": "Man wägt Wirkung und Nebenwirkungen ab; Manchmal muss man 2 oder 3 Medikamente ausprobieren, um herauszufinden, welches man am besten verträgt"
   },
   {
     "Einheit": "Gemeinsam entscheiden",
@@ -2275,56 +2315,6 @@
     "Antworten": "free_text"
   },
   {
-    "Einheit": "Psychose oder Schizophrenie?",
-    "Frage": "Wie viel Prozent der Bevölkerung entwickelt im Laufe des Lebens eine Schizophrenie?",
-    "Antworten": "0,1%; 0,5%; 1%"
-  },
-  {
-    "Einheit": "Psychose oder Schizophrenie?",
-    "Frage": "Wer ist häufiger von Schizophrenie betroffen?",
-    "Antworten": "Männer; Frauen; beide gleich häufig"
-  },
-  {
-    "Einheit": "Psychose oder Schizophrenie?",
-    "Frage": "Wenn jemand von einer Schizophrenie betroffen ist, haben die Eltern etwas in der Erziehung falsch gemacht",
-    "Antworten": "Wahr; Falsch"
-  },
-  {
-    "Einheit": "Woher kommen Psychosen?",
-    "Frage": "Welche Ursachen können Psychosen haben?",
-    "Antworten": "körperliche Erkrankungen; Erkrankungen des Gehirns; Vitaminmangel; Drogenkonsum; extreme Belastungen; genetische Veranlagung; Fehler in der Erziehung"
-  },
-  {
-    "Einheit": "Warum Medikamente?",
-    "Frage": "Medikamente wirken sofort.",
-    "Antworten": "Wahr; Falsch"
-  },
-  {
-    "Einheit": "Warum Medikamente?",
-    "Frage": "Nebenwirkungen sind möglich, aber oft behandelbar.",
-    "Antworten": "Wahr; Falsch"
-  },
-  {
-    "Einheit": "Warum Medikamente?",
-    "Frage": "Medikamente absetzen ohne Absprache kann riskant sein.",
-    "Antworten": "Wahr; Falsch"
-  },
-  {
-    "Einheit": "Warum Medikamente?",
-    "Frage": "Medikamente helfen nicht gegen Halluzinationen.",
-    "Antworten": "Wahr; Falsch"
-  },
-  {
-    "Einheit": "Wie helfen Medikamente?",
-    "Frage": "Wobei können Medikamente helfen?",
-    "Antworten": "Ängste verringern; Rückfälle verhindern; Weniger Stimmenhören; Abnehmen"
-  },
-  {
-    "Einheit": "Nebenwirkungen",
-    "Frage": "Was glaubst du: Wie findet man das passende Medikament?",
-    "Antworten": "Man wägt Wirkung und Nebenwirkungen ab; Manchmal muss man 2 oder 3 Medikamente ausprobieren, um herauszufinden, welches man am besten verträgt"
-  },
-  {
     "Einheit": "Achtsame Schritte",
     "Frage": "Wenn du möchtest, kannst du deine Gedanken hier festhalten:",
     "Antworten": "free_text"
@@ -2348,6 +2338,26 @@
     "Einheit": "Was ist eine Psychose?",
     "Frage": "Wer eine Psychose hat ist unheilbar krank",
     "Antworten": "Wahr; Falsch"
+  },
+  {
+    "Einheit": "Psychose oder Schizophrenie?",
+    "Frage": "Wie viel Prozent der Bevölkerung entwickelt im Laufe des Lebens eine Schizophrenie?",
+    "Antworten": "0,1%; 0,5%; 1%"
+  },
+  {
+    "Einheit": "Psychose oder Schizophrenie?",
+    "Frage": "Wer ist häufiger von Schizophrenie betroffen?",
+    "Antworten": "Männer; Frauen; beide gleich häufig"
+  },
+  {
+    "Einheit": "Psychose oder Schizophrenie?",
+    "Frage": "Wenn jemand von einer Schizophrenie betroffen ist, haben die Eltern etwas in der Erziehung falsch gemacht",
+    "Antworten": "Wahr; Falsch"
+  },
+  {
+    "Einheit": "Woher kommen Psychosen?",
+    "Frage": "Welche Ursachen können Psychosen haben?",
+    "Antworten": "körperliche Erkrankungen; Erkrankungen des Gehirns; Vitaminmangel; Drogenkonsum; extreme Belastungen; genetische Veranlagung; Fehler in der Erziehung"
   },
   {
     "Einheit": "Was sind Frühwarnzeichen?",
@@ -2473,15 +2483,5 @@
     "Einheit": "Ruhe bewahren",
     "Frage": "Gibt es Dinge, die du selbst bei hoher Anspannung einmal ausprobieren möchtest?",
     "Antworten": "einen inneren sicheren Ort vorstellen (z.B. eine Festung); mit einem Kuscheltier kuscheln; zu einem Menschen gehen, der einem gut tut; ein warmes Bad nehmen; einen Stressball in die Hand nehmen; Duftöl riechen; Kopfhörer aufsetzen; in die Natur gehen; sich mit dem Haustier beschäftigen; singen"
-  },
-  {
-    "Einheit": "Gutes Leben",
-    "Frage": "Was bedeutet ein gutes Leben für dich?",
-    "Antworten": "Gesundheit; Liebe; Freundschaft; Familie; Sinn; Zufriedenheit; Wachstum; Freude; Selbstfürsorge; Struktur; Anerkennung"
-  },
-  {
-    "Einheit": "Gutes Leben",
-    "Frage": "Was gehört für dich noch zu einem guten Leben dazu?",
-    "Antworten": "free_text"
   }
 ]

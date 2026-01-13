@@ -7829,5 +7829,1199 @@
         }
       ]
     }
+  },
+  "Gesundheit": {
+    "Gesundheit": {
+      "Psychische Gesundheit": [
+        {
+          "ExerciseId": 2132
+        },
+        {
+          "id": 4620,
+          "Question": "Gesundheit heißt für mich …",
+          "AnswerOptions": [
+            "keine Krankheit haben",
+            "sich lebendig fühlen",
+            "den Alltag bewältigen können"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Text": "**Gesundheit ist mehr als \"nicht krank sein\".** Gesundheit heißt, sich körperlich, seelisch und in Beziehungen wohl zu fühlen. Gesundheit kann bedeuten: - du kannst deinen Alltag schaffen - du fühlst dich mit anderen verbunden - du spürst Sinn in deinem Leben - du kannst für dich sorgen"
+        },
+        {
+          "Text": "**Gesundheit wächst durch kleine Schritte im Alltag.**"
+        },
+        {
+          "id": 4621,
+          "Question": "Was könnten gesunde Gewohnheiten sein?",
+          "AnswerOptions": [
+            "morgens das Bett machen",
+            "Pausen machen",
+            "eine Mahlzeit in Ruhe essen",
+            "Gefühle verstecken"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "id": 4622,
+          "Question": "Was könnten weitere gesunde Gewohnheiten sein?",
+          "AnswerOptions": [
+            "einmal am Tag vor die Tür gehen",
+            "am Ende des Tages kurz aufschreiben, was heute gut war",
+            "jeden Tag Nachrichten lesen",
+            "abends das Handy weglegen"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "id": 4619,
+          "Question": "Fallen dir noch weitere gesunde Gewohnheiten ein?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Gesunde Gewohnheiten geben dir Halt und Kraft im Alltag. Kleine Dinge wie das Bett machen, Pausen einlegen oder kurz an der frischen Luft sein helfen, dich zu stabilisieren und besser zu fühlen. Auch kurze Übungen hier in der Kiso App kannst du dir als Favoriten speichern und regelmäßig wiederholen. So kannst du zwischendurch, zu Hause, im Bus oder beim Spazierengehen, immer wieder etwas für deine Gesundheit tun."
+        }
+      ],
+      "Psychische Störungen": [
+        {
+          "ExerciseId": 2133
+        },
+        {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
+          "id": 4623,
+          "Question": "Psychische Erkrankungen sind häufig",
+          "AnswerOptions": [
+            "Wahr",
+            "Falsch"
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "Text": "**Dieser Satz ist wahr.** Etwa jeder dritte Mensch leidet einmal in seinem Leben an einer psychischen Störung, die behandelt werden muss, zum Beispiel an einer Depression. Einzelne Symptome, z.B. Niedergeschlagenheit oder ungewöhnliche Gedanken, kommen sogar noch häufiger vor. Da psychische Störungen und Symptome aber immer noch mit Scham verbunden sind, wird selten darüber gesprochen."
+        },
+        {
+          "Text": "Was schätzt du?"
+        },
+        {
+          "id": 4624,
+          "Question": "Wie viele Menschen in Deutschland sind von einer Erkrankung aus dem Schizophrenie-Spektrum betroffen?",
+          "AnswerOptions": [
+            "ca. 100.000",
+            "ca. 2 Mio."
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "Text": "Etwa 2 Millionen Menschen in Deutschland leben mit einer Erkrankung aus dem Schizophrenie-Spektrum, also zum Beispiel einer Schizophrenie oder schizoaffektiven Störung. Dir sind heute schon 100 Menschen über den Weg gelaufen? Dann sind statistisch gesehen zwei von ihnen betroffen."
+        },
+        {
+          "Text": "Übrigens..."
+        },
+        {
+          "Text": "Heute weiß man: Auch Menschen ohne psychische Erkrankung können manchmal, ähnlich wie bei einer Psychose, Stimmen hören oder Dinge sehen, die nicht da sind. Zum Beispiel haben etwa 10% der Erwachsenen in Deutschland irgendwann im Leben Tinnitus. Tinnitus heißt: Man hört im Ohr ein Geräusch, zum Beispiel ein Pfeifen oder Rauschen, obwohl draußen gar nichts klingt."
+        }
+      ],
+      "Komplimente": [
+        {
+          "ExerciseId": 2134
+        },
+        {
+          "Text": "Wenn wir in einem Stimmungstief stecken, dann verändert sich unsere Wahrnehmung. Wir sehen dann oft nur das, was nicht gut ist - an der Welt, anderen Menschen oder an uns selbst. Wir verlieren den Blick für das, was wir an uns mögen."
+        },
+        {
+          "Text": "**Stelle dich einmal vor einen Spiegel.** Lächle deinem Spiegelbild zu, auch wenn es sich komisch anfühlt. Was magst du an dir? **Mache dir ein Kompliment. Sprich es gerne laut aus.** Egal, ob für die Kleidung, die du heute an hast, dein schönes Lächeln oder etwas, das nicht sofort sichtbar ist, wie zum Beispiel, dass du freundlich zu jemandem warst oder dir heute etwas Gutes zu essen gemacht hast. **Genieße das Kompliment.**"
+        },
+        {
+          "Text": "Wenn dir diese Übung gefallen hat, speichere sie in deinen Favoriten. Wiederhole sie regelmäßig. Diese Übung wirkt am besten, wenn du sie öfter machst. Mit jeder Wiederholung wird dein Blick auf dich etwas freundlicher. Und je öfter du sie machst, desto leichter fällt sie dir."
+        },
+        {
+          "id": 4625,
+          "Question": "Wann möchtest du die Übung machen?",
+          "AnswerOptions": [
+            "Jeden Abend",
+            "Täglich, dann wenn ich einen Spiegel sehe",
+            "Einmal in der Woche"
+          ],
+          "AllowMultiple": false
+        }
+      ],
+      "Atemballon": [
+        {
+          "ExerciseId": 2135
+        },
+        {
+          "Text": "Stell dir vor, dein Atem ist wie ein Ballon in deinem Bauch. Atme tief ein und spür, wie sich dein Bauchraum mit Luft füllt, genauso wie ein Ballon, der sich langsam aufbläht. Halte den Atem kurz an und spür, wie sich die Luft in deinem Inneren ausdehnt. Dann lass die Luft langsam wieder heraus, während sich der Ballon zusammenzieht. Diese Übung hilft dir, bewusster zu atmen, indem sie dich dazu einlädt, tief in deine eigene Mitte zu atmen und dabei Stress und Anspannung loszulassen. Du kannst die Übung so oft wiederholen wie du möchtest."
+        },
+        {
+          "Text": "Atemübungen wirken durch Wiederholung. Wenn du sie regelmäßig machst, beruhigt sich dein Körper schneller. Versuche einmal am Tag innezuhalten und auf deinen Atem zu achten. Hör dir diese Übung dafür gerne immer wieder an. Du kannst sie dafür in deinen Favoriten speichern."
+        }
+      ],
+      "Mein guter Grund": [
+        {
+          "ExerciseId": 2136
+        },
+        {
+          "Text": "An der eigenen Gesundheit dran zu bleiben klingt erst mal einleuchtend. Aber Gedanken wie _ich sollte etwas für meine Gesundheit tun_ oder _ich sollte mehr Sport machen_ helfen nicht immer dabei, sich im Alltag zu motivieren."
+        },
+        {
+          "Text": "Einfacher wird es, wenn du weißt, _wofür_ du etwas machst. Zum Beispiel: Ich möchte auf meinen Schlaf achten, weil ich nach einer guten Nacht nicht so schnell sauer werde und das dann meiner Beziehung gut tut. Oder: Ich möchte regelmäßig meine Medikamente nehmen, weil mir das Stabilität gibt und ich mich so besser um meinen Hund kümmern kann."
+        },
+        {
+          "Text": "**Was ist dein guter Grund, um auf deine Gesundheit zu achten?** Halte fest, was dich motiviert, auf deine Gesundheit zu achten, also auf Schlaf, Bewegung oder auch, dich mit der Kiso Mind App zu beschäftigen."
+        },
+        {
+          "id": 4626,
+          "Question": "Mein guter Grund:",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Inspiration: - Ich kümmere mich um meine Gesundheit, weil ich wieder in meinen Job zurückkehren möchte - Ich kümmere mich um meine Gesundheit, damit ich für meine Familie da sein kann - Ich kümmere mich um meine Gesundheit, weil ich wieder mehr Spaß am Leben haben möchte"
+        },
+        {
+          "Text": "Teile deinen guten Grund mit einer Vertrauensperson. So kann auch er oder sie dich immer wieder daran erinnern."
+        }
+      ],
+      "Unterstützung suchen": [
+        {
+          "ExerciseId": 2137
+        },
+        {
+          "Text": "Vielleicht kennst du das: Du bist auf einer Party eingeladen. Es ist laut, viele Menschen um dich herum. Auf einmal siehst du, wie sich jemand eine Haarsträhne aus dem Gesicht streicht und dir zulächelt. Dir fallen immer mehr Menschen auf, die eine ähnliche Handbewegung machen. Du hast das seltsame Gefühl, dass sie mit dir kommunizieren und etwas Schlechtes über dich sagen wollen."
+        },
+        {
+          "Text": "Solche Gedanken können Angst machen. Aber du musst damit nicht alleine bleiben. Gesundheit heißt auch: Unterstützung suchen, wenn solche Gedanken auftauchen."
+        },
+        {
+          "Text": "Sprich mit einer Vertrauensperson, deinem Partner oder deiner Partnerin, einem Freund oder Familienmitglied. Sprich offen an, was dich beschäftigt. Zum Beispiel: \"Ich hatte den Eindruck, jemand macht eine Bewegung wegen mir. Kannst du mir sagen, wie du das siehst?\" So kannst du den Gedanken prüfen."
+        },
+        {
+          "id": 4627,
+          "Question": "Mit wem könntest du über solche Gedanken sprechen?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Es ist kein Zeichen von Schwäche, nach Unterstützung oder einer zweiten Meinung zu fragen. Es ist ein Schritt für deine Gesundheit. Wenn Gedanken dich stark belasten, aber keine Angehörigen oder andere Vertrauenspersonen erreichbar sind, kannst du dich auch an die Telefonseelsorge wenden, anonym und kostenfrei."
+        },
+        {
+          "Text": "Es gibt viele gute Gründe, sich Unterstützung zu suchen."
+        },
+        {
+          "Text": "Du bist nicht allein mit deinen Gedanken: Wenn du aussprichst, was dich belastet, fühlt es sich oft sofort etwas leichter an. Gedanken wirken weniger bedrohlich, wenn sie geteilt werden."
+        },
+        {
+          "Text": "Hilfe holen ist ein Zeichen von Stärke – nicht von Schwäche: Stark sein heißt nicht, alles auszuhalten. Stark sein heißt, gut für sich zu sorgen."
+        },
+        {
+          "Text": "Andere sehen Dinge, die du gerade nicht sehen kannst: In stressigen Phasen ist der Blick oft eingeengt. Eine andere Person kann helfen, Situationen realistischer einzuordnen."
+        },
+        {
+          "Text": "Probleme werden kleiner, wenn man sie früh teilt: Was unausgesprochen bleibt, wird oft größer. Frühe Unterstützung kann helfen, Krisen zu verhindern."
+        },
+        {
+          "Text": "Du entlastest dich und gewinnst Energie zurück: Alles allein zu tragen kostet unglaublich viel Kraft. Mit Unterstützung bleibt mehr Energie für deinen Alltag."
+        },
+        {
+          "id": 4628,
+          "Question": "Welcher dieser guten Gründe spricht dich am meisten an?",
+          "AnswerOptions": [
+            "Ich bin nicht allein mit meinen Gedanken",
+            "Hilfe holen ist ein Zeichen von Stärke – nicht von Schwäche",
+            "Andere sehen Dinge, die ich gerade nicht sehen kann",
+            "Probleme werden kleiner, wenn man sie früh teilt",
+            "Ich entlaste mich und gewinne Energie zurück"
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "Text": "Nimm diesen guten Grund mit in deinen Alltag. Frage nach Unterstützung, wenn belastende Gedanken auftauchen. So sorgst du gut für dich und deine Gesundheit."
+        }
+      ]
+    },
+    "Medikamente": {
+      "Warum Medikamente?": [
+        {
+          "ExerciseId": 2138
+        },
+        {
+          "Text": "Wie wichtig war oder ist es für dich, regelmäßig die verschriebenen Medikamente zu nehmen?"
+        },
+        {
+          "Text": "Diese Frage haben wir Joke gestellt. Joke ist von Schizophrenie betroffen und lebt seit vielen Jahren mit ihrer Diagnose. Medikamente sind Teil ihres Sicherheitsnetzes."
+        },
+        {
+          "Text": "Medikamente helfen, Psychosen zu lindern und Rückfällen vorzubeugen. Sie können dir die Freiheit geben, deinen Alltag so zu gestalten, wie du es möchtest und ihn nicht von deinen Symptomen bestimmen zu lassen. Wichtig ist, sie regelmäßig einzunehmen. **Was weißt du über Medikamente?** Teste dein Wissen auf den nächsten Seiten."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
+          "id": 4629,
+          "Question": "Medikamente wirken sofort.",
+          "AnswerOptions": [
+            "Wahr",
+            "Falsch"
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "Text": "**Dieser Satz ist falsch.** Medikamente wirken nicht sofort, sondern über Tage oder Wochen. Viele Medikamente brauchen Zeit, bis sie im Körper wirken. Das liegt daran, dass sich erst ein Gleichgewicht im Gehirn aufbauen muss. Ein Medikament solltest du daher mindestens 1-2 Monate testen, um zu wissen, wie es auf dich wirkt."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
+          "id": 4630,
+          "Question": "Nebenwirkungen sind möglich, aber oft behandelbar.",
+          "AnswerOptions": [
+            "Wahr",
+            "Falsch"
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "Text": "**Dieser Satz ist wahr.** Fast jedes Medikament kann Nebenwirkungen haben. Viele davon werden mit der Zeit schwächer oder lassen sich gut behandeln. Wichtig ist, dass du mit deinem Arzt oder deiner Ärztin über Nebenwirkungen sprichst. So könnt ihr gemeinsam herausfinden, welches Medikament und welche Dosis dir gut tun."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
+          "id": 4631,
+          "Question": "Medikamente absetzen ohne Absprache kann riskant sein.",
+          "AnswerOptions": [
+            "Wahr",
+            "Falsch"
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "Text": "**Dieser Satz ist wahr.** Medikamente schützen auch vor Rückfällen. Wenn du deine Medikamente plötzlich absetzt, kann es zu Rückfällen kommen. Darum solltest du immer zuerst mit deiner Ärztin oder deinem Arzt sprechen."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
+          "id": 4632,
+          "Question": "Medikamente helfen nicht gegen Halluzinationen.",
+          "AnswerOptions": [
+            "Wahr",
+            "Falsch"
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "Text": "**Dieser Satz ist falsch.** Viele Studien zeigen: Antipsychotische Medikamente helfen dabei, Halluzinationen, wie das Hören von Stimmen, weniger werden zu lassen."
+        },
+        {
+          "Text": "Übrigens..."
+        },
+        {
+          "Text": "Ein **Wirkstoffname** ist der Name des Stoffes, der im Medikament wirkt. Beispiel: Risperidon Ein **Markenname** (auch Handelsname) ist der Name, den die Firma gibt. Beispiel: Risperdal Mehrere Firmen können denselben Wirkstoff herstellen. Dann gibt es verschiedene Markennamen, aber derselbe Wirkstoff wirkt."
+        }
+      ],
+      "Wie helfen Medikamente?": [
+        {
+          "ExerciseId": 2139
+        },
+        {
+          "id": 4633,
+          "Question": "Wobei können Medikamente helfen?",
+          "AnswerOptions": [
+            "Ängste verringern",
+            "Rückfälle verhindern",
+            "Weniger Stimmenhören",
+            "Abnehmen"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Text": "Medikamente helfen **bei einer akuten Psychose** dabei, deine **Symptome zu verringern**, zum Beispiel Stimmenhören oder starke Verunsicherung. Sie können dir dabei helfen, dich wieder sicherer zu fühlen. Medikamente können dir auch **langfristig** helfen, indem sie **Rückfälle verhindern**. Sie können dir also dabei helfen, stabil zu bleiben."
+        },
+        {
+          "Text": "Welche Medikamente gibt es?"
+        },
+        {
+          "Text": "Antipsychotika: Antipsychotika sind Medikamente, die speziell darauf ausgerichtet sind, psychotische Symptome zu verbessern. Betroffene beschreiben oft, dass sie durch diese Medikamente eine Art \"dickere Haut\" entwickeln und der Alltag einfacher gelingt."
+        },
+        {
+          "Text": "Antidepressiva: Antidepressiva werden häufig ergänzend zu Antipsychotika verschrieben. Dadurch können begleitende Symptome, wie z.B. Antriebslosigkeit, weniger stark werden. Und es kann dir mit diesen Medikamenten wieder leichter fallen, Dinge zu unternehmen."
+        },
+        {
+          "Text": "Damit Medikamente wirken, ist es wichtig, sie regelmäßig einzunehmen. Du kannst die Einnahme zum Beispiel mit anderen Gewohnheiten (z.B. Zähneputzen) verbinden, um dich daran zu erinnern. Außerdem kannst du dir hier in der Kiso App im Bereich _Medikation_ Erinnerungen für deine Medikamente anlegen: Täglich, für bestimmte Wochentage, zu einer bestimmten Uhrzeit. Du kannst auch mehrere Erinnerungen erstellen. Probiere es gleich aus!"
+        }
+      ],
+      "Nebenwirkungen": [
+        {
+          "ExerciseId": 2140
+        },
+        {
+          "Text": "Medikamente unterstützen viele Betroffenen dabei, ihren Alltag zu bewältigen und mit Symptomen besser umzugehen. Manchmal gehen sie aber auch mit Nebenwirkungen einher. Mehr über typische Nebenwirkungen und wie du mit ihnen umgehen kannst, erfährst du in diesem Video."
+        },
+        {
+          "id": 4634,
+          "Question": "Was glaubst du: Wie findet man das passende Medikament?",
+          "AnswerOptions": [
+            "Man wägt Wirkung und Nebenwirkungen ab",
+            "Manchmal muss man 2 oder 3 Medikamente ausprobieren, um herauszufinden, welches man am besten verträgt"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Text": "**Beides stimmt.** Die Wahl des Medikaments richtet sich nach Wirksamkeit und Verträglichkeit. Manchmal muss man 2 oder 3 Medikamente ausprobieren, um herauszufinden, welches man am besten verträgt."
+        },
+        {
+          "Text": "Solltest du darüber nachdenken, deine Medikamente wegen der Nebenwirkungen zu reduzieren, dann sprich mit deinem Arzt oder deiner Ärztin darüber. Wichtig ist nämlich, Medikamente langsam und schrittweise zu reduzieren. So könnt ihr gemeinsam herausfinden, welche Dosis dir noch genug Stabilität für deinen Alltag gibt, aber weniger Nebenwirkungen hat. Wichtig ist: Du bist nicht allein und kannst mitentscheiden, was dir guttut."
+        }
+      ],
+      "Gemeinsam entscheiden": [
+        {
+          "ExerciseId": 2141
+        },
+        {
+          "Text": "Medikamente können für viele Menschen eine wichtige Unterstützung auf dem Weg der Genesung sein. Gleichzeitig können sie auch Belastungen oder Nebenwirkungen mit sich bringen."
+        },
+        {
+          "Text": "Diese Übung hilft dir, dir selbst bewusst zu machen, was dir Medikamente geben und welche Belastungen sie vielleicht mitbringen. Sie hilft dir, deine Erfahrungen und Gedanken zu ordnen. So kannst du sie besser mit deiner Ärztin oder deinem Arzt besprechen."
+        },
+        {
+          "id": 4638,
+          "Question": "Wie helfen dir deine Medikamente?",
+          "AnswerOptions": [
+            "Ich kann wieder klarer denken.",
+            "Ich kann besser schlafen.",
+            "Ich fühle mich weniger ängstlich oder überfordert.",
+            "Ich nehme Termine (zuverlässiger) wahr.",
+            "Ich kann Kontakte, z.B. zu Freunden, halten.",
+            "Ich höre weniger Stimmen oder habe andere Halluzinationen."
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "id": 4635,
+          "Question": "In welchen Momenten hast du gemerkt, dass die Medikamente dir helfen?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "id": 4636,
+          "Question": "Was kannst du mit Medikamenten heute vielleicht besser tun als früher?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "id": 4639,
+          "Question": "Gibt es etwas, das dich an den Medikamenten stört oder schwierig ist?",
+          "AnswerOptions": [
+            "Ich bin müder oder fühle mich langsamer.",
+            "Ich habe zugenommen.",
+            "Ich habe das Gefühl, weniger Freude zu spüren.",
+            "Ich vergesse manchmal, sie zu nehmen.",
+            "Ich weiß nicht genau, wie sie wirken."
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "id": 4637,
+          "Question": "Gibt es sonst noch Nachteile, körperlich, gefühlsmäßig, im Alltag?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Question": "**Wenn du an die Vor- und Nachteile deiner Medikamente auf einer Waage denkst – wie sieht dein persönliches Gleichgewicht gerade aus?**"
+        },
+        {
+          "Branch": [
+            {
+              "Medikamente haben mehr Nutzen als Nachteile": "Gesundheit - Gemeinsam entscheiden - A: Vorteile"
+            },
+            {
+              "Ungefähr ausgeglichen": "Gesundheit - Gemeinsam entscheiden - B: Ausgeglichen"
+            },
+            {
+              "Medikamente haben mehr Nachteile als Nutzen": "Gesundheit - Gemeinsam entscheiden - C: Nachteile"
+            }
+          ]
+        }
+      ],
+      "Drogen & Medikamente": [
+        {
+          "ExerciseId": 2142
+        },
+        {
+          "Text": "Viele Drogen docken an den gleichen Stellen im Gehirn an, an denen auch Medikamente wirken. Daher können Drogen die Wirkung von Medikamenten verändern. Mehr zum Zusammenhang von antipsychotischen Medikamenten und Drogen erfährst du in diesem Video, am Beispiel des Betroffenen David."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
+          "id": 4640,
+          "Question": "Wenn man Medikamente nimmt, sind Drogen weniger problematisch.",
+          "AnswerOptions": [
+            "Wahr",
+            "Falsch"
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "Text": "**Dieser Satz ist falsch.** Drogen, wie z.B. Zigaretten, Cannabis oder Alkohol, verändern die Wirkung von antipsychotischen Medikamenten. Im Idealfall sollte man daher ganz auf Drogen verzichten."
+        },
+        {
+          "id": 4641,
+          "Question": "Cannabis kann Symptome verschlimmern.",
+          "AnswerOptions": [
+            "Wahr",
+            "Falsch"
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "Text": "**Dieser Satz ist wahr.** Cannabis erhöht das Risiko für Rückfälle und Symptome wie Wahngedanken oder Stimmenhören. Allgemein kann der Konsum von Drogen, insbesondere von Cannabis und Metamphetaminen, aber auch anderer Drogen, Symptome einer Schizophrenie auslösen."
+        },
+        {
+          "id": 4642,
+          "Question": "Drogenkonsum sollte vor dem Facharzt auf jeden Fall verschwiegen werden.",
+          "AnswerOptions": [
+            "Wahr",
+            "Falsch"
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "Text": "**Dieser Satz ist falsch.** Drogen verändern die Wirkung von Medikamenten. Falls du Drogen nimmst, ist es deshalb wichtig, offen mit deiner Ärztin oder deinem Arzt über deinen Konsum zu sprechen. Auch Zigaretten können Medikamente beeinflussen. Wenn du rauchst, sprich mit deinem Psychiater darüber. Sage, wie viele Zigaretten du ungefähr am Tag rauchst. So könnt ihr gemeinsam die Behandlung daran anpassen."
+        }
+      ]
+    },
+    "Bewegung": {
+      "Körper aufwecken": [
+        {
+          "ExerciseId": 2143
+        },
+        {
+          "Text": "Nimm dir morgens oder zwischendurch **eine Minute Zeit**, um deinen Körper bewusst zu aktivieren. Du kannst Folgendes ausprobieren: - Arme heben und tief einatmen – dann langsam ausatmen und Schultern sinken lassen - Schultern rollen (mehrmals nach hinten und vorn) - Gesicht sanft massieren oder abstreichen - Beine ausschütteln oder leicht auf der Stelle treten Es geht nicht darum, Sport zu machen, sondern dich **wach und lebendig** zu fühlen und ein wenig Bewegung in deinen Alltag zu bringen."
+        }
+      ],
+      "Warum Bewegung?": [
+        {
+          "ExerciseId": 2144
+        },
+        {
+          "Text": "Viele Menschen erleben, dass ihnen Bewegung dabei hilft, Stress abzubauen, die Stimmung zu verbessern und besser zu schlafen. Studien zeigen, dass regelmäßige Bewegung wie Aerobic, Yoga oder Kraftübungen auch bei Menschen mit Schizophrenie die Lebensqualität verbessert. Sport kann außerdem das Rückfallrisiko senken. Welche Bewegung tut dir gut?"
+        },
+        {
+          "Text": "Schwimmen: Beim Schwimmen bewegst du den ganzen Körper. Das Gefühl, vom Wasser getragen zu werden, kann beruhigend wirken und gegen Stress helfen."
+        },
+        {
+          "Text": "Yoga: Beim Yoga achtest du vor allem auf deinen Atem und verbindest ihn mit deiner Bewegung. Das kann dir dabei helfen, dich ganz auf den Moment zu konzentrieren und mehr Ruhe zu gewinnen."
+        },
+        {
+          "Text": "Tanzen: Beim Tanzen verbindest du Musik mit Bewegung. Du kannst Gefühle durch das Tanzen ausdrücken, durch neue Bewegungen auch deinen Kopf trainieren und Kontakte knüpfen, wenn du mit anderen gemeinsam tanzt."
+        },
+        {
+          "Text": "Kampfsport: Beim Kampfsport geht es um Disziplin und Konzentration. Sportarten wie Karate, Boxen oder Judo können dein Selbstbewusstsein stärken."
+        },
+        {
+          "id": 4645,
+          "Question": "Welche Sportart machst du gerne? Was hat dir früher Spaß gemacht? Was würdest du gerne ausprobieren?",
+          "AnswerOptions": [
+            "Yoga",
+            "Nordic Walking",
+            "Radfahren",
+            "Laufen",
+            "Schwimmen",
+            "Tanzen",
+            "Rudern",
+            "Tischtennis",
+            "Badminton",
+            "Wandern",
+            "Pilates",
+            "Krafttraining",
+            "Klettern/Bouldern",
+            "Aikido",
+            "Volleyball"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "id": 4643,
+          "Question": "Fällt dir noch eine Sportart ein, die du magst oder ausprobieren möchtest?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "id": 4646,
+          "Question": "Bewegst du dich lieber alleine oder mit anderen zusammen?",
+          "AnswerOptions": [
+            "mit anderen in einer Mannschaft",
+            "mit anderen in einem Kurs, jede(r) für sich",
+            "zu zweit, mit einem Freund oder einer Freundin",
+            "lieber allein"
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "id": 4647,
+          "Question": "Wie sehen gute Rahmenbedingungen für dich aus? Wann macht Bewegung dir Spaß?",
+          "AnswerOptions": [
+            "wenn es ruhig ist",
+            "mit Musik",
+            "zu einem festen Termin",
+            "spontan zwischendurch",
+            "mit klarer Anleitung",
+            "draußen",
+            "drinnen",
+            "morgens",
+            "untertags",
+            "abends"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Text": "Manchmal hilft eine kleine Vorbereitung, um in Bewegung zu kommen - musst du einen Kurs recherchieren, dich anmelden, einen Freund um Unterstützung bitten, eine Matte zu Hause ausrollen? Was könnte dir helfen, einen Anfang zu finden?"
+        },
+        {
+          "id": 4644,
+          "Question": "Das könnte mir beim Einstieg helfen:",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Versuche, dich regelmäßig zu bewegen, zum Beispiel zwei mal eine halbe Stunde Sport pro Woche. Erlaube dir, dass Bewegung ein **Mittel zum Wohlfühlen** ist - nicht nur ein _Muss_. Wenn Sport gerade keine Option für dich ist, denke daran, dass schon kleine Schritte im Alltag einen Unterschied machen: z.B. eine Haltestelle früher aussteigen und laufen, die Treppe nehmen statt den Aufzug oder sich morgens fünf Minuten strecken und dehnen."
+        }
+      ],
+      "Achtsame Schritte": [
+        {
+          "ExerciseId": 2145
+        },
+        {
+          "Text": "Nimm dir einmal am Tag eine kurze **Gehstrecke** vor. Das kann der Weg zur Küche, zum Briefkasten oder eine Runde um das Haus sein. Während du gehst, richte deine Aufmerksamkeit ganz auf deine Bewegung: - Wie fühlen sich deine Füße auf dem Boden an? - Spürst du das Gewicht deines Körpers beim Auftreten und Abrollen? - Wie bewegt sich dein Atem dabei? - Welche Geräusche oder Gerüche nimmst du wahr? Auf der nächsten Seite findest du die Übung zum Anhören."
+        },
+        {
+          "Text": "Nimm dir einen Moment Zeit, über deine Erfahrung nachzudenken. - Wie war das, dich auf deine Bewegung zu konzentrieren? - Was hat dir gutgetan? - War etwas überraschend angenehm oder neu?"
+        },
+        {
+          "id": 4648,
+          "Question": "Wenn du möchtest, kannst du deine Gedanken hier festhalten:",
+          "AnswerOptions": "free_text"
+        }
+      ],
+      "Blickkontakt": [
+        {
+          "ExerciseId": 2146
+        },
+        {
+          "Text": "Blickkontakt ist wichtig, um mit anderen Menschen in Verbindung zu treten. Blickkontakt aufnehmen ist für viele Menschen aber auch ein kleiner Mut-Moment. Beim Gehen fällt es oft leichter, weil du in Bewegung bist und dich freier fühlst. Wenn du das nächste mal das Haus verlässt, probiere diese Übung einmal aus. Du kannst sie dir dafür in deinen Favoriten über das Herz oben rechts speichern."
+        },
+        {
+          "Text": "Mach einen Spaziergang, gehe einkaufen oder eine andere Sache erledigen. Nimm wahr, wem du begegnest. Hebe kurz den Blick und schaue einigen Menschen in die Augen. Wenn du möchtest, vielleicht mit einem kleinen Lächeln. Das braucht manchmal etwas Übung. Spüre, wie sich dieser Mut-Moment anfühlt. Lass dich nicht entmutigen, falls das Lächeln nicht erwidert wird. Vielleicht sind die Menschen, die du anlächelst, abgelenkt oder selbst unsicher und lächeln deshalb nicht zurück."
+        }
+      ]
+    },
+    "Was sind Psychosen?": {
+      "Was ist eine Psychose?": [
+        {
+          "ExerciseId": 2147
+        },
+        {
+          "Text": "Psychosen sind Zustände, in denen das Denken, Fühlen und Wahrnehmen durcheinander geraten. Sie sind auch mit vielen Vorurteilen verbunden. **Was weißt du über Psychosen?** Teste dein Wissen auf den nächsten Seiten."
+        },
+        {
+          "id": 4649,
+          "Question": "Was sind typische Anzeichen einer Psychose?",
+          "AnswerOptions": [
+            "Unsicherheit, ob man etwas tatsächlich erlebt oder sich das nur einbildet",
+            "Plötzliche Gewalttätigkeit gegenüber anderen",
+            "Schwierigkeiten, klar zu denken oder Gefühle zu zeigen"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Text": "Typische Anzeichen einer Psychose können sein: - Unsicherheit darüber, ob man etwas tatsächlich erlebt oder sich das nur einbildet - Schwierigkeiten, klar zu denken oder Gefühle zu zeigen Plötzliche Gewalttätigkeit gegenüber anderen ist ein Vorurteil. Menschen mit Psychosen sind meist nicht gefährlich."
+        },
+        {
+          "id": 4650,
+          "Question": "Was sind weitere typische Anzeichen einer Psychose?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Hunger oder Müdigkeit können viele Gründe haben. **Feste Überzeugungen, die andere nicht teilen** sind ein typisches Anzeichen einer Psychose. Solche Überzeugungen nennt man auch **Wahngedanken**. Sie werden von den Betroffenen als wirklich und real erlebt, obwohl es oft klare Gegenbeweise gibt."
+        },
+        {
+          "Text": "Betroffene sind zum Beispiel davon überzeugt, verfolgt zu werden oder übermenschliche Fähigkeiten zu besitzen oder sehen geheime Botschaften im Alltag (z.B. in den Nachrichten). Beispiel: \"Die Frau in der Straßenbahn schaut aus dem Fenster, um mir eine geheime Botschaft zu senden”. Auch Menschen ohne psychische Erkrankungen können solche Gedanken erleben. Sie sind bei Menschen ohne Psychose aber weniger stark und mit weniger Ängsten und Einschränkungen verbunden."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
+          "id": 4651,
+          "Question": "Psychosen sehen bei jedem Menschen gleich aus",
+          "AnswerOptions": [
+            "Wahr",
+            "Falsch"
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "Text": "**Dieser Satz ist falsch.** Symptome und Verlauf sind vielfältig und können bei jedem Betroffenen etwas unterschiedlich aussehen. Die Symptome lassen sich in fünf Kategorien einteilen. Auf der nächsten Seite kannst du sie dir ansehen."
+        },
+        {
+          "Text": "Plus-Symptome: Bei Plus-Symptomen kommt zum \"normalen\" Denken und Fühlen etwas dazu. Zum Beispiel Halluzinationen oder belastende Überzeugungen. Man hat zum Beispiel das Gefühl, dass man bedroht wird oder sieht versteckte Hinweise in Beiträgen auf Social Media."
+        },
+        {
+          "Text": "Minus-Symptome: Bei Minus-Symptomen fallen Dinge weg oder werden weniger. Zum Beispiel: Dinge, die früher Freude gemacht haben, interessieren plötzlich weniger. Man zieht sich zurück. Es fällt schwer, sich aufzuraffen. Gespräche können stocken, weil einem nichts einfällt. Auch Gefühle können sich schwächer anfühlen als früher."
+        },
+        {
+          "Text": "Ich-Störung: Bei einer Ich-Störung empfindet man die Grenze zwischen der eigenen Person und der Umwelt als fließend. Man hat zum Beispiel das Gefühl, dass fremde Personen die eigenen Gedanken wegnehmen können. Oder alles um einen herum fühlt sich unwirklich oder fremd an."
+        },
+        {
+          "Text": "Desorganisierte Sprache oder Verhalten: Manche Menschen in einer Psychose haben Schwierigkeiten, ihre Gedanken zu ordnen. Sie finden dann vielleicht nicht die richtigen Worte oder wechseln plötzlich das Thema. Für andere kann es schwer sein, ihnen zu folgen. Auch das eigene Verhalten kann auf andere durcheinander wirken. Wenn sich jemand bedroht fühlt, kann er aus seiner Sicht logisch reagieren, zum Beispiel zum Schutz mehrere Schichten Kleidung tragen. Für andere kann das unverständlich sein."
+        },
+        {
+          "Text": "Kognitive Symptome: Kognitive Symptome meinen Veränderungen im Denken. Viele Betroffene haben Schwierigkeiten sich zu konzentrieren oder an Dinge zu erinnern."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
+          "id": 4652,
+          "Question": "Wer eine Psychose hat ist unheilbar krank",
+          "AnswerOptions": [
+            "Wahr",
+            "Falsch"
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "Text": "**Dieser Satz ist falsch.** Viele Betroffene erholen sich von einer Psychose, andere leben stabil trotz und mit Symptomen. Rückfälle können vorkommen, daher sollte man auf Anzeichen dafür im Alltag achten. Aber das Risiko für einen Rückfall lässt sich durch Medikamente, Unterstützung und gute Selbstfürsorge verringern."
+        },
+        {
+          "Text": "Es gibt viele Vorurteile über Schizophrenie – was sind die größten Missverständnisse, die du immer wieder hörst?"
+        },
+        {
+          "Text": "Diese Frage haben wir dem Arzt Marco gestellt. Im Video räumt er mit einigen Vorurteilen auf."
+        }
+      ],
+      "Psychose oder Schizophrenie?": [
+        {
+          "ExerciseId": 2148
+        },
+        {
+          "Text": "Wie war es für dich, die Diagnose Schizophrenie zu bekommen?"
+        },
+        {
+          "Text": "Diese Frage haben wir Joke gestellt. Im Video spricht sie davon, dass sie das Wort \"Schizophrenie\" am Anfang nicht richtig fassen konnte."
+        },
+        {
+          "Text": "Zum Nachlesen: Schizophrenie ist der Name einer psychischen Erkrankung. Psychose beschreibt einen Zustand, in dem Wahrnehmung und Denken verändert sind. Eine Psychose kann bei Schizophrenie vorkommen, aber auch andere Ursachen haben. Zum Beispiel starken Stress oder den Konsum von Drogen. Schizophrenie ist also eine Erkrankung, Psychose das, was man dabei erleben kann."
+        },
+        {
+          "Text": "Was ist was?"
+        },
+        {
+          "Text": "Psychose: Eine **Psychose** bedeutet, dass du die **Wirklichkeit vorübergehend anders erlebst** als andere Menschen. Typisch ist zum Beispiel: - Du hörst oder siehst Dinge, die andere nicht bemerken. - Du hast starke Überzeugungen, die sich für dich ganz echt anfühlen, die andere aber nicht teilen. - Deine Gedanken wirken manchmal durcheinander oder schwer zu ordnen. Psychosen können bei verschiedenen Krankheiten vorkommen."
+        },
+        {
+          "Text": "Schizophrenie: Die **Schizophrenie** ist eine **Diagnose**, bei der Psychosen **mehrmals oder länger** auftreten können. Nicht jeder Mensch mit einer Psychose hat eine Schizophrenie – aber bei Schizophrenie gehören psychotische Erlebnisse oft dazu."
+        },
+        {
+          "Text": "Schizoaffektive Störung: Bei einer schizoaffektiven Störung kommen starke Stimmungsschwankungen gleichzeitig mit den psychotischen Symptomen vor."
+        },
+        {
+          "Text": "Was glaubst du..."
+        },
+        {
+          "id": 4653,
+          "Question": "Wie viel Prozent der Bevölkerung entwickelt im Laufe des Lebens eine Schizophrenie?",
+          "AnswerOptions": [
+            "0,1%",
+            "0,5%",
+            "1%"
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "Text": "Das Lebenszeitrisiko, also die Wahrscheinlichkeit, im Laufe des Lebens an einer Schizophrenie zu erkranken, liegt bei etwa 1% in der Bevölkerung. Das bedeutet: Etwa eine von 100 Personen entwickelt irgendwann im Leben eine Schizophrenie. Schizophrenien kommen überall auf der Welt etwa gleich häufig vor."
+        },
+        {
+          "Text": "Was glaubst du..."
+        },
+        {
+          "id": 4654,
+          "Question": "Wer ist häufiger von Schizophrenie betroffen?",
+          "AnswerOptions": [
+            "Männer",
+            "Frauen",
+            "beide gleich häufig"
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "Text": "Von Schizophrenie sind Frauen und Männer etwa gleich häufig betroffen. Meistens beginnt die Störung vor dem 35. Lebensjahr, bei Männern etwas früher."
+        },
+        {
+          "Text": "Wahr oder Falsch?"
+        },
+        {
+          "id": 4655,
+          "Question": "Wenn jemand von einer Schizophrenie betroffen ist, haben die Eltern etwas in der Erziehung falsch gemacht",
+          "AnswerOptions": [
+            "Wahr",
+            "Falsch"
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "Text": "**Dieser Satz ist falsch.** Das ist eine veraltete Annahme, die widerlegt ist. Schizophrenie entsteht durch verschiedene Faktoren. Besonders wichtige Faktoren sind dabei die Umwelt (z.B. Stress oder schwere Lebensereignisse) und die genetische Veranlagung."
+        }
+      ],
+      "Dankbarkeit": [
+        {
+          "ExerciseId": 2149
+        },
+        {
+          "Text": "Nimm dir einen Moment Zeit für dich. Denke an etwas, wofür du dankbar bist."
+        },
+        {
+          "Text": "Wenn dir diese Übung gefallen hat, speichere sie in deinen Favoriten. Wiederhole sie regelmäßig. Diese Übung wirkt am besten, wenn du sie öfter machst. Und je öfter du sie machst, desto leichter fällt es dir, Dinge zu finden, für die du dankbar bist."
+        }
+      ],
+      "Woher kommen Psychosen?": [
+        {
+          "ExerciseId": 2150
+        },
+        {
+          "id": 4656,
+          "Question": "Welche Ursachen können Psychosen haben?",
+          "AnswerOptions": [
+            "körperliche Erkrankungen",
+            "Erkrankungen des Gehirns",
+            "Vitaminmangel",
+            "Drogenkonsum",
+            "extreme Belastungen",
+            "genetische Veranlagung",
+            "Fehler in der Erziehung"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Text": "Psychosen können unterschiedliche Ursachen haben, zum Beispiel... - körperliche Erkrankungen - Erkrankungen des Gehirns - Drogenkonsum - extreme Belastungen - genetische Veranlagung"
+        },
+        {
+          "Text": "Obwohl sie sehr viel leistet, hat Joke manchmal das Gefühl, nicht mithalten zu können. Mit der Diagnose Schizophrenie hat sie ganz andere Voraussetzungen als Menschen ohne diese Diagnose. Sie erzählt davon, wie sie gut mit ihren Kräften haushalten muss."
+        },
+        {
+          "Text": "Im Video spricht Joke von ihrem Wasserglas, auf dessen Füllstand sie im Alltag achten muss. **Stell dir vor, jeder Mensch hat so ein Wasserglas.** Manche Wassergläser sind etwas kleiner und manche etwas größer. Wir alle müssen auf den Füllstand unseres Wasserglases achten."
+        },
+        {
+          "Text": "Zum Nachlesen: Das Vulnerabilitäts-Stress-Modell erklärt, wie eine Psychose entstehen kann. Stell dir dafür ein Wasserglas vor. Jeder Mensch hat ein unterschiedlich großes Wasserglas - das nennt man Vulnerabilität. Wenn viel Stress, also Wasser, ins Glas dazukommt, kann das Glas überlaufen. Bei Menschen mit einem kleineren Wasserglas, also einer höheren Vulnerabilität, kann bei viel Stress so eine Psychose entstehen. Stress kann vieles sein: belastende Ereignisse, wenig Schlaf, Drogen wie z.B. Cannabis oder Konflikte. Wichtig ist: Man kann lernen, mit Stress besser umzugehen und sich zu schützen."
+        },
+        {
+          "Text": "Psychosen entstehen meist durch ein **Zusammenspiel von Veranlagung und Belastung**. Stress kann sie auslösen. Das heißt auch, dass man ihnen nicht hilflos ausgeliefert ist. Manchmal lassen sich Rückfälle nicht komplett verhindern. Du kannst aber auf viele kleine Dinge in deinem Alltag achten, um die Gefahr von Rückfällen kleiner zu machen: Zum Beispiel ausreichend Schlaf und gute Selbstfürsorge. Welche Dinge das noch sind, erfährst du in den übrigen Themen der Kiso Mind App."
+        }
+      ],
+      "Was hilft bei Schizophrenie?": [
+        {
+          "ExerciseId": 2151
+        },
+        {
+          "Text": "Welche Fortschritte gibt es in der Forschung und Behandlung von Schizophrenie?"
+        },
+        {
+          "Text": "Darüber spricht der Arzt Marco in diesem Video. Medikamente, Psychotherapie, Apps - es gibt viele Bausteine, die helfen können. Aber auch außerhalb der Behandlung kann man mit kleinen Schritten im Alltag selbst etwas tun, zum Beispiel: - eigene Strategien bei Halluzinationen entwickeln - auf Belastungen achten und Pausen einlegen - an guten Beziehungen festhalten und um Unterstützung bitten"
+        },
+        {
+          "Text": "Auch wenn es Bausteine gibt, die helfen können, ist es für viele Betroffene oft zuerst nicht einfach, herauszufinden, was ihnen gut tut und worauf sie im Alltag achten müssen. Im Video spricht Joke darüber, dass sie sich selbst nach ihrer Diagnose nochmal neu kennenlernen musste. Sie hat mit der Zeit gelernt, auf Stress zu achten und ihren Alltag so zu gestalten, dass sie am Leben weiterhin gut teilnehmen kann."
+        },
+        {
+          "Text": "Wie hast du gelernt, mit der Erkrankung zu leben, ohne dass sie dein Leben bestimmt?"
+        },
+        {
+          "Text": "Diese Frage haben wir dem Betroffenen Elias gestellt. In dieser Nachricht spricht er über Akzeptanz und seinem Vertrauen zu Therapeuten und Ärzten."
+        },
+        {
+          "Text": "Akzeptanz kam für Elias nicht von heute auf morgen. Für ihn ist Akzeptanz ein Prozess. Nach einer akuten Psychose können noch einige Einschränkungen bestehen. Die Dauer dieser Phase kann von Person zu Person variieren. Psychosen können, aber müssen nicht wiederkehren. Und der Verlauf einer Schizophrenie ist von Mensch zu Mensch sehr unterschiedlich. Viele Betroffene finden Wege, gut für sich zu sorgen."
+        }
+      ]
+    },
+    "Frühwarnzeichen kennen": {
+      "Was sind Frühwarnzeichen?": [
+        {
+          "ExerciseId": 2152
+        },
+        {
+          "Text": "Im Video erzählt Joke von ihren persönlichen Frühwarnzeichen für eine Psychose. Sie teilt außerdem, was sie tut, wenn sie diese Frühwarnzeichen bei sich bemerkt."
+        },
+        {
+          "Text": "Frühwarnzeichen sind kleine Veränderungen, die zeigen: Etwas kommt aus dem Gleichgewicht. Sie können einer Psychose vorausgehen."
+        },
+        {
+          "Text": "**Beispiele für Frühwarnzeichen:** - Du schläfst schlechter - Du ziehst dich in deine eigenen vier Wände zurück - Du bist schnell misstrauisch - Du hast manchmal das Gefühl, beobachtet zu werden - Du bist oft nervös, unruhig oder angespannt - Du kannst dich schwer konzentrieren oder Gespräche führen - Du hast das Gefühl, einen besonderen Auftrag zu haben - Geräusche, Farben oder Gerüche fühlen sich intensiver an als sonst"
+        },
+        {
+          "Text": "Zum Nachlesen: Eine Psychose bedeutet nicht, dauerhaft krank zu sein. Rückfälle können aber vorkommen. Daher ist es wichtig, auf Anzeichen zu achten, die einen Rückfall ankündigen. So wie sich eine Erkältung ankündigt, zeigen sich auch bei Psychosen erste Anzeichen. Zum Beispiel Stimmungsschwankungen, Unruhe, Angst oder Konzentrationsprobleme. Manchmal wirkt die Umgebung fremd oder verwirrend, oder Dinge scheinen auf einen selbst bezogen. Wer diese Frühwarnzeichen erkennt, kann früh reagieren: sich ausruhen, Unterstützung holen und Gutes für sich tun. Nicht jeder Rückfall lässt sich verhindern. Aber man kann lernen, schneller wieder ins Gleichgewicht zu kommen."
+        },
+        {
+          "id": 4657,
+          "Question": "Kannst du dich daran erinnern, was sich für dich vor deiner Psychose verändert hat?",
+          "AnswerOptions": "free_text"
+        }
+      ],
+      "Meine Frühwarnzeichen": [
+        {
+          "ExerciseId": 2153
+        },
+        {
+          "Text": "Lass uns auf Spurensuche gehen. Wir suchen gemeinsam nach Frühwarnzeichen, die deiner Psychose vorausgegangen sind. Solche Frühwarnzeichen, also Veränderungen darin, wie du die Welt erlebst, tauchen oft schon einige Wochen vor den ersten psychotischen Symptomen auf. Man erkennt sie oft erst, wenn man auf die Zeit vor der Psychose zurück schaut."
+        },
+        {
+          "Text": "Denke zuerst einmal an die letzten 2 Monate vor einer Psychose (oder Aufnahme in eine Klinik) zurück. Nimm dir gerne auch deinen Kalender oder ein Notizbuch zur Hand. Tipp: Gehe Fotos durch, die du in dieser Zeit mit deinem Handy gemacht hast."
+        },
+        {
+          "Text": "Was war in dieser Zeit vor deiner Psychose alles los? - Gab es Geburtstage? Prüfungen? Urlaub? - Gab es Streitigkeiten mit Freunden oder Familie? - Hast du viel gearbeitet oder hattest viel Stress im Alltag? - Wie sah ein typischer Tagesablauf in dieser Zeit bei dir aus? Wenn du möchtest, kannst du wichtige Daten oder Ereignisse auf der nächsten Seite eintragen."
+        },
+        {
+          "id": 4658,
+          "Question": "Das ist in den 2 Monaten vor meiner Psychose los gewesen:",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Frühwarnzeichen können bei jeder und jedem Betroffenen anders aussehen."
+        },
+        {
+          "id": 4664,
+          "Question": "Welche Veränderungen konntest du bei dir selbst feststellen?",
+          "AnswerOptions": [
+            "Ich konnte mich schlechter konzentrieren",
+            "Ich konnte mich schlechter an Dinge erinnern",
+            "Ich hatte oft den Gedanken, dass andere Leute über mich lachen oder mich beobachten",
+            "Ich hatte oft den Gedanken, dass Dinge (z.B. Nachrichten, Plakate, Musik) mit mir persönlich zu tun haben oder für mich bestimmt sind"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "id": 4659,
+          "Question": "Weitere Veränderungen, und zwar:",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Manchmal bemerken Familie oder Freunde, dass etwas nicht stimmt. Vielleicht hat dich jemand auch auf etwas angesprochen, das sich verändert hat."
+        },
+        {
+          "id": 4665,
+          "Question": "Welche Veränderungen könnten andere von außen bemerkt haben?",
+          "AnswerOptions": [
+            "Ich war unruhig, konnte nur schwer still sitzen",
+            "Ich konnte mich zu kaum etwas aufraffen",
+            "Ich konnte mich nicht gut an Gesprächen beteiligen",
+            "Ich wollte mich nicht mehr mit Freunden treffen",
+            "Ich habe weniger im Haushalt gemacht",
+            "Ich habe mehr Alkohol getrunken",
+            "Ich habe mehr geraucht"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "id": 4660,
+          "Question": "Weitere Veränderungen, und zwar:",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Hat sich etwas an deinen Gefühlen verändert? Das können Dinge sein, die dir selbst oder auch anderen Menschen an dir aufgefallen sind."
+        },
+        {
+          "id": 4666,
+          "Question": "Gibt es etwas, das sich an deinen Gefühlen verändert hat?",
+          "AnswerOptions": [
+            "Ich war oft gereizt",
+            "Ich hatte oft Angst",
+            "Ich habe mich (grundlos) schlecht oder leer gefühlt",
+            "Ich war oft misstrauisch",
+            "Ich war oft nervös oder unruhig",
+            "Meine Hobbies haben mir keinen Spaß mehr gemacht"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "id": 4661,
+          "Question": "Weitere Veränderungen, und zwar:",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Manchmal zeigen sich Veränderungen auch im Körper."
+        },
+        {
+          "id": 4667,
+          "Question": "Gab es körperliche Veränderungen in dieser Zeit?",
+          "AnswerOptions": [
+            "Ich habe ab- oder zugenommen",
+            "Ich habe mich oft aufgedreht gefühlt, wie unter Strom",
+            "Ich konnte nicht mehr richtig schlafen",
+            "Ich habe mich oft erschöpft gefühlt",
+            "Ich habe mich vernachlässigt, kaum mehr um mein Aussehen gekümmert",
+            "Ich war sehr geräuschempfindlich",
+            "Ich hatte Druck im Kopf"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "id": 4662,
+          "Question": "Weitere Veränderungen, und zwar:",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Besprich diese Übung gerne auch mit einem Angehörigen oder einer Vertrauensperson. Oft fallen diesen dir nahe stehenden Menschen noch schneller Dinge auf, die anders sind als sonst. Gibt es etwas, das aus ihrer Sicht eines deiner Frühwarnzeichen ist?"
+        },
+        {
+          "id": 4663,
+          "Question": "Hier kannst du noch weitere Frühwarnzeichen eintragen:",
+          "AnswerOptions": "free_text"
+        }
+      ],
+      "Meine Warnzeichen-Liste": [
+        {
+          "ExerciseId": 2154
+        },
+        {
+          "Text": "In der letzten Übung konntest du über deine persönlichen Frühwarnzeichen nachdenken. Einzelne Frühwarnzeichen können auch auftauchen, wenn du einfach nur gestresst bist. Oder sie sind Nebenwirkungen von Medikamenten. Wenn solche Warnzeichen aber immer öfter und zusammen auftauchen, können sie eine Psychose ankündigen."
+        },
+        {
+          "id": 4669,
+          "Question": "Denke an Kims Geschichte. Was glaubst du stimmt?",
+          "AnswerOptions": [
+            "Kims Müdigkeit und Erschöpfung an manchen Tagen sind ein Frühwarnzeichen",
+            "Kim sollte auf sich achten, weil verschiedene Warnsignale zusammen kommen"
+          ],
+          "AllowMultiple": false
+        },
+        {
+          "Text": "Wenn Dinge wie Müdigkeit oder Albträume, schlechter Schlaf und Unruhe an manchen Tagen alleine vorkommen, müssen das noch keine Frühwarnzeichen sein. Wenn mehrere Warnsignale zusammenkommen und das an mehreren Tagen hintereinander, sollte Kim jedoch auf sich achten. Bei ihr sind das: - Schlechter Schlaf und Albträume - Gereiztheit gegenüber ihrer Tochter - Keine Lust mehr auf ihr Lieblingscafé - Ihre Freundin Maria beschwert sich, dass Kim sich nicht mehr meldet"
+        },
+        {
+          "id": 4670,
+          "Question": "Was glaubst du, könnte Kim in dieser Situation helfen?",
+          "AnswerOptions": [
+            "So weitermachen wie bisher. Ihre Psychose liegt lange zurück",
+            "Eine Liste mit ihren persönlichen Frühwarnzeichen, damit sie diese Warnzeichen erkennt",
+            "Sich jemandem anvertrauen, dass es ihr gerade nicht gut geht"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Text": "Eine Liste mit ganz konkreten Frühwarnzeichen könnte Kim helfen, die Veränderungen in ihrem Alltag als Frühwarnzeichen zu erkennen. Zum Beispiel: - Maria sagt mir, dass sie sich Sorgen macht - Ich bin gereizt, wenn ich meine Tochter von der Kita abhole - Ich habe keine Lust mehr auf mein Lieblingscafé Wenn sie diese Dinge zusammen über mehrere Tage bemerkt, kann sie sich an eine Vertrauensperson oder ihre Psychiaterin wenden."
+        },
+        {
+          "Text": "Denke nochmal an die Übung _Meine Frühwarnzeichen_ zurück. Gibt es Dinge, die dir ganz konkret zu deinem Alltag einfallen, die ein Frühwarnzeichen für dich sein könnten?"
+        },
+        {
+          "id": 4668,
+          "Question": "Besprich diese Liste gerne mit einer Vertrauensperson und halte sie hier für dich fest:",
+          "AnswerOptions": "free_text"
+        }
+      ],
+      "Strategien bei Frühwarnzeichen": [
+        {
+          "ExerciseId": 2155
+        },
+        {
+          "Text": "Viele Symptome, die bei einer akuten Psychose auftreten, können in abgeschwächter Form bereits vorher vorhanden sein. Dann spricht man von **Frühwarnzeichen**. Man ist zum Beispiel leichter gereizt, ängstlicher anderen Menschen gegenüber oder erlebt Halluzinationen. Auf den nächsten Seiten berichten Betroffene von ihren Frühwarnzeichen und wie sie mit ihnen umgehen."
+        },
+        {
+          "Text": "Joke"
+        },
+        {
+          "Text": "Eines von Jokes Frühwarnzeichen sind optische Halluzinationen. In Gesprächen sieht sie zum Beispiel, wie die Ohren anderer Menschen größer werden. Mit der Zeit hat Joke dieses und andere Frühwarnzeichen besser kennengelernt. Mittlerweile weiß sie, dass diese Halluzinationen mit Stress und Anspannung zusammenhängen."
+        },
+        {
+          "Text": "Julia"
+        },
+        {
+          "Text": "Halluzinationen sind auch ein Frühwarnzeichen für Julia. Wenn sie Frühwarnzeichen bei sich bemerkt, gönnt sie sich Ruhe oder greift auf ihre Medikamente zurück. Sie sagt: Ich muss nicht auf jeder Hochzeit tanzen - und das ist gut so."
+        },
+        {
+          "id": 4672,
+          "Question": "Was könnten hilfreiche Strategien bei Frühwarnzeichen sein?",
+          "AnswerOptions": [
+            "Medikamente einnehmen",
+            "Weitermachen wie bisher",
+            "Belastendes absagen"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Text": "Wenn du Frühwarnzeichen bemerkst, solltest du _nicht_ Abwarten und so weiter machen wie bisher. Eine hilfreiche Strategie kann sein, **Belastendes abzusagen oder zu vermeiden**, bis es dir wieder besser geht - zum Beispiel große Menschenmengen, Hilfe beim Umzug oder andere Dinge, die dich stressen. Auch **Medikamente** können helfen."
+        },
+        {
+          "id": 4673,
+          "Question": "Was könnten weitere hilfreiche Strategien bei Frühwarnzeichen sein?",
+          "AnswerOptions": [
+            "im Bett liegen bleiben",
+            "Morgens aufstehen",
+            "Krankschreiben lassen"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Text": "Im Bett liegen zu bleiben, ist weniger hilfreich, wenn du Frühwarnzeichen bemerkst. Hilfreicher ist oft **morgens aufzustehen** und auf einen guten Tagesablauf zu achten - sich nicht zu viel vornehmen, aber aktiv bleiben. Jeder kleine Schritt zählt: Zähne putzen, sich duschen, ein Fenster öffnen. Wenn du genug Energie dafür hast, kann auch Bewegung gut tun, zum Beispiel ein Spaziergang. Falls du arbeitest oder eine Ausbildung machst und diese Arbeit zu viel Stress bedeutet, kannst du dich auch **krankschreiben** lassen, bis es dir wieder besser geht."
+        },
+        {
+          "Question": "Was tust du normalerweise, wenn du Frühwarnzeichen bemerkst? Was hilft dir dann?"
+        },
+        {
+          "Branch": [
+            {
+              "Ich tue Dinge, dir mir Freude bereiten": "Gesundheit - Frühwarnzeichen - Strategie A"
+            },
+            {
+              "Ich frage Familie oder Freunde nach Unterstützung": "Gesundheit - Frühwarnzeichen - Strategie B"
+            },
+            {
+              "Ich lege mehr Pausen ein": "Gesundheit - Frühwarnzeichen - Strategie C"
+            }
+          ]
+        },
+        {
+          "Text": "Bei Stress und Frühwarnzeichen kannst du auch Entspannungsübungen nutzen, wie du sie hier in der Kiso Mind App findest. Zum Beispiel Atemübungen oder den Bodyscan."
+        },
+        {
+          "id": 4671,
+          "Question": "Was hilft dir oder könnte dir ansonsten noch bei Frühwarnzeichen helfen?",
+          "AnswerOptions": "free_text"
+        }
+      ],
+      "Krisenplan": [
+        {
+          "ExerciseId": 2156
+        },
+        {
+          "Text": "Manche Betroffene fühlen sich der Erkrankung ausgeliefert. Wie können sie wieder Kontrolle über ihr Leben gewinnen?"
+        },
+        {
+          "Text": "Diese Frage haben wir dem Arzt Marco gestellt. Im Video spricht er über kleine Schritte im Alltag, Unterstützung durch Freunde und Bekannte und den Krisenplan."
+        },
+        {
+          "Text": "_Wenn du weißt, was dir hilft, dann schreibe es auf_ - das ist eine der Botschaften, die der Arzt Marco Betroffenen mit auf den Weg geben möchte. In einem persönlichen **Krisenplan** kannst du Dinge festhalten, die dir helfen. Aber was ist das überhaupt?"
+        },
+        {
+          "Text": "Ein Krisenplan hilft dir, in schwierigen Momenten den Überblick zu behalten. Er hilft dir, früh zu merken, wenn es dir schlechter geht. Und er zeigt dir und anderen, was dann zu tun ist."
+        },
+        {
+          "id": 4675,
+          "Question": "Was sollte man in einem Krisenplan auf jeden Fall festhalten?",
+          "AnswerOptions": [
+            "Frühwarnzeichen und was dann hilft.",
+            "Lieblingsfilme für freie Zeit.",
+            "Kontaktdaten von Vertrauenspersonen und Hilfsstellen.",
+            "Wann man einkaufen geht."
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "Text": "Folgende Dinge solltest du in deinem Krisenplan aufschreiben:"
+        },
+        {
+          "Text": "Frühwarnzeichen: Wie macht sich Stress bei dir bemerkbar? Was merkst du zuerst, wenn es dir schlechter geht? Im Krisenplan kannst du deine Frühwarnzeichen festhalten, z.B. schlechten Schlaf oder Grübelgedanken, Angst vor anderen Menschen oder Reizbarkeit. Eine erneute Psychose kommt selten plötzlich, sondern kündigt sich durch Frühwarnzeichen an."
+        },
+        {
+          "Text": "Was dann hilft: Was hilft dir, ruhig zu bleiben? Welche Dinge tun dir gut? Zum Beispiel Musik, Spazieren, eine feste Tagesstruktur, gutes Essen oder ausreichend Schlaf. Gönne dir genügend Auszeiten."
+        },
+        {
+          "Text": "Wer helfen kann: Namen und Telefonnummern von Personen, denen du vertraust. Zum Beispiel Familie, Freunde oder Ärzte. Wenn du merkst, dass es dir nicht gut geht, kannst du sie fragen, ob sie auch Veränderungen an dir feststellen. Du kannst dir auch die Adresse eines Krankenhauses aufschreiben, in dem du schnell Unterstützung bekommst."
+        },
+        {
+          "Text": "Was du möchtest und was nicht: In deinem Krisenplan kannst du auch festhalten, welche Hilfe du möchtest und welche lieber nicht, wenn du im Notfall einmal nicht entscheiden kannst. Halte fest, wie in einer Krise mit dir umgegangen werden soll, was hilft, was nicht."
+        },
+        {
+          "Text": "Nimm dir diese Woche Zeit, einen Krisenplan zu machen. Tipp: Schreib den Plan mit einem Menschen, dem du vertraust."
+        },
+        {
+          "id": 4676,
+          "Question": "Wo möchtest du deinen Krisenplan festhalten?",
+          "AnswerOptions": [
+            "Auf einem Stück Papier, das ich in meinem Geldbeutel bei mir tragen kann",
+            "Digital, auf meinem Handy, das habe ich immer dabei"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "id": 4674,
+          "Question": "Oder möchtest du deinen Krisenplan an einem anderen Ort festhalten?",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Ein Krisenplan gibt dir Sicherheit, für den Fall, dass es dir wieder schlechter geht. Einen Krisenplan zu machen heißt nicht, dass eine Krise ansteht. Er ist vielmehr wie ein Erste-Hilfe-Koffer, der bereit liegt, falls doch mal etwas passiert. So bist du in Krisen besser vorbereitet."
+        },
+        {
+          "Text": "Checkliste für deinen Krisenplan"
+        },
+        {
+          "Text": "Wenn du deinen Krisenplan zusammen mit Behandelnden und Angehörigen erstellst, kann dir diese Liste dabei helfen."
+        },
+        {
+          "id": 4677,
+          "Question": "Dein Krisenplan sollte auf jeden Fall enthalten:",
+          "AnswerOptions": [
+            "Frühwarnzeichen",
+            "Strategien (was hilft)",
+            "Vertrauenspersonen (wer helfen kann)"
+          ],
+          "AllowMultiple": true
+        }
+      ],
+      "Ruhe bewahren": [
+        {
+          "ExerciseId": 2157
+        },
+        {
+          "Text": "Vielleicht hast du manchmal das Gefühl, dass andere dir schaden wollen. Dieses Gefühl kann sehr echt und beängstigend sein. Manchmal könnte es aber auch andere Erklärungen geben. Diese Übung hilft dir, beide Möglichkeiten nebeneinander zu halten."
+        },
+        {
+          "Text": "Atme zunächst einmal bewusst ein und aus. Spüre deinen Körper. Wie fest stehst du gerade?"
+        },
+        {
+          "Text": "Achte einen Moment auf deine Gefühle."
+        },
+        {
+          "id": 4680,
+          "Question": "Was fühlst du gerade?",
+          "AnswerOptions": [
+            "Angst",
+            "Wut",
+            "Frust",
+            "Scham",
+            "Anspannung"
+          ],
+          "AllowMultiple": true
+        },
+        {
+          "id": 4678,
+          "Question": "Ein anderes Gefühl, und zwar:",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Es könnte mehrere Erklärungen geben für das, was du fühlst oder wahrnimmst. Überlege für dich: Was würde eine Person, der du vertraust, dazu sagen?"
+        },
+        {
+          "id": 4679,
+          "Question": "Wenn du möchtest, kannst du dir etwas dazu hier notieren:",
+          "AnswerOptions": "free_text"
+        },
+        {
+          "Text": "Du musst jetzt nicht entscheiden, was stimmt. Du kannst es offen lassen und das Gefühl mit einer Vertrauensperson besprechen. So eine Unsicherheit auszuhalten ist schwer. Überlege einmal, was du jetzt für dich tun könntest, um dich ein klein wenig sicherer zu fühlen. Bei einem lieben Menschen anrufen? Eine Atemübung? Auf der nächsten Seite findest du eine Liste an Dingen, die andere Menschen bei viel Anspannung als hilfreich empfinden."
+        },
+        {
+          "id": 4681,
+          "Question": "Gibt es Dinge, die du selbst bei hoher Anspannung einmal ausprobieren möchtest?",
+          "AnswerOptions": [
+            "einen inneren sicheren Ort vorstellen (z.B. eine Festung)",
+            "mit einem Kuscheltier kuscheln",
+            "zu einem Menschen gehen, der einem gut tut",
+            "ein warmes Bad nehmen",
+            "einen Stressball in die Hand nehmen",
+            "Duftöl riechen",
+            "Kopfhörer aufsetzen",
+            "in die Natur gehen",
+            "sich mit dem Haustier beschäftigen",
+            "singen"
+          ],
+          "AllowMultiple": true
+        }
+      ]
+    }
   }
 }
