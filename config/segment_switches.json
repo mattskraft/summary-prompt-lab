@@ -1362,7 +1362,7 @@
   },
   "Ausgewogene Zuschreibungen": {
     "enabled": true,
-    "comment": "TODO",
+    "comment": "",
     "segment_toggles": [
       true,
       true,
@@ -1380,7 +1380,8 @@
       true,
       true,
       true
-    ]
+    ],
+    "config_complete": false
   },
   "Brilleneinstellung: Zuschreibungsstil": {
     "enabled": true,
