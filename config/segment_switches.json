@@ -1827,5 +1827,14 @@
       true
     ],
     "config_complete": true
+  },
+  "Dankbarkeit": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true
+    ],
+    "config_complete": true
   }
 }
