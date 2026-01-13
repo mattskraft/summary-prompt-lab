@@ -72,7 +72,27 @@
   },
   "(K)eine einfache Sache": {
     "enabled": true,
-    "comment": ""
+    "comment": "Anweisungen angepasst und getestet, funktioniert ganz gut.\nBezieht sich der Hinweis auf die \"Auswertung\" im letzten Text-Segment auf die Zusammenfassung?",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "config_complete": false
   },
   "Absagen": {
     "enabled": true,
