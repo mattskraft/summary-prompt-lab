@@ -2110,5 +2110,20 @@
     "enabled": true,
     "comment": "",
     "segment_toggles": []
+  },
+  "Stärkende Sätze": {
+    "enabled": true,
+    "comment": "Übungsspezifische Anweisungen formuliert.",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "config_complete": false
   }
 }
