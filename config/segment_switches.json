@@ -1950,5 +1950,29 @@
       true
     ],
     "config_complete": false
+  },
+  "Strategien beim Stimmenhören": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Wohlfühlort": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Ablenken mit Geräuschen": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Loslassen der Wolken": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true
+    ],
+    "config_complete": true
   }
 }
