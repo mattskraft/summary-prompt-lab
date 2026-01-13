@@ -325,8 +325,28 @@
   },
   "Gute Gespräche führen": {
     "enabled": true,
-    "comment": "",
-    "segment_toggles": []
+    "comment": "Antworten vor and nach Storynodes zusammenfassen?",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true
+    ],
+    "config_complete": false
   },
   "Tiefe Fragen stellen": {
     "enabled": true,
