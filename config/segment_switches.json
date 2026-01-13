@@ -1256,8 +1256,8 @@
     "config_complete": true
   },
   "Sehen was man sehen will": {
-    "enabled": true,
-    "comment": "TODO\nNicht sicher ob Zusammenfassung notwendig ist?",
+    "enabled": false,
+    "comment": "Nicht sicher ob Zusammenfassung Sinn macht?",
     "segment_toggles": [
       true,
       true,
@@ -1276,7 +1276,8 @@
       true,
       true,
       true
-    ]
+    ],
+    "config_complete": false
   },
   "Simon: Bedrohung oder Einbildung?": {
     "enabled": true,
