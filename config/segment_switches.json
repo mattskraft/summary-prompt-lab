@@ -846,7 +846,8 @@
       true,
       true,
       true
-    ]
+    ],
+    "config_complete": true
   },
   "Der innere Kritiker": {
     "enabled": true,
