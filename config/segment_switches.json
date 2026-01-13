@@ -1692,5 +1692,19 @@
       true
     ],
     "config_complete": false
+  },
+  "Was sind Frühwarnzeichen?": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Atemballon": {
+    "enabled": false,
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true
+    ],
+    "config_complete": true
   }
 }
