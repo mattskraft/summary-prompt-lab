@@ -176,7 +176,12 @@
   },
   "Positiver Start": {
     "enabled": false,
-    "comment": "Übung enthält keine Fragen"
+    "comment": "Übung enthält keine Fragen",
+    "segment_toggles": [
+      true,
+      true
+    ],
+    "config_complete": true
   },
   "Psychose und Selbstwertgefühl": {
     "enabled": true,
@@ -2204,6 +2209,11 @@
     "segment_toggles": []
   },
   "Meine Frühwarnzeichen": {
+    "enabled": true,
+    "comment": "",
+    "segment_toggles": []
+  },
+  "Tagebuch führen": {
     "enabled": true,
     "comment": "",
     "segment_toggles": []
