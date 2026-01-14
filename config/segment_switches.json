@@ -2423,7 +2423,7 @@
   },
   "Morgenroutine": {
     "enabled": true,
-    "comment": "",
+    "comment": "Stresstesten",
     "segment_toggles": [
       true,
       false,
@@ -2448,7 +2448,7 @@
       true,
       true
     ],
-    "config_complete": false
+    "config_complete": true
   },
   "Duftreise": {
     "enabled": false,
