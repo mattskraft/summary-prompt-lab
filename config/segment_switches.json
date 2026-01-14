@@ -596,7 +596,7 @@
   },
   "Angenehme Aktivitäten 1": {
     "enabled": true,
-    "comment": "",
+    "comment": "weiter stresstesten",
     "segment_toggles": [
       true,
       false,
@@ -614,7 +614,7 @@
       true,
       true
     ],
-    "config_complete": false
+    "config_complete": true
   },
   "Äußere Merkmale von Selbstwert": {
     "enabled": true,
