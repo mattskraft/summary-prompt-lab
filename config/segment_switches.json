@@ -2537,7 +2537,7 @@
   },
   "Angenehme Aktivitäten 2": {
     "enabled": true,
-    "comment": "",
+    "comment": "stresstesten",
     "segment_toggles": [
       true,
       false,
@@ -2555,6 +2555,6 @@
       true,
       true
     ],
-    "config_complete": false
+    "config_complete": true
   }
 }
