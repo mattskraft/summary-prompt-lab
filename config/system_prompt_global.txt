@@ -21,5 +21,4 @@ Der INHALT besteht aus:
 
 # Ausgabeformat
 - Sprache: Deutsch, einfache Sprache, keine Fremdwörter
-- Format: Fließtext, keine Aufzählungen, 1 Absatz, wenn nicht anders angegeben
 - Länge: maximal 60 Wörter
