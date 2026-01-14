@@ -2572,5 +2572,25 @@
       true
     ],
     "config_complete": true
+  },
+  "Anrufen": {
+    "enabled": false,
+    "comment": "vorerst kein Summary, sollte am Ende mit der Abschlussseite verknüpft werden",
+    "segment_toggles": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "config_complete": true
   }
 }
