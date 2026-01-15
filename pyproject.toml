@@ -43,4 +43,4 @@ reportMissingModuleSource = false
 reportOptionalMemberAccess = false
 reportOptionalSubscript = false
 reportAttributeAccessIssue = false
-reportCallIssue = False
+reportCallIssue = false
