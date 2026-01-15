@@ -359,6 +359,7 @@ def get_next_exercise(
     current_uebung: Optional[str],
     skip_completed: bool = False,
     segment_switch_config: Optional[Dict[str, Any]] = None,
+    high_prio_only: bool = False,
 ) -> Optional[Tuple[str, str, str]]:
     """Get the next exercise after the current one, wrapping around if at the end.
     
@@ -367,12 +368,20 @@ def get_next_exercise(
         current_uebung: Current exercise name
         skip_completed: If True, skip exercises marked as "config_complete"
         segment_switch_config: Config dict to check for completed exercises
+        high_prio_only: If True, only navigate through exercises with high_prio set
     """
     all_exercises = get_all_exercises_with_paths(hierarchy)
     if not all_exercises:
         return None
     
     if not current_uebung:
+        # For high_prio_only, find the first high_prio exercise
+        if high_prio_only and segment_switch_config:
+            for exercise in all_exercises:
+                exercise_config = segment_switch_config.get(exercise[2], {})
+                if exercise_config.get("high_prio", False):
+                    return exercise
+            return None  # No high_prio exercises found
         return all_exercises[0]
     
     # Find current exercise index
@@ -383,19 +392,30 @@ def get_next_exercise(
             break
     
     if current_idx is None:
+        if high_prio_only and segment_switch_config:
+            for exercise in all_exercises:
+                exercise_config = segment_switch_config.get(exercise[2], {})
+                if exercise_config.get("high_prio", False):
+                    return exercise
+            return None
         return all_exercises[0]
     
-    # Get next exercise (wrap around), skipping completed if requested
+    # Get next exercise (wrap around), skipping based on filters
     num_exercises = len(all_exercises)
     for offset in range(1, num_exercises + 1):
         next_idx = (current_idx + offset) % num_exercises
         candidate = all_exercises[next_idx]
-        if skip_completed and segment_switch_config:
-            exercise_config = segment_switch_config.get(candidate[2], {})
-            if exercise_config.get("config_complete", False):
-                continue  # Skip this exercise
+        exercise_config = segment_switch_config.get(candidate[2], {}) if segment_switch_config else {}
+        
+        if skip_completed and exercise_config.get("config_complete", False):
+            continue  # Skip this exercise
+        if high_prio_only and not exercise_config.get("high_prio", False):
+            continue  # Skip non-high-prio exercises
         return candidate
     
+    # No matching exercise found
+    if high_prio_only:
+        return None
     # All exercises are completed, return next anyway
     next_idx = (current_idx + 1) % num_exercises
     return all_exercises[next_idx]
@@ -406,6 +426,7 @@ def get_previous_exercise(
     current_uebung: Optional[str],
     skip_completed: bool = False,
     segment_switch_config: Optional[Dict[str, Any]] = None,
+    high_prio_only: bool = False,
 ) -> Optional[Tuple[str, str, str]]:
     """Get the previous exercise before the current one, wrapping around if at the beginning.
     
@@ -414,12 +435,20 @@ def get_previous_exercise(
         current_uebung: Current exercise name
         skip_completed: If True, skip exercises marked as "config_complete"
         segment_switch_config: Config dict to check for completed exercises
+        high_prio_only: If True, only navigate through exercises with high_prio set
     """
     all_exercises = get_all_exercises_with_paths(hierarchy)
     if not all_exercises:
         return None
     
     if not current_uebung:
+        # For high_prio_only, find the last high_prio exercise
+        if high_prio_only and segment_switch_config:
+            for exercise in reversed(all_exercises):
+                exercise_config = segment_switch_config.get(exercise[2], {})
+                if exercise_config.get("high_prio", False):
+                    return exercise
+            return None  # No high_prio exercises found
         return all_exercises[-1]
     
     # Find current exercise index
@@ -430,19 +459,30 @@ def get_previous_exercise(
             break
     
     if current_idx is None:
+        if high_prio_only and segment_switch_config:
+            for exercise in reversed(all_exercises):
+                exercise_config = segment_switch_config.get(exercise[2], {})
+                if exercise_config.get("high_prio", False):
+                    return exercise
+            return None
         return all_exercises[-1]
     
-    # Get previous exercise (wrap around), skipping completed if requested
+    # Get previous exercise (wrap around), skipping based on filters
     num_exercises = len(all_exercises)
     for offset in range(1, num_exercises + 1):
         prev_idx = (current_idx - offset) % num_exercises
         candidate = all_exercises[prev_idx]
-        if skip_completed and segment_switch_config:
-            exercise_config = segment_switch_config.get(candidate[2], {})
-            if exercise_config.get("config_complete", False):
-                continue  # Skip this exercise
+        exercise_config = segment_switch_config.get(candidate[2], {}) if segment_switch_config else {}
+        
+        if skip_completed and exercise_config.get("config_complete", False):
+            continue  # Skip this exercise
+        if high_prio_only and not exercise_config.get("high_prio", False):
+            continue  # Skip non-high-prio exercises
         return candidate
     
+    # No matching exercise found
+    if high_prio_only:
+        return None
     # All exercises are completed, return previous anyway
     prev_idx = (current_idx - 1) % num_exercises
     return all_exercises[prev_idx]
@@ -1052,6 +1092,41 @@ with st.sidebar:
                 st.session_state[uebung_key] = next_uebung
                 st.rerun()
     
+    # High Prio navigation buttons
+    high_prio_nav_cols = st.columns(2)
+    
+    with high_prio_nav_cols[0]:
+        current_uebung = st.session_state.get(uebung_key)
+        if st.button("⬅️ Prev (High Prio)", use_container_width=True, disabled=not hier):
+            previous_exercise = get_previous_exercise(
+                hier, current_uebung,
+                skip_completed=False,
+                segment_switch_config=nav_segment_switch_config,
+                high_prio_only=True,
+            )
+            if previous_exercise:
+                previous_thema, previous_path, previous_uebung = previous_exercise
+                st.session_state[thema_key] = previous_thema
+                st.session_state[path_key] = previous_path
+                st.session_state[uebung_key] = previous_uebung
+                st.rerun()
+    
+    with high_prio_nav_cols[1]:
+        current_uebung = st.session_state.get(uebung_key)
+        if st.button("➡️ Next (High Prio)", use_container_width=True, disabled=not hier):
+            next_exercise = get_next_exercise(
+                hier, current_uebung,
+                skip_completed=False,
+                segment_switch_config=nav_segment_switch_config,
+                high_prio_only=True,
+            )
+            if next_exercise:
+                next_thema, next_path, next_uebung = next_exercise
+                st.session_state[thema_key] = next_thema
+                st.session_state[path_key] = next_path
+                st.session_state[uebung_key] = next_uebung
+                st.rerun()
+    
     if themen and st.session_state.get(thema_key) not in themen:
         st.session_state[thema_key] = themen[0]
     sel_thema = (
@@ -1356,11 +1431,13 @@ if sel_uebung:
     switch_enabled = segment_switch_value.get("enabled", False) if isinstance(segment_switch_value, dict) else False
     switch_comment = segment_switch_value.get("comment", "") if isinstance(segment_switch_value, dict) else ""
     config_complete = segment_switch_value.get("config_complete", False) if isinstance(segment_switch_value, dict) else False
+    high_prio = segment_switch_value.get("high_prio", False) if isinstance(segment_switch_value, dict) else False
     
     # Session state keys
     switch_checkbox_key = f"{session_key}_segment_switch_enabled"
     switch_comment_key = f"{session_key}_segment_switch_comment"
     config_complete_key = f"{session_key}_config_complete"
+    high_prio_key = f"{session_key}_high_prio"
     
     # Initialize session state if needed
     if switch_checkbox_key not in st.session_state:
@@ -1369,9 +1446,11 @@ if sel_uebung:
         st.session_state[switch_comment_key] = switch_comment
     if config_complete_key not in st.session_state:
         st.session_state[config_complete_key] = config_complete
+    if high_prio_key not in st.session_state:
+        st.session_state[high_prio_key] = high_prio
     
-    # Checkboxes in two columns
-    switch_cols = st.columns(2)
+    # Checkboxes in three columns
+    switch_cols = st.columns(3)
     with switch_cols[0]:
         st.checkbox(
            "Summary aktiviert",
@@ -1381,6 +1460,11 @@ if sel_uebung:
         st.checkbox(
            "Konfiguration abgeschlossen",
            key=config_complete_key,
+        )
+    with switch_cols[2]:
+        st.checkbox(
+           "High Prio",
+           key=high_prio_key,
         )
 
     # Comment
@@ -1403,11 +1487,13 @@ if sel_uebung:
         new_enabled = st.session_state.get(switch_checkbox_key, False)
         new_comment = st.session_state.get(switch_comment_key, "").strip()
         new_config_complete = st.session_state.get(config_complete_key, False)
+        new_high_prio = st.session_state.get(high_prio_key, False)
         segment_switch_value = {
             "enabled": new_enabled, 
             "comment": new_comment,
             "segment_toggles": current_toggles,
             "config_complete": new_config_complete,
+            "high_prio": new_high_prio,
         }
         segment_switch_config[sel_uebung] = segment_switch_value
         save_segment_switch_config(segment_switch_config)
